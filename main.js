@@ -275,7 +275,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let currentCaseIndex = 0;
   let sliderPosition = 50; // percentage
 
-  const cardsContainer = document.getElementById('transformationCardsContainer');
+  const tabsContainer = document.getElementById('transformationTabsContainer');
   const headlineEl = document.getElementById('caseHeadline');
   const storyEl = document.getElementById('caseStory');
   const whatWeDidEl = document.getElementById('caseWhatWeDid');
@@ -291,24 +291,20 @@ document.addEventListener('DOMContentLoaded', () => {
   const clippedWrapperEl = document.getElementById('sliderClippedWrapper');
   const dividerLineEl = document.getElementById('sliderDividerLine');
 
-  function renderVisualCards() {
-    if (!cardsContainer) return;
-    cardsContainer.innerHTML = CASES_DATA.map((item, idx) => {
+  function renderTabs() {
+    if (!tabsContainer) return;
+    tabsContainer.innerHTML = CASES_DATA.map((item, idx) => {
       const isActive = idx === currentCaseIndex;
       return `
-        <div 
+        <button 
           onclick="setTransformationCase(${idx})"
-          class="relative h-[115px] sm:h-[135px] rounded-[18px] sm:rounded-[22px] overflow-hidden cursor-pointer transition-all duration-300 flex flex-col justify-end p-3.5 select-none ${
-            isActive 
-              ? 'ring-[3.5px] ring-[#0066cc] shadow-lg shadow-sky-600/20 -translate-y-1 scale-[1.02]' 
-              : 'opacity-80 hover:opacity-100 hover:-translate-y-0.5 hover:shadow-md'
+          class="relative pb-3 text-[14px] sm:text-[15px] font-semibold transition-colors duration-200 whitespace-nowrap cursor-pointer ${
+            isActive ? 'text-[#0066cc]' : 'text-slate-500 hover:text-slate-800'
           }"
         >
-          <img src="${item.cardImage}" alt="${item.category}" class="absolute inset-0 w-full h-full object-cover object-center pointer-events-none" />
-          <div class="absolute inset-0 bg-gradient-to-t from-[#07234b]/95 via-[#07234b]/40 to-transparent pointer-events-none"></div>
-          <p class="relative z-10 text-white text-[13px] sm:text-[14px] font-bold text-center leading-tight drop-shadow">${item.category}</p>
-          ${isActive ? '<span class="absolute top-2.5 right-2.5 w-2.5 h-2.5 rounded-full bg-sky-400 ring-2 ring-white"></span>' : ''}
-        </div>
+          ${item.category}
+          ${isActive ? '<span class="absolute bottom-0 left-0 right-0 h-[2.5px] bg-[#0066cc] rounded-full"></span>' : ''}
+        </button>
       `;
     }).join('');
   }
@@ -335,7 +331,7 @@ document.addEventListener('DOMContentLoaded', () => {
       `).join('');
     }
 
-    renderVisualCards();
+    renderTabs();
   }
 
   window.setTransformationCase = function(index) {

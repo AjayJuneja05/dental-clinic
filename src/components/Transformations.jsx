@@ -145,47 +145,30 @@ export default function Transformations() {
         </p>
       </div>
 
-      {/* Visual Service Card Options (Under the text options) */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3.5 sm:gap-4 mb-12 sm:mb-16 max-w-[1280px] mx-auto">
-        {CASES_DATA.map((item, index) => {
-          const isActive = activeTab === index;
-          return (
-            <div
-              key={item.id}
-              onClick={() => {
-                setActiveTab(index);
-                setSliderPos(50);
-              }}
-              className={`relative h-[115px] sm:h-[135px] rounded-[18px] sm:rounded-[22px] overflow-hidden cursor-pointer transition-all duration-300 flex flex-col justify-end p-3.5 select-none ${
-                isActive
-                  ? 'ring-[3.5px] ring-[#0066cc] shadow-lg shadow-sky-600/20 -translate-y-1 scale-[1.02]'
-                  : 'opacity-80 hover:opacity-100 hover:-translate-y-0.5 hover:shadow-md'
-              }`}
-            >
-              {/* Background 3D Service Image */}
-              <img
-                src={item.cardImage}
-                alt={item.category}
-                loading="eager"
-                decoding="async"
-                className="absolute inset-0 w-full h-full object-cover object-center pointer-events-none transition-transform duration-500 hover:scale-105"
-              />
-
-              {/* Gradient Overlay for Crisp Text Contrast */}
-              <div className="absolute inset-0 bg-gradient-to-t from-[#07234b]/95 via-[#07234b]/40 to-transparent pointer-events-none"></div>
-
-              {/* Service Title */}
-              <p className="relative z-10 text-white text-[13px] sm:text-[14px] font-bold text-center leading-tight drop-shadow">
+      {/* Horizontal Underlined Category Tabs matching reference */}
+      <div className="w-full max-w-[880px] mx-auto border-b border-slate-200/90 mb-12 sm:mb-16">
+        <div className="flex items-center justify-between sm:justify-center gap-6 sm:gap-12 overflow-x-auto no-scrollbar pb-0.5">
+          {CASES_DATA.map((item, index) => {
+            const isActive = activeTab === index;
+            return (
+              <button
+                key={item.id}
+                onClick={() => {
+                  setActiveTab(index);
+                  setSliderPos(50);
+                }}
+                className={`relative pb-3 text-[14px] sm:text-[15px] font-semibold transition-colors duration-200 whitespace-nowrap cursor-pointer ${
+                  isActive ? 'text-[#0066cc]' : 'text-slate-500 hover:text-slate-800'
+                }`}
+              >
                 {item.category}
-              </p>
-
-              {/* Active Indicator Badge */}
-              {isActive && (
-                <span className="absolute top-2.5 right-2.5 w-2.5 h-2.5 rounded-full bg-sky-400 ring-2 ring-white"></span>
-              )}
-            </div>
-          );
-        })}
+                {isActive && (
+                  <span className="absolute bottom-0 left-0 right-0 h-[2.5px] bg-[#0066cc] rounded-full"></span>
+                )}
+              </button>
+            );
+          })}
+        </div>
       </div>
 
       {/* Main 3-Column Content Layout (Dynamic per selected service) */}
