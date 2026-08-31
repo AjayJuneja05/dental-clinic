@@ -1,0 +1,42 @@
+[
+  {
+    "id": "aesthetic",
+    "title": "Aesthetic dentistry",
+    "headline": "Artistry meets dental perfection",
+    "description": "Porcelain veneers, composite bonding, and smile contouring designed to enhance your natural beauty with precision aesthetics.",
+    "image": "/service-aesthetic.webp",
+    "isActive": true
+  },
+  {
+    "id": "ortho",
+    "title": "Orthodontics",
+    "headline": "Discreet alignment, perfect harmony",
+    "description": "Custom clear aligners and modern orthodontic solutions tailored to straighten teeth seamlessly and achieve optimal bite balance.",
+    "image": "/service-ortho.webp",
+    "isActive": true
+  },
+  {
+    "id": "implant",
+    "title": "Implantology",
+    "headline": "Smile restoration, built to last",
+    "description": "Permanent, natural-looking tooth replacements. Using 3D-guided surgery, our implants restore full chewing function and aesthetics.",
+    "image": "/service-implant.webp",
+    "isActive": true
+  },
+  {
+    "id": "whitening",
+    "title": "Whitening",
+    "headline": "Brilliant radiance, safely achieved",
+    "description": "Professional medical-grade whitening systems that remove deep stains and elevate your smile shade with zero enamel sensitivity.",
+    "image": "/service-whitening.webp",
+    "isActive": true
+  },
+  {
+    "id": "surgical",
+    "title": "Surgical dentistry",
+    "headline": "Advanced care, gentle precision",
+    "description": "Minimally invasive oral surgery, wisdom teeth removal, and bone regeneration performed by board-certified specialists.",
+    "image": "/service-surgical.webp",
+    "isActive": true
+  }
+]

@@ -1,0 +1,180 @@
+/* Celestia Smiles Hero & Services Styles */
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700;1,800&display=swap');
+
+html, body {
+  background-color: #ffffff;
+  color: #0c2752;
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  overflow-x: hidden;
+}
+
+/* Subtle floating levitation */
+@keyframes toothHover {
+  0%, 100% { transform: translateY(0px); }
+  50%      { transform: translateY(-10px); }
+}
+
+.tooth-float {
+  animation: toothHover 5s ease-in-out infinite;
+  will-change: transform;
+}
+
+/* Italic bold heading style */
+.hero-heading {
+  font-style: italic;
+}
+
+/* ========== SERVICES SECTION EXPANDING ACCORDION ========== */
+
+.services-accordion-wrapper {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+.services-container {
+  display: flex;
+  gap: 18px;
+  width: 100%;
+  height: 320px;
+  align-items: stretch;
+  overflow: hidden;
+  user-select: none;
+}
+
+.service-card {
+  flex: 1 1 0%;
+  height: 320px;
+  border-radius: 16px;
+  overflow: hidden;
+  position: relative;
+  background: linear-gradient(180deg, #2b6aa9 0%, #1e5491 100%);
+  isolation: isolate;
+  -webkit-mask-image: -webkit-radial-gradient(white, black);
+  mask-image: radial-gradient(white, black);
+  cursor: pointer;
+  transition: flex 500ms cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: flex;
+  box-shadow: 0 4px 20px -2px rgba(12, 39, 82, 0.12);
+}
+
+.service-card.is-active {
+  flex: 2.4 1 0% !important;
+}
+
+/* Inner 2-part structure */
+.service-card-inner {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+/* Left part: 50% on expanded */
+.card-left-part {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 24px 18px;
+  transition: width 500ms cubic-bezier(0.22, 1, 0.36, 1), padding 300ms ease;
+}
+
+.service-card.is-active .card-left-part {
+  width: 50%;
+  padding: 24px;
+}
+
+.card-bg-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+  transition: transform 500ms ease;
+}
+
+.service-card:hover .card-bg-img {
+  transform: scale(1.04);
+}
+
+.card-title-text {
+  position: relative;
+  z-index: 10;
+  color: #ffffff;
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 1.25;
+  text-align: center;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+  transition: text-align 300ms ease, font-size 300ms ease;
+}
+
+.service-card.is-active .card-title-text {
+  text-align: left;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+/* Right part: Complete Full 50% Half Card */
+.card-right-panel {
+  width: 50%;
+  height: 100%;
+  flex-shrink: 0;
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-left: 1px solid rgba(255, 255, 255, 0.2);
+  margin: 0;
+  padding: 24px 22px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  opacity: 0;
+  transform: translateX(12px);
+  pointer-events: none;
+  transition: opacity 350ms cubic-bezier(0.22, 1, 0.36, 1) 100ms, transform 350ms cubic-bezier(0.22, 1, 0.36, 1) 100ms;
+}
+
+.service-card.is-active .card-right-panel {
+  opacity: 1;
+  transform: translateX(0);
+  pointer-events: auto;
+}
+
+/* Mobile & Tablet adjustments */
+@media (max-width: 1023px) {
+  .services-accordion-wrapper {
+    overflow-x: auto;
+    padding: 0 20px 16px;
+  }
+  .services-container {
+    width: max-content;
+    height: 300px;
+    gap: 12px;
+  }
+  .service-card {
+    width: 220px;
+    flex: 0 0 220px;
+    height: 300px;
+  }
+  .service-card.is-active {
+    width: 440px !important;
+    flex: 0 0 440px !important;
+  }
+}
+
+/* Hide scrollbar */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
