@@ -106,13 +106,22 @@ export default function Transformations() {
     setSliderPos(pos);
   }, []);
 
-  const handleTouchMove = (e) => {
-    handleMove(e.touches[0].clientX);
+  const handlePointerDown = (e) => {
+    setIsDragging(true);
+    e.currentTarget.setPointerCapture(e.pointerId);
+    handleMove(e.clientX);
   };
 
-  const handleMouseMove = (e) => {
+  const handlePointerMove = (e) => {
     if (!isDragging) return;
     handleMove(e.clientX);
+  };
+
+  const handlePointerUp = (e) => {
+    setIsDragging(false);
+    try {
+      e.currentTarget.releasePointerCapture(e.pointerId);
+    } catch (_) {}
   };
 
   const handlePrev = () => {
@@ -214,13 +223,11 @@ export default function Transformations() {
         <div className="lg:col-span-5">
           <div 
             ref={sliderRef}
-            onMouseDown={() => setIsDragging(true)}
-            onMouseUp={() => setIsDragging(false)}
-            onMouseLeave={() => setIsDragging(false)}
-            onMouseMove={handleMouseMove}
-            onTouchMove={handleTouchMove}
-            onClick={(e) => handleMove(e.clientX)}
-            className="relative w-full h-[320px] sm:h-[380px] rounded-[24px] overflow-hidden shadow-md cursor-ew-resize bg-slate-900 border border-slate-100"
+            onPointerDown={handlePointerDown}
+            onPointerMove={handlePointerMove}
+            onPointerUp={handlePointerUp}
+            onPointerCancel={handlePointerUp}
+            className="relative w-full h-[320px] sm:h-[380px] rounded-[24px] overflow-hidden shadow-md cursor-ew-resize bg-slate-900 border border-slate-100 touch-none select-none"
           >
             {/* "Before" Image Layer (Base) */}
             <img 
@@ -228,7 +235,7 @@ export default function Transformations() {
               alt="Before treatment"
               className="absolute inset-0 w-full h-full object-cover pointer-events-none" 
             />
-            <span className="absolute top-3.5 left-4 text-white/90 text-[11px] font-bold uppercase tracking-wider drop-shadow z-10">
+            <span className="absolute top-3.5 left-4 text-white/90 text-[11px] font-bold uppercase tracking-wider drop-shadow z-10 pointer-events-none">
               Before
             </span>
 
@@ -243,7 +250,7 @@ export default function Transformations() {
                 className="absolute inset-0 w-full h-full object-cover"
               />
             </div>
-            <span className="absolute top-3.5 right-4 text-white/90 text-[11px] font-bold uppercase tracking-wider drop-shadow z-10">
+            <span className="absolute top-3.5 right-4 text-white/90 text-[11px] font-bold uppercase tracking-wider drop-shadow z-10 pointer-events-none">
               After
             </span>
 
@@ -253,7 +260,7 @@ export default function Transformations() {
               style={{ left: `${sliderPos}%` }}
             >
               {/* Center Floating "Drag" Circular Button */}
-              <div className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-12 h-12 rounded-full bg-white/85 backdrop-blur-md border border-white/60 shadow-lg flex items-center justify-center text-[#07234b] text-[11px] font-bold tracking-tight select-none">
+              <div className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-12 h-12 rounded-full bg-white/85 backdrop-blur-md border border-white/60 shadow-lg flex items-center justify-center text-[#07234b] text-[11px] font-bold tracking-tight select-none pointer-events-none">
                 Drag
               </div>
             </div>
