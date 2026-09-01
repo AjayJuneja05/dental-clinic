@@ -117,11 +117,11 @@ export default function AdvancedTechnology() {
   };
 
   return (
-    <section id="technology" className="w-full py-16 sm:py-20 lg:py-24 bg-white relative overflow-hidden select-none">
+    <section id="technology" className="w-full py-16 sm:py-20 lg:py-24 bg-gradient-to-b from-[#edf6ff] via-[#f6faff] to-[#e9f4ff] border-y border-sky-100/80 relative overflow-hidden select-none">
       
-      {/* Background Soft Blue Blooms */}
-      <div className="absolute top-1/4 left-5 w-96 h-96 bg-blue-100/40 rounded-full blur-3xl pointer-events-none -z-0"></div>
-      <div className="absolute bottom-10 right-5 w-96 h-96 bg-sky-100/50 rounded-full blur-3xl pointer-events-none -z-0"></div>
+      {/* Background Soft Skyblue Ambient Glows */}
+      <div className="absolute top-1/4 left-5 w-[450px] h-[450px] bg-sky-200/50 rounded-full blur-3xl pointer-events-none -z-0"></div>
+      <div className="absolute bottom-10 right-5 w-[450px] h-[450px] bg-blue-200/40 rounded-full blur-3xl pointer-events-none -z-0"></div>
 
       <div className="w-full max-w-[1500px] mx-auto px-5 sm:px-12 lg:px-20 relative z-10">
         
@@ -132,7 +132,7 @@ export default function AdvancedTechnology() {
           <div className="lg:col-span-5 flex flex-col justify-start">
             
             {/* Pill Eyebrow Badge */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 border border-blue-100/80 text-[#0066cc] text-[12px] font-bold tracking-wide uppercase mb-5 self-start shadow-xs">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-sky-200 text-[#0066cc] text-[12px] font-bold tracking-wide uppercase mb-5 self-start shadow-xs">
               <span className="w-2 h-2 rounded-full bg-[#0066cc] animate-pulse"></span>
               <span>Advanced Technology</span>
             </div>
@@ -144,7 +144,7 @@ export default function AdvancedTechnology() {
             </h2>
 
             {/* Blue Decorative Accent Line */}
-            <div className="w-12 h-1 bg-[#0066cc] rounded-full my-5"></div>
+            <div className="w-12 h-1 bg-[#0066cc] rounded-full my-5 shadow-xs"></div>
 
             {/* Subtitle Body */}
             <p className="text-[14px] sm:text-[15px] text-[#475569] leading-[1.65] font-normal mb-8 max-w-[520px]">
@@ -161,8 +161,8 @@ export default function AdvancedTechnology() {
                     onClick={() => handleToggle(idx)}
                     className={`rounded-[22px] border transition-all duration-300 overflow-hidden cursor-pointer ${
                       isExpanded
-                        ? 'bg-[#f8faff] border-[#0066cc] shadow-[0_12px_32px_-8px_rgba(0,102,204,0.18)] ring-2 ring-blue-100/80 scale-[1.01]'
-                        : 'bg-white hover:bg-slate-50/70 border-slate-200/90 hover:border-slate-300 shadow-xs'
+                        ? 'bg-white border-[#0066cc] shadow-[0_12px_32px_-8px_rgba(0,102,204,0.18)] ring-2 ring-sky-200 scale-[1.01]'
+                        : 'bg-white/90 hover:bg-white border-sky-100 hover:border-sky-200 shadow-sm'
                     }`}
                   >
                     {/* Header Row */}
@@ -172,7 +172,7 @@ export default function AdvancedTechnology() {
                         <div className={`w-12 h-12 rounded-2xl flex items-center justify-center flex-shrink-0 transition-all duration-300 ${
                           isExpanded
                             ? 'bg-[#0066cc] text-white shadow-md shadow-blue-500/25'
-                            : 'bg-blue-50 text-[#0066cc]'
+                            : 'bg-sky-50 text-[#0066cc]'
                         }`}>
                           {item.icon}
                         </div>
@@ -194,7 +194,7 @@ export default function AdvancedTechnology() {
                       <div className={`w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0 transition-all duration-300 ${
                         isExpanded
                           ? 'bg-[#0066cc] text-white rotate-90 shadow-xs'
-                          : 'bg-slate-100 text-slate-500 hover:bg-blue-50 hover:text-[#0066cc]'
+                          : 'bg-sky-50 text-slate-500 hover:bg-sky-100 hover:text-[#0066cc]'
                       }`}>
                         <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2.2" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
@@ -218,7 +218,7 @@ export default function AdvancedTechnology() {
                           {item.badges.map((badge, bIdx) => (
                             <span
                               key={bIdx}
-                              className="px-2.5 py-1 rounded-lg bg-blue-50/90 text-[#0066cc] text-[11px] font-bold border border-blue-100/70"
+                              className="px-2.5 py-1 rounded-lg bg-sky-50 text-[#0066cc] text-[11px] font-bold border border-sky-200/80"
                             >
                               ✓ {badge}
                             </span>
@@ -235,7 +235,7 @@ export default function AdvancedTechnology() {
 
           {/* RIGHT COLUMN (Span 7): High-Tech Workstation Card & Floating Badge */}
           <div className="lg:col-span-7 relative sticky top-24">
-            <div className="relative w-full rounded-[28px] sm:rounded-[36px] overflow-hidden bg-slate-900 border border-slate-200/80 shadow-[0_20px_50px_-15px_rgba(12,39,82,0.15)] group">
+            <div className="relative w-full rounded-[28px] sm:rounded-[36px] overflow-hidden bg-slate-900 border border-sky-100 shadow-[0_20px_50px_-15px_rgba(7,35,75,0.12)] group">
               
               {/* Workstation Image */}
               <img
@@ -267,13 +267,13 @@ export default function AdvancedTechnology() {
         </div>
 
         {/* BOTTOM BENEFIT PILLARS (4-Column Grid) */}
-        <div className="mt-14 sm:mt-16 pt-10 border-t border-slate-200/80 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+        <div className="mt-14 sm:mt-16 pt-10 border-t border-sky-200/70 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
           {BENEFIT_PILLARS.map((pillar, i) => (
             <div 
               key={i} 
-              className="flex flex-col items-center text-center p-5 rounded-2xl bg-[#f8faff] hover:bg-white border border-slate-200/70 hover:border-[#0066cc]/50 transition-all duration-300 hover:shadow-md group"
+              className="flex flex-col items-center text-center p-5 rounded-2xl bg-white/85 backdrop-blur-sm hover:bg-white border border-sky-100 hover:border-[#0066cc]/40 transition-all duration-300 hover:shadow-md group"
             >
-              <div className="w-12 h-12 rounded-2xl bg-white group-hover:bg-blue-50 border border-slate-200/80 group-hover:border-blue-200 flex items-center justify-center mb-3.5 transition-colors shadow-xs">
+              <div className="w-12 h-12 rounded-2xl bg-sky-50 group-hover:bg-sky-100/80 border border-sky-100 flex items-center justify-center mb-3.5 transition-colors shadow-xs">
                 {pillar.icon}
               </div>
               <h4 className="text-[16px] font-bold text-[#07234b]">
