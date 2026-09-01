@@ -105,64 +105,29 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Column 3: Operating Hours */}
-          <div className="lg:col-span-4 space-y-5">
+          {/* Column 3: Working Hours */}
+          <div className="lg:col-span-4 space-y-4">
             <h3 className="text-[13px] font-bold text-white/40 tracking-[0.15em] uppercase flex items-center gap-2.5">
-              <span>Operating Hours</span>
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+              <svg className="w-4 h-4 text-white/40" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              <span>Working Hours</span>
             </h3>
+            <p className="text-[12px] text-white/45 -mt-1">Take a look at our office hours to schedule your appointment.</p>
 
-            <div className="space-y-2">
-              {/* Mon-Fri */}
-              <div className="flex items-center justify-between py-3 px-4 rounded-[14px] bg-white/[0.04] border border-white/[0.06]">
-                <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-lg bg-emerald-500/15 flex items-center justify-center">
-                    <svg className="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                  </div>
-                  <div>
-                    <span className="text-[12.5px] font-semibold text-white/90 block">Monday – Friday</span>
-                    <span className="text-[11.5px] text-white/50">Regular Hours</span>
-                  </div>
+            <div className="space-y-0 rounded-2xl overflow-hidden border border-white/[0.06]">
+              {[
+                { day: 'Monday',    time: '09:00 AM – 10:00 PM' },
+                { day: 'Tuesday',   time: '09:00 AM – 10:00 PM' },
+                { day: 'Wednesday', time: '09:00 AM – 10:00 PM' },
+                { day: 'Thursday',  time: '09:00 AM – 10:00 PM' },
+                { day: 'Friday',    time: '10:00 AM – 10:00 PM' },
+                { day: 'Saturday',  time: '10:00 AM – 10:00 PM' },
+                { day: 'Sunday',    time: 'Closed', closed: true },
+              ].map((row, i) => (
+                <div key={i} className={`flex items-center justify-between py-3 px-4 ${i !== 6 ? 'border-b border-white/[0.06]' : ''} ${row.closed ? 'bg-white/[0.02]' : 'bg-white/[0.04]'}`}>
+                  <span className="text-[13px] font-semibold text-white/80">{row.day}</span>
+                  <span className={`text-[13px] font-medium ${row.closed ? 'text-red-400/80' : 'text-white/60'}`}>{row.time}</span>
                 </div>
-                <div className="text-right">
-                  <span className="text-[13px] font-bold text-white block">8:00 – 7:00 PM</span>
-                  <span className="text-[10px] font-semibold text-emerald-400 uppercase tracking-wider">Open</span>
-                </div>
-              </div>
-
-              {/* Saturday */}
-              <div className="flex items-center justify-between py-3 px-4 rounded-[14px] bg-white/[0.04] border border-white/[0.06]">
-                <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-lg bg-sky-500/15 flex items-center justify-center">
-                    <svg className="w-4 h-4 text-sky-400" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
-                  </div>
-                  <div>
-                    <span className="text-[12.5px] font-semibold text-white/90 block">Saturday</span>
-                    <span className="text-[11.5px] text-white/50">By Appointment</span>
-                  </div>
-                </div>
-                <div className="text-right">
-                  <span className="text-[13px] font-bold text-white block">9:00 – 5:00 PM</span>
-                  <span className="text-[10px] font-semibold text-sky-400 uppercase tracking-wider">By Appt</span>
-                </div>
-              </div>
-
-              {/* Sunday */}
-              <div className="flex items-center justify-between py-3 px-4 rounded-[14px] bg-white/[0.04] border border-white/[0.06]">
-                <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-lg bg-amber-500/15 flex items-center justify-center">
-                    <svg className="w-4 h-4 text-amber-400" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
-                  </div>
-                  <div>
-                    <span className="text-[12.5px] font-semibold text-white/90 block">Sunday</span>
-                    <span className="text-[11.5px] text-white/50">Emergency Only</span>
-                  </div>
-                </div>
-                <div className="text-right">
-                  <span className="text-[13px] font-bold text-white/60 block">On-Call</span>
-                  <span className="text-[10px] font-semibold text-amber-400 uppercase tracking-wider">24/7 Line</span>
-                </div>
-              </div>
+              ))}
             </div>
           </div>
 
