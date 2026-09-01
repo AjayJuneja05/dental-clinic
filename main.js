@@ -535,6 +535,73 @@ if (closeBtn) {
   closeBtn.addEventListener('click', closeDoctorModal);
 }
 
+// 5. Book Appointment Form Handling
+document.addEventListener('DOMContentLoaded', () => {
+  const bookDateInput = document.getElementById('bookDate');
+  if (bookDateInput) {
+    const today = new Date().toISOString().split('T')[0];
+    bookDateInput.min = today;
+    bookDateInput.value = today;
+  }
+
+  const timeSlotButtons = document.querySelectorAll('.time-slot-btn');
+  let selectedTimeSlot = '10:30 AM';
+
+  timeSlotButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      timeSlotButtons.forEach(b => {
+        b.className = 'time-slot-btn py-2 px-1 text-center rounded-lg text-[12px] font-semibold transition-all cursor-pointer bg-slate-50 hover:bg-slate-100 text-slate-600 border border-slate-200/80';
+      });
+      btn.className = 'time-slot-btn py-2 px-1 text-center rounded-lg text-[12px] font-semibold transition-all cursor-pointer bg-[#0066cc] text-white shadow-xs';
+      selectedTimeSlot = btn.getAttribute('data-slot');
+    });
+  });
+
+  const appointmentForm = document.getElementById('appointmentForm');
+  const bookingSuccessBox = document.getElementById('bookingSuccessBox');
+  const bookingSuccessName = document.getElementById('bookingSuccessName');
+  const bookingResetBtn = document.getElementById('bookingResetBtn');
+  const bookSubmitBtn = document.getElementById('bookSubmitBtn');
+
+  if (appointmentForm) {
+    appointmentForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const patientName = document.getElementById('bookName')?.value || 'Patient';
+      
+      if (bookSubmitBtn) {
+        bookSubmitBtn.disabled = true;
+        bookSubmitBtn.innerHTML = `
+          <span class="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
+          <span>Securing Your Reservation...</span>
+        `;
+      }
+
+      setTimeout(() => {
+        if (bookingSuccessName) bookingSuccessName.textContent = `Thank you, ${patientName}!`;
+        appointmentForm.classList.add('hidden');
+        if (bookingSuccessBox) bookingSuccessBox.classList.remove('hidden');
+      }, 600);
+    });
+  }
+
+  if (bookingResetBtn) {
+    bookingResetBtn.addEventListener('click', () => {
+      if (appointmentForm) {
+        appointmentForm.reset();
+        appointmentForm.classList.remove('hidden');
+      }
+      if (bookSubmitBtn) {
+        bookSubmitBtn.disabled = false;
+        bookSubmitBtn.innerHTML = `
+          <span>Confirm Appointment Request</span>
+          <span>➔</span>
+        `;
+      }
+      if (bookingSuccessBox) bookingSuccessBox.classList.add('hidden');
+    });
+  }
+});
+
 const docModalBackdrop = document.getElementById('doctorModal');
 if (docModalBackdrop) {
   docModalBackdrop.addEventListener('click', (e) => {

@@ -545,19 +545,181 @@
     </div>
   </div>
 
-  <!-- BOTTOM SCHEDULE & CONTACT SECTION -->
-  <section id="schedule" class="w-full bg-[#07234b] text-white py-16 px-5 sm:px-12 text-center">
-    <div class="max-w-[700px] mx-auto">
-      <h3 class="text-[32px] sm:text-[42px] font-bold tracking-tight">
-        Ready for your smile transformation?
-      </h3>
-      <p class="text-sky-200/80 text-[15px] mt-3 max-w-[520px] mx-auto">
-        Book a private 1-on-1 consultation with our clinical specialists to receive your custom 3D digital smile preview.
-      </p>
-      <div class="flex flex-wrap items-center justify-center gap-4 mt-8">
-        <a href="tel:18005550199" class="px-8 py-3.5 rounded-full bg-white text-[#07234b] hover:bg-sky-50 text-[14px] font-bold transition-all shadow-lg">
-          Call: +1 (800) 555-0199
-        </a>
+  <!-- BOOK APPOINTMENT SECTION -->
+  <section id="schedule" class="w-full py-16 sm:py-20 lg:py-24 bg-[#f8faff] border-t border-slate-200/70 relative overflow-hidden">
+    <!-- Background Ambient Light Blooms -->
+    <div class="absolute top-0 right-1/4 w-96 h-96 bg-sky-200/40 rounded-full blur-3xl pointer-events-none -z-0"></div>
+    <div class="absolute bottom-0 left-1/4 w-96 h-96 bg-blue-100/50 rounded-full blur-3xl pointer-events-none -z-0"></div>
+
+    <div class="w-full max-w-[1500px] mx-auto px-5 sm:px-12 lg:px-20 relative z-10">
+      
+      <!-- Section Header -->
+      <div class="text-center max-w-[760px] mx-auto mb-12 sm:mb-16">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-sky-100/80 border border-sky-200/60 text-[#0066cc] text-[12px] font-bold tracking-wide uppercase mb-4">
+          <span class="w-2 h-2 rounded-full bg-[#0066cc] animate-pulse"></span>
+          <span>Online Booking & Priority Scheduling</span>
+        </div>
+
+        <h2 class="text-[34px] sm:text-[44px] lg:text-[52px] font-bold text-[#07234b] leading-[1.08] tracking-[-0.035em]">
+          Book Your Private <br />
+          Smile Consultation
+        </h2>
+
+        <p class="text-[14.5px] sm:text-[16px] text-[#475569] leading-[1.65] font-normal mt-4 max-w-[600px] mx-auto">
+          Experience compassionate, board-certified care. Select your preferred specialist, treatment, and time for a personalized 3D diagnostic evaluation.
+        </p>
+      </div>
+
+      <!-- Main 2-Column Grid -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 xl:gap-12 items-start">
+        
+        <!-- LEFT: Interactive Booking Form (Span 7) -->
+        <div class="lg:col-span-7 bg-white rounded-[28px] sm:rounded-[32px] p-6 sm:p-9 lg:p-10 border border-slate-200/90 shadow-[0_15px_40px_-15px_rgba(12,39,82,0.08)]">
+          
+          <div id="bookingSuccessBox" class="py-12 px-4 text-center flex flex-col items-center justify-center hidden">
+            <div class="w-20 h-20 rounded-full bg-emerald-50 text-emerald-500 border border-emerald-200 flex items-center justify-center text-3xl mb-6 shadow-sm">
+              ✓
+            </div>
+            <span class="text-[12px] font-bold text-sky-600 uppercase tracking-widest block mb-1">APPOINTMENT CONFIRMED</span>
+            <h3 id="bookingSuccessName" class="text-[26px] sm:text-[30px] font-bold text-[#07234b] tracking-tight"></h3>
+            <p class="text-[14.5px] text-[#475569] mt-3 max-w-[460px] leading-relaxed">
+              We have reserved your consultation. A confirmation SMS & email have been sent to your phone.
+            </p>
+            <button id="bookingResetBtn" class="mt-8 px-8 py-3 rounded-full bg-slate-100 hover:bg-slate-200 text-[#07234b] text-[13.5px] font-bold transition-all cursor-pointer">
+              Book Another Appointment
+            </button>
+          </div>
+
+          <form id="appointmentForm" class="space-y-6">
+            <!-- 1. Patient Details -->
+            <div>
+              <label class="text-[12px] font-bold text-[#07234b] uppercase tracking-wider block mb-2">1. Patient Details</label>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <input type="text" required placeholder="Full Name *" id="bookName" class="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-[#07234b] text-[14px] placeholder:text-slate-400 focus:bg-white focus:border-[#0066cc] focus:ring-2 focus:ring-sky-100 outline-none transition-all" />
+                <input type="tel" required placeholder="Phone Number *" id="bookPhone" class="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-[#07234b] text-[14px] placeholder:text-slate-400 focus:bg-white focus:border-[#0066cc] focus:ring-2 focus:ring-sky-100 outline-none transition-all" />
+              </div>
+              <div class="mt-3">
+                <input type="email" required placeholder="Email Address (for confirmation) *" id="bookEmail" class="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-[#07234b] text-[14px] placeholder:text-slate-400 focus:bg-white focus:border-[#0066cc] focus:ring-2 focus:ring-sky-100 outline-none transition-all" />
+              </div>
+            </div>
+
+            <!-- 2. Department & Doctor -->
+            <div>
+              <label class="text-[12px] font-bold text-[#07234b] uppercase tracking-wider block mb-2">2. Select Department & Doctor</label>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div class="relative">
+                  <select id="bookService" class="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-[#07234b] text-[14px] focus:bg-white focus:border-[#0066cc] focus:ring-2 focus:ring-sky-100 outline-none transition-all appearance-none cursor-pointer">
+                    <option value="aesthetic">Aesthetic Dentistry</option>
+                    <option value="ortho">Orthodontics</option>
+                    <option value="implant">Implantology</option>
+                    <option value="whitening">Teeth Whitening</option>
+                    <option value="surgical">Surgical Dentistry</option>
+                  </select>
+                  <div class="absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400 text-xs">▼</div>
+                </div>
+                <div class="relative">
+                  <select id="bookDoctor" class="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-[#07234b] text-[14px] focus:bg-white focus:border-[#0066cc] focus:ring-2 focus:ring-sky-100 outline-none transition-all appearance-none cursor-pointer">
+                    <option value="any">Any Available Specialist</option>
+                    <option value="elena">Dr. Elena Petrova (Aesthetic)</option>
+                    <option value="michael">Dr. Michael Chen (Orthodontics)</option>
+                    <option value="sophia">Dr. Sophia Turner (Implantology)</option>
+                    <option value="arthur">Dr. Arthur Sterling (Whitening)</option>
+                    <option value="emma">Dr. Emma Robinson (Preventive)</option>
+                    <option value="david">Dr. David Wilson (Surgical)</option>
+                  </select>
+                  <div class="absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400 text-xs">▼</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 3. Preferred Date & Time -->
+            <div>
+              <label class="text-[12px] font-bold text-[#07234b] uppercase tracking-wider block mb-2">3. Preferred Date & Time</label>
+              <div class="mb-3">
+                <input type="date" id="bookDate" class="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-[#07234b] text-[14px] focus:bg-white focus:border-[#0066cc] focus:ring-2 focus:ring-sky-100 outline-none transition-all cursor-pointer" />
+              </div>
+              <div id="timeSlotsContainer" class="grid grid-cols-3 sm:grid-cols-6 gap-2">
+                <button type="button" class="time-slot-btn py-2 px-1 text-center rounded-lg text-[12px] font-semibold transition-all cursor-pointer bg-slate-50 hover:bg-slate-100 text-slate-600 border border-slate-200/80" data-slot="09:00 AM">09:00 AM</button>
+                <button type="button" class="time-slot-btn py-2 px-1 text-center rounded-lg text-[12px] font-semibold transition-all cursor-pointer bg-[#0066cc] text-white shadow-xs" data-slot="10:30 AM">10:30 AM</button>
+                <button type="button" class="time-slot-btn py-2 px-1 text-center rounded-lg text-[12px] font-semibold transition-all cursor-pointer bg-slate-50 hover:bg-slate-100 text-slate-600 border border-slate-200/80" data-slot="12:00 PM">12:00 PM</button>
+                <button type="button" class="time-slot-btn py-2 px-1 text-center rounded-lg text-[12px] font-semibold transition-all cursor-pointer bg-slate-50 hover:bg-slate-100 text-slate-600 border border-slate-200/80" data-slot="02:00 PM">02:00 PM</button>
+                <button type="button" class="time-slot-btn py-2 px-1 text-center rounded-lg text-[12px] font-semibold transition-all cursor-pointer bg-slate-50 hover:bg-slate-100 text-slate-600 border border-slate-200/80" data-slot="03:30 PM">03:30 PM</button>
+                <button type="button" class="time-slot-btn py-2 px-1 text-center rounded-lg text-[12px] font-semibold transition-all cursor-pointer bg-slate-50 hover:bg-slate-100 text-slate-600 border border-slate-200/80" data-slot="05:00 PM">05:00 PM</button>
+              </div>
+            </div>
+
+            <!-- 4. Notes / Concerns -->
+            <div>
+              <label class="text-[12px] font-bold text-[#07234b] uppercase tracking-wider block mb-2">4. Specific Questions or Concerns (Optional)</label>
+              <textarea rows="2" placeholder="Tell us what you'd like to improve about your smile..." id="bookNotes" class="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-[#07234b] text-[14px] placeholder:text-slate-400 focus:bg-white focus:border-[#0066cc] focus:ring-2 focus:ring-sky-100 outline-none transition-all resize-none"></textarea>
+            </div>
+
+            <!-- Submit Action -->
+            <div class="pt-2">
+              <button type="submit" id="bookSubmitBtn" class="w-full py-4 rounded-full bg-[#0066cc] hover:bg-[#0052a3] text-white text-[15px] font-bold transition-all shadow-lg shadow-sky-600/25 flex items-center justify-center gap-2 cursor-pointer active:scale-[0.99]">
+                <span>Confirm Appointment Request</span>
+                <span>➔</span>
+              </button>
+              <p class="text-[11.5px] text-slate-400 text-center mt-3">🔒 No upfront payment required • Free cancellation up to 24 hours prior</p>
+            </div>
+          </form>
+        </div>
+
+        <!-- RIGHT: Benefits, Reassurance & Clinic Info (Span 5) -->
+        <div class="lg:col-span-5 space-y-6">
+          <div class="bg-[#0c2752] text-white rounded-[28px] sm:rounded-[32px] p-7 sm:p-8 shadow-xl border border-sky-900/40">
+            <span class="text-[11.5px] font-bold text-sky-400 uppercase tracking-widest block mb-2">THE CELESTIA PROMISE</span>
+            <h3 class="text-[22px] sm:text-[24px] font-bold tracking-tight text-white leading-tight">What’s Included in Your Initial Visit</h3>
+            <div class="mt-6 space-y-4">
+              <div class="flex items-start gap-3.5">
+                <div class="w-8 h-8 rounded-xl bg-white/10 text-sky-300 flex items-center justify-center flex-shrink-0 text-sm font-bold">01</div>
+                <div>
+                  <h4 class="text-[14.5px] font-bold text-white leading-snug">High-Definition 3D Digital Scan</h4>
+                  <p class="text-[12.5px] text-white/70 mt-0.5 leading-relaxed">Instant computerized mapping of your teeth with zero gooey impression trays.</p>
+                </div>
+              </div>
+              <div class="flex items-start gap-3.5">
+                <div class="w-8 h-8 rounded-xl bg-white/10 text-sky-300 flex items-center justify-center flex-shrink-0 text-sm font-bold">02</div>
+                <div>
+                  <h4 class="text-[14.5px] font-bold text-white leading-snug">1-on-1 Specialist Consultation</h4>
+                  <p class="text-[12.5px] text-white/70 mt-0.5 leading-relaxed">Private conversation to discuss your aesthetic goals, lifestyle, and comfort.</p>
+                </div>
+              </div>
+              <div class="flex items-start gap-3.5">
+                <div class="w-8 h-8 rounded-xl bg-white/10 text-sky-300 flex items-center justify-center flex-shrink-0 text-sm font-bold">03</div>
+                <div>
+                  <h4 class="text-[14.5px] font-bold text-white leading-snug">Itemized Treatment Roadmap</h4>
+                  <p class="text-[12.5px] text-white/70 mt-0.5 leading-relaxed">Transparent timeline, step-by-step preview, and zero unexpected costs.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white rounded-[24px] p-6 border border-slate-200/90 shadow-sm space-y-4">
+            <div class="flex items-center gap-3.5 pb-4 border-b border-slate-100">
+              <div class="w-10 h-10 rounded-2xl bg-sky-50 text-[#0066cc] flex items-center justify-center text-lg flex-shrink-0">📍</div>
+              <div>
+                <span class="text-[11px] font-bold text-slate-400 uppercase tracking-wider block">Clinic Location</span>
+                <p class="text-[13.5px] font-bold text-[#07234b]">9454 Wilshire Blvd, Beverly Hills, CA</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-3.5 pb-4 border-b border-slate-100">
+              <div class="w-10 h-10 rounded-2xl bg-sky-50 text-[#0066cc] flex items-center justify-center text-lg flex-shrink-0">⏰</div>
+              <div>
+                <span class="text-[11px] font-bold text-slate-400 uppercase tracking-wider block">Operating Hours</span>
+                <p class="text-[13.5px] font-bold text-[#07234b]">Mon – Sat: 8:00 AM – 7:00 PM</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-3.5">
+              <div class="w-10 h-10 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-lg flex-shrink-0">📞</div>
+              <div>
+                <span class="text-[11px] font-bold text-slate-400 uppercase tracking-wider block">Immediate Telephone Booking</span>
+                <a href="tel:18005550199" class="text-[14px] font-bold text-[#0066cc] hover:underline">+1 (800) 555-0199</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
