@@ -13,7 +13,7 @@ const DETAILED_SERVICES = [
     desc: 'Custom handcrafted porcelain veneers, composite bonding, and micro-contouring designed to achieve perfect smile symmetry.',
     features: ['Minimal enamel reduction', 'Custom digital smile simulation', 'Stain-resistant high-density ceramics'],
     duration: '2-3 visits',
-    image: '/service-aesthetic.webp',
+    image: '/assets/service-aesthetic.webp',
   },
   {
     id: 'ortho',
@@ -22,7 +22,7 @@ const DETAILED_SERVICES = [
     desc: 'Clear, removable aligners that gently guide teeth into optimal position without wires or metal brackets.',
     features: ['3D digital scan preview', 'Virtually invisible aligners', 'Faster treatment timelines (6-12 mos)'],
     duration: '6-12 months',
-    image: '/service-ortho.webp',
+    image: '/assets/service-ortho.webp',
   },
   {
     id: 'implant',
@@ -31,7 +31,7 @@ const DETAILED_SERVICES = [
     desc: 'Permanent, natural-looking tooth replacements with titanium fixtures and custom zirconia layered crowns.',
     features: ['Computer-guided 3D placement', 'Preserves natural bone density', 'Lifelong durability & bite strength'],
     duration: '1-2 procedures',
-    image: '/service-implant.webp',
+    image: '/assets/service-implant.webp',
   },
   {
     id: 'whitening',
@@ -40,7 +40,7 @@ const DETAILED_SERVICES = [
     desc: 'Clinical medical-grade whitening lifting deep discoloration by up to 8 shades with zero enamel sensitivity.',
     features: ['45-minute single session', 'Anti-sensitivity mineral barrier', 'Long-lasting natural luster'],
     duration: '45 mins',
-    image: '/service-whitening.webp',
+    image: '/assets/service-whitening.webp',
   },
   {
     id: 'surgical',
@@ -49,7 +49,7 @@ const DETAILED_SERVICES = [
     desc: 'Minimally invasive oral surgery, wisdom teeth extraction, and bone grafting performed by board-certified oral surgeons.',
     features: ['Sedation & comfort options', 'Ultrasonic micro-piezo surgery', 'Accelerated recovery protocols'],
     duration: 'Outpatient visit',
-    image: '/service-surgical.webp',
+    image: '/assets/service-surgical.webp',
   },
 ];
 

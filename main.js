@@ -15,7 +15,7 @@ const DOCTORS_DATA = [
     reviews: "520",
     nextSlot: "Today, 3:30 PM",
     bio: "Pioneering custom 3D clear aligners and comprehensive smile symmetry transformations.",
-    image: "public/doctors/david-wilson.webp",
+    image: "public/assets/doctors/david-wilson.webp",
     fallbackImage: "https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=800&auto=format&fit=crop&q=85",
     phone: "+1 (800) 555-0199",
     email: "david.wilson@celestiasmiles.com"
@@ -34,7 +34,7 @@ const DOCTORS_DATA = [
     reviews: "680",
     nextSlot: "Today, 5:15 PM",
     bio: "Master in handcrafted porcelain veneers, composite bonding, and radiant smile architecture.",
-    image: "public/doctors/emma-robinson.webp",
+    image: "public/assets/doctors/emma-robinson.webp",
     fallbackImage: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=800&auto=format&fit=crop&q=85",
     phone: "+1 (800) 555-0199",
     email: "emma.robinson@celestiasmiles.com"
@@ -53,7 +53,7 @@ const DOCTORS_DATA = [
     reviews: "920",
     nextSlot: "Tomorrow, 10:00 AM",
     bio: "Board-certified specialist in 3D-guided dental implants, bone grafting, and reconstructive surgery.",
-    image: "public/doctors/arthur-sterling.webp",
+    image: "public/assets/doctors/arthur-sterling.webp",
     fallbackImage: "https://images.unsplash.com/photo-1537368910025-700350fe46c7?w=800&auto=format&fit=crop&q=85",
     phone: "+1 (800) 555-0199",
     email: "arthur.sterling@celestiasmiles.com"
@@ -72,7 +72,7 @@ const DOCTORS_DATA = [
     reviews: "410",
     nextSlot: "Tomorrow, 2:00 PM",
     bio: "Expert in painless root canal treatments utilizing precision high-magnification dental microscopy.",
-    image: "public/doctors/sophia-turner.webp",
+    image: "public/assets/doctors/sophia-turner.webp",
     fallbackImage: "https://images.unsplash.com/photo-1651008376811-b90baee60c1f?w=800&auto=format&fit=crop&q=85",
     phone: "+1 (800) 555-0199",
     email: "sophia.turner@celestiasmiles.com"
@@ -91,7 +91,7 @@ const DOCTORS_DATA = [
     reviews: "640",
     nextSlot: "Friday, 11:30 AM",
     bio: "Dedicated to full arch restorations, gum aesthetics, and laser-assisted periodontal treatments.",
-    image: "public/doctors/michael-chen.webp",
+    image: "public/assets/doctors/michael-chen.webp",
     fallbackImage: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=800&auto=format&fit=crop&q=85",
     phone: "+1 (800) 555-0199",
     email: "michael.chen@celestiasmiles.com"
@@ -110,7 +110,7 @@ const DOCTORS_DATA = [
     reviews: "390",
     nextSlot: "Friday, 3:00 PM",
     bio: "Creating gentle, comfortable dental experiences with state-of-the-art preventive hygiene.",
-    image: "public/doctors/elena-petrova.webp",
+    image: "public/assets/doctors/elena-petrova.webp",
     fallbackImage: "https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=800&auto=format&fit=crop&q=85",
     phone: "+1 (800) 555-0199",
     email: "elena.petrova@celestiasmiles.com"
@@ -121,7 +121,7 @@ const CASES_DATA = [
   {
     id: 'aesthetic',
     category: 'Aesthetic dentistry',
-    cardImage: 'public/service-aesthetic.webp',
+    cardImage: 'public/assets/service-aesthetic.webp',
     headline: 'Christina’s smile, transformed',
     story: 'Christina felt self-conscious about the gaps and uneven shape of her teeth. She wanted a natural, brighter smile that still felt like her own – just more balanced, natural, and confidently beautiful.',
     whatWeDid: [
@@ -129,16 +129,16 @@ const CASES_DATA = [
       'Minimal tooth preparation to preserve enamel',
       'Placement of ultra-thin porcelain veneers',
     ],
-    beforeImage: 'public/aesthetic-before.webp',
-    afterImage: 'public/aesthetic-after.webp',
-    patientImage: 'public/patient-christina.webp',
+    beforeImage: 'public/assets/aesthetic-before.webp',
+    afterImage: 'public/assets/aesthetic-after.webp',
+    patientImage: 'public/assets/patient-christina.webp',
     patientName: 'Christina',
     caption: 'Christina’s smile, before and after – confident, complete, and truly hers.',
   },
   {
     id: 'ortho',
     category: 'Orthodontics',
-    cardImage: 'public/service-ortho.webp',
+    cardImage: 'public/assets/service-ortho.webp',
     headline: 'Marcus’s smile, aligned',
     story: 'Marcus had crowded lower teeth and a deep overbite that affected his jaw comfort. With discreet custom clear aligners, he achieved a wide, balanced arch in under 9 months.',
     whatWeDid: [
@@ -146,8 +146,8 @@ const CASES_DATA = [
       'Custom sequential clear aligner therapy',
       'Retention protocol for lasting bite stability',
     ],
-    beforeImage: 'public/ortho-before.webp',
-    afterImage: 'public/ortho-after.webp',
+    beforeImage: 'public/assets/ortho-before.webp',
+    afterImage: 'public/assets/ortho-after.webp',
     patientImage: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&auto=format&fit=crop&q=85',
     patientName: 'Marcus',
     caption: 'Marcus’s smile, before and after – seamlessly aligned with zero lifestyle interruption.',
@@ -155,7 +155,7 @@ const CASES_DATA = [
   {
     id: 'implant',
     category: 'Implantology',
-    cardImage: 'public/service-implant.webp',
+    cardImage: 'public/assets/service-implant.webp',
     headline: 'Elena’s smile, restored',
     story: 'After a sports injury resulted in a missing front incisor, Elena sought a permanent solution that blended imperceptibly with her natural teeth and restored full bite strength.',
     whatWeDid: [
@@ -163,8 +163,8 @@ const CASES_DATA = [
       'Custom zirconia abutment for natural gum emergence',
       'Individual layered ceramic crown color-matched to perfection',
     ],
-    beforeImage: 'public/implant-before.webp',
-    afterImage: 'public/implant-after.webp',
+    beforeImage: 'public/assets/implant-before.webp',
+    afterImage: 'public/assets/implant-after.webp',
     patientImage: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=800&auto=format&fit=crop&q=85',
     patientName: 'Elena',
     caption: 'Elena’s smile, restored with lifelong strength and undetectable aesthetics.',
@@ -172,7 +172,7 @@ const CASES_DATA = [
   {
     id: 'whitening',
     category: 'Whitening',
-    cardImage: 'public/service-whitening.webp',
+    cardImage: 'public/assets/service-whitening.webp',
     headline: 'Julian’s smile, brightened',
     story: 'Years of coffee and tea consumption had left Julian’s teeth dulled. Our deep laser phototherapy lifted 7 shades in a single comfortable 45-minute clinical session.',
     whatWeDid: [
@@ -180,8 +180,8 @@ const CASES_DATA = [
       'High-frequency laser light activation session',
       'Fluoride micro-seal treatment to ensure zero sensitivity',
     ],
-    beforeImage: 'public/whitening-before.webp',
-    afterImage: 'public/whitening-after.webp',
+    beforeImage: 'public/assets/whitening-before.webp',
+    afterImage: 'public/assets/whitening-after.webp',
     patientImage: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=800&auto=format&fit=crop&q=85',
     patientName: 'Julian',
     caption: 'Julian’s smile, radiant and luminous with zero sensitivity.',
@@ -189,7 +189,7 @@ const CASES_DATA = [
   {
     id: 'surgical',
     category: 'Surgical dentistry',
-    cardImage: 'public/service-surgical.webp',
+    cardImage: 'public/assets/service-surgical.webp',
     headline: 'David’s oral health, renewed',
     story: 'David suffered from persistent discomfort due to impacted wisdom teeth and localized bone loss. Our surgical specialists provided painless extraction and guided bone regeneration.',
     whatWeDid: [
@@ -197,8 +197,8 @@ const CASES_DATA = [
       'Minimally invasive atraumatic tooth extraction',
       'Plasma-rich bone graft for accelerated cellular healing',
     ],
-    beforeImage: 'public/surgical-before.webp',
-    afterImage: 'public/surgical-after.webp',
+    beforeImage: 'public/assets/surgical-before.webp',
+    afterImage: 'public/assets/surgical-after.webp',
     patientImage: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=800&auto=format&fit=crop&q=85',
     patientName: 'David',
     caption: 'David’s recovery, fast and painless with complete oral tissue restoration.',

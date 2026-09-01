@@ -7,7 +7,7 @@ export default function WhyChooseUs() {
       {/* Background Clinic Photo with Navy Color Gradient Overlay */}
       <div className="absolute inset-0 z-0">
         <img 
-          src="/clinic-bg.webp" 
+          src="/assets/clinic-bg.webp" 
           alt="Modern dental clinic interior" 
           className="w-full h-full object-cover object-center scale-105"
         />

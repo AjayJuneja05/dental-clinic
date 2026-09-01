@@ -21,7 +21,7 @@ export default function Hero() {
         {/* Mobile Tooth Image */}
         <div className="w-full flex justify-center py-2 select-none pointer-events-none">
           <img 
-            src="/transparent-tooth.webp" 
+            src="/assets/transparent-tooth.webp" 
             alt="3D Luminous Crystal Tooth" 
             className="w-[280px] sm:w-[340px] h-auto object-contain tooth-float drop-shadow-[0_15px_35px_rgba(2,132,199,0.22)]" 
           />
@@ -91,7 +91,7 @@ export default function Hero() {
         {/* CENTER: Crystal Tooth */}
         <div className="absolute left-1/2 -translate-x-1/2 top-[2%] bottom-0 z-10 flex items-center justify-center pointer-events-none select-none">
           <img 
-            src="/transparent-tooth.webp" 
+            src="/assets/transparent-tooth.webp" 
             alt="3D Luminous Crystal Tooth" 
             className="w-[620px] xl:w-[700px] 2xl:w-[760px] h-auto object-contain tooth-float drop-shadow-[0_25px_50px_rgba(2,132,199,0.22)]" 
           />
