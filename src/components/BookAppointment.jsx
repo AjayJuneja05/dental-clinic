@@ -414,56 +414,67 @@ export default function BookAppointment() {
               </div>
             </div>
 
-            {/* Card 2: Contact & Location Quick Info (Exact match to reference card) */}
-            <div className="bg-white rounded-[28px] sm:rounded-[32px] p-6 sm:p-8 border border-slate-100 shadow-[0_12px_35px_-12px_rgba(7,35,75,0.06)] divide-y divide-slate-100">
+            {/* Card 2: Working Hours Card (Exact match to reference Image 2) */}
+            <div className="bg-gradient-to-br from-[#0c6570] to-[#094e57] text-white rounded-[28px] sm:rounded-[32px] p-6 sm:p-8 shadow-xl border border-white/10">
               
-              {/* Clinic Location */}
-              <div className="flex items-center gap-4 pb-5">
-                <div className="w-12 h-12 rounded-full bg-[#f0f7ff] flex items-center justify-center flex-shrink-0 text-xl shadow-xs">
-                  📍
+              {/* Header */}
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-xl bg-white/15 flex items-center justify-center text-white flex-shrink-0">
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2" strokeWidth="2"></rect>
+                    <line x1="16" y1="2" x2="16" y2="6" strokeWidth="2" strokeLinecap="round"></line>
+                    <line x1="8" y1="2" x2="8" strokeWidth="2" strokeLinecap="round"></line>
+                    <line x1="3" y1="10" x2="21" y2="10" strokeWidth="2"></line>
+                  </svg>
                 </div>
-                <div>
-                  <span className="text-[11px] font-bold text-[#8a9bb0] uppercase tracking-[0.06em] block">
-                    CLINIC LOCATION
-                  </span>
-                  <p className="text-[15px] sm:text-[16px] font-bold text-[#07234b] mt-0.5 leading-snug">
-                    9454 Wilshire Blvd, Beverly Hills, CA
-                  </p>
-                </div>
+                <h3 className="text-[22px] sm:text-[24px] font-bold text-white tracking-tight">
+                  Working Hours
+                </h3>
               </div>
 
-              {/* Operating Hours */}
-              <div className="flex items-center gap-4 py-5">
-                <div className="w-12 h-12 rounded-full bg-[#f0f7ff] flex items-center justify-center flex-shrink-0 text-xl shadow-xs">
-                  ⏰
-                </div>
-                <div>
-                  <span className="text-[11px] font-bold text-[#8a9bb0] uppercase tracking-[0.06em] block">
-                    OPERATING HOURS
-                  </span>
-                  <p className="text-[15px] sm:text-[16px] font-bold text-[#07234b] mt-0.5 leading-snug">
-                    Mon – Sat: 8:00 AM – 7:00 PM
-                  </p>
-                </div>
-              </div>
+              <p className="text-[13.5px] sm:text-[14px] text-white/80 leading-relaxed mt-2.5 mb-5">
+                Take a look at the Dental Office hours to schedule your appointment.
+              </p>
 
-              {/* Immediate Telephone Booking */}
-              <div className="flex items-center gap-4 pt-5">
-                <div className="w-12 h-12 rounded-full bg-[#e6fbf2] flex items-center justify-center flex-shrink-0 text-xl shadow-xs">
-                  📞
-                </div>
-                <div>
-                  <span className="text-[11px] font-bold text-[#8a9bb0] uppercase tracking-[0.06em] block">
-                    IMMEDIATE TELEPHONE BOOKING
-                  </span>
-                  <a 
-                    href="tel:18005550199" 
-                    className="text-[15px] sm:text-[16px] font-bold text-[#0066cc] hover:underline mt-0.5 block leading-snug"
+              {/* Days List */}
+              <div className="space-y-2.5">
+                {[
+                  { day: 'Monday', time: '09:00 AM - 10:00 PM' },
+                  { day: 'Tuesday', time: '09:00 AM - 10:00 PM' },
+                  { day: 'Wednesday', time: '09:00 AM - 10:00 PM' },
+                  { day: 'Thursday', time: '09:00 AM - 10:00 PM' },
+                  { day: 'Friday', time: '10:00 AM - 10:00 PM' },
+                  { day: 'Saturday', time: '10:00 AM - 10:00 PM' },
+                  { day: 'Sunday', time: 'Closed' },
+                ].map((item) => (
+                  <div 
+                    key={item.day}
+                    className="rounded-xl sm:rounded-2xl bg-white/[0.08] hover:bg-white/[0.12] transition-all px-4 py-3 sm:py-3.5 flex items-center justify-between border border-white/10"
                   >
-                    +1 (800) 555-0199
-                  </a>
-                </div>
+                    <span className="text-[14px] sm:text-[15px] font-semibold text-white">
+                      {item.day}
+                    </span>
+                    <span className={`text-[13px] sm:text-[14px] font-medium ${item.time === 'Closed' ? 'text-red-300 font-semibold' : 'text-white/90'}`}>
+                      {item.time}
+                    </span>
+                  </div>
+                ))}
               </div>
+
+              {/* CTA Button */}
+              <button
+                type="button"
+                onClick={() => {
+                  const nameInput = document.querySelector('input[placeholder*="Full Name"]');
+                  if (nameInput) {
+                    nameInput.focus();
+                    nameInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                  }
+                }}
+                className="w-full mt-5 py-3.5 rounded-full bg-white hover:bg-slate-100 text-[#0c6570] font-bold text-[14.5px] sm:text-[15px] transition-all shadow-md text-center block cursor-pointer active:scale-[0.99]"
+              >
+                Make an Appointment
+              </button>
 
             </div>
 
