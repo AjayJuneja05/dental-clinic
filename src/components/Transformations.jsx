@@ -171,46 +171,73 @@ export default function Transformations() {
         </div>
       </div>
 
-      {/* Main 3-Column Content Layout (Dynamic per selected service) */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-8 xl:gap-10 items-center">
+      {/* Main 2-Column Content Layout */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 xl:gap-14 items-center">
         
-        {/* LEFT COLUMN (Span 4): Story & What We Did */}
-        <div className="lg:col-span-4 flex flex-col justify-between pr-0 lg:pr-2">
+        {/* LEFT COLUMN (Span 5): Enlarged Headline, Story, What We Did & Controls */}
+        <div className="lg:col-span-5 flex flex-col justify-between h-full pr-0 lg:pr-4">
           <div>
-            <h3 className="text-[28px] sm:text-[34px] font-bold text-[#07234b] leading-[1.12] tracking-tight">
+            <h3 className="text-[34px] sm:text-[42px] lg:text-[48px] xl:text-[52px] font-bold text-[#07234b] leading-[1.08] tracking-[-0.025em]">
               {currentCase.headline}
             </h3>
 
-            <p className="text-[13.5px] sm:text-[14px] text-[#475569] leading-[1.65] mt-4 font-normal">
+            <p className="text-[15px] sm:text-[16px] text-[#475569] leading-[1.75] mt-5 font-normal">
               {currentCase.story}
             </p>
 
             {/* What we did */}
-            <div className="mt-7">
-              <h4 className="text-[16px] font-bold text-[#07234b] mb-3">
+            <div className="mt-8">
+              <h4 className="text-[17px] sm:text-[18px] font-bold text-[#07234b] mb-4">
                 What we did
               </h4>
-              <ul className="space-y-2.5">
+              <ul className="space-y-3.5">
                 {currentCase.whatWeDid.map((item, idx) => (
-                  <li key={idx} className="flex items-start gap-2.5 text-[13px] sm:text-[13.5px] text-slate-600 leading-snug">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#0066cc] mt-1.5 flex-shrink-0"></span>
+                  <li key={idx} className="flex items-start gap-3 text-[14.5px] sm:text-[15px] text-[#334155] leading-relaxed">
+                    <span className="w-2 h-2 rounded-full bg-[#0066cc] mt-2 flex-shrink-0"></span>
                     <span>{item}</span>
                   </li>
                 ))}
               </ul>
             </div>
           </div>
+
+          {/* Bottom Left Navigation Controls */}
+          <div className="flex items-center gap-3 mt-10 pt-4 border-t border-slate-100">
+            <button
+              onClick={handlePrev}
+              className="w-10 h-10 rounded-full border border-slate-200 text-slate-500 hover:text-[#07234b] hover:border-slate-400 hover:bg-slate-50 transition-all flex items-center justify-center shadow-xs cursor-pointer"
+              aria-label="Previous Story"
+            >
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+              </svg>
+            </button>
+
+            <span className="text-[13.5px] font-bold text-[#07234b] px-2 tracking-wide">
+              {String(activeTab + 1).padStart(2, '0')}/{String(CASES_DATA.length).padStart(2, '0')}
+            </span>
+
+            <button
+              onClick={handleNext}
+              className="w-10 h-10 rounded-full border border-sky-400 bg-sky-50 text-[#0066cc] hover:bg-sky-100 transition-all flex items-center justify-center shadow-xs cursor-pointer"
+              aria-label="Next Story"
+            >
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
+          </div>
         </div>
 
-        {/* MIDDLE COLUMN (Span 5): Interactive Before / After Drag Slider */}
-        <div className="lg:col-span-5">
+        {/* RIGHT COLUMN (Span 7): Large Interactive Before / After Drag Slider */}
+        <div className="lg:col-span-7">
           <div 
             ref={sliderRef}
             onPointerDown={handlePointerDown}
             onPointerMove={handlePointerMove}
             onPointerUp={handlePointerUp}
             onPointerCancel={handlePointerUp}
-            className="relative w-full h-[320px] sm:h-[380px] rounded-[24px] overflow-hidden shadow-md cursor-ew-resize bg-slate-900 border border-slate-100 touch-none select-none"
+            className="relative w-full h-[360px] sm:h-[440px] lg:h-[480px] xl:h-[520px] rounded-[28px] sm:rounded-[32px] overflow-hidden shadow-2xl shadow-slate-900/10 cursor-ew-resize bg-slate-900 border border-slate-100 touch-none select-none"
           >
             {/* "Before" Image Layer (Base) */}
             <img 
@@ -219,7 +246,7 @@ export default function Transformations() {
               className="absolute inset-0 w-full h-full object-cover pointer-events-none" 
             />
             <span 
-              className={`absolute top-3.5 left-4 text-white/90 text-[11px] font-bold uppercase tracking-wider drop-shadow z-10 pointer-events-none transition-all duration-300 ${
+              className={`absolute top-4 left-5 text-white/90 text-[12px] font-bold uppercase tracking-wider drop-shadow z-10 pointer-events-none transition-all duration-300 ${
                 sliderPos < 15 ? 'opacity-0 scale-90 -translate-x-2' : 'opacity-100 scale-100 translate-x-0'
               }`}
             >
@@ -238,7 +265,7 @@ export default function Transformations() {
               />
             </div>
             <span 
-              className={`absolute top-3.5 right-4 text-white/90 text-[11px] font-bold uppercase tracking-wider drop-shadow z-10 pointer-events-none transition-all duration-300 ${
+              className={`absolute top-4 right-5 text-white/90 text-[12px] font-bold uppercase tracking-wider drop-shadow z-10 pointer-events-none transition-all duration-300 ${
                 sliderPos > 85 ? 'opacity-0 scale-90 translate-x-2' : 'opacity-100 scale-100 translate-x-0'
               }`}
             >
@@ -257,53 +284,6 @@ export default function Transformations() {
             </div>
 
           </div>
-        </div>
-
-        {/* RIGHT COLUMN (Span 3): Patient Portrait & Caption */}
-        <div className="lg:col-span-3 flex flex-col justify-between h-full">
-          <div>
-            {/* Patient Portrait Photo */}
-            <div className="w-full h-[220px] sm:h-[250px] rounded-[20px] overflow-hidden bg-sky-50 shadow-sm border border-slate-100">
-              <img 
-                src={currentCase.patientImage} 
-                alt={currentCase.patientName} 
-                className="w-full h-full object-cover object-center" 
-              />
-            </div>
-
-            {/* Caption */}
-            <p className="text-[12px] sm:text-[12.5px] text-[#475569] leading-relaxed mt-3.5 font-normal">
-              {currentCase.caption}
-            </p>
-          </div>
-
-          {/* Bottom Right Controls (Prev / Index / Next) */}
-          <div className="flex items-center justify-end gap-3 mt-6 pt-2">
-            <button
-              onClick={handlePrev}
-              className="w-9 h-9 rounded-full border border-slate-200 text-slate-400 hover:text-[#07234b] hover:border-slate-400 transition-colors flex items-center justify-center shadow-xs"
-              aria-label="Previous Story"
-            >
-              <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
-              </svg>
-            </button>
-
-            <span className="text-[12.5px] font-semibold text-[#07234b]">
-              {String(activeTab + 1).padStart(2, '0')}/{String(CASES_DATA.length).padStart(2, '0')}
-            </span>
-
-            <button
-              onClick={handleNext}
-              className="w-9 h-9 rounded-full border border-sky-400 text-[#0066cc] hover:bg-sky-50 transition-colors flex items-center justify-center shadow-xs"
-              aria-label="Next Story"
-            >
-              <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-              </svg>
-            </button>
-          </div>
-
         </div>
 
       </div>
