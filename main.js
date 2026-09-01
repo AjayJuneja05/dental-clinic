@@ -600,51 +600,6 @@ document.addEventListener('DOMContentLoaded', () => {
       if (bookingSuccessBox) bookingSuccessBox.classList.add('hidden');
     });
   }
-
-  // 6. FAQ Accordion Handling
-  const faqItems = document.querySelectorAll('.faq-item');
-  faqItems.forEach((item) => {
-    const btn = item.querySelector('.faq-btn');
-    const content = item.querySelector('.faq-content');
-    const icon = item.querySelector('.faq-icon');
-    const num = item.querySelector('.faq-num');
-
-    if (btn && content) {
-      btn.addEventListener('click', () => {
-        const isAlreadyOpen = !content.classList.contains('max-h-0');
-
-        // Close all items
-        faqItems.forEach((otherItem) => {
-          const otherContent = otherItem.querySelector('.faq-content');
-          const otherIcon = otherItem.querySelector('.faq-icon');
-          const otherNum = otherItem.querySelector('.faq-num');
-
-          otherItem.className = 'faq-item rounded-[22px] border border-slate-200/80 bg-white hover:border-slate-300 shadow-xs transition-all duration-300 overflow-hidden';
-          if (otherContent) {
-            otherContent.className = 'faq-content transition-all duration-300 ease-in-out px-5 sm:px-6 max-h-0 pb-0 opacity-0 overflow-hidden';
-          }
-          if (otherIcon) {
-            otherIcon.className = 'faq-icon w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0 bg-slate-100 text-slate-600 hover:bg-slate-200 transition-all duration-300';
-          }
-          if (otherNum) {
-            otherNum.className = 'faq-num w-7 h-7 rounded-xl flex items-center justify-center text-[12px] font-bold transition-colors flex-shrink-0 bg-slate-100 text-slate-500';
-          }
-        });
-
-        // Toggle clicked item if it was closed
-        if (!isAlreadyOpen) {
-          item.className = 'faq-item rounded-[22px] border border-sky-200/90 bg-[#f8faff] shadow-md shadow-sky-900/5 transition-all duration-300 overflow-hidden';
-          content.className = 'faq-content transition-all duration-300 ease-in-out px-5 sm:px-6 pb-6 opacity-100';
-          if (icon) {
-            icon.className = 'faq-icon w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0 bg-[#0066cc] text-white rotate-45 transition-all duration-300';
-          }
-          if (num) {
-            num.className = 'faq-num w-7 h-7 rounded-xl flex items-center justify-center text-[12px] font-bold transition-colors flex-shrink-0 bg-[#0066cc] text-white';
-          }
-        }
-      });
-    }
-  });
 });
 
 const docModalBackdrop = document.getElementById('doctorModal');
