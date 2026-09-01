@@ -876,34 +876,26 @@
             </div>
 
             <!-- 3. Preferred Date & Time -->
-            <div class="space-y-2.5">
-              <div class="flex items-center justify-between">
-                <label class="text-[11.5px] font-bold text-[#07234b] uppercase tracking-wider">3. Preferred Date & Time</label>
-              </div>
+            <div>
+              <label class="text-[11.5px] font-bold text-[#07234b] uppercase tracking-wider block mb-1.5">3. Preferred Date & Time</label>
 
-              <!-- Interactive Date Pills -->
-              <div>
-                <span class="text-[10.5px] font-semibold text-slate-500 uppercase tracking-wide block mb-1.5">Choose Consultation Date</span>
-                <div id="datePillsContainer" class="grid grid-cols-3 sm:grid-cols-6 gap-1.5">
-                  <!-- Dynamic rendering via main.js -->
+              <div class="space-y-3">
+                <!-- Simple Calendar Date Picker -->
+                <div>
+                  <input type="date" id="bookDate" class="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-[#07234b] text-[13.5px] font-medium focus:bg-white focus:border-[#0066cc] focus:ring-2 focus:ring-sky-100 outline-none transition-all cursor-pointer shadow-2xs" />
                 </div>
-              </div>
 
-              <!-- Custom Date Input -->
-              <div>
-                <input type="date" id="bookDate" class="w-full px-3.5 py-2 rounded-xl bg-slate-50 border border-slate-200 text-[#07234b] text-[13px] font-medium focus:bg-white focus:border-[#0066cc] focus:ring-2 focus:ring-sky-100 outline-none transition-all cursor-pointer" />
-              </div>
-
-              <!-- Interactive Time Slot Chips -->
-              <div class="pt-0.5">
-                <span class="text-[10.5px] font-semibold text-slate-500 uppercase tracking-wide block mb-1.5">Select Available Time Slot</span>
-                <div id="timeSlotsContainer" class="grid grid-cols-3 sm:grid-cols-6 gap-1.5">
-                  <button type="button" class="time-slot-btn py-1.5 px-1 text-center rounded-xl text-[11.5px] font-semibold transition-all cursor-pointer bg-slate-50 hover:bg-slate-100 text-slate-600 border border-slate-200/80" data-slot="09:00 AM">09:00 AM</button>
-                  <button type="button" class="time-slot-btn py-1.5 px-1 text-center rounded-xl text-[11.5px] font-semibold transition-all cursor-pointer bg-[#0066cc] text-white shadow-sm ring-2 ring-sky-200 scale-[1.02]" data-slot="10:30 AM">10:30 AM</button>
-                  <button type="button" class="time-slot-btn py-1.5 px-1 text-center rounded-xl text-[11.5px] font-semibold transition-all cursor-pointer bg-slate-50 hover:bg-slate-100 text-slate-600 border border-slate-200/80" data-slot="12:00 PM">12:00 PM</button>
-                  <button type="button" class="time-slot-btn py-1.5 px-1 text-center rounded-xl text-[11.5px] font-semibold transition-all cursor-pointer bg-slate-50 hover:bg-slate-100 text-slate-600 border border-slate-200/80" data-slot="02:00 PM">02:00 PM</button>
-                  <button type="button" class="time-slot-btn py-1.5 px-1 text-center rounded-xl text-[11.5px] font-semibold transition-all cursor-pointer bg-slate-50 hover:bg-slate-100 text-slate-600 border border-slate-200/80" data-slot="03:30 PM">03:30 PM</button>
-                  <button type="button" class="time-slot-btn py-1.5 px-1 text-center rounded-xl text-[11.5px] font-semibold transition-all cursor-pointer bg-slate-50 hover:bg-slate-100 text-slate-600 border border-slate-200/80" data-slot="05:00 PM">05:00 PM</button>
+                <!-- Time Slot Chips -->
+                <div>
+                  <span class="text-[11px] font-semibold text-slate-500 uppercase tracking-wide block mb-1.5">Select Time Slot</span>
+                  <div id="timeSlotsContainer" class="grid grid-cols-3 sm:grid-cols-6 gap-2">
+                    <button type="button" class="time-slot-btn py-2 px-1 text-center rounded-xl text-[12px] font-semibold transition-all cursor-pointer bg-slate-50 hover:bg-slate-100 text-slate-600 border border-slate-200/80 hover:border-slate-300" data-slot="09:00 AM">09:00 AM</button>
+                    <button type="button" class="time-slot-btn py-2 px-1 text-center rounded-xl text-[12px] font-semibold transition-all cursor-pointer bg-[#0066cc] text-white shadow-sm ring-2 ring-sky-200 scale-[1.02]" data-slot="10:30 AM">10:30 AM</button>
+                    <button type="button" class="time-slot-btn py-2 px-1 text-center rounded-xl text-[12px] font-semibold transition-all cursor-pointer bg-slate-50 hover:bg-slate-100 text-slate-600 border border-slate-200/80 hover:border-slate-300" data-slot="12:00 PM">12:00 PM</button>
+                    <button type="button" class="time-slot-btn py-2 px-1 text-center rounded-xl text-[12px] font-semibold transition-all cursor-pointer bg-slate-50 hover:bg-slate-100 text-slate-600 border border-slate-200/80 hover:border-slate-300" data-slot="02:00 PM">02:00 PM</button>
+                    <button type="button" class="time-slot-btn py-2 px-1 text-center rounded-xl text-[12px] font-semibold transition-all cursor-pointer bg-slate-50 hover:bg-slate-100 text-slate-600 border border-slate-200/80 hover:border-slate-300" data-slot="03:30 PM">03:30 PM</button>
+                    <button type="button" class="time-slot-btn py-2 px-1 text-center rounded-xl text-[12px] font-semibold transition-all cursor-pointer bg-slate-50 hover:bg-slate-100 text-slate-600 border border-slate-200/80 hover:border-slate-300" data-slot="05:00 PM">05:00 PM</button>
+                  </div>
                 </div>
               </div>
             </div>

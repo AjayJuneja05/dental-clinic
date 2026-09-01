@@ -13,23 +13,8 @@ const TIME_SLOTS = [
   '05:00 PM',
 ];
 
-// Helper to generate the next 6 days
-const getUpcomingDays = () => {
-  const days = [];
-  const today = new Date();
-  for (let i = 0; i < 6; i++) {
-    const d = new Date(today);
-    d.setDate(today.getDate() + i);
-    const dateStr = d.toISOString().split('T')[0];
-    const dayName = i === 0 ? 'Today' : i === 1 ? 'Tomorrow' : d.toLocaleDateString('en-US', { weekday: 'short' });
-    const monthDay = d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
-    days.push({ dateStr, dayName, monthDay });
-  }
-  return days;
-};
-
 export default function BookAppointment() {
-  const upcomingDays = getUpcomingDays();
+  const todayStr = new Date().toISOString().split('T')[0];
 
   const [formData, setFormData] = useState({
     fullName: '',
@@ -37,7 +22,7 @@ export default function BookAppointment() {
     email: '',
     serviceId: 'aesthetic',
     doctorId: 'any',
-    date: upcomingDays[0]?.dateStr || new Date().toISOString().split('T')[0],
+    date: todayStr,
     timeSlot: '10:30 AM',
     notes: '',
   });
@@ -64,7 +49,7 @@ export default function BookAppointment() {
       email: '',
       serviceId: 'aesthetic',
       doctorId: 'any',
-      date: upcomingDays[0]?.dateStr || new Date().toISOString().split('T')[0],
+      date: todayStr,
       timeSlot: '10:30 AM',
       notes: '',
     });
@@ -237,78 +222,47 @@ export default function BookAppointment() {
                 </div>
 
                 {/* 3. Date & Time Selection */}
-                <div className="space-y-2.5">
-                  <div className="flex items-center justify-between">
-                    <label className="text-[11.5px] font-bold text-[#07234b] uppercase tracking-wider">
-                      3. Preferred Date & Time
-                    </label>
-                  </div>
+                <div>
+                  <label className="text-[11.5px] font-bold text-[#07234b] uppercase tracking-wider block mb-1.5">
+                    3. Preferred Date & Time
+                  </label>
 
-                  {/* Interactive Date Pills */}
-                  <div>
-                    <span className="text-[10.5px] font-semibold text-slate-500 uppercase tracking-wide block mb-1.5">
-                      Choose Consultation Date
-                    </span>
-                    <div className="grid grid-cols-3 sm:grid-cols-6 gap-1.5">
-                      {upcomingDays.map((d) => {
-                        const isSelected = formData.date === d.dateStr;
-                        return (
-                          <button
-                            key={d.dateStr}
-                            type="button"
-                            onClick={() => setFormData({ ...formData, date: d.dateStr })}
-                            className={`py-2 px-1 rounded-xl text-center flex flex-col items-center justify-center transition-all cursor-pointer border ${
-                              isSelected
-                                ? 'bg-[#07234b] text-white border-[#07234b] shadow-sm ring-2 ring-sky-200 scale-[1.02]'
-                                : 'bg-slate-50 hover:bg-slate-100 text-[#07234b] border-slate-200/80 hover:border-slate-300'
-                            }`}
-                          >
-                            <span className={`text-[9.5px] uppercase font-bold tracking-tight ${isSelected ? 'text-sky-300' : 'text-slate-400'}`}>
-                              {d.dayName}
-                            </span>
-                            <span className="text-[11.5px] font-bold mt-0.5">
-                              {d.monthDay}
-                            </span>
-                          </button>
-                        );
-                      })}
+                  <div className="space-y-3">
+                    {/* Simple Calendar Date Picker */}
+                    <div>
+                      <input
+                        type="date"
+                        min={new Date().toISOString().split('T')[0]}
+                        value={formData.date}
+                        onChange={(e) => setFormData({ ...formData, date: e.target.value })}
+                        className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-[#07234b] text-[13.5px] font-medium focus:bg-white focus:border-[#0066cc] focus:ring-2 focus:ring-sky-100 outline-none transition-all cursor-pointer shadow-2xs"
+                      />
                     </div>
-                  </div>
 
-                  {/* Custom Date Input */}
-                  <div>
-                    <input
-                      type="date"
-                      min={new Date().toISOString().split('T')[0]}
-                      value={formData.date}
-                      onChange={(e) => setFormData({ ...formData, date: e.target.value })}
-                      className="w-full px-3.5 py-2 rounded-xl bg-slate-50 border border-slate-200 text-[#07234b] text-[13px] font-medium focus:bg-white focus:border-[#0066cc] focus:ring-2 focus:ring-sky-100 outline-none transition-all cursor-pointer"
-                    />
-                  </div>
-
-                  {/* Interactive Time Slot Chips */}
-                  <div className="pt-0.5">
-                    <span className="text-[10.5px] font-semibold text-slate-500 uppercase tracking-wide block mb-1.5">
-                      Select Available Time Slot
-                    </span>
-                    <div className="grid grid-cols-3 sm:grid-cols-6 gap-1.5">
-                      {TIME_SLOTS.map((slot) => {
-                        const isSelected = formData.timeSlot === slot;
-                        return (
-                          <button
-                            key={slot}
-                            type="button"
-                            onClick={() => setFormData({ ...formData, timeSlot: slot })}
-                            className={`py-1.5 px-1 text-center rounded-xl text-[11.5px] font-semibold transition-all cursor-pointer ${
-                              isSelected
-                                ? 'bg-[#0066cc] text-white shadow-sm ring-2 ring-sky-200 scale-[1.02]'
-                                : 'bg-slate-50 hover:bg-slate-100 text-slate-600 border border-slate-200/80'
-                            }`}
-                          >
-                            {slot}
-                          </button>
-                        );
-                      })}
+                    {/* Time Slot Chips */}
+                    <div>
+                      <span className="text-[11px] font-semibold text-slate-500 uppercase tracking-wide block mb-1.5">
+                        Select Time Slot
+                      </span>
+                      <div className="grid grid-cols-3 sm:grid-cols-6 gap-2">
+                        {TIME_SLOTS.map((slot) => {
+                          const isSelected = formData.timeSlot === slot;
+                          return (
+                            <button
+                              key={slot}
+                              type="button"
+                              onClick={() => setFormData({ ...formData, timeSlot: slot })}
+                              className={`py-2 px-1 text-center rounded-xl text-[12px] font-semibold transition-all cursor-pointer ${
+                                isSelected
+                                  ? 'bg-[#0066cc] text-white shadow-sm ring-2 ring-sky-200 scale-[1.02]'
+                                  : 'bg-slate-50 hover:bg-slate-100 text-slate-600 border border-slate-200/80 hover:border-slate-300'
+                              }`}
+                            >
+                              {slot}
+                            </button>
+                          );
+                        })}
+                      </div>
                     </div>
                   </div>
                 </div>
