@@ -19,6 +19,11 @@ const CASES_DATA = [
     patientImage: '/assets/patient-christina.webp',
     patientName: 'Christina',
     caption: 'Christina’s smile, before and after – confident, complete, and truly hers.',
+    metrics: {
+      time: { title: 'Treatment time', primary: '7–10 days', sub: '2–3 visits' },
+      treatment: { title: 'Treatment', primary: 'Porcelain veneers', sub: 'Custom crafted' },
+      result: { title: 'Result', primary: 'Natural & lasting', sub: 'Confident smile' }
+    }
   },
   {
     id: 'ortho',
@@ -36,6 +41,11 @@ const CASES_DATA = [
     patientImage: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&auto=format&fit=crop&q=85',
     patientName: 'Marcus',
     caption: 'Marcus’s smile, before and after – seamlessly aligned with zero lifestyle interruption.',
+    metrics: {
+      time: { title: 'Treatment time', primary: '6–9 months', sub: 'Bi-weekly checks' },
+      treatment: { title: 'Treatment', primary: 'Clear aligners', sub: '3D digital plan' },
+      result: { title: 'Result', primary: 'Perfect alignment', sub: 'Lifelong balance' }
+    }
   },
   {
     id: 'implant',
@@ -53,6 +63,11 @@ const CASES_DATA = [
     patientImage: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=800&auto=format&fit=crop&q=85',
     patientName: 'Elena',
     caption: 'Elena’s smile, restored with lifelong strength and undetectable aesthetics.',
+    metrics: {
+      time: { title: 'Treatment time', primary: '2–3 months', sub: '3D guided' },
+      treatment: { title: 'Treatment', primary: 'Ceramic implant', sub: 'Titanium post' },
+      result: { title: 'Result', primary: '100% bite power', sub: 'Undetectable match' }
+    }
   },
   {
     id: 'whitening',
@@ -70,6 +85,11 @@ const CASES_DATA = [
     patientImage: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=800&auto=format&fit=crop&q=85',
     patientName: 'Julian',
     caption: 'Julian’s smile, radiant and luminous with zero sensitivity.',
+    metrics: {
+      time: { title: 'Treatment time', primary: '45 minutes', sub: 'Single visit' },
+      treatment: { title: 'Treatment', primary: 'Laser whitening', sub: 'Enamel barrier' },
+      result: { title: 'Result', primary: '8 shades brighter', sub: 'Zero sensitivity' }
+    }
   },
   {
     id: 'surgical',
@@ -87,6 +107,11 @@ const CASES_DATA = [
     patientImage: '/assets/patient-david.webp',
     patientName: 'David',
     caption: 'David’s smile, pain-free and fully restored after gentle surgical care.',
+    metrics: {
+      time: { title: 'Treatment time', primary: '1–2 hours', sub: 'Outpatient care' },
+      treatment: { title: 'Treatment', primary: 'Oral surgery', sub: 'Painless recovery' },
+      result: { title: 'Result', primary: 'Complete relief', sub: 'Pain-free smile' }
+    }
   },
 ];
 
@@ -146,7 +171,7 @@ export default function Transformations() {
       </div>
 
       {/* Horizontal Underlined Category Tabs matching reference */}
-      <div className="w-full max-w-[880px] mx-auto border-b border-slate-200/90 mb-12 sm:mb-16">
+      <div className="w-full max-w-[880px] mx-auto border-b border-slate-200/90 mb-10 sm:mb-14">
         <div className="flex items-center justify-between sm:justify-center gap-6 sm:gap-12 overflow-x-auto no-scrollbar pb-0.5">
           {CASES_DATA.map((item, index) => {
             const isActive = activeTab === index;
@@ -229,15 +254,17 @@ export default function Transformations() {
           </div>
         </div>
 
-        {/* RIGHT COLUMN (Span 7): Large Interactive Before / After Drag Slider */}
-        <div className="lg:col-span-7">
+        {/* RIGHT COLUMN (Span 7): Compact Before/After Slider + Treatment Summary Card */}
+        <div className="lg:col-span-7 flex flex-col">
+          
+          {/* Top: Compact Interactive Before / After Drag Slider */}
           <div 
             ref={sliderRef}
             onPointerDown={handlePointerDown}
             onPointerMove={handlePointerMove}
             onPointerUp={handlePointerUp}
             onPointerCancel={handlePointerUp}
-            className="relative w-full h-[360px] sm:h-[440px] lg:h-[480px] xl:h-[520px] rounded-[28px] sm:rounded-[32px] overflow-hidden shadow-2xl shadow-slate-900/10 cursor-ew-resize bg-slate-900 border border-slate-100 touch-none select-none"
+            className="relative w-full h-[260px] sm:h-[300px] lg:h-[320px] xl:h-[340px] rounded-[24px] overflow-hidden shadow-xl shadow-slate-900/10 cursor-ew-resize bg-slate-900 border border-slate-100 touch-none select-none"
           >
             {/* "Before" Image Layer (Base) */}
             <img 
@@ -246,7 +273,7 @@ export default function Transformations() {
               className="absolute inset-0 w-full h-full object-cover pointer-events-none" 
             />
             <span 
-              className={`absolute top-4 left-5 text-white/90 text-[12px] font-bold uppercase tracking-wider drop-shadow z-10 pointer-events-none transition-all duration-300 ${
+              className={`absolute top-4 left-5 text-white/90 text-[11.5px] font-bold uppercase tracking-wider drop-shadow z-10 pointer-events-none transition-all duration-300 ${
                 sliderPos < 15 ? 'opacity-0 scale-90 -translate-x-2' : 'opacity-100 scale-100 translate-x-0'
               }`}
             >
@@ -265,7 +292,7 @@ export default function Transformations() {
               />
             </div>
             <span 
-              className={`absolute top-4 right-5 text-white/90 text-[12px] font-bold uppercase tracking-wider drop-shadow z-10 pointer-events-none transition-all duration-300 ${
+              className={`absolute top-4 right-5 text-white/90 text-[11.5px] font-bold uppercase tracking-wider drop-shadow z-10 pointer-events-none transition-all duration-300 ${
                 sliderPos > 85 ? 'opacity-0 scale-90 translate-x-2' : 'opacity-100 scale-100 translate-x-0'
               }`}
             >
@@ -278,12 +305,58 @@ export default function Transformations() {
               style={{ left: `${sliderPos}%` }}
             >
               {/* Center Floating "Drag" Circular Button */}
-              <div className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-12 h-12 rounded-full bg-white/85 backdrop-blur-md border border-white/60 shadow-lg flex items-center justify-center text-[#07234b] text-[11px] font-bold tracking-tight select-none pointer-events-none">
+              <div className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-11 h-11 rounded-full bg-white/90 backdrop-blur-md border border-white/60 shadow-lg flex items-center justify-center text-[#07234b] text-[10.5px] font-bold tracking-tight select-none pointer-events-none">
                 Drag
               </div>
             </div>
-
           </div>
+
+          {/* Bottom: Treatment Summary Info Card (Matching Reference Screenshot) */}
+          <div className="mt-4 w-full bg-[#f8faff] border border-sky-100/90 rounded-[22px] p-4 sm:p-5 shadow-xs">
+            <div className="grid grid-cols-3 divide-x divide-slate-200/80 text-center">
+              
+              {/* 1. Treatment time */}
+              <div className="px-2 sm:px-4 flex flex-col items-center">
+                <div className="w-7 h-7 flex items-center justify-center text-[#0066cc] mb-1.5">
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24">
+                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                  </svg>
+                </div>
+                <span className="text-[11px] sm:text-[11.5px] text-slate-500 font-medium">{currentCase.metrics.time.title}</span>
+                <span className="text-[13.5px] sm:text-[15px] font-bold text-[#07234b] mt-1 leading-tight">{currentCase.metrics.time.primary}</span>
+                <span className="text-[11px] sm:text-[11.5px] text-slate-500 mt-1">{currentCase.metrics.time.sub}</span>
+              </div>
+
+              {/* 2. Treatment */}
+              <div className="px-2 sm:px-4 flex flex-col items-center">
+                <div className="w-7 h-7 flex items-center justify-center text-[#0066cc] mb-1.5">
+                  <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 2C8.5 2 6 4.5 6 8c0 4 2 8 3 12 0.5 2 1.5 2 2 0l1-5 1 5c0.5 2 1.5 2 2 0 1-4 3-8 3-12 0-3.5-2.5-6-6-6z" />
+                  </svg>
+                </div>
+                <span className="text-[11px] sm:text-[11.5px] text-slate-500 font-medium">{currentCase.metrics.treatment.title}</span>
+                <span className="text-[13.5px] sm:text-[15px] font-bold text-[#07234b] mt-1 leading-tight">{currentCase.metrics.treatment.primary}</span>
+                <span className="text-[11px] sm:text-[11.5px] text-slate-500 mt-1">{currentCase.metrics.treatment.sub}</span>
+              </div>
+
+              {/* 3. Result */}
+              <div className="px-2 sm:px-4 flex flex-col items-center">
+                <div className="w-7 h-7 flex items-center justify-center text-[#0066cc] mb-1.5">
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+                  </svg>
+                </div>
+                <span className="text-[11px] sm:text-[11.5px] text-slate-500 font-medium">{currentCase.metrics.result.title}</span>
+                <span className="text-[13.5px] sm:text-[15px] font-bold text-[#07234b] mt-1 leading-tight">{currentCase.metrics.result.primary}</span>
+                <span className="text-[11px] sm:text-[11.5px] text-slate-500 mt-1">{currentCase.metrics.result.sub}</span>
+              </div>
+
+            </div>
+          </div>
+
         </div>
 
       </div>

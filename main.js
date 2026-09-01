@@ -134,6 +134,11 @@ const CASES_DATA = [
     patientImage: 'public/assets/patient-christina.webp',
     patientName: 'Christina',
     caption: 'Christina’s smile, before and after – confident, complete, and truly hers.',
+    metrics: {
+      time: { title: 'Treatment time', primary: '7–10 days', sub: '2–3 visits' },
+      treatment: { title: 'Treatment', primary: 'Porcelain veneers', sub: 'Custom crafted' },
+      result: { title: 'Result', primary: 'Natural & lasting', sub: 'Confident smile' }
+    }
   },
   {
     id: 'ortho',
@@ -151,6 +156,11 @@ const CASES_DATA = [
     patientImage: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&auto=format&fit=crop&q=85',
     patientName: 'Marcus',
     caption: 'Marcus’s smile, before and after – seamlessly aligned with zero lifestyle interruption.',
+    metrics: {
+      time: { title: 'Treatment time', primary: '6–9 months', sub: 'Bi-weekly checks' },
+      treatment: { title: 'Treatment', primary: 'Clear aligners', sub: '3D digital plan' },
+      result: { title: 'Result', primary: 'Perfect alignment', sub: 'Lifelong balance' }
+    }
   },
   {
     id: 'implant',
@@ -168,6 +178,11 @@ const CASES_DATA = [
     patientImage: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=800&auto=format&fit=crop&q=85',
     patientName: 'Elena',
     caption: 'Elena’s smile, restored with lifelong strength and undetectable aesthetics.',
+    metrics: {
+      time: { title: 'Treatment time', primary: '2–3 months', sub: '3D guided' },
+      treatment: { title: 'Treatment', primary: 'Ceramic implant', sub: 'Titanium post' },
+      result: { title: 'Result', primary: '100% bite power', sub: 'Undetectable match' }
+    }
   },
   {
     id: 'whitening',
@@ -185,6 +200,11 @@ const CASES_DATA = [
     patientImage: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=800&auto=format&fit=crop&q=85',
     patientName: 'Julian',
     caption: 'Julian’s smile, radiant and luminous with zero sensitivity.',
+    metrics: {
+      time: { title: 'Treatment time', primary: '45 minutes', sub: 'Single visit' },
+      treatment: { title: 'Treatment', primary: 'Laser whitening', sub: 'Enamel barrier' },
+      result: { title: 'Result', primary: '8 shades brighter', sub: 'Zero sensitivity' }
+    }
   },
   {
     id: 'surgical',
@@ -202,6 +222,11 @@ const CASES_DATA = [
     patientImage: 'public/assets/patient-david.webp',
     patientName: 'David',
     caption: 'David’s smile, pain-free and fully restored after gentle surgical care.',
+    metrics: {
+      time: { title: 'Treatment time', primary: '1–2 hours', sub: 'Outpatient care' },
+      treatment: { title: 'Treatment', primary: 'Oral surgery', sub: 'Painless recovery' },
+      result: { title: 'Result', primary: 'Complete relief', sub: 'Pain-free smile' }
+    }
   },
 ];
 
@@ -329,6 +354,29 @@ document.addEventListener('DOMContentLoaded', () => {
           <span>${item}</span>
         </li>
       `).join('');
+    }
+
+    if (current.metrics) {
+      const metricTimeTitle = document.getElementById('metricTimeTitle');
+      const metricTimePrimary = document.getElementById('metricTimePrimary');
+      const metricTimeSub = document.getElementById('metricTimeSub');
+      if (metricTimeTitle) metricTimeTitle.textContent = current.metrics.time.title;
+      if (metricTimePrimary) metricTimePrimary.textContent = current.metrics.time.primary;
+      if (metricTimeSub) metricTimeSub.textContent = current.metrics.time.sub;
+
+      const metricTreatmentTitle = document.getElementById('metricTreatmentTitle');
+      const metricTreatmentPrimary = document.getElementById('metricTreatmentPrimary');
+      const metricTreatmentSub = document.getElementById('metricTreatmentSub');
+      if (metricTreatmentTitle) metricTreatmentTitle.textContent = current.metrics.treatment.title;
+      if (metricTreatmentPrimary) metricTreatmentPrimary.textContent = current.metrics.treatment.primary;
+      if (metricTreatmentSub) metricTreatmentSub.textContent = current.metrics.treatment.sub;
+
+      const metricResultTitle = document.getElementById('metricResultTitle');
+      const metricResultPrimary = document.getElementById('metricResultPrimary');
+      const metricResultSub = document.getElementById('metricResultSub');
+      if (metricResultTitle) metricResultTitle.textContent = current.metrics.result.title;
+      if (metricResultPrimary) metricResultPrimary.textContent = current.metrics.result.primary;
+      if (metricResultSub) metricResultSub.textContent = current.metrics.result.sub;
     }
 
     renderTabs();
