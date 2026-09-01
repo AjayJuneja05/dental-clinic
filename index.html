@@ -313,112 +313,141 @@
       </div>
     </div>
 
-    <!-- Main 2-Column Content Layout -->
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 xl:gap-14 items-center">
+    <!-- 3-Column Layout: Left Text, Middle Before/After Slider, Right Vertical Info Card -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-6 xl:gap-8 items-center">
       
-      <!-- Left Column: Headline, Story, What We Did & Controls -->
-      <div class="lg:col-span-5 flex flex-col justify-between h-full pr-0 lg:pr-4">
+      <!-- Left Column (Span 4): Headline, Story, What We Did & Controls -->
+      <div class="lg:col-span-4 flex flex-col justify-between h-full pr-0 lg:pr-2">
         <div>
-          <h3 id="caseHeadline" class="text-[34px] sm:text-[42px] lg:text-[48px] xl:text-[52px] font-bold text-[#07234b] leading-[1.08] tracking-[-0.025em]">
+          <h3 id="caseHeadline" class="text-[28px] sm:text-[34px] xl:text-[38px] font-bold text-[#07234b] leading-[1.12] tracking-tight">
             Christina’s smile, transformed
           </h3>
-          <p id="caseStory" class="text-[15px] sm:text-[16px] text-[#475569] leading-[1.75] mt-5 font-normal">
+          <p id="caseStory" class="text-[13.5px] sm:text-[14px] text-[#475569] leading-[1.65] mt-4 font-normal">
             Christina felt self-conscious about the gaps and uneven shape of her teeth. She wanted a natural, brighter smile that still felt like her own – just more balanced, natural, and confidently beautiful.
           </p>
 
-          <div class="mt-8">
-            <h4 class="text-[17px] sm:text-[18px] font-bold text-[#07234b] mb-4">What we did</h4>
-            <ul id="caseWhatWeDid" class="space-y-3.5">
+          <div class="mt-6">
+            <h4 class="text-[15.5px] font-bold text-[#07234b] mb-3">What we did</h4>
+            <ul id="caseWhatWeDid" class="space-y-2.5">
               <!-- Injected via main.js -->
             </ul>
           </div>
         </div>
 
         <!-- Navigation Controls -->
-        <div class="flex items-center gap-3 mt-10 pt-4 border-t border-slate-100">
-          <button id="prevCaseBtn" class="w-10 h-10 rounded-full border border-slate-200 text-slate-500 hover:text-[#07234b] hover:border-slate-400 hover:bg-slate-50 transition-all flex items-center justify-center shadow-xs cursor-pointer">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" /></svg>
+        <div class="flex items-center gap-3 mt-8 pt-4 border-t border-slate-100">
+          <button id="prevCaseBtn" class="w-9 h-9 rounded-full border border-slate-200 text-slate-400 hover:text-[#07234b] hover:border-slate-400 transition-colors flex items-center justify-center shadow-xs cursor-pointer">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" /></svg>
           </button>
-          <span id="caseCounter" class="text-[13.5px] font-bold text-[#07234b] px-2 tracking-wide">01/05</span>
-          <button id="nextCaseBtn" class="w-10 h-10 rounded-full border border-sky-400 bg-sky-50 text-[#0066cc] hover:bg-sky-100 transition-all flex items-center justify-center shadow-xs cursor-pointer">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>
+          <span id="caseCounter" class="text-[12.5px] font-semibold text-[#07234b] px-1">01/05</span>
+          <button id="nextCaseBtn" class="w-9 h-9 rounded-full border border-sky-400 text-[#0066cc] hover:bg-sky-50 transition-colors flex items-center justify-center shadow-xs cursor-pointer">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>
           </button>
         </div>
       </div>
 
-      <!-- Right Column: Compact Before/After Slider + Treatment Summary Card -->
-      <div class="lg:col-span-7 flex flex-col">
-        
-        <!-- Top: Compact Interactive Before / After Drag Slider -->
+      <!-- Middle Column (Span 5): Original Balanced Size Before / After Drag Slider -->
+      <div class="lg:col-span-5">
         <div 
           id="interactiveSlider" 
-          class="relative w-full h-[260px] sm:h-[300px] lg:h-[320px] xl:h-[340px] rounded-[24px] overflow-hidden shadow-xl shadow-slate-900/10 cursor-ew-resize bg-slate-900 border border-slate-100 touch-none select-none"
+          class="relative w-full h-[320px] sm:h-[380px] rounded-[24px] overflow-hidden shadow-md cursor-ew-resize bg-slate-900 border border-slate-100 touch-none select-none"
         >
           <!-- Before Base Image -->
           <img id="sliderBeforeImg" src="public/assets/aesthetic-before.webp" alt="Before treatment" class="absolute inset-0 w-full h-full object-cover pointer-events-none" />
-          <span id="sliderBeforeTag" class="absolute top-4 left-5 text-white/90 text-[11.5px] font-bold uppercase tracking-wider drop-shadow z-10 pointer-events-none transition-all duration-300">Before</span>
+          <span id="sliderBeforeTag" class="absolute top-3.5 left-4 text-white/90 text-[11px] font-bold uppercase tracking-wider drop-shadow z-10 pointer-events-none transition-all duration-300">Before</span>
 
           <!-- After Clipped Image -->
           <div id="sliderClippedWrapper" class="absolute inset-0 overflow-hidden pointer-events-none" style="clip-path: inset(0 0 0 50%);">
             <img id="sliderAfterImg" src="public/assets/aesthetic-after.webp" alt="After treatment" class="absolute inset-0 w-full h-full object-cover" />
           </div>
-          <span id="sliderAfterTag" class="absolute top-4 right-5 text-white/90 text-[11.5px] font-bold uppercase tracking-wider drop-shadow z-10 pointer-events-none transition-all duration-300">After</span>
+          <span id="sliderAfterTag" class="absolute top-3.5 right-4 text-white/90 text-[11px] font-bold uppercase tracking-wider drop-shadow z-10 pointer-events-none transition-all duration-300">After</span>
 
           <!-- Divider Line & Handle -->
           <div id="sliderDividerLine" class="absolute top-0 bottom-0 w-[2.5px] bg-[#0066cc] pointer-events-none shadow-md z-20" style="left: 50%;">
-            <div class="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-11 h-11 rounded-full bg-white/90 backdrop-blur-md border border-white/60 shadow-lg flex items-center justify-center text-[#07234b] text-[10.5px] font-bold tracking-tight select-none pointer-events-none">
+            <div class="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-12 h-12 rounded-full bg-white/85 backdrop-blur-md border border-white/60 shadow-lg flex items-center justify-center text-[#07234b] text-[11px] font-bold tracking-tight select-none pointer-events-none">
               Drag
             </div>
           </div>
         </div>
-
-        <!-- Bottom: Treatment Summary Info Card (Matching Reference Screenshot) -->
-        <div class="mt-4 w-full bg-[#f8faff] border border-sky-100/90 rounded-[22px] p-4 sm:p-5 shadow-xs">
-          <div class="grid grid-cols-3 divide-x divide-slate-200/80 text-center">
-            
-            <!-- 1. Treatment time -->
-            <div class="px-2 sm:px-4 flex flex-col items-center">
-              <div class="w-7 h-7 flex items-center justify-center text-[#0066cc] mb-1.5">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
-                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-                  <line x1="16" y1="2" x2="16" y2="6"></line>
-                  <line x1="8" y1="2" x2="8" y2="6"></line>
-                  <line x1="3" y1="10" x2="21" y2="10"></line>
-                </svg>
-              </div>
-              <span id="metricTimeTitle" class="text-[11px] sm:text-[11.5px] text-slate-500 font-medium">Treatment time</span>
-              <span id="metricTimePrimary" class="text-[13.5px] sm:text-[15px] font-bold text-[#07234b] mt-1 leading-tight">7–10 days</span>
-              <span id="metricTimeSub" class="text-[11px] sm:text-[11.5px] text-slate-500 mt-1">2–3 visits</span>
-            </div>
-
-            <!-- 2. Treatment -->
-            <div class="px-2 sm:px-4 flex flex-col items-center">
-              <div class="w-7 h-7 flex items-center justify-center text-[#0066cc] mb-1.5">
-                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 2C8.5 2 6 4.5 6 8c0 4 2 8 3 12 0.5 2 1.5 2 2 0l1-5 1 5c0.5 2 1.5 2 2 0 1-4 3-8 3-12 0-3.5-2.5-6-6-6z" />
-                </svg>
-              </div>
-              <span id="metricTreatmentTitle" class="text-[11px] sm:text-[11.5px] text-slate-500 font-medium">Treatment</span>
-              <span id="metricTreatmentPrimary" class="text-[13.5px] sm:text-[15px] font-bold text-[#07234b] mt-1 leading-tight">Porcelain veneers</span>
-              <span id="metricTreatmentSub" class="text-[11px] sm:text-[11.5px] text-slate-500 mt-1">Custom crafted</span>
-            </div>
-
-            <!-- 3. Result -->
-            <div class="px-2 sm:px-4 flex flex-col items-center">
-              <div class="w-7 h-7 flex items-center justify-center text-[#0066cc] mb-1.5">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
-                </svg>
-              </div>
-              <span id="metricResultTitle" class="text-[11px] sm:text-[11.5px] text-slate-500 font-medium">Result</span>
-              <span id="metricResultPrimary" class="text-[13.5px] sm:text-[15px] font-bold text-[#07234b] mt-1 leading-tight">Natural & lasting</span>
-              <span id="metricResultSub" class="text-[11px] sm:text-[11.5px] text-slate-500 mt-1">Confident smile</span>
-            </div>
-
-          </div>
-        </div>
-
       </div>
+
+      <!-- Right Column (Span 3): Vertical Line Info Card (1-Treatment Time, 2-Treatment Visits) -->
+      <div class="lg:col-span-3 h-full flex flex-col justify-center">
+        <div class="w-full bg-[#f8faff] border border-sky-100/90 rounded-[24px] p-6 sm:p-7 shadow-sm flex flex-col gap-5">
+          
+          <!-- 1) Treatment Time -->
+          <div class="flex items-start gap-4">
+            <div class="w-10 h-10 rounded-2xl bg-white shadow-xs border border-sky-100/80 flex items-center justify-center text-[#0066cc] flex-shrink-0 mt-0.5">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                <line x1="16" y1="2" x2="16" y2="6"></line>
+                <line x1="8" y1="2" x2="8" y2="6"></line>
+                <line x1="3" y1="10" x2="21" y2="10"></line>
+              </svg>
+            </div>
+            <div class="flex-1">
+              <span id="metricTimeTitle" class="text-[11px] font-bold text-sky-600 uppercase tracking-wider block">
+                1. Treatment Time
+              </span>
+              <p id="metricTimePrimary" class="text-[17px] sm:text-[18px] font-bold text-[#07234b] leading-tight mt-0.5">
+                7–10 days
+              </p>
+              <span id="metricTimeSub" class="text-[12px] text-slate-500 mt-0.5 block">
+                Quick turnaround
+              </span>
+            </div>
+          </div>
+
+          <!-- Vertical Line Separator -->
+          <div class="w-full h-px bg-slate-200/80 my-1"></div>
+
+          <!-- 2) Treatment Visits -->
+          <div class="flex items-start gap-4">
+            <div class="w-10 h-10 rounded-2xl bg-white shadow-xs border border-sky-100/80 flex items-center justify-center text-[#0066cc] flex-shrink-0 mt-0.5">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 2C8.5 2 6 4.5 6 8c0 4 2 8 3 12 0.5 2 1.5 2 2 0l1-5 1 5c0.5 2 1.5 2 2 0 1-4 3-8 3-12 0-3.5-2.5-6-6-6z" />
+              </svg>
+            </div>
+            <div class="flex-1">
+              <span id="metricVisitsTitle" class="text-[11px] font-bold text-sky-600 uppercase tracking-wider block">
+                2. Treatment Visits
+              </span>
+              <p id="metricVisitsPrimary" class="text-[17px] sm:text-[18px] font-bold text-[#07234b] leading-tight mt-0.5">
+                2–3 visits
+              </p>
+              <span id="metricVisitsSub" class="text-[12px] text-slate-500 mt-0.5 block">
+                Custom crafted porcelain
+              </span>
+            </div>
+          </div>
+
+          <!-- Vertical Line Separator -->
+          <div class="w-full h-px bg-slate-200/80 my-1"></div>
+
+          <!-- 3) Result -->
+          <div class="flex items-start gap-4">
+            <div class="w-10 h-10 rounded-2xl bg-white shadow-xs border border-sky-100/80 flex items-center justify-center text-[#0066cc] flex-shrink-0 mt-0.5">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+              </svg>
+            </div>
+            <div class="flex-1">
+              <span id="metricResultTitle" class="text-[11px] font-bold text-sky-600 uppercase tracking-wider block">
+                Clinical Result
+              </span>
+              <p id="metricResultPrimary" class="text-[17px] sm:text-[18px] font-bold text-[#07234b] leading-tight mt-0.5">
+                Natural & lasting
+              </p>
+              <span id="metricResultSub" class="text-[12px] text-slate-500 mt-0.5 block">
+                Confident aesthetic smile
+              </span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
 
     </div>
   </section>

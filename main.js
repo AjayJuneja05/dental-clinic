@@ -135,9 +135,9 @@ const CASES_DATA = [
     patientName: 'Christina',
     caption: 'Christina’s smile, before and after – confident, complete, and truly hers.',
     metrics: {
-      time: { title: 'Treatment time', primary: '7–10 days', sub: '2–3 visits' },
-      treatment: { title: 'Treatment', primary: 'Porcelain veneers', sub: 'Custom crafted' },
-      result: { title: 'Result', primary: 'Natural & lasting', sub: 'Confident smile' }
+      time: { title: '1. Treatment Time', primary: '7–10 days', sub: 'Quick turnaround' },
+      visits: { title: '2. Treatment Visits', primary: '2–3 visits', sub: 'Custom crafted porcelain' },
+      result: { title: 'Clinical Result', primary: 'Natural & lasting', sub: 'Confident aesthetic smile' }
     }
   },
   {
@@ -157,9 +157,9 @@ const CASES_DATA = [
     patientName: 'Marcus',
     caption: 'Marcus’s smile, before and after – seamlessly aligned with zero lifestyle interruption.',
     metrics: {
-      time: { title: 'Treatment time', primary: '6–9 months', sub: 'Bi-weekly checks' },
-      treatment: { title: 'Treatment', primary: 'Clear aligners', sub: '3D digital plan' },
-      result: { title: 'Result', primary: 'Perfect alignment', sub: 'Lifelong balance' }
+      time: { title: '1. Treatment Time', primary: '6–9 months', sub: 'Predictable progression' },
+      visits: { title: '2. Treatment Visits', primary: 'Bi-weekly checks', sub: 'Clear aligner trays' },
+      result: { title: 'Clinical Result', primary: 'Perfect alignment', sub: 'Lifelong bite stability' }
     }
   },
   {
@@ -179,9 +179,9 @@ const CASES_DATA = [
     patientName: 'Elena',
     caption: 'Elena’s smile, restored with lifelong strength and undetectable aesthetics.',
     metrics: {
-      time: { title: 'Treatment time', primary: '2–3 months', sub: '3D guided' },
-      treatment: { title: 'Treatment', primary: 'Ceramic implant', sub: 'Titanium post' },
-      result: { title: 'Result', primary: '100% bite power', sub: 'Undetectable match' }
+      time: { title: '1. Treatment Time', primary: '2–3 months', sub: 'Full tissue integration' },
+      visits: { title: '2. Treatment Visits', primary: '3 visits total', sub: 'Guided 3D implantology' },
+      result: { title: 'Clinical Result', primary: '100% bite strength', sub: 'Permanent tooth restoration' }
     }
   },
   {
@@ -201,9 +201,9 @@ const CASES_DATA = [
     patientName: 'Julian',
     caption: 'Julian’s smile, radiant and luminous with zero sensitivity.',
     metrics: {
-      time: { title: 'Treatment time', primary: '45 minutes', sub: 'Single visit' },
-      treatment: { title: 'Treatment', primary: 'Laser whitening', sub: 'Enamel barrier' },
-      result: { title: 'Result', primary: '8 shades brighter', sub: 'Zero sensitivity' }
+      time: { title: '1. Treatment Time', primary: '45 minutes', sub: 'Immediate results' },
+      visits: { title: '2. Treatment Visits', primary: '1 single visit', sub: 'Laser photo-activation' },
+      result: { title: 'Clinical Result', primary: '8 shades brighter', sub: 'Zero enamel sensitivity' }
     }
   },
   {
@@ -223,9 +223,9 @@ const CASES_DATA = [
     patientName: 'David',
     caption: 'David’s smile, pain-free and fully restored after gentle surgical care.',
     metrics: {
-      time: { title: 'Treatment time', primary: '1–2 hours', sub: 'Outpatient care' },
-      treatment: { title: 'Treatment', primary: 'Oral surgery', sub: 'Painless recovery' },
-      result: { title: 'Result', primary: 'Complete relief', sub: 'Pain-free smile' }
+      time: { title: '1. Treatment Time', primary: '1–2 hours', sub: 'Outpatient procedure' },
+      visits: { title: '2. Treatment Visits', primary: '1 surgical visit', sub: 'Follow-up check' },
+      result: { title: 'Clinical Result', primary: 'Complete pain relief', sub: 'Fast gentle healing' }
     }
   },
 ];
@@ -364,12 +364,12 @@ document.addEventListener('DOMContentLoaded', () => {
       if (metricTimePrimary) metricTimePrimary.textContent = current.metrics.time.primary;
       if (metricTimeSub) metricTimeSub.textContent = current.metrics.time.sub;
 
-      const metricTreatmentTitle = document.getElementById('metricTreatmentTitle');
-      const metricTreatmentPrimary = document.getElementById('metricTreatmentPrimary');
-      const metricTreatmentSub = document.getElementById('metricTreatmentSub');
-      if (metricTreatmentTitle) metricTreatmentTitle.textContent = current.metrics.treatment.title;
-      if (metricTreatmentPrimary) metricTreatmentPrimary.textContent = current.metrics.treatment.primary;
-      if (metricTreatmentSub) metricTreatmentSub.textContent = current.metrics.treatment.sub;
+      const metricVisitsTitle = document.getElementById('metricVisitsTitle');
+      const metricVisitsPrimary = document.getElementById('metricVisitsPrimary');
+      const metricVisitsSub = document.getElementById('metricVisitsSub');
+      if (metricVisitsTitle) metricVisitsTitle.textContent = current.metrics.visits.title;
+      if (metricVisitsPrimary) metricVisitsPrimary.textContent = current.metrics.visits.primary;
+      if (metricVisitsSub) metricVisitsSub.textContent = current.metrics.visits.sub;
 
       const metricResultTitle = document.getElementById('metricResultTitle');
       const metricResultPrimary = document.getElementById('metricResultPrimary');

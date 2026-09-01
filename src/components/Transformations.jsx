@@ -20,9 +20,9 @@ const CASES_DATA = [
     patientName: 'Christina',
     caption: 'Christina’s smile, before and after – confident, complete, and truly hers.',
     metrics: {
-      time: { title: 'Treatment time', primary: '7–10 days', sub: '2–3 visits' },
-      treatment: { title: 'Treatment', primary: 'Porcelain veneers', sub: 'Custom crafted' },
-      result: { title: 'Result', primary: 'Natural & lasting', sub: 'Confident smile' }
+      time: { title: '1. Treatment Time', primary: '7–10 days', sub: 'Quick turnaround' },
+      visits: { title: '2. Treatment Visits', primary: '2–3 visits', sub: 'Custom crafted porcelain' },
+      result: { title: 'Clinical Result', primary: 'Natural & lasting', sub: 'Confident aesthetic smile' }
     }
   },
   {
@@ -42,9 +42,9 @@ const CASES_DATA = [
     patientName: 'Marcus',
     caption: 'Marcus’s smile, before and after – seamlessly aligned with zero lifestyle interruption.',
     metrics: {
-      time: { title: 'Treatment time', primary: '6–9 months', sub: 'Bi-weekly checks' },
-      treatment: { title: 'Treatment', primary: 'Clear aligners', sub: '3D digital plan' },
-      result: { title: 'Result', primary: 'Perfect alignment', sub: 'Lifelong balance' }
+      time: { title: '1. Treatment Time', primary: '6–9 months', sub: 'Predictable progression' },
+      visits: { title: '2. Treatment Visits', primary: 'Bi-weekly checks', sub: 'Clear aligner trays' },
+      result: { title: 'Clinical Result', primary: 'Perfect alignment', sub: 'Lifelong bite stability' }
     }
   },
   {
@@ -64,9 +64,9 @@ const CASES_DATA = [
     patientName: 'Elena',
     caption: 'Elena’s smile, restored with lifelong strength and undetectable aesthetics.',
     metrics: {
-      time: { title: 'Treatment time', primary: '2–3 months', sub: '3D guided' },
-      treatment: { title: 'Treatment', primary: 'Ceramic implant', sub: 'Titanium post' },
-      result: { title: 'Result', primary: '100% bite power', sub: 'Undetectable match' }
+      time: { title: '1. Treatment Time', primary: '2–3 months', sub: 'Full tissue integration' },
+      visits: { title: '2. Treatment Visits', primary: '3 visits total', sub: 'Guided 3D implantology' },
+      result: { title: 'Clinical Result', primary: '100% bite strength', sub: 'Permanent tooth restoration' }
     }
   },
   {
@@ -86,9 +86,9 @@ const CASES_DATA = [
     patientName: 'Julian',
     caption: 'Julian’s smile, radiant and luminous with zero sensitivity.',
     metrics: {
-      time: { title: 'Treatment time', primary: '45 minutes', sub: 'Single visit' },
-      treatment: { title: 'Treatment', primary: 'Laser whitening', sub: 'Enamel barrier' },
-      result: { title: 'Result', primary: '8 shades brighter', sub: 'Zero sensitivity' }
+      time: { title: '1. Treatment Time', primary: '45 minutes', sub: 'Immediate results' },
+      visits: { title: '2. Treatment Visits', primary: '1 single visit', sub: 'Laser photo-activation' },
+      result: { title: 'Clinical Result', primary: '8 shades brighter', sub: 'Zero enamel sensitivity' }
     }
   },
   {
@@ -108,9 +108,9 @@ const CASES_DATA = [
     patientName: 'David',
     caption: 'David’s smile, pain-free and fully restored after gentle surgical care.',
     metrics: {
-      time: { title: 'Treatment time', primary: '1–2 hours', sub: 'Outpatient care' },
-      treatment: { title: 'Treatment', primary: 'Oral surgery', sub: 'Painless recovery' },
-      result: { title: 'Result', primary: 'Complete relief', sub: 'Pain-free smile' }
+      time: { title: '1. Treatment Time', primary: '1–2 hours', sub: 'Outpatient procedure' },
+      visits: { title: '2. Treatment Visits', primary: '1 surgical visit', sub: 'Follow-up check' },
+      result: { title: 'Clinical Result', primary: 'Complete pain relief', sub: 'Fast gentle healing' }
     }
   },
 ];
@@ -196,29 +196,29 @@ export default function Transformations() {
         </div>
       </div>
 
-      {/* Main 2-Column Content Layout */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 xl:gap-14 items-center">
+      {/* 3-Column Layout: Left Text, Middle Before/After Slider, Right Vertical Info Card */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-6 xl:gap-8 items-center">
         
-        {/* LEFT COLUMN (Span 5): Enlarged Headline, Story, What We Did & Controls */}
-        <div className="lg:col-span-5 flex flex-col justify-between h-full pr-0 lg:pr-4">
+        {/* LEFT COLUMN (Span 4): Headline, Story, What We Did & Controls */}
+        <div className="lg:col-span-4 flex flex-col justify-between h-full pr-0 lg:pr-2">
           <div>
-            <h3 className="text-[34px] sm:text-[42px] lg:text-[48px] xl:text-[52px] font-bold text-[#07234b] leading-[1.08] tracking-[-0.025em]">
+            <h3 className="text-[28px] sm:text-[34px] xl:text-[38px] font-bold text-[#07234b] leading-[1.12] tracking-tight">
               {currentCase.headline}
             </h3>
 
-            <p className="text-[15px] sm:text-[16px] text-[#475569] leading-[1.75] mt-5 font-normal">
+            <p className="text-[13.5px] sm:text-[14px] text-[#475569] leading-[1.65] mt-4 font-normal">
               {currentCase.story}
             </p>
 
             {/* What we did */}
-            <div className="mt-8">
-              <h4 className="text-[17px] sm:text-[18px] font-bold text-[#07234b] mb-4">
+            <div className="mt-6">
+              <h4 className="text-[15.5px] font-bold text-[#07234b] mb-3">
                 What we did
               </h4>
-              <ul className="space-y-3.5">
+              <ul className="space-y-2.5">
                 {currentCase.whatWeDid.map((item, idx) => (
-                  <li key={idx} className="flex items-start gap-3 text-[14.5px] sm:text-[15px] text-[#334155] leading-relaxed">
-                    <span className="w-2 h-2 rounded-full bg-[#0066cc] mt-2 flex-shrink-0"></span>
+                  <li key={idx} className="flex items-start gap-2.5 text-[13px] sm:text-[13.5px] text-slate-600 leading-snug">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#0066cc] mt-1.5 flex-shrink-0"></span>
                     <span>{item}</span>
                   </li>
                 ))}
@@ -227,44 +227,42 @@ export default function Transformations() {
           </div>
 
           {/* Bottom Left Navigation Controls */}
-          <div className="flex items-center gap-3 mt-10 pt-4 border-t border-slate-100">
+          <div className="flex items-center gap-3 mt-8 pt-4 border-t border-slate-100">
             <button
               onClick={handlePrev}
-              className="w-10 h-10 rounded-full border border-slate-200 text-slate-500 hover:text-[#07234b] hover:border-slate-400 hover:bg-slate-50 transition-all flex items-center justify-center shadow-xs cursor-pointer"
+              className="w-9 h-9 rounded-full border border-slate-200 text-slate-400 hover:text-[#07234b] hover:border-slate-400 transition-colors flex items-center justify-center shadow-xs cursor-pointer"
               aria-label="Previous Story"
             >
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+              <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
               </svg>
             </button>
 
-            <span className="text-[13.5px] font-bold text-[#07234b] px-2 tracking-wide">
+            <span className="text-[12.5px] font-semibold text-[#07234b] px-1">
               {String(activeTab + 1).padStart(2, '0')}/{String(CASES_DATA.length).padStart(2, '0')}
             </span>
 
             <button
               onClick={handleNext}
-              className="w-10 h-10 rounded-full border border-sky-400 bg-sky-50 text-[#0066cc] hover:bg-sky-100 transition-all flex items-center justify-center shadow-xs cursor-pointer"
+              className="w-9 h-9 rounded-full border border-sky-400 text-[#0066cc] hover:bg-sky-50 transition-colors flex items-center justify-center shadow-xs cursor-pointer"
               aria-label="Next Story"
             >
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+              <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
               </svg>
             </button>
           </div>
         </div>
 
-        {/* RIGHT COLUMN (Span 7): Compact Before/After Slider + Treatment Summary Card */}
-        <div className="lg:col-span-7 flex flex-col">
-          
-          {/* Top: Compact Interactive Before / After Drag Slider */}
+        {/* MIDDLE COLUMN (Span 5): Original Balanced Size Before / After Drag Slider */}
+        <div className="lg:col-span-5">
           <div 
             ref={sliderRef}
             onPointerDown={handlePointerDown}
             onPointerMove={handlePointerMove}
             onPointerUp={handlePointerUp}
             onPointerCancel={handlePointerUp}
-            className="relative w-full h-[260px] sm:h-[300px] lg:h-[320px] xl:h-[340px] rounded-[24px] overflow-hidden shadow-xl shadow-slate-900/10 cursor-ew-resize bg-slate-900 border border-slate-100 touch-none select-none"
+            className="relative w-full h-[320px] sm:h-[380px] rounded-[24px] overflow-hidden shadow-md cursor-ew-resize bg-slate-900 border border-slate-100 touch-none select-none"
           >
             {/* "Before" Image Layer (Base) */}
             <img 
@@ -273,7 +271,7 @@ export default function Transformations() {
               className="absolute inset-0 w-full h-full object-cover pointer-events-none" 
             />
             <span 
-              className={`absolute top-4 left-5 text-white/90 text-[11.5px] font-bold uppercase tracking-wider drop-shadow z-10 pointer-events-none transition-all duration-300 ${
+              className={`absolute top-3.5 left-4 text-white/90 text-[11px] font-bold uppercase tracking-wider drop-shadow z-10 pointer-events-none transition-all duration-300 ${
                 sliderPos < 15 ? 'opacity-0 scale-90 -translate-x-2' : 'opacity-100 scale-100 translate-x-0'
               }`}
             >
@@ -292,7 +290,7 @@ export default function Transformations() {
               />
             </div>
             <span 
-              className={`absolute top-4 right-5 text-white/90 text-[11.5px] font-bold uppercase tracking-wider drop-shadow z-10 pointer-events-none transition-all duration-300 ${
+              className={`absolute top-3.5 right-4 text-white/90 text-[11px] font-bold uppercase tracking-wider drop-shadow z-10 pointer-events-none transition-all duration-300 ${
                 sliderPos > 85 ? 'opacity-0 scale-90 translate-x-2' : 'opacity-100 scale-100 translate-x-0'
               }`}
             >
@@ -305,58 +303,87 @@ export default function Transformations() {
               style={{ left: `${sliderPos}%` }}
             >
               {/* Center Floating "Drag" Circular Button */}
-              <div className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-11 h-11 rounded-full bg-white/90 backdrop-blur-md border border-white/60 shadow-lg flex items-center justify-center text-[#07234b] text-[10.5px] font-bold tracking-tight select-none pointer-events-none">
+              <div className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-12 h-12 rounded-full bg-white/85 backdrop-blur-md border border-white/60 shadow-lg flex items-center justify-center text-[#07234b] text-[11px] font-bold tracking-tight select-none pointer-events-none">
                 Drag
               </div>
             </div>
           </div>
+        </div>
 
-          {/* Bottom: Treatment Summary Info Card (Matching Reference Screenshot) */}
-          <div className="mt-4 w-full bg-[#f8faff] border border-sky-100/90 rounded-[22px] p-4 sm:p-5 shadow-xs">
-            <div className="grid grid-cols-3 divide-x divide-slate-200/80 text-center">
-              
-              {/* 1. Treatment time */}
-              <div className="px-2 sm:px-4 flex flex-col items-center">
-                <div className="w-7 h-7 flex items-center justify-center text-[#0066cc] mb-1.5">
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24">
-                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-                    <line x1="16" y1="2" x2="16" y2="6"></line>
-                    <line x1="8" y1="2" x2="8" y2="6"></line>
-                    <line x1="3" y1="10" x2="21" y2="10"></line>
-                  </svg>
-                </div>
-                <span className="text-[11px] sm:text-[11.5px] text-slate-500 font-medium">{currentCase.metrics.time.title}</span>
-                <span className="text-[13.5px] sm:text-[15px] font-bold text-[#07234b] mt-1 leading-tight">{currentCase.metrics.time.primary}</span>
-                <span className="text-[11px] sm:text-[11.5px] text-slate-500 mt-1">{currentCase.metrics.time.sub}</span>
+        {/* RIGHT COLUMN (Span 3): Vertical Line Info Card (1-Treatment Time, 2-Treatment Visits) */}
+        <div className="lg:col-span-3 h-full flex flex-col justify-center">
+          <div className="w-full bg-[#f8faff] border border-sky-100/90 rounded-[24px] p-6 sm:p-7 shadow-sm flex flex-col gap-5">
+            
+            {/* 1) Treatment Time */}
+            <div className="flex items-start gap-4">
+              <div className="w-10 h-10 rounded-2xl bg-white shadow-xs border border-sky-100/80 flex items-center justify-center text-[#0066cc] flex-shrink-0 mt-0.5">
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24">
+                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                  <line x1="16" y1="2" x2="16" y2="6"></line>
+                  <line x1="8" y1="2" x2="8" y2="6"></line>
+                  <line x1="3" y1="10" x2="21" y2="10"></line>
+                </svg>
               </div>
-
-              {/* 2. Treatment */}
-              <div className="px-2 sm:px-4 flex flex-col items-center">
-                <div className="w-7 h-7 flex items-center justify-center text-[#0066cc] mb-1.5">
-                  <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 2C8.5 2 6 4.5 6 8c0 4 2 8 3 12 0.5 2 1.5 2 2 0l1-5 1 5c0.5 2 1.5 2 2 0 1-4 3-8 3-12 0-3.5-2.5-6-6-6z" />
-                  </svg>
-                </div>
-                <span className="text-[11px] sm:text-[11.5px] text-slate-500 font-medium">{currentCase.metrics.treatment.title}</span>
-                <span className="text-[13.5px] sm:text-[15px] font-bold text-[#07234b] mt-1 leading-tight">{currentCase.metrics.treatment.primary}</span>
-                <span className="text-[11px] sm:text-[11.5px] text-slate-500 mt-1">{currentCase.metrics.treatment.sub}</span>
+              <div className="flex-1">
+                <span className="text-[11px] font-bold text-sky-600 uppercase tracking-wider block">
+                  {currentCase.metrics.time.title}
+                </span>
+                <p className="text-[17px] sm:text-[18px] font-bold text-[#07234b] leading-tight mt-0.5">
+                  {currentCase.metrics.time.primary}
+                </p>
+                <span className="text-[12px] text-slate-500 mt-0.5 block">
+                  {currentCase.metrics.time.sub}
+                </span>
               </div>
-
-              {/* 3. Result */}
-              <div className="px-2 sm:px-4 flex flex-col items-center">
-                <div className="w-7 h-7 flex items-center justify-center text-[#0066cc] mb-1.5">
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
-                  </svg>
-                </div>
-                <span className="text-[11px] sm:text-[11.5px] text-slate-500 font-medium">{currentCase.metrics.result.title}</span>
-                <span className="text-[13.5px] sm:text-[15px] font-bold text-[#07234b] mt-1 leading-tight">{currentCase.metrics.result.primary}</span>
-                <span className="text-[11px] sm:text-[11.5px] text-slate-500 mt-1">{currentCase.metrics.result.sub}</span>
-              </div>
-
             </div>
-          </div>
 
+            {/* Vertical Line Separator */}
+            <div className="w-full h-px bg-slate-200/80 my-1"></div>
+
+            {/* 2) Treatment Visits */}
+            <div className="flex items-start gap-4">
+              <div className="w-10 h-10 rounded-2xl bg-white shadow-xs border border-sky-100/80 flex items-center justify-center text-[#0066cc] flex-shrink-0 mt-0.5">
+                <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 2C8.5 2 6 4.5 6 8c0 4 2 8 3 12 0.5 2 1.5 2 2 0l1-5 1 5c0.5 2 1.5 2 2 0 1-4 3-8 3-12 0-3.5-2.5-6-6-6z" />
+                </svg>
+              </div>
+              <div className="flex-1">
+                <span className="text-[11px] font-bold text-sky-600 uppercase tracking-wider block">
+                  {currentCase.metrics.visits.title}
+                </span>
+                <p className="text-[17px] sm:text-[18px] font-bold text-[#07234b] leading-tight mt-0.5">
+                  {currentCase.metrics.visits.primary}
+                </p>
+                <span className="text-[12px] text-slate-500 mt-0.5 block">
+                  {currentCase.metrics.visits.sub}
+                </span>
+              </div>
+            </div>
+
+            {/* Vertical Line Separator */}
+            <div className="w-full h-px bg-slate-200/80 my-1"></div>
+
+            {/* 3) Result */}
+            <div className="flex items-start gap-4">
+              <div className="w-10 h-10 rounded-2xl bg-white shadow-xs border border-sky-100/80 flex items-center justify-center text-[#0066cc] flex-shrink-0 mt-0.5">
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+                </svg>
+              </div>
+              <div className="flex-1">
+                <span className="text-[11px] font-bold text-sky-600 uppercase tracking-wider block">
+                  {currentCase.metrics.result.title}
+                </span>
+                <p className="text-[17px] sm:text-[18px] font-bold text-[#07234b] leading-tight mt-0.5">
+                  {currentCase.metrics.result.primary}
+                </p>
+                <span className="text-[12px] text-slate-500 mt-0.5 block">
+                  {currentCase.metrics.result.sub}
+                </span>
+              </div>
+            </div>
+
+          </div>
         </div>
 
       </div>
