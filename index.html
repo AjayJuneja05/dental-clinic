@@ -573,84 +573,140 @@
             We combine advanced digital technology with experienced dental professionals to deliver accurate diagnoses, comfortable treatments and exceptional results for every patient.
           </p>
 
-          <div class="space-y-3.5">
+          <div id="techCardsContainer" class="space-y-4">
             <!-- 1. AI-Assisted Diagnostics -->
-            <div class="tech-card rounded-[20px] p-3.5 sm:p-4 border border-slate-200/80 bg-white hover:bg-slate-50/80 hover:border-slate-300 shadow-xs transition-all duration-300 flex items-center justify-between gap-4 cursor-pointer group">
-              <div class="flex items-center gap-3.5 sm:gap-4 flex-1">
-                <div class="w-12 h-12 rounded-2xl bg-blue-50 text-[#0066cc] flex items-center justify-center flex-shrink-0 transition-transform duration-300 group-hover:scale-105">
-                  <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="3" y="11" width="18" height="10" rx="4"></rect>
-                    <circle cx="8.5" cy="16" r="1.5" fill="currentColor"></circle>
-                    <circle cx="15.5" cy="16" r="1.5" fill="currentColor"></circle>
-                    <path d="M9 7l1-3h4l1 3"></path>
-                    <line x1="12" y1="4" x2="12" y2="11"></line>
-                  </svg>
+            <div class="tech-card active rounded-[22px] border border-[#0066cc] bg-[#f8faff] shadow-[0_12px_32px_-8px_rgba(0,102,204,0.18)] ring-2 ring-blue-100/80 transition-all duration-300 overflow-hidden cursor-pointer">
+              <div class="p-4 sm:p-4.5 flex items-center justify-between gap-4">
+                <div class="flex items-center gap-3.5 sm:gap-4 flex-1 min-w-0">
+                  <div class="tech-icon-box w-12 h-12 rounded-2xl bg-[#0066cc] text-white shadow-md shadow-blue-500/25 flex items-center justify-center flex-shrink-0 transition-all duration-300">
+                    <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                      <rect x="3" y="11" width="18" height="10" rx="4"></rect>
+                      <circle cx="8.5" cy="16" r="1.5" fill="currentColor"></circle>
+                      <circle cx="15.5" cy="16" r="1.5" fill="currentColor"></circle>
+                      <path d="M9 7l1-3h4l1 3"></path>
+                      <line x1="12" y1="4" x2="12" y2="11"></line>
+                    </svg>
+                  </div>
+                  <div class="flex-1 min-w-0">
+                    <h4 class="tech-title text-[15px] sm:text-[16px] font-bold text-[#0066cc] leading-tight transition-colors">1. AI-Assisted Diagnostics</h4>
+                    <p class="text-[12px] sm:text-[12.5px] text-slate-500 leading-snug mt-1">Smart algorithms for faster, more accurate analysis and detection.</p>
+                  </div>
                 </div>
-                <div class="flex-1 min-w-0">
-                  <h4 class="text-[15px] sm:text-[15.5px] font-bold text-[#0c2752] leading-tight">1. AI-Assisted Diagnostics</h4>
-                  <p class="text-[12px] sm:text-[12.5px] text-slate-500 leading-snug mt-1">Smart algorithms for faster, more accurate analysis and detection.</p>
+                <div class="tech-arrow-btn w-9 h-9 rounded-full bg-[#0066cc] text-white rotate-90 flex items-center justify-center flex-shrink-0 transition-all duration-300">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
                 </div>
               </div>
-              <div class="w-9 h-9 rounded-full bg-slate-50 text-slate-400 group-hover:text-[#0066cc] group-hover:bg-blue-50 group-hover:translate-x-1 flex items-center justify-center flex-shrink-0 transition-all duration-300">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
+              <div class="tech-expand-body transition-all duration-300 ease-in-out px-4 sm:px-5 pb-5 opacity-100 max-h-60">
+                <div class="pt-3 border-t border-sky-100">
+                  <p class="text-[13px] sm:text-[13.5px] text-[#475569] leading-relaxed">
+                    Neural network computer vision cross-analyzes digital radiographs in real-time, detecting micro-cavities, root infections, and bone loss at Stage 0 before symptoms appear.
+                  </p>
+                  <div class="flex flex-wrap gap-2 mt-3.5">
+                    <span class="px-2.5 py-1 rounded-lg bg-blue-50 text-[#0066cc] text-[11px] font-bold border border-blue-100">✓ 99.4% Detection Accuracy</span>
+                    <span class="px-2.5 py-1 rounded-lg bg-blue-50 text-[#0066cc] text-[11px] font-bold border border-blue-100">✓ Instant Margin Analysis</span>
+                    <span class="px-2.5 py-1 rounded-lg bg-blue-50 text-[#0066cc] text-[11px] font-bold border border-blue-100">✓ Automated Pathology Mapping</span>
+                  </div>
+                </div>
               </div>
             </div>
 
             <!-- 2. 3D Dental Imaging -->
-            <div class="tech-card rounded-[20px] p-3.5 sm:p-4 border border-slate-200/80 bg-white hover:bg-slate-50/80 hover:border-slate-300 shadow-xs transition-all duration-300 flex items-center justify-between gap-4 cursor-pointer group">
-              <div class="flex items-center gap-3.5 sm:gap-4 flex-1">
-                <div class="w-12 h-12 rounded-2xl bg-blue-50 text-[#0066cc] flex items-center justify-center flex-shrink-0 transition-transform duration-300 group-hover:scale-105">
-                  <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M4 8V4h4M20 8V4h-4M4 16v4h4M20 16v4h-4"></path>
-                    <path d="M12 7l5 3-5 3-5-3 5-3z"></path>
-                    <path d="M7 10v4l5 3 5-3v-4"></path>
-                  </svg>
+            <div class="tech-card rounded-[22px] border border-slate-200/90 bg-white hover:bg-slate-50/70 hover:border-slate-300 shadow-xs transition-all duration-300 overflow-hidden cursor-pointer">
+              <div class="p-4 sm:p-4.5 flex items-center justify-between gap-4">
+                <div class="flex items-center gap-3.5 sm:gap-4 flex-1 min-w-0">
+                  <div class="tech-icon-box w-12 h-12 rounded-2xl bg-blue-50 text-[#0066cc] flex items-center justify-center flex-shrink-0 transition-all duration-300">
+                    <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M4 8V4h4M20 8V4h-4M4 16v4h4M20 16v4h-4"></path>
+                      <path d="M12 7l5 3-5 3-5-3 5-3z"></path>
+                      <path d="M7 10v4l5 3 5-3v-4"></path>
+                    </svg>
+                  </div>
+                  <div class="flex-1 min-w-0">
+                    <h4 class="tech-title text-[15px] sm:text-[16px] font-bold text-[#07234b] leading-tight transition-colors">2. 3D Dental Imaging</h4>
+                    <p class="text-[12px] sm:text-[12.5px] text-slate-500 leading-snug mt-1">High-resolution 3D scans for detailed visualization and precise diagnosis.</p>
+                  </div>
                 </div>
-                <div class="flex-1 min-w-0">
-                  <h4 class="text-[15px] sm:text-[15.5px] font-bold text-[#0c2752] leading-tight">2. 3D Dental Imaging</h4>
-                  <p class="text-[12px] sm:text-[12.5px] text-slate-500 leading-snug mt-1">High-resolution 3D scans for detailed visualization and precise diagnosis.</p>
+                <div class="tech-arrow-btn w-9 h-9 rounded-full bg-slate-100 text-slate-500 flex items-center justify-center flex-shrink-0 transition-all duration-300">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
                 </div>
               </div>
-              <div class="w-9 h-9 rounded-full bg-slate-50 text-slate-400 group-hover:text-[#0066cc] group-hover:bg-blue-50 group-hover:translate-x-1 flex items-center justify-center flex-shrink-0 transition-all duration-300">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
+              <div class="tech-expand-body transition-all duration-300 ease-in-out px-4 sm:px-5 max-h-0 pb-0 opacity-0 overflow-hidden">
+                <div class="pt-3 border-t border-sky-100">
+                  <p class="text-[13px] sm:text-[13.5px] text-[#475569] leading-relaxed">
+                    Volumetric Cone-Beam CT technology generates a complete 360° digital model of your jawbone, nerve pathways, and tooth roots with up to 80% lower radiation than standard x-rays.
+                  </p>
+                  <div class="flex flex-wrap gap-2 mt-3.5">
+                    <span class="px-2.5 py-1 rounded-lg bg-blue-50 text-[#0066cc] text-[11px] font-bold border border-blue-100">✓ 360° Volumetric Model</span>
+                    <span class="px-2.5 py-1 rounded-lg bg-blue-50 text-[#0066cc] text-[11px] font-bold border border-blue-100">✓ 80% Lower Radiation</span>
+                    <span class="px-2.5 py-1 rounded-lg bg-blue-50 text-[#0066cc] text-[11px] font-bold border border-blue-100">✓ Sub-Millimeter Clarity</span>
+                  </div>
+                </div>
               </div>
             </div>
 
             <!-- 3. Modern Dental Equipment -->
-            <div class="tech-card rounded-[20px] p-3.5 sm:p-4 border border-slate-200/80 bg-white hover:bg-slate-50/80 hover:border-slate-300 shadow-xs transition-all duration-300 flex items-center justify-between gap-4 cursor-pointer group">
-              <div class="flex items-center gap-3.5 sm:gap-4 flex-1">
-                <div class="w-12 h-12 rounded-2xl bg-blue-50 text-[#0066cc] flex items-center justify-center flex-shrink-0 transition-transform duration-300 group-hover:scale-105">
-                  <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M14.5 4.5l5 5L7 22H2v-5L14.5 4.5z"></path>
-                    <path d="M11.5 7.5l5 5"></path>
-                  </svg>
+            <div class="tech-card rounded-[22px] border border-slate-200/90 bg-white hover:bg-slate-50/70 hover:border-slate-300 shadow-xs transition-all duration-300 overflow-hidden cursor-pointer">
+              <div class="p-4 sm:p-4.5 flex items-center justify-between gap-4">
+                <div class="flex items-center gap-3.5 sm:gap-4 flex-1 min-w-0">
+                  <div class="tech-icon-box w-12 h-12 rounded-2xl bg-blue-50 text-[#0066cc] flex items-center justify-center flex-shrink-0 transition-all duration-300">
+                    <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M14.5 4.5l5 5L7 22H2v-5L14.5 4.5z"></path>
+                      <path d="M11.5 7.5l5 5"></path>
+                    </svg>
+                  </div>
+                  <div class="flex-1 min-w-0">
+                    <h4 class="tech-title text-[15px] sm:text-[16px] font-bold text-[#07234b] leading-tight transition-colors">3. Modern Dental Equipment</h4>
+                    <p class="text-[12px] sm:text-[12.5px] text-slate-500 leading-snug mt-1">State-of-the-art tools for safer, faster and more comfortable treatments.</p>
+                  </div>
                 </div>
-                <div class="flex-1 min-w-0">
-                  <h4 class="text-[15px] sm:text-[15.5px] font-bold text-[#0c2752] leading-tight">3. Modern Dental Equipment</h4>
-                  <p class="text-[12px] sm:text-[12.5px] text-slate-500 leading-snug mt-1">State-of-the-art tools for safer, faster and more comfortable treatments.</p>
+                <div class="tech-arrow-btn w-9 h-9 rounded-full bg-slate-100 text-slate-500 flex items-center justify-center flex-shrink-0 transition-all duration-300">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
                 </div>
               </div>
-              <div class="w-9 h-9 rounded-full bg-slate-50 text-slate-400 group-hover:text-[#0066cc] group-hover:bg-blue-50 group-hover:translate-x-1 flex items-center justify-center flex-shrink-0 transition-all duration-300">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
+              <div class="tech-expand-body transition-all duration-300 ease-in-out px-4 sm:px-5 max-h-0 pb-0 opacity-0 overflow-hidden">
+                <div class="pt-3 border-t border-sky-100">
+                  <p class="text-[13px] sm:text-[13.5px] text-[#475569] leading-relaxed">
+                    Next-generation optical wands replace gooey impression trays entirely. Gentle piezo-ultrasonic scalers and soft-tissue precision lasers ensure maximum comfort with zero pain.
+                  </p>
+                  <div class="flex flex-wrap gap-2 mt-3.5">
+                    <span class="px-2.5 py-1 rounded-lg bg-blue-50 text-[#0066cc] text-[11px] font-bold border border-blue-100">✓ Zero Impression Trays</span>
+                    <span class="px-2.5 py-1 rounded-lg bg-blue-50 text-[#0066cc] text-[11px] font-bold border border-blue-100">✓ Soft-Tissue Laser Precision</span>
+                    <span class="px-2.5 py-1 rounded-lg bg-blue-50 text-[#0066cc] text-[11px] font-bold border border-blue-100">✓ Gentle Ultrasonic Care</span>
+                  </div>
+                </div>
               </div>
             </div>
 
             <!-- 4. Precise Treatment Planning -->
-            <div class="tech-card rounded-[20px] p-3.5 sm:p-4 border border-slate-200/80 bg-white hover:bg-slate-50/80 hover:border-slate-300 shadow-xs transition-all duration-300 flex items-center justify-between gap-4 cursor-pointer group">
-              <div class="flex items-center gap-3.5 sm:gap-4 flex-1">
-                <div class="w-12 h-12 rounded-2xl bg-blue-50 text-[#0066cc] flex items-center justify-center flex-shrink-0 transition-transform duration-300 group-hover:scale-105">
-                  <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M12 2C8.5 2 6 4.5 6 8c0 4 2 8 3 12 0.5 2 1.5 2 2 0l1-5 1 5c0.5 2 1.5 2 2 0 1-4 3-8 3-12 0-3.5-2.5-6-6-6z"></path>
-                    <path d="M9 9l2 2 4-4" stroke="#0066cc" stroke-width="2"></path>
-                  </svg>
+            <div class="tech-card rounded-[22px] border border-slate-200/90 bg-white hover:bg-slate-50/70 hover:border-slate-300 shadow-xs transition-all duration-300 overflow-hidden cursor-pointer">
+              <div class="p-4 sm:p-4.5 flex items-center justify-between gap-4">
+                <div class="flex items-center gap-3.5 sm:gap-4 flex-1 min-w-0">
+                  <div class="tech-icon-box w-12 h-12 rounded-2xl bg-blue-50 text-[#0066cc] flex items-center justify-center flex-shrink-0 transition-all duration-300">
+                    <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M12 2C8.5 2 6 4.5 6 8c0 4 2 8 3 12 0.5 2 1.5 2 2 0l1-5 1 5c0.5 2 1.5 2 2 0 1-4 3-8 3-12 0-3.5-2.5-6-6-6z"></path>
+                      <path d="M9 9l2 2 4-4"></path>
+                    </svg>
+                  </div>
+                  <div class="flex-1 min-w-0">
+                    <h4 class="tech-title text-[15px] sm:text-[16px] font-bold text-[#07234b] leading-tight transition-colors">4. Precise Treatment Planning</h4>
+                    <p class="text-[12px] sm:text-[12.5px] text-slate-500 leading-snug mt-1">Digital planning for predictable outcomes and beautiful smiles.</p>
+                  </div>
                 </div>
-                <div class="flex-1 min-w-0">
-                  <h4 class="text-[15px] sm:text-[15.5px] font-bold text-[#0c2752] leading-tight">4. Precise Treatment Planning</h4>
-                  <p class="text-[12px] sm:text-[12.5px] text-slate-500 leading-snug mt-1">Digital planning for predictable outcomes and beautiful smiles.</p>
+                <div class="tech-arrow-btn w-9 h-9 rounded-full bg-slate-100 text-slate-500 flex items-center justify-center flex-shrink-0 transition-all duration-300">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
                 </div>
               </div>
-              <div class="w-9 h-9 rounded-full bg-slate-50 text-slate-400 group-hover:text-[#0066cc] group-hover:bg-blue-50 group-hover:translate-x-1 flex items-center justify-center flex-shrink-0 transition-all duration-300">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
+              <div class="tech-expand-body transition-all duration-300 ease-in-out px-4 sm:px-5 max-h-0 pb-0 opacity-0 overflow-hidden">
+                <div class="pt-3 border-t border-sky-100">
+                  <p class="text-[13px] sm:text-[13.5px] text-[#475569] leading-relaxed">
+                    Advanced Digital Smile Design software lets you preview your final veneers or aligner smile on screen before treatment begins, paired with 3D surgical guides for exact placement.
+                  </p>
+                  <div class="flex flex-wrap gap-2 mt-3.5">
+                    <span class="px-2.5 py-1 rounded-lg bg-blue-50 text-[#0066cc] text-[11px] font-bold border border-blue-100">✓ 3D Smile Simulation Preview</span>
+                    <span class="px-2.5 py-1 rounded-lg bg-blue-50 text-[#0066cc] text-[11px] font-bold border border-blue-100">✓ Computer-Guided Alignment</span>
+                    <span class="px-2.5 py-1 rounded-lg bg-blue-50 text-[#0066cc] text-[11px] font-bold border border-blue-100">✓ 50% Faster Healing</span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

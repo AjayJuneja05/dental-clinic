@@ -7,16 +7,16 @@ const TECH_FEATURES = [
     id: 'ai',
     num: '1.',
     title: 'AI-Assisted Diagnostics',
-    description: 'Smart algorithms for faster, more accurate analysis and detection.',
+    subtitle: 'Smart algorithms for faster, more accurate analysis and detection.',
+    details: 'Neural network computer vision cross-analyzes digital radiographs in real-time, detecting micro-cavities, root infections, and bone loss at Stage 0 before symptoms appear.',
+    badges: ['99.4% Detection Accuracy', 'Instant Margin Analysis', 'Automated Pathology Mapping'],
     icon: (
-      <svg className="w-6 h-6 text-[#0066cc]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
         <rect x="3" y="11" width="18" height="10" rx="4"></rect>
         <circle cx="8.5" cy="16" r="1.5" fill="currentColor"></circle>
         <circle cx="15.5" cy="16" r="1.5" fill="currentColor"></circle>
         <path d="M9 7l1-3h4l1 3"></path>
         <line x1="12" y1="4" x2="12" y2="11"></line>
-        <line x1="2" y1="16" x2="3" y2="16"></line>
-        <line x1="21" y1="16" x2="22" y2="16"></line>
       </svg>
     ),
   },
@@ -24,9 +24,11 @@ const TECH_FEATURES = [
     id: '3d-imaging',
     num: '2.',
     title: '3D Dental Imaging',
-    description: 'High-resolution 3D scans for detailed visualization and precise diagnosis.',
+    subtitle: 'High-resolution 3D scans for detailed visualization and precise diagnosis.',
+    details: 'Volumetric Cone-Beam CT technology generates a complete 360° digital model of your jawbone, nerve pathways, and tooth roots with up to 80% lower radiation than standard x-rays.',
+    badges: ['360° Volumetric Model', '80% Lower Radiation', 'Sub-Millimeter Clarity'],
     icon: (
-      <svg className="w-6 h-6 text-[#0066cc]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
         <path d="M4 8V4h4M20 8V4h-4M4 16v4h4M20 16v4h-4"></path>
         <path d="M12 7l5 3-5 3-5-3 5-3z"></path>
         <path d="M7 10v4l5 3 5-3v-4"></path>
@@ -37,12 +39,13 @@ const TECH_FEATURES = [
     id: 'equipment',
     num: '3.',
     title: 'Modern Dental Equipment',
-    description: 'State-of-the-art tools for safer, faster and more comfortable treatments.',
+    subtitle: 'State-of-the-art tools for safer, faster and more comfortable treatments.',
+    details: 'Next-generation optical wands replace gooey impression trays entirely. Gentle piezo-ultrasonic scalers and soft-tissue precision lasers ensure maximum comfort with zero pain.',
+    badges: ['Zero Impression Trays', 'Soft-Tissue Laser Precision', 'Gentle Ultrasonic Care'],
     icon: (
-      <svg className="w-6 h-6 text-[#0066cc]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
         <path d="M14.5 4.5l5 5L7 22H2v-5L14.5 4.5z"></path>
         <path d="M11.5 7.5l5 5"></path>
-        <circle cx="18" cy="6" r="2" fill="currentColor" fillOpacity="0.2"></circle>
       </svg>
     ),
   },
@@ -50,11 +53,13 @@ const TECH_FEATURES = [
     id: 'planning',
     num: '4.',
     title: 'Precise Treatment Planning',
-    description: 'Digital planning for predictable outcomes and beautiful smiles.',
+    subtitle: 'Digital planning for predictable outcomes and beautiful smiles.',
+    details: 'Advanced Digital Smile Design software lets you preview your final veneers or aligner smile on screen before treatment begins, paired with 3D surgical guides for exact placement.',
+    badges: ['3D Smile Simulation Preview', 'Computer-Guided Alignment', '50% Faster Healing'],
     icon: (
-      <svg className="w-6 h-6 text-[#0066cc]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
         <path d="M12 2C8.5 2 6 4.5 6 8c0 4 2 8 3 12 0.5 2 1.5 2 2 0l1-5 1 5c0.5 2 1.5 2 2 0 1-4 3-8 3-12 0-3.5-2.5-6-6-6z"></path>
-        <path d="M9 9l2 2 4-4" stroke="#0066cc" strokeWidth="2"></path>
+        <path d="M9 9l2 2 4-4"></path>
       </svg>
     ),
   },
@@ -105,36 +110,40 @@ const BENEFIT_PILLARS = [
 ];
 
 export default function AdvancedTechnology() {
-  const [activeTab, setActiveTab] = useState(0);
+  const [expandedIndex, setExpandedIndex] = useState(0); // First item expanded by default
+
+  const handleToggle = (index) => {
+    setExpandedIndex(expandedIndex === index ? null : index);
+  };
 
   return (
     <section id="technology" className="w-full py-16 sm:py-20 lg:py-24 bg-white relative overflow-hidden select-none">
       
-      {/* Background Soft Glows */}
-      <div className="absolute top-1/4 left-5 w-80 h-80 bg-blue-100/40 rounded-full blur-3xl pointer-events-none -z-0"></div>
-      <div className="absolute bottom-10 right-5 w-96 h-96 bg-sky-50/70 rounded-full blur-3xl pointer-events-none -z-0"></div>
+      {/* Background Soft Blue Blooms */}
+      <div className="absolute top-1/4 left-5 w-96 h-96 bg-blue-100/40 rounded-full blur-3xl pointer-events-none -z-0"></div>
+      <div className="absolute bottom-10 right-5 w-96 h-96 bg-sky-100/50 rounded-full blur-3xl pointer-events-none -z-0"></div>
 
       <div className="w-full max-w-[1500px] mx-auto px-5 sm:px-12 lg:px-20 relative z-10">
         
-        {/* Top Grid: Left (Heading & 4 Action Cards) vs Right (Workstation Visual) */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 xl:gap-16 items-center">
+        {/* Top Grid: Left Content & Interactive Expandable Cards vs Right Workstation Visual */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 xl:gap-16 items-start">
           
-          {/* LEFT COLUMN (Span 5): Eyebrow, Large Heading, Description & 4 Interactive Tech Cards */}
-          <div className="lg:col-span-5 flex flex-col justify-center">
+          {/* LEFT COLUMN (Span 5): Heading, Subtitle & 4 Expandable Cards */}
+          <div className="lg:col-span-5 flex flex-col justify-start">
             
             {/* Pill Eyebrow Badge */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50/90 border border-blue-100 text-[#0066cc] text-[12px] font-bold tracking-wide uppercase mb-5 self-start shadow-xs">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 border border-blue-100/80 text-[#0066cc] text-[12px] font-bold tracking-wide uppercase mb-5 self-start shadow-xs">
               <span className="w-2 h-2 rounded-full bg-[#0066cc] animate-pulse"></span>
               <span>Advanced Technology</span>
             </div>
 
             {/* Headline */}
-            <h2 className="text-[34px] sm:text-[44px] lg:text-[48px] font-bold text-[#0c2752] leading-[1.1] tracking-[-0.035em]">
+            <h2 className="text-[34px] sm:text-[44px] lg:text-[48px] font-bold text-[#07234b] leading-[1.1] tracking-[-0.035em]">
               Modern Technology for <br />
               Precise Dental Care
             </h2>
 
-            {/* Decorative Accent Line */}
+            {/* Blue Decorative Accent Line */}
             <div className="w-12 h-1 bg-[#0066cc] rounded-full my-5"></div>
 
             {/* Subtitle Body */}
@@ -142,47 +151,80 @@ export default function AdvancedTechnology() {
               We combine advanced digital technology with experienced dental professionals to deliver accurate diagnoses, comfortable treatments and exceptional results for every patient.
             </p>
 
-            {/* 4 Feature Cards (Exact layout from user reference) */}
-            <div className="space-y-3.5">
+            {/* 4 Expandable Cards with Signature Blue Touch */}
+            <div className="space-y-4">
               {TECH_FEATURES.map((item, idx) => {
-                const isSelected = activeTab === idx;
+                const isExpanded = expandedIndex === idx;
                 return (
                   <div
                     key={item.id}
-                    onClick={() => setActiveTab(idx)}
-                    className={`rounded-[20px] p-3.5 sm:p-4 border transition-all duration-300 flex items-center justify-between gap-4 cursor-pointer group ${
-                      isSelected
-                        ? 'bg-white border-[#0066cc]/40 shadow-[0_10px_25px_-5px_rgba(0,102,204,0.12)] ring-2 ring-blue-50 scale-[1.01]'
-                        : 'bg-white hover:bg-slate-50/80 border-slate-200/80 hover:border-slate-300 shadow-xs'
+                    onClick={() => handleToggle(idx)}
+                    className={`rounded-[22px] border transition-all duration-300 overflow-hidden cursor-pointer ${
+                      isExpanded
+                        ? 'bg-[#f8faff] border-[#0066cc] shadow-[0_12px_32px_-8px_rgba(0,102,204,0.18)] ring-2 ring-blue-100/80 scale-[1.01]'
+                        : 'bg-white hover:bg-slate-50/70 border-slate-200/90 hover:border-slate-300 shadow-xs'
                     }`}
                   >
-                    {/* Left Icon + Text Content */}
-                    <div className="flex items-center gap-3.5 sm:gap-4 flex-1">
-                      <div className={`w-12 h-12 rounded-2xl flex items-center justify-center flex-shrink-0 transition-transform duration-300 group-hover:scale-105 ${
-                        isSelected ? 'bg-blue-50 text-[#0066cc]' : 'bg-slate-50 text-[#0066cc]'
-                      }`}>
-                        {item.icon}
+                    {/* Header Row */}
+                    <div className="p-4 sm:p-4.5 flex items-center justify-between gap-4">
+                      <div className="flex items-center gap-3.5 sm:gap-4 flex-1 min-w-0">
+                        {/* Icon Container */}
+                        <div className={`w-12 h-12 rounded-2xl flex items-center justify-center flex-shrink-0 transition-all duration-300 ${
+                          isExpanded
+                            ? 'bg-[#0066cc] text-white shadow-md shadow-blue-500/25'
+                            : 'bg-blue-50 text-[#0066cc]'
+                        }`}>
+                          {item.icon}
+                        </div>
+
+                        {/* Title & Subtitle */}
+                        <div className="flex-1 min-w-0">
+                          <h4 className={`text-[15px] sm:text-[16px] font-bold leading-tight transition-colors ${
+                            isExpanded ? 'text-[#0066cc]' : 'text-[#07234b]'
+                          }`}>
+                            {item.num} {item.title}
+                          </h4>
+                          <p className="text-[12px] sm:text-[12.5px] text-slate-500 leading-snug mt-1 line-clamp-2">
+                            {item.subtitle}
+                          </p>
+                        </div>
                       </div>
 
-                      <div className="flex-1 min-w-0">
-                        <h4 className="text-[15px] sm:text-[15.5px] font-bold text-[#0c2752] leading-tight">
-                          {item.num} {item.title}
-                        </h4>
-                        <p className="text-[12px] sm:text-[12.5px] text-slate-500 leading-snug mt-1 line-clamp-2">
-                          {item.description}
-                        </p>
+                      {/* Animated Arrow Button */}
+                      <div className={`w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0 transition-all duration-300 ${
+                        isExpanded
+                          ? 'bg-[#0066cc] text-white rotate-90 shadow-xs'
+                          : 'bg-slate-100 text-slate-500 hover:bg-blue-50 hover:text-[#0066cc]'
+                      }`}>
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2.2" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                        </svg>
                       </div>
                     </div>
 
-                    {/* Right Arrow Button */}
-                    <div className={`w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0 transition-all duration-300 ${
-                      isSelected
-                        ? 'bg-blue-50 text-[#0066cc] translate-x-0.5'
-                        : 'bg-slate-50 text-slate-400 group-hover:text-[#0066cc] group-hover:bg-blue-50 group-hover:translate-x-1'
-                    }`}>
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2.2" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                      </svg>
+                    {/* Smooth Expandable Content Body */}
+                    <div
+                      className={`transition-all duration-300 ease-in-out px-4 sm:px-5 overflow-hidden ${
+                        isExpanded ? 'max-h-60 pb-5 opacity-100' : 'max-h-0 pb-0 opacity-0'
+                      }`}
+                    >
+                      <div className="pt-3 border-t border-sky-100">
+                        <p className="text-[13px] sm:text-[13.5px] text-[#475569] leading-relaxed">
+                          {item.details}
+                        </p>
+
+                        {/* Feature Micro-Badges */}
+                        <div className="flex flex-wrap gap-2 mt-3.5">
+                          {item.badges.map((badge, bIdx) => (
+                            <span
+                              key={bIdx}
+                              className="px-2.5 py-1 rounded-lg bg-blue-50/90 text-[#0066cc] text-[11px] font-bold border border-blue-100/70"
+                            >
+                              ✓ {badge}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
                     </div>
                   </div>
                 );
@@ -191,11 +233,11 @@ export default function AdvancedTechnology() {
 
           </div>
 
-          {/* RIGHT COLUMN (Span 7): High-Tech Workstation Card with Glowing 3D Tooth & Badge */}
-          <div className="lg:col-span-7 relative">
+          {/* RIGHT COLUMN (Span 7): High-Tech Workstation Card & Floating Badge */}
+          <div className="lg:col-span-7 relative sticky top-24">
             <div className="relative w-full rounded-[28px] sm:rounded-[36px] overflow-hidden bg-slate-900 border border-slate-200/80 shadow-[0_20px_50px_-15px_rgba(12,39,82,0.15)] group">
               
-              {/* Main Image */}
+              {/* Workstation Image */}
               <img
                 src="/assets/tech-scanner-blue.webp"
                 alt="Modern dental technology workstation with glowing 3D tooth wireframe model and intraoral scanner"
@@ -210,7 +252,7 @@ export default function AdvancedTechnology() {
                   </svg>
                 </div>
                 <div>
-                  <h4 className="text-[13.5px] sm:text-[14.5px] font-bold text-[#0c2752] leading-tight">
+                  <h4 className="text-[13.5px] sm:text-[14.5px] font-bold text-[#07234b] leading-tight">
                     Digital Smile Scanning
                   </h4>
                   <p className="text-[11px] sm:text-[11.5px] text-slate-500 mt-0.5 leading-snug">
@@ -224,17 +266,17 @@ export default function AdvancedTechnology() {
 
         </div>
 
-        {/* BOTTOM BENEFIT PILLARS (4-Column Grid from reference) */}
+        {/* BOTTOM BENEFIT PILLARS (4-Column Grid) */}
         <div className="mt-14 sm:mt-16 pt-10 border-t border-slate-200/80 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
           {BENEFIT_PILLARS.map((pillar, i) => (
             <div 
               key={i} 
-              className="flex flex-col items-center text-center p-5 rounded-2xl bg-[#f8faff] hover:bg-white border border-slate-200/70 hover:border-blue-200/90 transition-all duration-300 hover:shadow-md group"
+              className="flex flex-col items-center text-center p-5 rounded-2xl bg-[#f8faff] hover:bg-white border border-slate-200/70 hover:border-[#0066cc]/50 transition-all duration-300 hover:shadow-md group"
             >
               <div className="w-12 h-12 rounded-2xl bg-white group-hover:bg-blue-50 border border-slate-200/80 group-hover:border-blue-200 flex items-center justify-center mb-3.5 transition-colors shadow-xs">
                 {pillar.icon}
               </div>
-              <h4 className="text-[16px] font-bold text-[#0c2752]">
+              <h4 className="text-[16px] font-bold text-[#07234b]">
                 {pillar.title}
               </h4>
               <p className="text-[13px] text-[#475569] mt-1.5 leading-relaxed">

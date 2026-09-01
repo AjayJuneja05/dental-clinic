@@ -600,6 +600,74 @@ document.addEventListener('DOMContentLoaded', () => {
       if (bookingSuccessBox) bookingSuccessBox.classList.add('hidden');
     });
   }
+
+  // 6. Advanced Technology Cards Expand/Collapse Handling
+  const techCards = document.querySelectorAll('.tech-card');
+  techCards.forEach((card) => {
+    card.addEventListener('click', () => {
+      const isAlreadyActive = card.classList.contains('active');
+
+      // Collapse all
+      techCards.forEach((c) => {
+        c.classList.remove('active', 'border-[#0066cc]', 'bg-[#f8faff]', 'shadow-[0_12px_32px_-8px_rgba(0,102,204,0.18)]', 'ring-2', 'ring-blue-100/80');
+        c.classList.add('border-slate-200/90', 'bg-white');
+
+        const title = c.querySelector('.tech-title');
+        if (title) {
+          title.classList.remove('text-[#0066cc]');
+          title.classList.add('text-[#07234b]');
+        }
+
+        const iconBox = c.querySelector('.tech-icon-box');
+        if (iconBox) {
+          iconBox.classList.remove('bg-[#0066cc]', 'text-white', 'shadow-md', 'shadow-blue-500/25');
+          iconBox.classList.add('bg-blue-50', 'text-[#0066cc]');
+        }
+
+        const arrowBtn = c.querySelector('.tech-arrow-btn');
+        if (arrowBtn) {
+          arrowBtn.classList.remove('bg-[#0066cc]', 'text-white', 'rotate-90');
+          arrowBtn.classList.add('bg-slate-100', 'text-slate-500');
+        }
+
+        const body = c.querySelector('.tech-expand-body');
+        if (body) {
+          body.classList.remove('max-h-60', 'pb-5', 'opacity-100');
+          body.classList.add('max-h-0', 'pb-0', 'opacity-0');
+        }
+      });
+
+      // If clicked card was not active, expand it
+      if (!isAlreadyActive) {
+        card.classList.add('active', 'border-[#0066cc]', 'bg-[#f8faff]', 'shadow-[0_12px_32px_-8px_rgba(0,102,204,0.18)]', 'ring-2', 'ring-blue-100/80');
+        card.classList.remove('border-slate-200/90', 'bg-white');
+
+        const title = card.querySelector('.tech-title');
+        if (title) {
+          title.classList.add('text-[#0066cc]');
+          title.classList.remove('text-[#07234b]');
+        }
+
+        const iconBox = card.querySelector('.tech-icon-box');
+        if (iconBox) {
+          iconBox.classList.add('bg-[#0066cc]', 'text-white', 'shadow-md', 'shadow-blue-500/25');
+          iconBox.classList.remove('bg-blue-50', 'text-[#0066cc]');
+        }
+
+        const arrowBtn = card.querySelector('.tech-arrow-btn');
+        if (arrowBtn) {
+          arrowBtn.classList.add('bg-[#0066cc]', 'text-white', 'rotate-90');
+          arrowBtn.classList.remove('bg-slate-100', 'text-slate-500');
+        }
+
+        const body = card.querySelector('.tech-expand-body');
+        if (body) {
+          body.classList.add('max-h-60', 'pb-5', 'opacity-100');
+          body.classList.remove('max-h-0', 'pb-0', 'opacity-0');
+        }
+      }
+    });
+  });
 });
 
 const docModalBackdrop = document.getElementById('doctorModal');
