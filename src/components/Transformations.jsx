@@ -5,14 +5,16 @@ import { useState, useRef, useCallback } from 'react';
 const CASES_DATA = [
   {
     id: 'aesthetic',
-    category: 'Aesthetic dentistry',
+    category: 'Aesthetic Dentistry',
     cardImage: '/assets/service-aesthetic.webp',
-    headline: 'Christina’s smile, transformed',
-    story: 'Christina felt self-conscious about the gaps and uneven shape of her teeth. She wanted a natural, brighter smile that still felt like her own – just more balanced, natural, and confidently beautiful.',
+    headline: 'Aesthetic Dentistry',
+    story: 'We enhance the natural beauty of your smile with personalized treatments designed to improve the shape, colour, proportion, and overall appearance of your teeth while keeping your results natural-looking.',
     whatWeDid: [
-      'Smile design planning with digital preview',
-      'Minimal tooth preparation to preserve enamel',
-      'Placement of ultra-thin porcelain veneers',
+      'Digital smile design and treatment planning',
+      'Minimal tooth preparation to preserve natural enamel',
+      'Custom-designed porcelain veneers',
+      'Smile proportions and tooth shape refined',
+      'Final shade and appearance carefully matched',
     ],
     beforeImage: '/assets/aesthetic-before.webp',
     afterImage: '/assets/aesthetic-after.webp',
@@ -29,12 +31,14 @@ const CASES_DATA = [
     id: 'ortho',
     category: 'Orthodontics',
     cardImage: '/assets/service-ortho.webp',
-    headline: 'Marcus’s smile, aligned',
-    story: 'Marcus had crowded lower teeth and a deep overbite that affected his jaw comfort. With discreet custom clear aligners, he achieved a wide, balanced arch in under 9 months.',
+    headline: 'Orthodontics',
+    story: 'Orthodontics focuses on straightening teeth and correcting bite alignment for a healthier, more balanced, and confident smile. Treatment can be tailored using braces or clear aligners.',
     whatWeDid: [
-      '3D intraoral digital scanning & AI movement simulation',
-      'Custom sequential clear aligner therapy',
-      'Retention protocol for lasting bite stability',
+      'Comprehensive orthodontic assessment',
+      'Digital scans and treatment planning',
+      'Teeth alignment and bite correction',
+      'Custom braces or clear aligner treatment',
+      'Regular progress checks and adjustments',
     ],
     beforeImage: '/assets/ortho-before.webp',
     afterImage: '/assets/ortho-after.webp',
@@ -51,12 +55,14 @@ const CASES_DATA = [
     id: 'implant',
     category: 'Implantology',
     cardImage: '/assets/service-implant.webp',
-    headline: 'Elena’s smile, restored',
-    story: 'After a sports injury resulted in a missing front incisor, Elena sought a permanent solution that blended imperceptibly with her natural teeth and restored full bite strength.',
+    headline: 'Implantology',
+    story: 'Dental implants replace missing teeth with strong, natural-looking restorations designed to restore your smile, chewing function, and confidence.',
     whatWeDid: [
-      'CBCT 3D guided titanium implant placement',
-      'Custom zirconia abutment for natural gum emergence',
-      'Individual layered ceramic crown color-matched to perfection',
+      'Detailed implant assessment and planning',
+      'Digital imaging and implant positioning',
+      'Dental implant placement',
+      'Custom implant abutment and crown',
+      'Bite, function, and final smile refinement',
     ],
     beforeImage: '/assets/implant-before.webp',
     afterImage: '/assets/implant-after.webp',
@@ -71,14 +77,16 @@ const CASES_DATA = [
   },
   {
     id: 'whitening',
-    category: 'Whitening',
+    category: 'Teeth Whitening',
     cardImage: '/assets/service-whitening.webp',
-    headline: 'Julian’s smile, brightened',
-    story: 'Years of coffee and tea consumption had left Julian’s teeth dulled. Our deep laser phototherapy lifted 7 shades in a single comfortable 45-minute clinical session.',
+    headline: 'Teeth Whitening',
+    story: 'Professional teeth whitening safely reduces stains and discolouration, helping create a brighter, fresher-looking smile while maintaining a natural appearance.',
     whatWeDid: [
-      'Enamel-safe pH-balanced mineral prep',
-      'High-frequency laser light activation session',
-      'Fluoride micro-seal treatment to ensure zero sensitivity',
+      'Professional assessment of tooth shade',
+      'In-clinic whitening treatment',
+      'Targeted stain and discolouration removal',
+      'Enamel-safe whitening protocol',
+      'Aftercare and maintenance guidance',
     ],
     beforeImage: '/assets/whitening-before.webp',
     afterImage: '/assets/whitening-after.webp',
@@ -93,14 +101,16 @@ const CASES_DATA = [
   },
   {
     id: 'surgical',
-    category: 'Surgical dentistry',
+    category: 'Surgical Dentistry',
     cardImage: '/assets/service-surgical.webp',
-    headline: 'David’s oral health, renewed',
-    story: 'David suffered from persistent discomfort due to impacted wisdom teeth and localized bone loss. Our surgical specialists provided painless extraction and guided bone regeneration.',
+    headline: 'Surgical Dentistry',
+    story: 'Surgical dentistry provides precise treatment for complex dental problems that require surgical care, with a focus on comfort, safety, and long-term oral health.',
     whatWeDid: [
-      '3D panoramic nerve mapping and virtual surgical guide',
-      'Minimally invasive atraumatic tooth extraction',
-      'Plasma-rich bone graft for accelerated cellular healing',
+      'Comprehensive surgical assessment',
+      'Digital imaging and treatment planning',
+      'Tooth and wisdom-tooth removal when required',
+      'Precise surgical procedures',
+      'Post-treatment healing and follow-up care',
     ],
     beforeImage: '/assets/surgical-before.webp',
     afterImage: '/assets/surgical-after.webp',
@@ -171,8 +181,8 @@ export default function Transformations() {
       </div>
 
       {/* Horizontal Underlined Category Tabs matching reference */}
-      <div className="w-full max-w-[880px] mx-auto border-b border-slate-200/90 mb-10 sm:mb-14">
-        <div className="flex items-center justify-between sm:justify-center gap-6 sm:gap-12 overflow-x-auto no-scrollbar pb-0.5">
+      <div className="w-full max-w-[920px] mx-auto border-b border-slate-200/90 mb-10 sm:mb-14">
+        <div className="flex items-center justify-between sm:justify-center gap-6 sm:gap-10 overflow-x-auto no-scrollbar pb-0.5">
           {CASES_DATA.map((item, index) => {
             const isActive = activeTab === index;
             return (
@@ -199,7 +209,7 @@ export default function Transformations() {
       {/* 3-Column Layout: Left Text, Middle Before/After Slider, Right Vertical Info Card */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-6 xl:gap-8 items-center">
         
-        {/* LEFT COLUMN (Span 4): Headline, Story, What We Did & Controls */}
+        {/* LEFT COLUMN (Span 4): Headline, Story (What is This), What We Did & Controls */}
         <div className="lg:col-span-4 flex flex-col justify-between h-full pr-0 lg:pr-2">
           <div>
             <h3 className="text-[28px] sm:text-[34px] xl:text-[38px] font-bold text-[#07234b] leading-[1.12] tracking-tight">
@@ -213,7 +223,7 @@ export default function Transformations() {
             {/* What we did */}
             <div className="mt-6">
               <h4 className="text-[15.5px] font-bold text-[#07234b] mb-3">
-                What we did
+                What We Did
               </h4>
               <ul className="space-y-2.5">
                 {currentCase.whatWeDid.map((item, idx) => (

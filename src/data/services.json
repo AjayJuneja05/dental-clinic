@@ -1,41 +1,41 @@
 [
   {
     "id": "aesthetic",
-    "title": "Aesthetic dentistry",
-    "headline": "Artistry meets dental perfection",
-    "description": "Porcelain veneers, composite bonding, and smile contouring designed to enhance your natural beauty with precision aesthetics.",
+    "title": "Aesthetic Dentistry",
+    "headline": "Natural smile enhancement & porcelain artistry",
+    "description": "We enhance the natural beauty of your smile with personalized treatments designed to improve the shape, colour, proportion, and overall appearance of your teeth while keeping your results natural-looking.",
     "image": "/assets/service-aesthetic.webp",
     "isActive": true
   },
   {
     "id": "ortho",
     "title": "Orthodontics",
-    "headline": "Discreet alignment, perfect harmony",
-    "description": "Custom clear aligners and modern orthodontic solutions tailored to straighten teeth seamlessly and achieve optimal bite balance.",
+    "headline": "Teeth alignment & bite correction",
+    "description": "Orthodontics focuses on straightening teeth and correcting bite alignment for a healthier, more balanced, and confident smile. Treatment can be tailored using braces or clear aligners.",
     "image": "/assets/service-ortho.webp",
     "isActive": true
   },
   {
     "id": "implant",
     "title": "Implantology",
-    "headline": "Smile restoration, built to last",
-    "description": "Permanent, natural-looking tooth replacements. Using 3D-guided surgery, our implants restore full chewing function and aesthetics.",
+    "headline": "Permanent tooth replacement & restoration",
+    "description": "Dental implants replace missing teeth with strong, natural-looking restorations designed to restore your smile, chewing function, and confidence.",
     "image": "/assets/service-implant.webp",
     "isActive": true
   },
   {
     "id": "whitening",
-    "title": "Whitening",
-    "headline": "Brilliant radiance, safely achieved",
-    "description": "Professional medical-grade whitening systems that remove deep stains and elevate your smile shade with zero enamel sensitivity.",
+    "title": "Teeth Whitening",
+    "headline": "Enamel-safe brightness & stain removal",
+    "description": "Professional teeth whitening safely reduces stains and discolouration, helping create a brighter, fresher-looking smile while maintaining a natural appearance.",
     "image": "/assets/service-whitening.webp",
     "isActive": true
   },
   {
     "id": "surgical",
-    "title": "Surgical dentistry",
-    "headline": "Advanced care, gentle precision",
-    "description": "Minimally invasive oral surgery, wisdom teeth removal, and bone regeneration performed by board-certified specialists.",
+    "title": "Surgical Dentistry",
+    "headline": "Specialized surgical care & gentle recovery",
+    "description": "Surgical dentistry provides precise treatment for complex dental problems that require surgical care, with a focus on comfort, safety, and long-term oral health.",
     "image": "/assets/service-surgical.webp",
     "isActive": true
   }
