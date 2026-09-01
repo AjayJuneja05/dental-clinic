@@ -355,6 +355,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  const beforeTagEl = document.getElementById('sliderBeforeTag');
+  const afterTagEl = document.getElementById('sliderAfterTag');
+
   // Pointer-Capture Drag Slider Implementation (100% Reliable in iframes and mobile)
   function updateSlider(percentage) {
     sliderPosition = Math.max(0, Math.min(100, percentage));
@@ -363,6 +366,24 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     if (dividerLineEl) {
       dividerLineEl.style.left = `${sliderPosition}%`;
+    }
+    if (beforeTagEl) {
+      if (sliderPosition < 15) {
+        beforeTagEl.style.opacity = '0';
+        beforeTagEl.style.transform = 'scale(0.9) translateX(-8px)';
+      } else {
+        beforeTagEl.style.opacity = '1';
+        beforeTagEl.style.transform = 'scale(1) translateX(0)';
+      }
+    }
+    if (afterTagEl) {
+      if (sliderPosition > 85) {
+        afterTagEl.style.opacity = '0';
+        afterTagEl.style.transform = 'scale(0.9) translateX(8px)';
+      } else {
+        afterTagEl.style.opacity = '1';
+        afterTagEl.style.transform = 'scale(1) translateX(0)';
+      }
     }
   }
 

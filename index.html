@@ -343,13 +343,13 @@
         >
           <!-- Before Base Image -->
           <img id="sliderBeforeImg" src="public/aesthetic-before.webp" alt="Before treatment" class="absolute inset-0 w-full h-full object-cover pointer-events-none" />
-          <span class="absolute top-3.5 left-4 text-white/90 text-[11px] font-bold uppercase tracking-wider drop-shadow z-10 pointer-events-none">Before</span>
+          <span id="sliderBeforeTag" class="absolute top-3.5 left-4 text-white/90 text-[11px] font-bold uppercase tracking-wider drop-shadow z-10 pointer-events-none transition-all duration-300">Before</span>
 
           <!-- After Clipped Image -->
           <div id="sliderClippedWrapper" class="absolute inset-0 overflow-hidden pointer-events-none" style="clip-path: inset(0 0 0 50%);">
             <img id="sliderAfterImg" src="public/aesthetic-after.webp" alt="After treatment" class="absolute inset-0 w-full h-full object-cover" />
           </div>
-          <span class="absolute top-3.5 right-4 text-white/90 text-[11px] font-bold uppercase tracking-wider drop-shadow z-10 pointer-events-none">After</span>
+          <span id="sliderAfterTag" class="absolute top-3.5 right-4 text-white/90 text-[11px] font-bold uppercase tracking-wider drop-shadow z-10 pointer-events-none transition-all duration-300">After</span>
 
           <!-- Divider Line & Handle -->
           <div id="sliderDividerLine" class="absolute top-0 bottom-0 w-[2.5px] bg-[#0066cc] pointer-events-none shadow-md z-20" style="left: 50%;">

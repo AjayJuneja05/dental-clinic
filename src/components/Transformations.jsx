@@ -215,10 +215,14 @@ export default function Transformations() {
             {/* "Before" Image Layer (Base) */}
             <img 
               src={currentCase.beforeImage} 
-              alt="Before treatment"
+              alt="Before treatment" 
               className="absolute inset-0 w-full h-full object-cover pointer-events-none" 
             />
-            <span className="absolute top-3.5 left-4 text-white/90 text-[11px] font-bold uppercase tracking-wider drop-shadow z-10 pointer-events-none">
+            <span 
+              className={`absolute top-3.5 left-4 text-white/90 text-[11px] font-bold uppercase tracking-wider drop-shadow z-10 pointer-events-none transition-all duration-300 ${
+                sliderPos < 15 ? 'opacity-0 scale-90 -translate-x-2' : 'opacity-100 scale-100 translate-x-0'
+              }`}
+            >
               Before
             </span>
 
@@ -233,7 +237,11 @@ export default function Transformations() {
                 className="absolute inset-0 w-full h-full object-cover"
               />
             </div>
-            <span className="absolute top-3.5 right-4 text-white/90 text-[11px] font-bold uppercase tracking-wider drop-shadow z-10 pointer-events-none">
+            <span 
+              className={`absolute top-3.5 right-4 text-white/90 text-[11px] font-bold uppercase tracking-wider drop-shadow z-10 pointer-events-none transition-all duration-300 ${
+                sliderPos > 85 ? 'opacity-0 scale-90 translate-x-2' : 'opacity-100 scale-100 translate-x-0'
+              }`}
+            >
               After
             </span>
 
