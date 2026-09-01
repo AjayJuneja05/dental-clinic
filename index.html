@@ -875,28 +875,106 @@
               </div>
             </div>
 
-            <!-- 3. Preferred Date & Time -->
-            <div>
+            <!-- 3. Preferred Date & Time (Custom Modals matching Image 1 & Image 2) -->
+            <div class="relative">
               <label class="text-[11.5px] font-bold text-[#07234b] uppercase tracking-wider block mb-1.5">3. Preferred Date & Time</label>
 
-              <div class="space-y-3">
-                <!-- Simple Calendar Date Picker -->
-                <div>
-                  <input type="date" id="bookDate" class="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-[#07234b] text-[13.5px] font-medium focus:bg-white focus:border-[#0066cc] focus:ring-2 focus:ring-sky-100 outline-none transition-all cursor-pointer shadow-2xs" />
-                </div>
+              <!-- Hidden native inputs for form submission -->
+              <input type="hidden" id="bookDate" name="date" />
+              <input type="hidden" id="bookTime" name="time" />
 
-                <!-- Time Slot Chips -->
-                <div>
-                  <span class="text-[11px] font-semibold text-slate-500 uppercase tracking-wide block mb-1.5">Select Time Slot</span>
-                  <div id="timeSlotsContainer" class="grid grid-cols-3 sm:grid-cols-6 gap-2">
-                    <button type="button" class="time-slot-btn py-2 px-1 text-center rounded-xl text-[12px] font-semibold transition-all cursor-pointer bg-slate-50 hover:bg-slate-100 text-slate-600 border border-slate-200/80 hover:border-slate-300" data-slot="09:00 AM">09:00 AM</button>
-                    <button type="button" class="time-slot-btn py-2 px-1 text-center rounded-xl text-[12px] font-semibold transition-all cursor-pointer bg-[#0066cc] text-white shadow-sm ring-2 ring-sky-200 scale-[1.02]" data-slot="10:30 AM">10:30 AM</button>
-                    <button type="button" class="time-slot-btn py-2 px-1 text-center rounded-xl text-[12px] font-semibold transition-all cursor-pointer bg-slate-50 hover:bg-slate-100 text-slate-600 border border-slate-200/80 hover:border-slate-300" data-slot="12:00 PM">12:00 PM</button>
-                    <button type="button" class="time-slot-btn py-2 px-1 text-center rounded-xl text-[12px] font-semibold transition-all cursor-pointer bg-slate-50 hover:bg-slate-100 text-slate-600 border border-slate-200/80 hover:border-slate-300" data-slot="02:00 PM">02:00 PM</button>
-                    <button type="button" class="time-slot-btn py-2 px-1 text-center rounded-xl text-[12px] font-semibold transition-all cursor-pointer bg-slate-50 hover:bg-slate-100 text-slate-600 border border-slate-200/80 hover:border-slate-300" data-slot="03:30 PM">03:30 PM</button>
-                    <button type="button" class="time-slot-btn py-2 px-1 text-center rounded-xl text-[12px] font-semibold transition-all cursor-pointer bg-slate-50 hover:bg-slate-100 text-slate-600 border border-slate-200/80 hover:border-slate-300" data-slot="05:00 PM">05:00 PM</button>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                
+                <!-- DATE SELECTOR TRIGGER & MODAL -->
+                <div class="relative">
+                  <label class="text-[10.5px] font-semibold text-slate-500 uppercase tracking-wide block mb-1">Consultation Date</label>
+                  <button
+                    type="button"
+                    id="dateTriggerBtn"
+                    class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-[#07234b] text-[13.5px] font-medium flex items-center justify-between hover:bg-white hover:border-slate-300 transition-all cursor-pointer text-left"
+                  >
+                    <div class="flex items-center gap-2.5 truncate">
+                      <svg class="w-4 h-4 text-[#0066cc] flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                        <line x1="16" y1="2" x2="16" y2="6"></line>
+                        <line x1="8" y1="2" x2="8" y2="6"></line>
+                        <line x1="3" y1="10" x2="21" y2="10"></line>
+                      </svg>
+                      <span id="selectedDateText" class="truncate">Select Date</span>
+                    </div>
+                    <svg id="dateChevron" class="w-3.5 h-3.5 text-slate-400 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                  </button>
+
+                  <!-- DATE PICKER MODAL (Image 1) -->
+                  <div id="dateModal" class="hidden absolute left-0 top-full mt-2 z-50 w-full sm:w-[310px] bg-white rounded-2xl p-4 sm:p-5 shadow-[0_20px_50px_rgba(12,39,82,0.18)] border border-slate-200/90">
+                    <!-- Calendar Header -->
+                    <div class="flex items-center justify-between mb-4">
+                      <button type="button" id="prevMonthBtn" class="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 flex items-center justify-center transition-all cursor-pointer active:scale-95">‹</button>
+                      <h4 id="calendarMonthYear" class="text-[15px] font-bold text-[#07234b]">Month Year</h4>
+                      <button type="button" id="nextMonthBtn" class="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 flex items-center justify-center transition-all cursor-pointer active:scale-95">›</button>
+                    </div>
+
+                    <!-- Days of Week Header -->
+                    <div class="grid grid-cols-7 gap-1 text-center mb-2">
+                      <span class="text-[11px] font-bold uppercase tracking-tight text-red-400">Su</span>
+                      <span class="text-[11px] font-bold uppercase tracking-tight text-slate-400">Mo</span>
+                      <span class="text-[11px] font-bold uppercase tracking-tight text-slate-400">Tu</span>
+                      <span class="text-[11px] font-bold uppercase tracking-tight text-slate-400">We</span>
+                      <span class="text-[11px] font-bold uppercase tracking-tight text-slate-400">Th</span>
+                      <span class="text-[11px] font-bold uppercase tracking-tight text-slate-400">Fr</span>
+                      <span class="text-[11px] font-bold uppercase tracking-tight text-slate-400">Sa</span>
+                    </div>
+
+                    <!-- Days Grid -->
+                    <div id="calendarDaysGrid" class="grid grid-cols-7 gap-1 text-center mb-4">
+                      <!-- Generated dynamically -->
+                    </div>
+
+                    <!-- Footer with Clear Button -->
+                    <div class="pt-2 border-t border-slate-100 flex items-center justify-between">
+                      <span id="calendarSundayNotice" class="text-[10.5px] text-slate-400">Mon–Sat available</span>
+                      <button type="button" id="clearDateBtn" class="px-4 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 text-[12px] font-bold transition-all cursor-pointer">Clear</button>
+                    </div>
                   </div>
                 </div>
+
+                <!-- TIME SELECTOR TRIGGER & MODAL -->
+                <div class="relative">
+                  <label class="text-[10.5px] font-semibold text-slate-500 uppercase tracking-wide block mb-1">Available Time</label>
+                  <button
+                    type="button"
+                    id="timeTriggerBtn"
+                    class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-[#07234b] text-[13.5px] font-medium flex items-center justify-between hover:bg-white hover:border-slate-300 transition-all cursor-pointer text-left"
+                  >
+                    <div class="flex items-center gap-2.5 truncate">
+                      <svg class="w-4 h-4 text-[#0066cc] flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <polyline points="12 6 12 12 16 14"></polyline>
+                      </svg>
+                      <span id="selectedTimeText" class="truncate">Select Time</span>
+                    </div>
+                    <svg id="timeChevron" class="w-3.5 h-3.5 text-slate-400 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                  </button>
+
+                  <!-- TIME PICKER MODAL (Image 2) -->
+                  <div id="timeModal" class="hidden absolute right-0 sm:left-0 top-full mt-2 z-50 w-full sm:w-[260px] bg-white rounded-2xl p-3.5 sm:p-4 shadow-[0_20px_50px_rgba(12,39,82,0.18)] border border-slate-200/90">
+                    <!-- Modal Header with Selected Time & Close X -->
+                    <div class="flex items-center justify-between pb-2 mb-2 border-b border-slate-100">
+                      <span id="timeModalHeaderTitle" class="text-[15px] font-bold text-[#07234b]">Select Time</span>
+                      <button type="button" id="closeTimeModalBtn" class="w-7 h-7 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-500 flex items-center justify-center text-xs transition-all cursor-pointer" title="Close">✕</button>
+                    </div>
+
+                    <!-- Available Time Slots List -->
+                    <div id="timeSlotsList" class="max-h-[220px] overflow-y-auto space-y-0.5 pr-1">
+                      <!-- Generated dynamically based on selected date -->
+                    </div>
+                  </div>
+                </div>
+
               </div>
             </div>
 

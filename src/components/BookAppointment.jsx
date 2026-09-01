@@ -4,17 +4,49 @@ import { useState } from 'react';
 import doctorsData from '@/data/doctors.json';
 import servicesData from '@/data/services.json';
 
-const TIME_SLOTS = [
-  '09:00 AM',
-  '10:30 AM',
-  '12:00 PM',
-  '02:00 PM',
-  '03:30 PM',
-  '05:00 PM',
+// Available operating times based on working hours:
+// Mon-Thu: 09:00 AM - 10:00 PM
+// Fri-Sat: 10:00 AM - 10:00 PM
+// Sunday: Closed
+const getAvailableTimesForDateStr = (dateStr) => {
+  if (!dateStr) return [];
+  const parts = dateStr.split('-');
+  if (parts.length !== 3) return [];
+  const [y, m, d] = parts.map(Number);
+  const dateObj = new Date(y, m - 1, d);
+  const dayOfWeek = dateObj.getDay(); // 0 = Sunday, 1 = Monday, ..., 6 = Saturday
+
+  if (dayOfWeek === 0) {
+    return []; // Sunday: Closed
+  }
+
+  let startH = 9;  // Mon-Thu: 9:00 AM
+  const endH = 22; // 10:00 PM
+
+  if (dayOfWeek === 5 || dayOfWeek === 6) {
+    startH = 10; // Fri-Sat: 10:00 AM
+  }
+
+  const slots = [];
+  for (let h = startH; h < endH; h++) {
+    for (let min = 0; min < 60; min += 30) {
+      const period = h >= 12 ? 'PM' : 'AM';
+      const displayH = h % 12 === 0 ? 12 : h % 12;
+      const displayMin = min === 0 ? '00' : '30';
+      slots.push(`${displayH.toString().padStart(2, '0')}:${displayMin} ${period}`);
+    }
+  }
+  return slots;
+};
+
+const MONTH_NAMES = [
+  'January', 'February', 'March', 'April', 'May', 'June',
+  'July', 'August', 'September', 'October', 'November', 'December'
 ];
 
 export default function BookAppointment() {
-  const todayStr = new Date().toISOString().split('T')[0];
+  const today = new Date();
+  const todayStr = today.toISOString().split('T')[0];
 
   const [formData, setFormData] = useState({
     fullName: '',
@@ -27,14 +59,71 @@ export default function BookAppointment() {
     notes: '',
   });
 
+  // Modal open states
+  const [showDateModal, setShowDateModal] = useState(false);
+  const [showTimeModal, setShowTimeModal] = useState(false);
+
+  // Calendar navigation view
+  const [viewYear, setViewYear] = useState(today.getFullYear());
+  const [viewMonth, setViewMonth] = useState(today.getMonth());
+
+  const availableSlots = getAvailableTimesForDateStr(formData.date);
+  const isSundayClosed = formData.date ? new Date(formData.date.split('-')[0], Number(formData.date.split('-')[1]) - 1, formData.date.split('-')[2]).getDay() === 0 : false;
+
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  const handleSelectDate = (dateStr) => {
+    const slots = getAvailableTimesForDateStr(dateStr);
+    const parts = dateStr.split('-').map(Number);
+    const isSun = new Date(parts[0], parts[1] - 1, parts[2]).getDay() === 0;
+
+    let newTime = formData.timeSlot;
+    if (isSun) {
+      newTime = '';
+    } else if (!slots.includes(formData.timeSlot)) {
+      newTime = slots[0] || '10:00 AM';
+    }
+
+    setFormData({ ...formData, date: dateStr, timeSlot: newTime });
+    setShowDateModal(false);
+  };
+
+  const handleSelectTime = (slot) => {
+    setFormData({ ...formData, timeSlot: slot });
+    setShowTimeModal(false);
+  };
+
+  const handlePrevMonth = () => {
+    if (viewMonth === 0) {
+      setViewMonth(11);
+      setViewYear(viewYear - 1);
+    } else {
+      setViewMonth(viewMonth - 1);
+    }
+  };
+
+  const handleNextMonth = () => {
+    if (viewMonth === 11) {
+      setViewMonth(0);
+      setViewYear(viewYear + 1);
+    } else {
+      setViewMonth(viewMonth + 1);
+    }
+  };
+
+  const handleClearDate = () => {
+    setFormData({ ...formData, date: '', timeSlot: '' });
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (isSundayClosed) {
+      alert('The clinic is closed on Sundays. Please select a consultation date from Monday to Saturday.');
+      return;
+    }
     setIsSubmitting(true);
 
-    // Simulate clean server confirmation
     setTimeout(() => {
       setIsSubmitting(false);
       setIsSubmitted(true);
@@ -221,49 +310,259 @@ export default function BookAppointment() {
                   </div>
                 </div>
 
-                {/* 3. Date & Time Selection */}
-                <div>
+                {/* 3. Date & Time Selection (Custom Modals matching Image 1 & Image 2) */}
+                <div className="relative">
                   <label className="text-[11.5px] font-bold text-[#07234b] uppercase tracking-wider block mb-1.5">
                     3. Preferred Date & Time
                   </label>
 
-                  <div className="space-y-3">
-                    {/* Simple Calendar Date Picker */}
-                    <div>
-                      <input
-                        type="date"
-                        min={new Date().toISOString().split('T')[0]}
-                        value={formData.date}
-                        onChange={(e) => setFormData({ ...formData, date: e.target.value })}
-                        className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-[#07234b] text-[13.5px] font-medium focus:bg-white focus:border-[#0066cc] focus:ring-2 focus:ring-sky-100 outline-none transition-all cursor-pointer shadow-2xs"
-                      />
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                    
+                    {/* DATE SELECTOR TRIGGER & MODAL */}
+                    <div className="relative">
+                      <label className="text-[10.5px] font-semibold text-slate-500 uppercase tracking-wide block mb-1">
+                        Consultation Date
+                      </label>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setShowDateModal(!showDateModal);
+                          setShowTimeModal(false);
+                        }}
+                        className={`w-full px-3.5 py-2.5 rounded-xl border text-[13.5px] font-medium flex items-center justify-between transition-all cursor-pointer text-left ${
+                          showDateModal
+                            ? 'bg-white border-[#0066cc] ring-2 ring-sky-100 text-[#07234b]'
+                            : 'bg-slate-50 border-slate-200 text-[#07234b] hover:bg-white hover:border-slate-300'
+                        }`}
+                      >
+                        <div className="flex items-center gap-2.5 truncate">
+                          <svg className="w-4 h-4 text-[#0066cc] flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                            <line x1="16" y1="2" x2="16" y2="6"></line>
+                            <line x1="8" y1="2" x2="8" y2="6"></line>
+                            <line x1="3" y1="10" x2="21" y2="10"></line>
+                          </svg>
+                          <span className="truncate">
+                            {formData.date ? (
+                              (() => {
+                                const parts = formData.date.split('-').map(Number);
+                                const d = new Date(parts[0], parts[1] - 1, parts[2]);
+                                return d.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' });
+                              })()
+                            ) : (
+                              'Select Date'
+                            )}
+                          </span>
+                        </div>
+                        <svg className={`w-3.5 h-3.5 text-slate-400 transition-transform ${showDateModal ? 'rotate-180 text-[#0066cc]' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                      </button>
+
+                      {/* DATE PICKER MODAL (Exact match to reference Image 1) */}
+                      {showDateModal && (
+                        <>
+                          <div
+                            className="fixed inset-0 z-40"
+                            onClick={() => setShowDateModal(false)}
+                          />
+                          <div className="absolute left-0 top-full mt-2 z-50 w-full sm:w-[310px] bg-white rounded-2xl p-4 sm:p-5 shadow-[0_20px_50px_rgba(12,39,82,0.18)] border border-slate-200/90 animate-fadeIn">
+                            
+                            {/* Calendar Header with circular arrows */}
+                            <div className="flex items-center justify-between mb-4">
+                              <button
+                                type="button"
+                                onClick={handlePrevMonth}
+                                className="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 flex items-center justify-center transition-all cursor-pointer active:scale-95"
+                                title="Previous Month"
+                              >
+                                ‹
+                              </button>
+
+                              <h4 className="text-[15px] font-bold text-[#07234b]">
+                                {MONTH_NAMES[viewMonth]} {viewYear}
+                              </h4>
+
+                              <button
+                                type="button"
+                                onClick={handleNextMonth}
+                                className="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 flex items-center justify-center transition-all cursor-pointer active:scale-95"
+                                title="Next Month"
+                              >
+                                ›
+                              </button>
+                            </div>
+
+                            {/* Days of Week Header */}
+                            <div className="grid grid-cols-7 gap-1 text-center mb-2">
+                              {['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'].map((day, idx) => (
+                                <span
+                                  key={day}
+                                  className={`text-[11px] font-bold uppercase tracking-tight ${idx === 0 ? 'text-red-400' : 'text-slate-400'}`}
+                                >
+                                  {day}
+                                </span>
+                              ))}
+                            </div>
+
+                            {/* Days Grid */}
+                            <div className="grid grid-cols-7 gap-1 text-center mb-4">
+                              {(() => {
+                                const daysInMonth = new Date(viewYear, viewMonth + 1, 0).getDate();
+                                const firstDayOfWeek = new Date(viewYear, viewMonth, 1).getDay();
+                                const cells = [];
+
+                                for (let i = 0; i < firstDayOfWeek; i++) {
+                                  cells.push(<div key={`empty-${i}`} className="w-8 h-8" />);
+                                }
+
+                                for (let day = 1; day <= daysInMonth; day++) {
+                                  const dateStr = `${viewYear}-${String(viewMonth + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+                                  const cellDate = new Date(viewYear, viewMonth, day);
+                                  const isPast = cellDate < new Date(today.getFullYear(), today.getMonth(), today.getDate());
+                                  const isSelected = formData.date === dateStr;
+                                  const isSunday = cellDate.getDay() === 0;
+
+                                  cells.push(
+                                    <button
+                                      key={`day-${day}`}
+                                      type="button"
+                                      disabled={isPast}
+                                      onClick={() => handleSelectDate(dateStr)}
+                                      className={`w-8 h-8 sm:w-8.5 sm:h-8.5 mx-auto rounded-full text-[13px] font-semibold flex items-center justify-center transition-all cursor-pointer ${
+                                        isSelected
+                                          ? 'bg-[#0066cc] text-white font-bold shadow-md scale-105'
+                                          : isPast
+                                          ? 'text-slate-300 cursor-not-allowed pointer-events-none'
+                                          : isSunday
+                                          ? 'text-red-500 hover:bg-red-50'
+                                          : 'text-slate-700 hover:bg-slate-100'
+                                      }`}
+                                    >
+                                      {day}
+                                    </button>
+                                  );
+                                }
+
+                                return cells;
+                              })()}
+                            </div>
+
+                            {/* Footer with Clear Button */}
+                            <div className="pt-2 border-t border-slate-100 flex items-center justify-between">
+                              <span className="text-[10.5px] text-slate-400">
+                                {isSundayClosed ? '⚠️ Closed on Sundays' : 'Mon–Sat available'}
+                              </span>
+                              <button
+                                type="button"
+                                onClick={handleClearDate}
+                                className="px-4 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 text-[12px] font-bold transition-all cursor-pointer"
+                              >
+                                Clear
+                              </button>
+                            </div>
+
+                          </div>
+                        </>
+                      )}
                     </div>
 
-                    {/* Time Slot Chips */}
-                    <div>
-                      <span className="text-[11px] font-semibold text-slate-500 uppercase tracking-wide block mb-1.5">
-                        Select Time Slot
-                      </span>
-                      <div className="grid grid-cols-3 sm:grid-cols-6 gap-2">
-                        {TIME_SLOTS.map((slot) => {
-                          const isSelected = formData.timeSlot === slot;
-                          return (
-                            <button
-                              key={slot}
-                              type="button"
-                              onClick={() => setFormData({ ...formData, timeSlot: slot })}
-                              className={`py-2 px-1 text-center rounded-xl text-[12px] font-semibold transition-all cursor-pointer ${
-                                isSelected
-                                  ? 'bg-[#0066cc] text-white shadow-sm ring-2 ring-sky-200 scale-[1.02]'
-                                  : 'bg-slate-50 hover:bg-slate-100 text-slate-600 border border-slate-200/80 hover:border-slate-300'
-                              }`}
-                            >
-                              {slot}
-                            </button>
-                          );
-                        })}
-                      </div>
+                    {/* TIME SELECTOR TRIGGER & MODAL */}
+                    <div className="relative">
+                      <label className="text-[10.5px] font-semibold text-slate-500 uppercase tracking-wide block mb-1">
+                        Available Time
+                      </label>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setShowTimeModal(!showTimeModal);
+                          setShowDateModal(false);
+                        }}
+                        className={`w-full px-3.5 py-2.5 rounded-xl border text-[13.5px] font-medium flex items-center justify-between transition-all cursor-pointer text-left ${
+                          showTimeModal
+                            ? 'bg-white border-[#0066cc] ring-2 ring-sky-100 text-[#07234b]'
+                            : 'bg-slate-50 border-slate-200 text-[#07234b] hover:bg-white hover:border-slate-300'
+                        }`}
+                      >
+                        <div className="flex items-center gap-2.5 truncate">
+                          <svg className="w-4 h-4 text-[#0066cc] flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                          </svg>
+                          <span className="truncate">
+                            {isSundayClosed ? (
+                              <span className="text-red-500 font-semibold">Closed on Sunday</span>
+                            ) : (
+                              formData.timeSlot || 'Select Time'
+                            )}
+                          </span>
+                        </div>
+                        <svg className={`w-3.5 h-3.5 text-slate-400 transition-transform ${showTimeModal ? 'rotate-180 text-[#0066cc]' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                      </button>
+
+                      {/* TIME PICKER MODAL (Exact match to reference Image 2) */}
+                      {showTimeModal && (
+                        <>
+                          <div
+                            className="fixed inset-0 z-40"
+                            onClick={() => setShowTimeModal(false)}
+                          />
+                          <div className="absolute right-0 sm:left-0 top-full mt-2 z-50 w-full sm:w-[260px] bg-white rounded-2xl p-3.5 sm:p-4 shadow-[0_20px_50px_rgba(12,39,82,0.18)] border border-slate-200/90 animate-fadeIn">
+                            
+                            {/* Modal Header with Selected Time & Close X */}
+                            <div className="flex items-center justify-between pb-2 mb-2 border-b border-slate-100">
+                              <span className="text-[15px] font-bold text-[#07234b]">
+                                {isSundayClosed ? 'Closed' : (formData.timeSlot || 'Select Time')}
+                              </span>
+                              <button
+                                type="button"
+                                onClick={() => setShowTimeModal(false)}
+                                className="w-7 h-7 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-500 flex items-center justify-center text-xs transition-all cursor-pointer"
+                                title="Close"
+                              >
+                                ✕
+                              </button>
+                            </div>
+
+                            {/* Available Time Slots List for that specific day */}
+                            <div className="max-h-[220px] overflow-y-auto space-y-0.5 pr-1">
+                              {isSundayClosed ? (
+                                <div className="py-6 px-3 text-center text-[12.5px] text-red-500 bg-red-50/70 rounded-xl font-medium leading-relaxed">
+                                  Dental clinic is closed on Sundays.<br />
+                                  <span className="text-slate-500 text-[11.5px] mt-1 block">Please select Monday to Saturday in the calendar.</span>
+                                </div>
+                              ) : availableSlots.length === 0 ? (
+                                <div className="py-4 text-center text-[12.5px] text-slate-500">
+                                  No available slots for this date.
+                                </div>
+                              ) : (
+                                availableSlots.map((slot) => {
+                                  const isSelected = formData.timeSlot === slot;
+                                  return (
+                                    <button
+                                      key={slot}
+                                      type="button"
+                                      onClick={() => handleSelectTime(slot)}
+                                      className={`w-full text-left py-2 px-3 rounded-lg text-[13px] transition-all cursor-pointer ${
+                                        isSelected
+                                          ? 'bg-slate-100 text-[#07234b] font-bold shadow-xs'
+                                          : 'text-slate-600 hover:bg-slate-50 hover:text-[#07234b] font-medium'
+                                      }`}
+                                    >
+                                      {slot}
+                                    </button>
+                                  );
+                                })
+                              )}
+                            </div>
+
+                          </div>
+                        </>
+                      )}
                     </div>
+
                   </div>
                 </div>
 

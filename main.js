@@ -535,28 +535,318 @@ if (closeBtn) {
   closeBtn.addEventListener('click', closeDoctorModal);
 }
 
-// 5. Book Appointment Form Handling
+// 5. Book Appointment Form Handling with Custom Date & Time Modals
 document.addEventListener('DOMContentLoaded', () => {
-  const bookDateInput = document.getElementById('bookDate');
-  if (bookDateInput) {
-    const today = new Date().toISOString().split('T')[0];
-    bookDateInput.min = today;
-    bookDateInput.value = today;
+  const MONTH_NAMES = [
+    'January', 'February', 'March', 'April', 'May', 'June',
+    'July', 'August', 'September', 'October', 'November', 'December'
+  ];
+
+  const getAvailableTimesForDateStr = (dateStr) => {
+    if (!dateStr) return [];
+    const parts = dateStr.split('-');
+    if (parts.length !== 3) return [];
+    const [y, m, d] = parts.map(Number);
+    const dateObj = new Date(y, m - 1, d);
+    const dayOfWeek = dateObj.getDay(); // 0 = Sunday, 1 = Monday, ..., 6 = Saturday
+
+    if (dayOfWeek === 0) {
+      return []; // Sunday: Closed
+    }
+
+    let startH = 9;  // Mon-Thu: 9:00 AM
+    const endH = 22; // 10:00 PM
+
+    if (dayOfWeek === 5 || dayOfWeek === 6) {
+      startH = 10; // Fri-Sat: 10:00 AM
+    }
+
+    const slots = [];
+    for (let h = startH; h < endH; h++) {
+      for (let min = 0; min < 60; min += 30) {
+        const period = h >= 12 ? 'PM' : 'AM';
+        const displayH = h % 12 === 0 ? 12 : h % 12;
+        const displayMin = min === 0 ? '00' : '30';
+        slots.push(`${displayH.toString().padStart(2, '0')}:${displayMin} ${period}`);
+      }
+    }
+    return slots;
+  };
+
+  const today = new Date();
+  const todayStr = today.toISOString().split('T')[0];
+
+  let selectedDate = todayStr;
+  let selectedTime = '10:30 AM';
+  let viewYear = today.getFullYear();
+  let viewMonth = today.getMonth();
+
+  // DOM Elements
+  const dateTriggerBtn = document.getElementById('dateTriggerBtn');
+  const dateModal = document.getElementById('dateModal');
+  const dateChevron = document.getElementById('dateChevron');
+  const selectedDateText = document.getElementById('selectedDateText');
+  const calendarMonthYear = document.getElementById('calendarMonthYear');
+  const calendarDaysGrid = document.getElementById('calendarDaysGrid');
+  const prevMonthBtn = document.getElementById('prevMonthBtn');
+  const nextMonthBtn = document.getElementById('nextMonthBtn');
+  const clearDateBtn = document.getElementById('clearDateBtn');
+  const calendarSundayNotice = document.getElementById('calendarSundayNotice');
+
+  const timeTriggerBtn = document.getElementById('timeTriggerBtn');
+  const timeModal = document.getElementById('timeModal');
+  const timeChevron = document.getElementById('timeChevron');
+  const selectedTimeText = document.getElementById('selectedTimeText');
+  const timeModalHeaderTitle = document.getElementById('timeModalHeaderTitle');
+  const timeSlotsList = document.getElementById('timeSlotsList');
+  const closeTimeModalBtn = document.getElementById('closeTimeModalBtn');
+
+  const bookDateHidden = document.getElementById('bookDate');
+  const bookTimeHidden = document.getElementById('bookTime');
+
+  const formatDisplayDate = (dateStr) => {
+    if (!dateStr) return 'Select Date';
+    const parts = dateStr.split('-').map(Number);
+    const d = new Date(parts[0], parts[1] - 1, parts[2]);
+    return d.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' });
+  };
+
+  const updateDisplayValues = () => {
+    if (selectedDateText) selectedDateText.textContent = formatDisplayDate(selectedDate);
+    if (bookDateHidden) bookDateHidden.value = selectedDate;
+
+    const isSunday = selectedDate ? new Date(selectedDate.split('-')[0], Number(selectedDate.split('-')[1]) - 1, selectedDate.split('-')[2]).getDay() === 0 : false;
+
+    if (isSunday) {
+      if (selectedTimeText) selectedTimeText.innerHTML = '<span class="text-red-500 font-semibold">Closed on Sunday</span>';
+      if (timeModalHeaderTitle) timeModalHeaderTitle.textContent = 'Closed';
+      if (calendarSundayNotice) calendarSundayNotice.textContent = '⚠️ Closed on Sundays';
+    } else {
+      if (selectedTimeText) selectedTimeText.textContent = selectedTime || 'Select Time';
+      if (timeModalHeaderTitle) timeModalHeaderTitle.textContent = selectedTime || 'Select Time';
+      if (calendarSundayNotice) calendarSundayNotice.textContent = 'Mon–Sat available';
+    }
+    if (bookTimeHidden) bookTimeHidden.value = isSunday ? '' : selectedTime;
+  };
+
+  const renderCalendar = () => {
+    if (!calendarMonthYear || !calendarDaysGrid) return;
+    calendarMonthYear.textContent = `${MONTH_NAMES[viewMonth]} ${viewYear}`;
+
+    const daysInMonth = new Date(viewYear, viewMonth + 1, 0).getDate();
+    const firstDayOfWeek = new Date(viewYear, viewMonth, 1).getDay();
+
+    let gridHtml = '';
+
+    for (let i = 0; i < firstDayOfWeek; i++) {
+      gridHtml += '<div class="w-8 h-8"></div>';
+    }
+
+    for (let day = 1; day <= daysInMonth; day++) {
+      const dateStr = `${viewYear}-${String(viewMonth + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+      const cellDate = new Date(viewYear, viewMonth, day);
+      const isPast = cellDate < new Date(today.getFullYear(), today.getMonth(), today.getDate());
+      const isSelected = selectedDate === dateStr;
+      const isSunday = cellDate.getDay() === 0;
+
+      let classNames = 'w-8 h-8 sm:w-8.5 sm:h-8.5 mx-auto rounded-full text-[13px] font-semibold flex items-center justify-center transition-all cursor-pointer';
+
+      if (isSelected) {
+        classNames += ' bg-[#0066cc] text-white font-bold shadow-md scale-105';
+      } else if (isPast) {
+        classNames += ' text-slate-300 cursor-not-allowed pointer-events-none';
+      } else if (isSunday) {
+        classNames += ' text-red-500 hover:bg-red-50';
+      } else {
+        classNames += ' text-slate-700 hover:bg-slate-100';
+      }
+
+      gridHtml += `<button type="button" data-cal-date="${dateStr}" class="${classNames}">${day}</button>`;
+    }
+
+    calendarDaysGrid.innerHTML = gridHtml;
+
+    calendarDaysGrid.querySelectorAll('button[data-cal-date]').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const dateVal = btn.getAttribute('data-cal-date');
+        selectDate(dateVal);
+      });
+    });
+  };
+
+  const renderTimeSlots = () => {
+    if (!timeSlotsList) return;
+    const slots = getAvailableTimesForDateStr(selectedDate);
+    const isSunday = selectedDate ? new Date(selectedDate.split('-')[0], Number(selectedDate.split('-')[1]) - 1, selectedDate.split('-')[2]).getDay() === 0 : false;
+
+    if (isSunday) {
+      timeSlotsList.innerHTML = `
+        <div class="py-6 px-3 text-center text-[12.5px] text-red-500 bg-red-50/70 rounded-xl font-medium leading-relaxed">
+          Dental clinic is closed on Sundays.<br />
+          <span class="text-slate-500 text-[11.5px] mt-1 block">Please select Monday to Saturday in the calendar.</span>
+        </div>
+      `;
+      return;
+    }
+
+    if (slots.length === 0) {
+      timeSlotsList.innerHTML = '<div class="py-4 text-center text-[12.5px] text-slate-500">No available slots for this date.</div>';
+      return;
+    }
+
+    timeSlotsList.innerHTML = slots.map(slot => {
+      const isSelected = selectedTime === slot;
+      const classNames = isSelected
+        ? 'w-full text-left py-2 px-3 rounded-lg text-[13px] bg-slate-100 text-[#07234b] font-bold shadow-xs cursor-pointer'
+        : 'w-full text-left py-2 px-3 rounded-lg text-[13px] text-slate-600 hover:bg-slate-50 hover:text-[#07234b] font-medium cursor-pointer';
+
+      return `<button type="button" data-slot-val="${slot}" class="${classNames}">${slot}</button>`;
+    }).join('');
+
+    timeSlotsList.querySelectorAll('button[data-slot-val]').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        selectTime(btn.getAttribute('data-slot-val'));
+      });
+    });
+  };
+
+  const selectDate = (dateStr) => {
+    selectedDate = dateStr;
+    const slots = getAvailableTimesForDateStr(dateStr);
+    const parts = dateStr.split('-').map(Number);
+    const isSun = new Date(parts[0], parts[1] - 1, parts[2]).getDay() === 0;
+
+    if (isSun) {
+      selectedTime = '';
+    } else if (!slots.includes(selectedTime)) {
+      selectedTime = slots[0] || '10:00 AM';
+    }
+
+    updateDisplayValues();
+    renderCalendar();
+    renderTimeSlots();
+    closeDateModal();
+  };
+
+  const selectTime = (slot) => {
+    selectedTime = slot;
+    updateDisplayValues();
+    renderTimeSlots();
+    closeTimeModal();
+  };
+
+  const openDateModal = () => {
+    closeTimeModal();
+    if (dateModal) dateModal.classList.remove('hidden');
+    if (dateChevron) dateChevron.classList.add('rotate-180', 'text-[#0066cc]');
+    if (dateTriggerBtn) dateTriggerBtn.classList.add('bg-white', 'border-[#0066cc]', 'ring-2', 'ring-sky-100');
+    renderCalendar();
+  };
+
+  const closeDateModal = () => {
+    if (dateModal) dateModal.classList.add('hidden');
+    if (dateChevron) dateChevron.classList.remove('rotate-180', 'text-[#0066cc]');
+    if (dateTriggerBtn) dateTriggerBtn.classList.remove('bg-white', 'border-[#0066cc]', 'ring-2', 'ring-sky-100');
+  };
+
+  const openTimeModal = () => {
+    closeDateModal();
+    if (timeModal) timeModal.classList.remove('hidden');
+    if (timeChevron) timeChevron.classList.add('rotate-180', 'text-[#0066cc]');
+    if (timeTriggerBtn) timeTriggerBtn.classList.add('bg-white', 'border-[#0066cc]', 'ring-2', 'ring-sky-100');
+    renderTimeSlots();
+  };
+
+  const closeTimeModal = () => {
+    if (timeModal) timeModal.classList.add('hidden');
+    if (timeChevron) timeChevron.classList.remove('rotate-180', 'text-[#0066cc]');
+    if (timeTriggerBtn) timeTriggerBtn.classList.remove('bg-white', 'border-[#0066cc]', 'ring-2', 'ring-sky-100');
+  };
+
+  if (dateTriggerBtn) {
+    dateTriggerBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (dateModal && !dateModal.classList.contains('hidden')) {
+        closeDateModal();
+      } else {
+        openDateModal();
+      }
+    });
   }
 
-  const timeSlotButtons = document.querySelectorAll('.time-slot-btn');
-  let selectedTimeSlot = '10:30 AM';
-
-  timeSlotButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      timeSlotButtons.forEach(b => {
-        b.className = 'time-slot-btn py-2 px-1 text-center rounded-xl text-[12px] font-semibold transition-all cursor-pointer bg-slate-50 hover:bg-slate-100 text-slate-600 border border-slate-200/80 hover:border-slate-300';
-      });
-      btn.className = 'time-slot-btn py-2 px-1 text-center rounded-xl text-[12px] font-semibold transition-all cursor-pointer bg-[#0066cc] text-white shadow-sm ring-2 ring-sky-200 scale-[1.02]';
-      selectedTimeSlot = btn.getAttribute('data-slot');
+  if (timeTriggerBtn) {
+    timeTriggerBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (timeModal && !timeModal.classList.contains('hidden')) {
+        closeTimeModal();
+      } else {
+        openTimeModal();
+      }
     });
+  }
+
+  if (prevMonthBtn) {
+    prevMonthBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (viewMonth === 0) {
+        viewMonth = 11;
+        viewYear -= 1;
+      } else {
+        viewMonth -= 1;
+      }
+      renderCalendar();
+    });
+  }
+
+  if (nextMonthBtn) {
+    nextMonthBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (viewMonth === 11) {
+        viewMonth = 0;
+        viewYear += 1;
+      } else {
+        viewMonth += 1;
+      }
+      renderCalendar();
+    });
+  }
+
+  if (clearDateBtn) {
+    clearDateBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      selectedDate = '';
+      selectedTime = '';
+      updateDisplayValues();
+      renderCalendar();
+      renderTimeSlots();
+    });
+  }
+
+  if (closeTimeModalBtn) {
+    closeTimeModalBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      closeTimeModal();
+    });
+  }
+
+  // Click outside to close modals
+  document.addEventListener('click', (e) => {
+    if (dateModal && !dateModal.contains(e.target) && !dateTriggerBtn.contains(e.target)) {
+      closeDateModal();
+    }
+    if (timeModal && !timeModal.contains(e.target) && !timeTriggerBtn.contains(e.target)) {
+      closeTimeModal();
+    }
   });
 
+  // Initial renders
+  updateDisplayValues();
+  renderCalendar();
+  renderTimeSlots();
+
+  // Form submission
   const appointmentForm = document.getElementById('appointmentForm');
   const bookingSuccessBox = document.getElementById('bookingSuccessBox');
   const bookingSuccessName = document.getElementById('bookingSuccessName');
@@ -566,6 +856,12 @@ document.addEventListener('DOMContentLoaded', () => {
   if (appointmentForm) {
     appointmentForm.addEventListener('submit', (e) => {
       e.preventDefault();
+      const isSunday = selectedDate ? new Date(selectedDate.split('-')[0], Number(selectedDate.split('-')[1]) - 1, selectedDate.split('-')[2]).getDay() === 0 : false;
+      if (isSunday) {
+        alert('The clinic is closed on Sundays. Please select a consultation date from Monday to Saturday.');
+        return;
+      }
+
       const patientName = document.getElementById('bookName')?.value || 'Patient';
       
       if (bookSubmitBtn) {
@@ -590,6 +886,12 @@ document.addEventListener('DOMContentLoaded', () => {
         appointmentForm.reset();
         appointmentForm.classList.remove('hidden');
       }
+      selectedDate = todayStr;
+      selectedTime = '10:30 AM';
+      updateDisplayValues();
+      renderCalendar();
+      renderTimeSlots();
+
       if (bookSubmitBtn) {
         bookSubmitBtn.disabled = false;
         bookSubmitBtn.innerHTML = `
