@@ -5,6 +5,7 @@ import Hero from "../components/Hero";
 import WhyChooseUs from "../components/WhyChooseUs";
 import Services from "../components/Services";
 import Specialists from "../components/Specialists";
+import AdvancedTechnology from "../components/AdvancedTechnology";
 import BookAppointment from "../components/BookAppointment";
 
 export default function Home() {
@@ -15,6 +16,7 @@ export default function Home() {
       <WhyChooseUs />
       <Services />
       <Specialists />
+      <AdvancedTechnology />
       <BookAppointment />
     </main>
   );
