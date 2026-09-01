@@ -314,28 +314,28 @@
     </div>
 
     <!-- 3-Column Layout: Left Text, Middle Before/After Slider, Right Vertical Info Card -->
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-6 xl:gap-8 items-center">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-6 xl:gap-8 items-start">
       
       <!-- Left Column (Span 4): Headline, Story, What We Did & Controls -->
-      <div class="lg:col-span-4 flex flex-col justify-between h-full pr-0 lg:pr-2">
+      <div class="lg:col-span-4 flex flex-col justify-between min-h-[390px] pr-0 lg:pr-2">
         <div>
-          <h3 id="caseHeadline" class="text-[28px] sm:text-[34px] xl:text-[38px] font-bold text-[#07234b] leading-[1.12] tracking-tight">
+          <h3 id="caseHeadline" class="text-[26px] sm:text-[30px] lg:text-[34px] font-bold text-[#07234b] leading-[1.15] tracking-tight">
             Aesthetic Dentistry
           </h3>
-          <p id="caseStory" class="text-[13.5px] sm:text-[14px] text-[#475569] leading-[1.65] mt-4 font-normal">
+          <p id="caseStory" class="text-[13.5px] sm:text-[14px] text-[#475569] leading-[1.65] mt-3 font-normal">
             We enhance the natural beauty of your smile with personalized treatments designed to improve the shape, colour, proportion, and overall appearance of your teeth while keeping your results natural-looking.
           </p>
 
-          <div class="mt-6">
-            <h4 class="text-[15.5px] font-bold text-[#07234b] mb-3">What We Did</h4>
-            <ul id="caseWhatWeDid" class="space-y-2.5">
+          <div class="mt-5">
+            <h4 class="text-[15px] font-bold text-[#07234b] mb-2.5">What We Did</h4>
+            <ul id="caseWhatWeDid" class="space-y-2">
               <!-- Injected via main.js -->
             </ul>
           </div>
         </div>
 
         <!-- Navigation Controls -->
-        <div class="flex items-center gap-3 mt-8 pt-4 border-t border-slate-100">
+        <div class="flex items-center gap-3 mt-6 pt-3 border-t border-slate-100">
           <button id="prevCaseBtn" class="w-9 h-9 rounded-full border border-slate-200 text-slate-400 hover:text-[#07234b] hover:border-slate-400 transition-colors flex items-center justify-center shadow-xs cursor-pointer">
             <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" /></svg>
           </button>
@@ -350,7 +350,7 @@
       <div class="lg:col-span-5">
         <div 
           id="interactiveSlider" 
-          class="relative w-full h-[320px] sm:h-[380px] rounded-[24px] overflow-hidden shadow-md cursor-ew-resize bg-slate-900 border border-slate-100 touch-none select-none"
+          class="relative w-full h-[350px] sm:h-[390px] rounded-[24px] overflow-hidden shadow-md cursor-ew-resize bg-slate-900 border border-slate-100 touch-none select-none"
         >
           <!-- Before Base Image -->
           <img id="sliderBeforeImg" src="public/assets/aesthetic-before.webp" alt="Before treatment" class="absolute inset-0 w-full h-full object-cover pointer-events-none" />
@@ -372,8 +372,8 @@
       </div>
 
       <!-- Right Column (Span 3): Vertical Line Info Card (1-Treatment Time, 2-Treatment Visits) -->
-      <div class="lg:col-span-3 h-full flex flex-col justify-center">
-        <div class="w-full bg-[#f8faff] border border-sky-100/90 rounded-[24px] p-6 sm:p-7 shadow-sm flex flex-col gap-5">
+      <div class="lg:col-span-3">
+        <div class="w-full h-[350px] sm:h-[390px] bg-[#f8faff] border border-sky-100/90 rounded-[24px] p-6 sm:p-7 shadow-sm flex flex-col justify-between">
           
           <!-- 1) Treatment Time -->
           <div class="flex items-start gap-4">
@@ -399,7 +399,7 @@
           </div>
 
           <!-- Vertical Line Separator -->
-          <div class="w-full h-px bg-slate-200/80 my-1"></div>
+          <div class="w-full h-px bg-slate-200/70"></div>
 
           <!-- 2) Treatment Visits -->
           <div class="flex items-start gap-4">
@@ -422,7 +422,7 @@
           </div>
 
           <!-- Vertical Line Separator -->
-          <div class="w-full h-px bg-slate-200/80 my-1"></div>
+          <div class="w-full h-px bg-slate-200/70"></div>
 
           <!-- 3) Result -->
           <div class="flex items-start gap-4">

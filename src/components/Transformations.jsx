@@ -181,7 +181,7 @@ export default function Transformations() {
       </div>
 
       {/* Horizontal Underlined Category Tabs matching reference */}
-      <div className="w-full max-w-[920px] mx-auto border-b border-slate-200/90 mb-10 sm:mb-14">
+      <div className="w-full max-w-[960px] mx-auto border-b border-slate-200/90 mb-10 sm:mb-14">
         <div className="flex items-center justify-between sm:justify-center gap-6 sm:gap-10 overflow-x-auto no-scrollbar pb-0.5">
           {CASES_DATA.map((item, index) => {
             const isActive = activeTab === index;
@@ -207,25 +207,25 @@ export default function Transformations() {
       </div>
 
       {/* 3-Column Layout: Left Text, Middle Before/After Slider, Right Vertical Info Card */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-6 xl:gap-8 items-center">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-6 xl:gap-8 items-start">
         
         {/* LEFT COLUMN (Span 4): Headline, Story (What is This), What We Did & Controls */}
-        <div className="lg:col-span-4 flex flex-col justify-between h-full pr-0 lg:pr-2">
+        <div className="lg:col-span-4 flex flex-col justify-between min-h-[390px] pr-0 lg:pr-2">
           <div>
-            <h3 className="text-[28px] sm:text-[34px] xl:text-[38px] font-bold text-[#07234b] leading-[1.12] tracking-tight">
+            <h3 className="text-[26px] sm:text-[30px] lg:text-[34px] font-bold text-[#07234b] leading-[1.15] tracking-tight">
               {currentCase.headline}
             </h3>
 
-            <p className="text-[13.5px] sm:text-[14px] text-[#475569] leading-[1.65] mt-4 font-normal">
+            <p className="text-[13.5px] sm:text-[14px] text-[#475569] leading-[1.65] mt-3 font-normal">
               {currentCase.story}
             </p>
 
-            {/* What we did */}
-            <div className="mt-6">
-              <h4 className="text-[15.5px] font-bold text-[#07234b] mb-3">
+            {/* What We Did */}
+            <div className="mt-5">
+              <h4 className="text-[15px] font-bold text-[#07234b] mb-2.5">
                 What We Did
               </h4>
-              <ul className="space-y-2.5">
+              <ul className="space-y-2">
                 {currentCase.whatWeDid.map((item, idx) => (
                   <li key={idx} className="flex items-start gap-2.5 text-[13px] sm:text-[13.5px] text-slate-600 leading-snug">
                     <span className="w-1.5 h-1.5 rounded-full bg-[#0066cc] mt-1.5 flex-shrink-0"></span>
@@ -237,7 +237,7 @@ export default function Transformations() {
           </div>
 
           {/* Bottom Left Navigation Controls */}
-          <div className="flex items-center gap-3 mt-8 pt-4 border-t border-slate-100">
+          <div className="flex items-center gap-3 mt-6 pt-3 border-t border-slate-100">
             <button
               onClick={handlePrev}
               className="w-9 h-9 rounded-full border border-slate-200 text-slate-400 hover:text-[#07234b] hover:border-slate-400 transition-colors flex items-center justify-center shadow-xs cursor-pointer"
@@ -272,7 +272,7 @@ export default function Transformations() {
             onPointerMove={handlePointerMove}
             onPointerUp={handlePointerUp}
             onPointerCancel={handlePointerUp}
-            className="relative w-full h-[320px] sm:h-[380px] rounded-[24px] overflow-hidden shadow-md cursor-ew-resize bg-slate-900 border border-slate-100 touch-none select-none"
+            className="relative w-full h-[350px] sm:h-[390px] rounded-[24px] overflow-hidden shadow-md cursor-ew-resize bg-slate-900 border border-slate-100 touch-none select-none"
           >
             {/* "Before" Image Layer (Base) */}
             <img 
@@ -321,8 +321,8 @@ export default function Transformations() {
         </div>
 
         {/* RIGHT COLUMN (Span 3): Vertical Line Info Card (1-Treatment Time, 2-Treatment Visits) */}
-        <div className="lg:col-span-3 h-full flex flex-col justify-center">
-          <div className="w-full bg-[#f8faff] border border-sky-100/90 rounded-[24px] p-6 sm:p-7 shadow-sm flex flex-col gap-5">
+        <div className="lg:col-span-3">
+          <div className="w-full h-[350px] sm:h-[390px] bg-[#f8faff] border border-sky-100/90 rounded-[24px] p-6 sm:p-7 shadow-sm flex flex-col justify-between">
             
             {/* 1) Treatment Time */}
             <div className="flex items-start gap-4">
@@ -348,7 +348,7 @@ export default function Transformations() {
             </div>
 
             {/* Vertical Line Separator */}
-            <div className="w-full h-px bg-slate-200/80 my-1"></div>
+            <div className="w-full h-px bg-slate-200/70"></div>
 
             {/* 2) Treatment Visits */}
             <div className="flex items-start gap-4">
@@ -371,7 +371,7 @@ export default function Transformations() {
             </div>
 
             {/* Vertical Line Separator */}
-            <div className="w-full h-px bg-slate-200/80 my-1"></div>
+            <div className="w-full h-px bg-slate-200/70"></div>
 
             {/* 3) Result */}
             <div className="flex items-start gap-4">
