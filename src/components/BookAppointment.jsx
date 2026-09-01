@@ -97,10 +97,10 @@ export default function BookAppointment() {
         </div>
 
         {/* Main 2-Column Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 xl:gap-12 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch">
           
           {/* LEFT: Interactive Booking Form (Span 7) */}
-          <div className="lg:col-span-7 bg-white rounded-[28px] sm:rounded-[32px] p-6 sm:p-9 lg:p-10 border border-slate-200/90 shadow-[0_15px_40px_-15px_rgba(12,39,82,0.08)]">
+          <div className="lg:col-span-7 bg-white rounded-[24px] sm:rounded-[28px] lg:rounded-[32px] p-6 sm:p-8 lg:p-9 border border-slate-200/90 shadow-[0_15px_40px_-15px_rgba(12,39,82,0.08)] flex flex-col justify-between">
             
             {isSubmitted ? (
               <div className="py-12 px-4 text-center flex flex-col items-center justify-center animate-fadeIn">
@@ -147,15 +147,15 @@ export default function BookAppointment() {
                 </button>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <form onSubmit={handleSubmit} className="space-y-5">
                 
                 {/* 1. Contact Information Row */}
                 <div>
-                  <label className="text-[12px] font-bold text-[#07234b] uppercase tracking-wider block mb-2">
+                  <label className="text-[11.5px] font-bold text-[#07234b] uppercase tracking-wider block mb-1.5">
                     1. Patient Details
                   </label>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                     <div>
                       <input
                         type="text"
@@ -163,7 +163,7 @@ export default function BookAppointment() {
                         placeholder="Full Name *"
                         value={formData.fullName}
                         onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
-                        className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-[#07234b] text-[14px] placeholder:text-slate-400 focus:bg-white focus:border-[#0066cc] focus:ring-2 focus:ring-sky-100 outline-none transition-all"
+                        className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-[#07234b] text-[13.5px] placeholder:text-slate-400 focus:bg-white focus:border-[#0066cc] focus:ring-2 focus:ring-sky-100 outline-none transition-all"
                       />
                     </div>
                     <div>
@@ -173,36 +173,36 @@ export default function BookAppointment() {
                         placeholder="Phone Number *"
                         value={formData.phone}
                         onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                        className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-[#07234b] text-[14px] placeholder:text-slate-400 focus:bg-white focus:border-[#0066cc] focus:ring-2 focus:ring-sky-100 outline-none transition-all"
+                        className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-[#07234b] text-[13.5px] placeholder:text-slate-400 focus:bg-white focus:border-[#0066cc] focus:ring-2 focus:ring-sky-100 outline-none transition-all"
                       />
                     </div>
                   </div>
 
-                  <div className="mt-3">
+                  <div className="mt-2.5">
                     <input
                       type="email"
                       required
                       placeholder="Email Address (for confirmation) *"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-[#07234b] text-[14px] placeholder:text-slate-400 focus:bg-white focus:border-[#0066cc] focus:ring-2 focus:ring-sky-100 outline-none transition-all"
+                      className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-[#07234b] text-[13.5px] placeholder:text-slate-400 focus:bg-white focus:border-[#0066cc] focus:ring-2 focus:ring-sky-100 outline-none transition-all"
                     />
                   </div>
                 </div>
 
                 {/* 2. Service & Specialist Row */}
                 <div>
-                  <label className="text-[12px] font-bold text-[#07234b] uppercase tracking-wider block mb-2">
+                  <label className="text-[11.5px] font-bold text-[#07234b] uppercase tracking-wider block mb-1.5">
                     2. Select Department & Doctor
                   </label>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                     {/* Service Select */}
                     <div className="relative">
                       <select
                         value={formData.serviceId}
                         onChange={(e) => setFormData({ ...formData, serviceId: e.target.value })}
-                        className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-[#07234b] text-[14px] focus:bg-white focus:border-[#0066cc] focus:ring-2 focus:ring-sky-100 outline-none transition-all appearance-none cursor-pointer"
+                        className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-[#07234b] text-[13.5px] focus:bg-white focus:border-[#0066cc] focus:ring-2 focus:ring-sky-100 outline-none transition-all appearance-none cursor-pointer"
                       >
                         {servicesData.map((s) => (
                           <option key={s.id} value={s.id}>
@@ -210,7 +210,7 @@ export default function BookAppointment() {
                           </option>
                         ))}
                       </select>
-                      <div className="absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400 text-xs">
+                      <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400 text-xs">
                         ▼
                       </div>
                     </div>
@@ -220,7 +220,7 @@ export default function BookAppointment() {
                       <select
                         value={formData.doctorId}
                         onChange={(e) => setFormData({ ...formData, doctorId: e.target.value })}
-                        className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-[#07234b] text-[14px] focus:bg-white focus:border-[#0066cc] focus:ring-2 focus:ring-sky-100 outline-none transition-all appearance-none cursor-pointer"
+                        className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-[#07234b] text-[13.5px] focus:bg-white focus:border-[#0066cc] focus:ring-2 focus:ring-sky-100 outline-none transition-all appearance-none cursor-pointer"
                       >
                         <option value="any">Any Available Specialist</option>
                         {doctorsData.map((d) => (
@@ -229,7 +229,7 @@ export default function BookAppointment() {
                           </option>
                         ))}
                       </select>
-                      <div className="absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400 text-xs">
+                      <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400 text-xs">
                         ▼
                       </div>
                     </div>
@@ -237,19 +237,19 @@ export default function BookAppointment() {
                 </div>
 
                 {/* 3. Date & Time Selection */}
-                <div className="space-y-3.5">
+                <div className="space-y-2.5">
                   <div className="flex items-center justify-between">
-                    <label className="text-[12px] font-bold text-[#07234b] uppercase tracking-wider">
+                    <label className="text-[11.5px] font-bold text-[#07234b] uppercase tracking-wider">
                       3. Preferred Date & Time
                     </label>
                   </div>
 
                   {/* Interactive Date Pills */}
                   <div>
-                    <span className="text-[11px] font-semibold text-slate-500 uppercase tracking-wide block mb-2">
+                    <span className="text-[10.5px] font-semibold text-slate-500 uppercase tracking-wide block mb-1.5">
                       Choose Consultation Date
                     </span>
-                    <div className="grid grid-cols-3 sm:grid-cols-6 gap-2">
+                    <div className="grid grid-cols-3 sm:grid-cols-6 gap-1.5">
                       {upcomingDays.map((d) => {
                         const isSelected = formData.date === d.dateStr;
                         return (
@@ -257,16 +257,16 @@ export default function BookAppointment() {
                             key={d.dateStr}
                             type="button"
                             onClick={() => setFormData({ ...formData, date: d.dateStr })}
-                            className={`py-2.5 px-1 rounded-xl text-center flex flex-col items-center justify-center transition-all cursor-pointer border ${
+                            className={`py-2 px-1 rounded-xl text-center flex flex-col items-center justify-center transition-all cursor-pointer border ${
                               isSelected
-                                ? 'bg-[#07234b] text-white border-[#07234b] shadow-md ring-2 ring-sky-200 scale-[1.02]'
+                                ? 'bg-[#07234b] text-white border-[#07234b] shadow-sm ring-2 ring-sky-200 scale-[1.02]'
                                 : 'bg-slate-50 hover:bg-slate-100 text-[#07234b] border-slate-200/80 hover:border-slate-300'
                             }`}
                           >
-                            <span className={`text-[10px] uppercase font-bold tracking-tight ${isSelected ? 'text-sky-300' : 'text-slate-400'}`}>
+                            <span className={`text-[9.5px] uppercase font-bold tracking-tight ${isSelected ? 'text-sky-300' : 'text-slate-400'}`}>
                               {d.dayName}
                             </span>
-                            <span className="text-[12.5px] font-bold mt-0.5">
+                            <span className="text-[11.5px] font-bold mt-0.5">
                               {d.monthDay}
                             </span>
                           </button>
@@ -275,23 +275,23 @@ export default function BookAppointment() {
                     </div>
                   </div>
 
-                  {/* Or Custom Date Input */}
+                  {/* Custom Date Input */}
                   <div>
                     <input
                       type="date"
                       min={new Date().toISOString().split('T')[0]}
                       value={formData.date}
                       onChange={(e) => setFormData({ ...formData, date: e.target.value })}
-                      className="w-full px-4 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-[#07234b] text-[13.5px] font-medium focus:bg-white focus:border-[#0066cc] focus:ring-2 focus:ring-sky-100 outline-none transition-all cursor-pointer"
+                      className="w-full px-3.5 py-2 rounded-xl bg-slate-50 border border-slate-200 text-[#07234b] text-[13px] font-medium focus:bg-white focus:border-[#0066cc] focus:ring-2 focus:ring-sky-100 outline-none transition-all cursor-pointer"
                     />
                   </div>
 
                   {/* Interactive Time Slot Chips */}
-                  <div className="pt-1">
-                    <span className="text-[11px] font-semibold text-slate-500 uppercase tracking-wide block mb-2">
+                  <div className="pt-0.5">
+                    <span className="text-[10.5px] font-semibold text-slate-500 uppercase tracking-wide block mb-1.5">
                       Select Available Time Slot
                     </span>
-                    <div className="grid grid-cols-3 sm:grid-cols-6 gap-2">
+                    <div className="grid grid-cols-3 sm:grid-cols-6 gap-1.5">
                       {TIME_SLOTS.map((slot) => {
                         const isSelected = formData.timeSlot === slot;
                         return (
@@ -299,9 +299,9 @@ export default function BookAppointment() {
                             key={slot}
                             type="button"
                             onClick={() => setFormData({ ...formData, timeSlot: slot })}
-                            className={`py-2 px-1 text-center rounded-xl text-[12px] font-semibold transition-all cursor-pointer ${
+                            className={`py-1.5 px-1 text-center rounded-xl text-[11.5px] font-semibold transition-all cursor-pointer ${
                               isSelected
-                                ? 'bg-[#0066cc] text-white shadow-md ring-2 ring-sky-200 scale-[1.02]'
+                                ? 'bg-[#0066cc] text-white shadow-sm ring-2 ring-sky-200 scale-[1.02]'
                                 : 'bg-slate-50 hover:bg-slate-100 text-slate-600 border border-slate-200/80'
                             }`}
                           >
@@ -315,7 +315,7 @@ export default function BookAppointment() {
 
                 {/* 4. Notes / Concerns */}
                 <div>
-                  <label className="text-[12px] font-bold text-[#07234b] uppercase tracking-wider block mb-2">
+                  <label className="text-[11.5px] font-bold text-[#07234b] uppercase tracking-wider block mb-1.5">
                     4. Specific Questions or Concerns (Optional)
                   </label>
                   <textarea
@@ -323,16 +323,16 @@ export default function BookAppointment() {
                     placeholder="Tell us what you'd like to improve about your smile..."
                     value={formData.notes}
                     onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-[#07234b] text-[14px] placeholder:text-slate-400 focus:bg-white focus:border-[#0066cc] focus:ring-2 focus:ring-sky-100 outline-none transition-all resize-none"
+                    className="w-full px-3.5 py-2 rounded-xl bg-slate-50 border border-slate-200 text-[#07234b] text-[13px] placeholder:text-slate-400 focus:bg-white focus:border-[#0066cc] focus:ring-2 focus:ring-sky-100 outline-none transition-all resize-none"
                   ></textarea>
                 </div>
 
                 {/* Submit Action */}
-                <div className="pt-2">
+                <div className="pt-1">
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full py-4 rounded-full bg-[#0066cc] hover:bg-[#0052a3] text-white text-[15px] font-bold transition-all shadow-lg shadow-sky-600/25 flex items-center justify-center gap-2 cursor-pointer active:scale-[0.99]"
+                    className="w-full py-3.5 rounded-full bg-[#0066cc] hover:bg-[#0052a3] text-white text-[14.5px] font-bold transition-all shadow-lg shadow-sky-600/25 flex items-center justify-center gap-2 cursor-pointer active:scale-[0.99]"
                   >
                     {isSubmitting ? (
                       <>
@@ -347,7 +347,7 @@ export default function BookAppointment() {
                     )}
                   </button>
 
-                  <p className="text-[11.5px] text-slate-400 text-center mt-3">
+                  <p className="text-[11px] text-slate-400 text-center mt-2.5">
                     🔒 No upfront payment required • Free cancellation up to 24 hours prior
                   </p>
                 </div>
@@ -357,56 +357,60 @@ export default function BookAppointment() {
 
           </div>
 
-          {/* RIGHT: Benefits, Reassurance & Clinic Info (Span 5) */}
-          <div className="lg:col-span-5 space-y-6">
+          {/* RIGHT: Benefits, Reassurance & Working Hours (Span 5) */}
+          <div className="lg:col-span-5 flex flex-col justify-between gap-4 sm:gap-5 h-full">
             
-            {/* Card 1: What to Expect */}
-            <div className="bg-[#0c2752] text-white rounded-[28px] sm:rounded-[32px] p-7 sm:p-8 shadow-xl border border-sky-900/40">
-              <span className="text-[11.5px] font-bold text-sky-400 uppercase tracking-widest block mb-2">
-                THE CELESTIA PROMISE
-              </span>
-              <h3 className="text-[22px] sm:text-[24px] font-bold tracking-tight text-white leading-tight">
+            {/* Card 1: What to Expect (Sleek & Compact) */}
+            <div className="bg-[#0c2752] text-white rounded-[24px] sm:rounded-[28px] p-5 sm:p-6 shadow-xl border border-sky-900/40">
+              <div className="flex items-center justify-between mb-1.5">
+                <span className="text-[10.5px] font-bold text-sky-400 uppercase tracking-widest">
+                  THE CELESTIA PROMISE
+                </span>
+                <span className="text-[11px] text-sky-300/80 font-medium">Initial Visit</span>
+              </div>
+
+              <h3 className="text-[18px] sm:text-[20px] font-bold tracking-tight text-white leading-tight mb-3.5">
                 What’s Included in Your Initial Visit
               </h3>
 
-              <div className="mt-6 space-y-4">
-                <div className="flex items-start gap-3.5">
-                  <div className="w-8 h-8 rounded-xl bg-white/10 text-sky-300 flex items-center justify-center flex-shrink-0 text-sm font-bold">
+              <div className="space-y-2.5">
+                <div className="flex items-start gap-3">
+                  <div className="w-7 h-7 rounded-lg bg-white/10 text-sky-300 flex items-center justify-center flex-shrink-0 text-xs font-bold mt-0.5">
                     01
                   </div>
                   <div>
-                    <h4 className="text-[14.5px] font-bold text-white leading-snug">
+                    <h4 className="text-[13.5px] font-bold text-white leading-snug">
                       High-Definition 3D Digital Scan
                     </h4>
-                    <p className="text-[12.5px] text-white/70 mt-0.5 leading-relaxed">
+                    <p className="text-[12px] text-white/70 mt-0.5 leading-relaxed">
                       Instant computerized mapping of your teeth with zero gooey impression trays.
                     </p>
                   </div>
                 </div>
 
-                <div className="flex items-start gap-3.5">
-                  <div className="w-8 h-8 rounded-xl bg-white/10 text-sky-300 flex items-center justify-center flex-shrink-0 text-sm font-bold">
+                <div className="flex items-start gap-3">
+                  <div className="w-7 h-7 rounded-lg bg-white/10 text-sky-300 flex items-center justify-center flex-shrink-0 text-xs font-bold mt-0.5">
                     02
                   </div>
                   <div>
-                    <h4 className="text-[14.5px] font-bold text-white leading-snug">
+                    <h4 className="text-[13.5px] font-bold text-white leading-snug">
                       1-on-1 Specialist Consultation
                     </h4>
-                    <p className="text-[12.5px] text-white/70 mt-0.5 leading-relaxed">
+                    <p className="text-[12px] text-white/70 mt-0.5 leading-relaxed">
                       Private conversation to discuss your aesthetic goals, lifestyle, and comfort.
                     </p>
                   </div>
                 </div>
 
-                <div className="flex items-start gap-3.5">
-                  <div className="w-8 h-8 rounded-xl bg-white/10 text-sky-300 flex items-center justify-center flex-shrink-0 text-sm font-bold">
+                <div className="flex items-start gap-3">
+                  <div className="w-7 h-7 rounded-lg bg-white/10 text-sky-300 flex items-center justify-center flex-shrink-0 text-xs font-bold mt-0.5">
                     03
                   </div>
                   <div>
-                    <h4 className="text-[14.5px] font-bold text-white leading-snug">
+                    <h4 className="text-[13.5px] font-bold text-white leading-snug">
                       Itemized Treatment Roadmap
                     </h4>
-                    <p className="text-[12.5px] text-white/70 mt-0.5 leading-relaxed">
+                    <p className="text-[12px] text-white/70 mt-0.5 leading-relaxed">
                       Transparent timeline, step-by-step preview, and zero unexpected costs.
                     </p>
                   </div>
@@ -414,30 +418,32 @@ export default function BookAppointment() {
               </div>
             </div>
 
-            {/* Card 2: Working Hours Card (Exact match to reference Image 2) */}
-            <div className="bg-gradient-to-br from-[#0c6570] to-[#094e57] text-white rounded-[28px] sm:rounded-[32px] p-6 sm:p-8 shadow-xl border border-white/10">
+            {/* Card 2: Working Hours Card (Decreased size & aligned with modal) */}
+            <div className="bg-gradient-to-br from-[#0c6570] to-[#094e57] text-white rounded-[24px] sm:rounded-[28px] p-5 sm:p-6 shadow-xl border border-white/10">
               
               {/* Header */}
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-white/15 flex items-center justify-center text-white flex-shrink-0">
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="flex items-center gap-2.5 mb-1.5">
+                <div className="w-8 h-8 rounded-lg bg-white/15 flex items-center justify-center text-white flex-shrink-0">
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <rect x="3" y="4" width="18" height="18" rx="2" ry="2" strokeWidth="2"></rect>
                     <line x1="16" y1="2" x2="16" y2="6" strokeWidth="2" strokeLinecap="round"></line>
                     <line x1="8" y1="2" x2="8" strokeWidth="2" strokeLinecap="round"></line>
                     <line x1="3" y1="10" x2="21" y2="10" strokeWidth="2"></line>
                   </svg>
                 </div>
-                <h3 className="text-[22px] sm:text-[24px] font-bold text-white tracking-tight">
-                  Working Hours
-                </h3>
+                <div>
+                  <h3 className="text-[18px] sm:text-[20px] font-bold text-white tracking-tight leading-none">
+                    Working Hours
+                  </h3>
+                </div>
               </div>
 
-              <p className="text-[13.5px] sm:text-[14px] text-white/80 leading-relaxed mt-2.5 mb-5">
+              <p className="text-[12px] text-white/80 leading-relaxed mb-3">
                 Take a look at the Dental Office hours to schedule your appointment.
               </p>
 
-              {/* Days List */}
-              <div className="space-y-2.5">
+              {/* Days List - Compact Sleek Rows */}
+              <div className="space-y-1.5">
                 {[
                   { day: 'Monday', time: '09:00 AM - 10:00 PM' },
                   { day: 'Tuesday', time: '09:00 AM - 10:00 PM' },
@@ -449,12 +455,12 @@ export default function BookAppointment() {
                 ].map((item) => (
                   <div 
                     key={item.day}
-                    className="rounded-xl sm:rounded-2xl bg-white/[0.08] hover:bg-white/[0.12] transition-all px-4 py-3 sm:py-3.5 flex items-center justify-between border border-white/10"
+                    className="rounded-lg sm:rounded-xl bg-white/[0.08] hover:bg-white/[0.12] transition-all px-3.5 py-1.5 sm:py-2 flex items-center justify-between border border-white/10"
                   >
-                    <span className="text-[14px] sm:text-[15px] font-semibold text-white">
+                    <span className="text-[12.5px] sm:text-[13px] font-semibold text-white">
                       {item.day}
                     </span>
-                    <span className={`text-[13px] sm:text-[14px] font-medium ${item.time === 'Closed' ? 'text-red-300 font-semibold' : 'text-white/90'}`}>
+                    <span className={`text-[12px] sm:text-[12.5px] font-medium ${item.time === 'Closed' ? 'text-red-300 font-semibold' : 'text-white/90'}`}>
                       {item.time}
                     </span>
                   </div>
@@ -471,7 +477,7 @@ export default function BookAppointment() {
                     nameInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
                   }
                 }}
-                className="w-full mt-5 py-3.5 rounded-full bg-white hover:bg-slate-100 text-[#0c6570] font-bold text-[14.5px] sm:text-[15px] transition-all shadow-md text-center block cursor-pointer active:scale-[0.99]"
+                className="w-full mt-3.5 py-2.5 sm:py-3 rounded-full bg-white hover:bg-slate-100 text-[#0c6570] font-bold text-[13.5px] sm:text-[14px] transition-all shadow-md text-center block cursor-pointer active:scale-[0.99]"
               >
                 Make an Appointment
               </button>
