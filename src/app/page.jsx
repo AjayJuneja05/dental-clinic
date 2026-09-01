@@ -7,6 +7,7 @@ import Services from "../components/Services";
 import Specialists from "../components/Specialists";
 import AdvancedTechnology from "../components/AdvancedTechnology";
 import BookAppointment from "../components/BookAppointment";
+import Footer from "../components/Footer";
 
 export default function Home() {
   return (
@@ -18,6 +19,7 @@ export default function Home() {
       <Specialists />
       <AdvancedTechnology />
       <BookAppointment />
+      <Footer />
     </main>
   );
 }

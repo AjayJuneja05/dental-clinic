@@ -2,6 +2,7 @@
 
 import Navbar from '@/components/Navbar';
 import Transformations from '@/components/Transformations';
+import Footer from '@/components/Footer';
 import Link from 'next/link';
 
 const DETAILED_SERVICES = [
@@ -187,6 +188,9 @@ export default function ServicesPage() {
           </div>
         </div>
       </section>
+
+      {/* Footer */}
+      <Footer />
 
     </div>
   );
