@@ -876,18 +876,59 @@
             </div>
 
             <!-- 3. Preferred Date & Time -->
-            <div>
-              <label class="text-[12px] font-bold text-[#07234b] uppercase tracking-wider block mb-2">3. Preferred Date & Time</label>
-              <div class="mb-3">
-                <input type="date" id="bookDate" class="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-[#07234b] text-[14px] focus:bg-white focus:border-[#0066cc] focus:ring-2 focus:ring-sky-100 outline-none transition-all cursor-pointer" />
+            <div class="space-y-3.5">
+              <div class="flex items-center justify-between">
+                <label class="text-[12px] font-bold text-[#07234b] uppercase tracking-wider">3. Preferred Date & Time</label>
               </div>
-              <div id="timeSlotsContainer" class="grid grid-cols-3 sm:grid-cols-6 gap-2">
-                <button type="button" class="time-slot-btn py-2 px-1 text-center rounded-lg text-[12px] font-semibold transition-all cursor-pointer bg-slate-50 hover:bg-slate-100 text-slate-600 border border-slate-200/80" data-slot="09:00 AM">09:00 AM</button>
-                <button type="button" class="time-slot-btn py-2 px-1 text-center rounded-lg text-[12px] font-semibold transition-all cursor-pointer bg-[#0066cc] text-white shadow-xs" data-slot="10:30 AM">10:30 AM</button>
-                <button type="button" class="time-slot-btn py-2 px-1 text-center rounded-lg text-[12px] font-semibold transition-all cursor-pointer bg-slate-50 hover:bg-slate-100 text-slate-600 border border-slate-200/80" data-slot="12:00 PM">12:00 PM</button>
-                <button type="button" class="time-slot-btn py-2 px-1 text-center rounded-lg text-[12px] font-semibold transition-all cursor-pointer bg-slate-50 hover:bg-slate-100 text-slate-600 border border-slate-200/80" data-slot="02:00 PM">02:00 PM</button>
-                <button type="button" class="time-slot-btn py-2 px-1 text-center rounded-lg text-[12px] font-semibold transition-all cursor-pointer bg-slate-50 hover:bg-slate-100 text-slate-600 border border-slate-200/80" data-slot="03:30 PM">03:30 PM</button>
-                <button type="button" class="time-slot-btn py-2 px-1 text-center rounded-lg text-[12px] font-semibold transition-all cursor-pointer bg-slate-50 hover:bg-slate-100 text-slate-600 border border-slate-200/80" data-slot="05:00 PM">05:00 PM</button>
+
+              <!-- Interactive Date Pills -->
+              <div>
+                <span class="text-[11px] font-semibold text-slate-500 uppercase tracking-wide block mb-2">Choose Consultation Date</span>
+                <div id="datePillsContainer" class="grid grid-cols-3 sm:grid-cols-6 gap-2">
+                  <!-- Generated dynamically via main.js with fallback -->
+                  <button type="button" class="date-pill-btn py-2.5 px-1 rounded-xl text-center flex flex-col items-center justify-center transition-all cursor-pointer border bg-[#07234b] text-white border-[#07234b] shadow-md ring-2 ring-sky-200 scale-[1.02]">
+                    <span class="text-[10px] uppercase font-bold tracking-tight text-sky-300">Today</span>
+                    <span class="text-[12.5px] font-bold mt-0.5">Sep 1</span>
+                  </button>
+                  <button type="button" class="date-pill-btn py-2.5 px-1 rounded-xl text-center flex flex-col items-center justify-center transition-all cursor-pointer border bg-slate-50 hover:bg-slate-100 text-[#07234b] border-slate-200/80 hover:border-slate-300">
+                    <span class="text-[10px] uppercase font-bold tracking-tight text-slate-400">Tomorrow</span>
+                    <span class="text-[12.5px] font-bold mt-0.5">Sep 2</span>
+                  </button>
+                  <button type="button" class="date-pill-btn py-2.5 px-1 rounded-xl text-center flex flex-col items-center justify-center transition-all cursor-pointer border bg-slate-50 hover:bg-slate-100 text-[#07234b] border-slate-200/80 hover:border-slate-300">
+                    <span class="text-[10px] uppercase font-bold tracking-tight text-slate-400">Wed</span>
+                    <span class="text-[12.5px] font-bold mt-0.5">Sep 3</span>
+                  </button>
+                  <button type="button" class="date-pill-btn py-2.5 px-1 rounded-xl text-center flex flex-col items-center justify-center transition-all cursor-pointer border bg-slate-50 hover:bg-slate-100 text-[#07234b] border-slate-200/80 hover:border-slate-300">
+                    <span class="text-[10px] uppercase font-bold tracking-tight text-slate-400">Thu</span>
+                    <span class="text-[12.5px] font-bold mt-0.5">Sep 4</span>
+                  </button>
+                  <button type="button" class="date-pill-btn py-2.5 px-1 rounded-xl text-center flex flex-col items-center justify-center transition-all cursor-pointer border bg-slate-50 hover:bg-slate-100 text-[#07234b] border-slate-200/80 hover:border-slate-300">
+                    <span class="text-[10px] uppercase font-bold tracking-tight text-slate-400">Fri</span>
+                    <span class="text-[12.5px] font-bold mt-0.5">Sep 5</span>
+                  </button>
+                  <button type="button" class="date-pill-btn py-2.5 px-1 rounded-xl text-center flex flex-col items-center justify-center transition-all cursor-pointer border bg-slate-50 hover:bg-slate-100 text-[#07234b] border-slate-200/80 hover:border-slate-300">
+                    <span class="text-[10px] uppercase font-bold tracking-tight text-slate-400">Sat</span>
+                    <span class="text-[12.5px] font-bold mt-0.5">Sep 6</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Or Custom Date Input -->
+              <div>
+                <input type="date" id="bookDate" class="w-full px-4 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-[#07234b] text-[13.5px] font-medium focus:bg-white focus:border-[#0066cc] focus:ring-2 focus:ring-sky-100 outline-none transition-all cursor-pointer" />
+              </div>
+
+              <!-- Interactive Time Slot Chips -->
+              <div class="pt-1">
+                <span class="text-[11px] font-semibold text-slate-500 uppercase tracking-wide block mb-2">Select Available Time Slot</span>
+                <div id="timeSlotsContainer" class="grid grid-cols-3 sm:grid-cols-6 gap-2">
+                  <button type="button" class="time-slot-btn py-2 px-1 text-center rounded-xl text-[12px] font-semibold transition-all cursor-pointer bg-slate-50 hover:bg-slate-100 text-slate-600 border border-slate-200/80" data-slot="09:00 AM">09:00 AM</button>
+                  <button type="button" class="time-slot-btn py-2 px-1 text-center rounded-xl text-[12px] font-semibold transition-all cursor-pointer bg-[#0066cc] text-white shadow-md ring-2 ring-sky-200 scale-[1.02]" data-slot="10:30 AM">10:30 AM</button>
+                  <button type="button" class="time-slot-btn py-2 px-1 text-center rounded-xl text-[12px] font-semibold transition-all cursor-pointer bg-slate-50 hover:bg-slate-100 text-slate-600 border border-slate-200/80" data-slot="12:00 PM">12:00 PM</button>
+                  <button type="button" class="time-slot-btn py-2 px-1 text-center rounded-xl text-[12px] font-semibold transition-all cursor-pointer bg-slate-50 hover:bg-slate-100 text-slate-600 border border-slate-200/80" data-slot="02:00 PM">02:00 PM</button>
+                  <button type="button" class="time-slot-btn py-2 px-1 text-center rounded-xl text-[12px] font-semibold transition-all cursor-pointer bg-slate-50 hover:bg-slate-100 text-slate-600 border border-slate-200/80" data-slot="03:30 PM">03:30 PM</button>
+                  <button type="button" class="time-slot-btn py-2 px-1 text-center rounded-xl text-[12px] font-semibold transition-all cursor-pointer bg-slate-50 hover:bg-slate-100 text-slate-600 border border-slate-200/80" data-slot="05:00 PM">05:00 PM</button>
+                </div>
               </div>
             </div>
 
@@ -938,28 +979,57 @@
             </div>
           </div>
 
-          <div class="bg-white rounded-[24px] p-6 border border-slate-200/90 shadow-sm space-y-4">
-            <div class="flex items-center gap-3.5 pb-4 border-b border-slate-100">
-              <div class="w-10 h-10 rounded-2xl bg-sky-50 text-[#0066cc] flex items-center justify-center text-lg flex-shrink-0">📍</div>
+          <!-- Card 2: Contact & Location Quick Info (Exact match to reference card) -->
+          <div class="bg-white rounded-[28px] sm:rounded-[32px] p-6 sm:p-8 border border-slate-100 shadow-[0_12px_35px_-12px_rgba(7,35,75,0.06)] divide-y divide-slate-100">
+            
+            <!-- Clinic Location -->
+            <div class="flex items-center gap-4 pb-5">
+              <div class="w-12 h-12 rounded-full bg-[#f0f7ff] flex items-center justify-center flex-shrink-0 text-xl shadow-xs">
+                📍
+              </div>
               <div>
-                <span class="text-[11px] font-bold text-slate-400 uppercase tracking-wider block">Clinic Location</span>
-                <p class="text-[13.5px] font-bold text-[#07234b]">9454 Wilshire Blvd, Beverly Hills, CA</p>
+                <span class="text-[11px] font-bold text-[#8a9bb0] uppercase tracking-[0.06em] block">
+                  CLINIC LOCATION
+                </span>
+                <p class="text-[15px] sm:text-[16px] font-bold text-[#07234b] mt-0.5 leading-snug">
+                  9454 Wilshire Blvd, Beverly Hills, CA
+                </p>
               </div>
             </div>
-            <div class="flex items-center gap-3.5 pb-4 border-b border-slate-100">
-              <div class="w-10 h-10 rounded-2xl bg-sky-50 text-[#0066cc] flex items-center justify-center text-lg flex-shrink-0">⏰</div>
+
+            <!-- Operating Hours -->
+            <div class="flex items-center gap-4 py-5">
+              <div class="w-12 h-12 rounded-full bg-[#f0f7ff] flex items-center justify-center flex-shrink-0 text-xl shadow-xs">
+                ⏰
+              </div>
               <div>
-                <span class="text-[11px] font-bold text-slate-400 uppercase tracking-wider block">Operating Hours</span>
-                <p class="text-[13.5px] font-bold text-[#07234b]">Mon – Sat: 8:00 AM – 7:00 PM</p>
+                <span class="text-[11px] font-bold text-[#8a9bb0] uppercase tracking-[0.06em] block">
+                  OPERATING HOURS
+                </span>
+                <p class="text-[15px] sm:text-[16px] font-bold text-[#07234b] mt-0.5 leading-snug">
+                  Mon – Sat: 8:00 AM – 7:00 PM
+                </p>
               </div>
             </div>
-            <div class="flex items-center gap-3.5">
-              <div class="w-10 h-10 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-lg flex-shrink-0">📞</div>
+
+            <!-- Immediate Telephone Booking -->
+            <div class="flex items-center gap-4 pt-5">
+              <div class="w-12 h-12 rounded-full bg-[#e6fbf2] flex items-center justify-center flex-shrink-0 text-xl shadow-xs">
+                📞
+              </div>
               <div>
-                <span class="text-[11px] font-bold text-slate-400 uppercase tracking-wider block">Immediate Telephone Booking</span>
-                <a href="tel:18005550199" class="text-[14px] font-bold text-[#0066cc] hover:underline">+1 (800) 555-0199</a>
+                <span class="text-[11px] font-bold text-[#8a9bb0] uppercase tracking-[0.06em] block">
+                  IMMEDIATE TELEPHONE BOOKING
+                </span>
+                <a 
+                  href="tel:18005550199" 
+                  class="text-[15px] sm:text-[16px] font-bold text-[#0066cc] hover:underline mt-0.5 block leading-snug"
+                >
+                  +1 (800) 555-0199
+                </a>
               </div>
             </div>
+
           </div>
         </div>
 

@@ -538,10 +538,71 @@ if (closeBtn) {
 // 5. Book Appointment Form Handling
 document.addEventListener('DOMContentLoaded', () => {
   const bookDateInput = document.getElementById('bookDate');
-  if (bookDateInput) {
-    const today = new Date().toISOString().split('T')[0];
-    bookDateInput.min = today;
-    bookDateInput.value = today;
+  const datePillsContainer = document.getElementById('datePillsContainer');
+  
+  if (datePillsContainer && bookDateInput) {
+    const today = new Date();
+    const upcomingDays = [];
+    
+    for (let i = 0; i < 6; i++) {
+      const d = new Date(today);
+      d.setDate(today.getDate() + i);
+      const dateStr = d.toISOString().split('T')[0];
+      const dayName = i === 0 ? 'Today' : i === 1 ? 'Tomorrow' : d.toLocaleDateString('en-US', { weekday: 'short' });
+      const monthDay = d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+      upcomingDays.push({ dateStr, dayName, monthDay });
+    }
+
+    bookDateInput.min = upcomingDays[0].dateStr;
+    bookDateInput.value = upcomingDays[0].dateStr;
+
+    // Render pills
+    datePillsContainer.innerHTML = upcomingDays.map((d, index) => `
+      <button
+        type="button"
+        data-date="${d.dateStr}"
+        class="date-pill-btn py-2.5 px-1 rounded-xl text-center flex flex-col items-center justify-center transition-all cursor-pointer border ${
+          index === 0
+            ? 'bg-[#07234b] text-white border-[#07234b] shadow-md ring-2 ring-sky-200 scale-[1.02]'
+            : 'bg-slate-50 hover:bg-slate-100 text-[#07234b] border-slate-200/80 hover:border-slate-300'
+        }"
+      >
+        <span class="text-[10px] uppercase font-bold tracking-tight ${index === 0 ? 'text-sky-300' : 'text-slate-400'}">
+          ${d.dayName}
+        </span>
+        <span class="text-[12.5px] font-bold mt-0.5">
+          ${d.monthDay}
+        </span>
+      </button>
+    `).join('');
+
+    const pillButtons = datePillsContainer.querySelectorAll('.date-pill-btn');
+    
+    const updatePillSelection = (selectedDate) => {
+      pillButtons.forEach(btn => {
+        const isMatch = btn.getAttribute('data-date') === selectedDate;
+        const daySpan = btn.querySelector('span:first-child');
+        if (isMatch) {
+          btn.className = 'date-pill-btn py-2.5 px-1 rounded-xl text-center flex flex-col items-center justify-center transition-all cursor-pointer border bg-[#07234b] text-white border-[#07234b] shadow-md ring-2 ring-sky-200 scale-[1.02]';
+          if (daySpan) daySpan.className = 'text-[10px] uppercase font-bold tracking-tight text-sky-300';
+        } else {
+          btn.className = 'date-pill-btn py-2.5 px-1 rounded-xl text-center flex flex-col items-center justify-center transition-all cursor-pointer border bg-slate-50 hover:bg-slate-100 text-[#07234b] border-slate-200/80 hover:border-slate-300';
+          if (daySpan) daySpan.className = 'text-[10px] uppercase font-bold tracking-tight text-slate-400';
+        }
+      });
+    };
+
+    pillButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const chosenDate = btn.getAttribute('data-date');
+        bookDateInput.value = chosenDate;
+        updatePillSelection(chosenDate);
+      });
+    });
+
+    bookDateInput.addEventListener('change', (e) => {
+      updatePillSelection(e.target.value);
+    });
   }
 
   const timeSlotButtons = document.querySelectorAll('.time-slot-btn');
@@ -550,9 +611,9 @@ document.addEventListener('DOMContentLoaded', () => {
   timeSlotButtons.forEach(btn => {
     btn.addEventListener('click', () => {
       timeSlotButtons.forEach(b => {
-        b.className = 'time-slot-btn py-2 px-1 text-center rounded-lg text-[12px] font-semibold transition-all cursor-pointer bg-slate-50 hover:bg-slate-100 text-slate-600 border border-slate-200/80';
+        b.className = 'time-slot-btn py-2 px-1 text-center rounded-xl text-[12px] font-semibold transition-all cursor-pointer bg-slate-50 hover:bg-slate-100 text-slate-600 border border-slate-200/80';
       });
-      btn.className = 'time-slot-btn py-2 px-1 text-center rounded-lg text-[12px] font-semibold transition-all cursor-pointer bg-[#0066cc] text-white shadow-xs';
+      btn.className = 'time-slot-btn py-2 px-1 text-center rounded-xl text-[12px] font-semibold transition-all cursor-pointer bg-[#0066cc] text-white shadow-md ring-2 ring-sky-200 scale-[1.02]';
       selectedTimeSlot = btn.getAttribute('data-slot');
     });
   });
