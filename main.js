@@ -980,3 +980,43 @@ if (docModalBackdrop) {
     }
   });
 }
+
+// ---------------------------------------------------------------------------
+// Global Smooth Scrolling via Lenis (Uniform Speed & Inertia Across All Sections)
+// ---------------------------------------------------------------------------
+if (typeof Lenis !== 'undefined') {
+  const lenis = new Lenis({
+    duration: 1.2,
+    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+    smoothWheel: true,
+    wheelMultiplier: 0.95,
+    touchMultiplier: 1.5,
+  });
+
+  function lenisRaf(time) {
+    lenis.raf(time);
+    requestAnimationFrame(lenisRaf);
+  }
+  requestAnimationFrame(lenisRaf);
+  window.__lenis = lenis;
+
+  document.querySelectorAll('a[href*="#"]').forEach((anchor) => {
+    anchor.addEventListener('click', function (e) {
+      const href = this.getAttribute('href');
+      if (!href) return;
+      const hashIndex = href.indexOf('#');
+      if (hashIndex === -1) return;
+      const hash = href.slice(hashIndex);
+      if (hash === '#' || hash === '') return;
+
+      const targetEl = document.querySelector(hash);
+      if (targetEl) {
+        e.preventDefault();
+        lenis.scrollTo(targetEl, {
+          offset: -40,
+          duration: 1.2,
+        });
+      }
+    });
+  });
+}

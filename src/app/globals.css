@@ -9,12 +9,28 @@
   --foreground: #0c2752;
 }
 
-html, body {
+html {
+  background-color: #ffffff;
+  color: #0c2752;
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+}
+
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+body {
   background-color: #ffffff;
   color: #0c2752;
   font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
   overflow-x: hidden;
-  scroll-behavior: smooth;
+}
+
+/* Ensure modal & dropdown scroll containers are isolated from main page scroll */
+[data-lenis-prevent],
+.lenis-prevent,
+.no-scrollbar {
+  overscroll-behavior: contain;
 }
 
 /* Hardware-accelerated persistent raster caching for zero flickering on fast scroll */

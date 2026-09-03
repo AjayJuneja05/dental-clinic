@@ -1,4 +1,5 @@
 import "./globals.css";
+import SmoothScroll from "../components/SmoothScroll";
 
 export const metadata = {
   title: "Celestia Smiles — Luxury Orthodontics & Dental Studio",
@@ -17,7 +18,11 @@ export default function RootLayout({ children }) {
         <link rel="preload" as="image" href="/assets/service-whitening.webp" type="image/webp" />
         <link rel="preload" as="image" href="/assets/service-surgical.webp" type="image/webp" />
       </head>
-      <body className="antialiased">{children}</body>
+      <body className="antialiased">
+        <SmoothScroll>
+          {children}
+        </SmoothScroll>
+      </body>
     </html>
   );
 }
