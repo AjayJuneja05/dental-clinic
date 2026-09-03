@@ -117,7 +117,7 @@ export default function AdvancedTechnology() {
   };
 
   return (
-    <section id="technology" className="w-full py-16 sm:py-20 lg:py-24 bg-gradient-to-b from-[#edf6ff] via-[#f6faff] to-[#e9f4ff] border-y border-sky-100/80 relative overflow-hidden select-none">
+    <section id="technology" className="w-full py-20 sm:py-24 lg:py-28 bg-gradient-to-b from-[#edf6ff] via-[#f6faff] to-[#e9f4ff] border-y border-sky-100/80 relative overflow-hidden select-none">
       
       {/* Background Soft Skyblue Ambient Glows */}
       <div className="absolute top-1/4 left-5 w-[450px] h-[450px] bg-sky-200/50 rounded-full blur-3xl pointer-events-none -z-0"></div>
@@ -126,10 +126,10 @@ export default function AdvancedTechnology() {
       <div className="w-full max-w-[1500px] mx-auto px-5 sm:px-12 lg:px-20 relative z-10">
         
         {/* Top Grid: Left Content & Interactive Expandable Cards vs Right Workstation Visual */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 xl:gap-16 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 xl:gap-16 items-center">
           
           {/* LEFT COLUMN (Span 5): Heading, Subtitle & 4 Expandable Cards */}
-          <div className="lg:col-span-5 flex flex-col justify-start">
+          <div className="lg:col-span-5 flex flex-col justify-center">
             
             {/* Pill Eyebrow Badge */}
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-sky-200 text-[#0066cc] text-[12px] font-bold tracking-wide uppercase mb-5 self-start shadow-xs">
@@ -234,7 +234,7 @@ export default function AdvancedTechnology() {
           </div>
 
           {/* RIGHT COLUMN (Span 7): High-Tech Workstation Card & Floating Badge */}
-          <div className="lg:col-span-7 relative sticky top-24">
+          <div className="lg:col-span-7 relative">
             <div className="relative w-full rounded-[28px] sm:rounded-[36px] overflow-hidden bg-slate-900 border border-sky-100 shadow-[0_20px_50px_-15px_rgba(7,35,75,0.12)] group">
               
               {/* Workstation Image */}
