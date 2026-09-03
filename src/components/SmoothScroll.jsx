@@ -8,15 +8,14 @@ export default function SmoothScroll({ children }) {
   const lenisRef = useRef(null);
 
   useEffect(() => {
-    // Initialize Lenis for buttery-smooth, uniform inertial scrolling throughout the entire app
+    // Initialize Lenis with constant linear damping (lerp) so scroll speed is identical throughout the entire app
     const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      lerp: 0.1, // Constant uniform damping - eliminates acceleration spikes & slow crawl zones
       orientation: 'vertical',
       gestureOrientation: 'vertical',
       smoothWheel: true,
-      wheelMultiplier: 0.95,
-      touchMultiplier: 1.5,
+      wheelMultiplier: 1.0, // Consistent, fixed 1:1 wheel translation everywhere
+      touchMultiplier: 1.0,
       syncTouch: false,
       autoResize: true,
     });

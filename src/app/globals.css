@@ -33,12 +33,11 @@ body {
   overscroll-behavior: contain;
 }
 
-/* Hardware-accelerated persistent raster caching for zero flickering on fast scroll */
+/* Hardware-accelerated persistent raster caching for zero flickering on scroll */
 img {
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
   transform: translateZ(0);
-  content-visibility: auto;
 }
 
 .gpu-accelerated {
