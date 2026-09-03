@@ -1,0 +1,753 @@
+/* ==========================================================================
+   CORE VALUES — Reference Video Exact GSAP Flip Implementation
+   ========================================================================== */
+
+.cv-section {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+  background: #09090b;
+  color: #ffffff;
+  padding: 100px 0 120px;
+  font-family: 'Plus Jakarta Sans', Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  user-select: none;
+}
+
+/* Background grid overlay */
+.cv-background-grid {
+  position: absolute;
+  inset: 0;
+  opacity: 0.12;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 64px 64px;
+  pointer-events: none;
+}
+
+.cv-container {
+  position: relative;
+  width: min(1440px, calc(100% - 80px));
+  margin: 0 auto;
+}
+
+/* --------------------------------------------------------------------------
+   HEADER
+   -------------------------------------------------------------------------- */
+.cv-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 50px;
+  gap: 30px;
+}
+
+.cv-heading {
+  max-width: 680px;
+}
+
+.cv-heading h2 {
+  margin: 0;
+  font-size: clamp(34px, 4.5vw, 54px);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  color: #ffffff;
+  line-height: 1.05;
+  text-transform: uppercase;
+}
+
+.cv-heading p {
+  margin: 14px 0 0;
+  color: #94a3b8;
+  font-size: 15px;
+  line-height: 1.6;
+  max-width: 580px;
+  font-weight: 400;
+}
+
+.cv-navigation {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-shrink: 0;
+}
+
+.cv-nav-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.03);
+  color: #ffffff;
+  cursor: pointer;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.25s ease;
+}
+
+.cv-nav-btn:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.35);
+  transform: translateY(-1px);
+}
+
+.cv-nav-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.cv-progress-track {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  width: 140px;
+}
+
+.cv-progress-bar {
+  height: 3px;
+  flex: 1;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 2px;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.cv-progress-bar.active {
+  background: #ffffff;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+/* --------------------------------------------------------------------------
+   CAROUSEL WRAPPER & TRACK
+   -------------------------------------------------------------------------- */
+.cv-carousel-wrapper {
+  width: 100%;
+  overflow: visible;
+  position: relative;
+}
+
+.cv-track {
+  display: flex;
+  gap: 24px;
+  will-change: transform;
+}
+
+/* --------------------------------------------------------------------------
+   CARD STYLES (COLLAPSED)
+   -------------------------------------------------------------------------- */
+.cv-card {
+  position: relative;
+  flex: 0 0 390px;
+  height: 520px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  isolation: isolate;
+  background: #111215;
+  cursor: pointer;
+  transition: border-color 0.35s ease, box-shadow 0.35s ease;
+  overflow: hidden;
+}
+
+.cv-card:hover {
+  border-color: rgba(255, 255, 255, 0.22);
+}
+
+/* Themes matching video */
+.cv-theme-green {
+  background: radial-gradient(circle at 50% 32%, rgba(163, 230, 53, 0.12), transparent 52%), #0d120a;
+}
+.cv-theme-green .cv-corner { border-color: #a3e635; }
+.cv-theme-green .cv-theme-glow { background: #a3e635; }
+.cv-theme-green .cv-badge-accent { color: #a3e635; }
+
+.cv-theme-purple {
+  background: radial-gradient(circle at 50% 32%, rgba(192, 132, 252, 0.14), transparent 52%), #130a18;
+}
+.cv-theme-purple .cv-corner { border-color: #c084fc; }
+.cv-theme-purple .cv-theme-glow { background: #c084fc; }
+.cv-theme-purple .cv-badge-accent { color: #c084fc; }
+
+.cv-theme-cyan {
+  background: radial-gradient(circle at 50% 32%, rgba(34, 211, 238, 0.14), transparent 52%), #071318;
+}
+.cv-theme-cyan .cv-corner { border-color: #22d3ee; }
+.cv-theme-cyan .cv-theme-glow { background: #22d3ee; }
+.cv-theme-cyan .cv-badge-accent { color: #22d3ee; }
+
+.cv-theme-yellow {
+  background: radial-gradient(circle at 50% 32%, rgba(234, 179, 8, 0.12), transparent 52%), #141108;
+}
+.cv-theme-yellow .cv-corner { border-color: #eab308; }
+.cv-theme-yellow .cv-theme-glow { background: #eab308; }
+.cv-theme-yellow .cv-badge-accent { color: #eab308; }
+
+.cv-theme-orange {
+  background: radial-gradient(circle at 50% 32%, rgba(249, 115, 22, 0.13), transparent 52%), #160c07;
+}
+.cv-theme-orange .cv-corner { border-color: #f97316; }
+.cv-theme-orange .cv-theme-glow { background: #f97316; }
+.cv-theme-orange .cv-badge-accent { color: #f97316; }
+
+/* 4 Corner brackets */
+.cv-corner {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  z-index: 10;
+  pointer-events: none;
+  opacity: 0.85;
+}
+
+.cv-corner.top-left {
+  top: 14px;
+  left: 14px;
+  border-top: 1.5px solid;
+  border-left: 1.5px solid;
+}
+
+.cv-corner.top-right {
+  top: 14px;
+  right: 14px;
+  border-top: 1.5px solid;
+  border-right: 1.5px solid;
+}
+
+.cv-corner.bottom-left {
+  bottom: 14px;
+  left: 14px;
+  border-bottom: 1.5px solid;
+  border-left: 1.5px solid;
+}
+
+.cv-corner.bottom-right {
+  bottom: 14px;
+  right: 14px;
+  border-bottom: 1.5px solid;
+  border-right: 1.5px solid;
+}
+
+/* Card Glow */
+.cv-theme-glow {
+  position: absolute;
+  width: 220px;
+  height: 220px;
+  left: 50%;
+  top: 38%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  filter: blur(65px);
+  opacity: 0.16;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* --------------------------------------------------------------------------
+   ARTWORK STYLES (ISOMETRIC 3D)
+   -------------------------------------------------------------------------- */
+.cv-artwork-area {
+  position: relative;
+  width: 100%;
+  height: 290px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 900px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.cv-iso-wrapper {
+  position: relative;
+  transform: rotateX(55deg) rotateZ(-22deg);
+  transform-style: preserve-3d;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* --- Artwork 1: Security (Crypto Key Card Stack) --- */
+.cv-card-stack {
+  position: relative;
+  width: 230px;
+  height: 145px;
+  transform-style: preserve-3d;
+}
+
+.cv-iso-card {
+  position: absolute;
+  inset: 0;
+  border-radius: 10px;
+  background: rgba(22, 27, 24, 0.85);
+  border: 1px solid rgba(163, 230, 53, 0.35);
+  backdrop-filter: blur(12px);
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.6);
+  transition: transform 0.5s ease;
+}
+
+.cv-iso-card.card-primary {
+  transform: translateZ(40px);
+  background: rgba(18, 26, 18, 0.9);
+  border-color: rgba(163, 230, 53, 0.5);
+}
+
+.cv-iso-card.card-secondary {
+  transform: translateZ(18px) translateY(-14px) translateX(-14px);
+  background: rgba(14, 20, 14, 0.75);
+  opacity: 0.6;
+}
+
+.cv-iso-card.card-tertiary {
+  transform: translateZ(-5px) translateY(-28px) translateX(-28px);
+  background: rgba(10, 15, 10, 0.5);
+  opacity: 0.35;
+}
+
+.cv-iso-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cv-iso-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: -0.01em;
+}
+
+.cv-iso-badge {
+  font-size: 9px;
+  font-weight: 700;
+  background: rgba(163, 230, 53, 0.15);
+  color: #a3e635;
+  padding: 2px 7px;
+  border-radius: 12px;
+  border: 1px solid rgba(163, 230, 53, 0.3);
+}
+
+.cv-iso-subtext {
+  font-size: 9px;
+  color: #94a3b8;
+  line-height: 1.35;
+  margin: 4px 0;
+}
+
+.cv-iso-wallet {
+  background: rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 6px;
+  padding: 5px 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cv-iso-wallet span {
+  font-size: 8.5px;
+  color: #cbd5e1;
+  font-family: monospace;
+}
+
+.cv-iso-wallet b {
+  font-size: 8px;
+  color: #a3e635;
+  font-weight: 600;
+}
+
+.cv-iso-status {
+  font-size: 8px;
+  color: #86efac;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* --- Artwork 2: Elegance (Password Strength Alert) --- */
+.cv-alert-card {
+  position: absolute;
+  inset: 0;
+  border-radius: 10px;
+  background: rgba(30, 16, 38, 0.9);
+  border: 1px solid rgba(192, 132, 252, 0.45);
+  backdrop-filter: blur(12px);
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.6);
+  transform: translateZ(35px);
+}
+
+.cv-alert-badge {
+  font-size: 8.5px;
+  color: #f43f5e;
+  background: rgba(244, 63, 94, 0.18);
+  padding: 2px 6px;
+  border-radius: 8px;
+  font-weight: 600;
+}
+
+.cv-button-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-top: 4px;
+}
+
+.cv-iso-btn-primary {
+  background: linear-gradient(135deg, #a855f7, #d946ef);
+  color: #ffffff;
+  border: none;
+  font-size: 9px;
+  font-weight: 700;
+  padding: 5px 10px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+.cv-iso-btn-secondary {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #e2e8f0;
+  font-size: 8.5px;
+  padding: 4px 8px;
+  border-radius: 5px;
+  text-align: center;
+}
+
+/* --- Artwork 3: Transparency (Stacked Cyan Glass Plates with Asterisk) --- */
+.cv-glass-stack {
+  position: relative;
+  width: 200px;
+  height: 150px;
+  transform-style: preserve-3d;
+}
+
+.cv-glass-layer {
+  position: absolute;
+  inset: 0;
+  border-radius: 10px;
+  border: 1.5px solid rgba(34, 211, 238, 0.45);
+  background: rgba(34, 211, 238, 0.06);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5), inset 0 0 25px rgba(34, 211, 238, 0.08);
+}
+
+.cv-glass-layer.layer-top {
+  transform: translateZ(50px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cv-glass-layer.layer-mid {
+  transform: translateZ(25px);
+  opacity: 0.8;
+}
+
+.cv-glass-layer.layer-bottom {
+  transform: translateZ(0px);
+  opacity: 0.4;
+}
+
+.cv-asterisk-icon {
+  font-size: 56px;
+  color: #22d3ee;
+  line-height: 1;
+  text-shadow: 0 0 24px rgba(34, 211, 238, 0.85);
+}
+
+/* --- Artwork 4: Empowerment (Data Control Settings) --- */
+.cv-control-card {
+  position: absolute;
+  inset: 0;
+  border-radius: 10px;
+  background: rgba(30, 26, 12, 0.9);
+  border: 1px solid rgba(234, 179, 8, 0.45);
+  backdrop-filter: blur(12px);
+  padding: 13px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.6);
+  transform: translateZ(35px);
+}
+
+.cv-control-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-top: 6px;
+}
+
+.cv-control-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 5px;
+  padding: 4px 8px;
+  font-size: 8.5px;
+  color: #f1f5f9;
+}
+
+/* --- Artwork 5: Human-First Design (Code Stream Matrix) --- */
+.cv-matrix-card {
+  position: absolute;
+  inset: 0;
+  border-radius: 10px;
+  background: rgba(22, 18, 14, 0.92);
+  border: 1px solid rgba(249, 115, 22, 0.45);
+  backdrop-filter: blur(12px);
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.6);
+  transform: translateZ(35px);
+}
+
+.cv-code-box {
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 6px;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.cv-code-stream {
+  font-family: monospace;
+  font-size: 9px;
+  color: rgba(255, 255, 255, 0.4);
+  letter-spacing: 0.1em;
+}
+
+.cv-code-asterisk {
+  font-size: 26px;
+  color: #ffffff;
+  text-shadow: 0 0 16px rgba(255, 255, 255, 0.8);
+}
+
+/* --------------------------------------------------------------------------
+   CARD FOOTER / CONTENT (COLLAPSED)
+   -------------------------------------------------------------------------- */
+.cv-card-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  position: relative;
+  z-index: 5;
+  gap: 12px;
+}
+
+.cv-card-meta {
+  flex: 1;
+}
+
+.cv-card-title {
+  font-size: 21px;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 6px;
+  letter-spacing: -0.02em;
+}
+
+.cv-card-short {
+  font-size: 12.5px;
+  color: #94a3b8;
+  line-height: 1.5;
+  margin: 0;
+  max-width: 270px;
+}
+
+.cv-expand-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.04);
+  color: #ffffff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  line-height: 1;
+  transition: all 0.25s ease;
+  flex-shrink: 0;
+}
+
+.cv-expand-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+/* --------------------------------------------------------------------------
+   EXPANDED STATE (GSAP FLIP TARGET)
+   -------------------------------------------------------------------------- */
+.cv-card-expanded {
+  flex: 0 0 840px !important;
+  height: 540px !important;
+  z-index: 50;
+  box-shadow: 0 35px 90px rgba(0, 0, 0, 0.85);
+  cursor: default;
+}
+
+.cv-card-expanded .cv-artwork-area {
+  position: absolute;
+  right: 20px;
+  top: 30px;
+  width: 52%;
+  height: 440px;
+}
+
+.cv-card-expanded .cv-iso-wrapper {
+  transform: rotateX(50deg) rotateZ(-16deg) scale(1.22);
+}
+
+.cv-card-expanded .cv-card-bottom {
+  position: absolute;
+  left: 36px;
+  bottom: 36px;
+  width: 44%;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.cv-card-expanded .cv-card-meta {
+  width: 100%;
+}
+
+.cv-card-expanded .cv-card-title {
+  font-size: 34px;
+  margin-bottom: 12px;
+  letter-spacing: -0.03em;
+}
+
+.cv-card-expanded .cv-card-short {
+  display: none;
+}
+
+.cv-expanded-body {
+  display: none;
+  font-size: 13.5px;
+  color: #94a3b8;
+  line-height: 1.75;
+  margin: 0;
+}
+
+.cv-card-expanded .cv-expanded-body {
+  display: block;
+}
+
+.cv-card-expanded .cv-expand-btn {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.35);
+}
+
+/* Fanned out layers on expand for Security card */
+.cv-card-expanded .cv-iso-card.card-primary {
+  transform: translateZ(65px) translateY(10px) translateX(10px);
+}
+.cv-card-expanded .cv-iso-card.card-secondary {
+  transform: translateZ(25px) translateY(-18px) translateX(-18px);
+  opacity: 0.85;
+}
+.cv-card-expanded .cv-iso-card.card-tertiary {
+  transform: translateZ(-15px) translateY(-45px) translateX(-45px);
+  opacity: 0.7;
+}
+
+/* --------------------------------------------------------------------------
+   RESPONSIVE DESIGN
+   -------------------------------------------------------------------------- */
+@media (max-width: 1100px) {
+  .cv-card {
+    flex-basis: 350px;
+  }
+  .cv-card-expanded {
+    flex-basis: 720px !important;
+  }
+}
+
+@media (max-width: 900px) {
+  .cv-section {
+    padding: 70px 0 90px;
+  }
+  .cv-container {
+    width: calc(100% - 36px);
+  }
+  .cv-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .cv-card {
+    flex-basis: 340px;
+    height: 500px;
+  }
+
+  /* Full mobile modal overlay for expanded card */
+  .cv-card-expanded {
+    position: fixed !important;
+    inset: 16px !important;
+    width: auto !important;
+    height: calc(100vh - 32px) !important;
+    flex-basis: auto !important;
+    z-index: 9999;
+    border-radius: 16px;
+    padding: 24px;
+  }
+
+  .cv-card-expanded .cv-artwork-area {
+    position: relative;
+    right: auto;
+    top: 0;
+    width: 100%;
+    height: 250px;
+  }
+
+  .cv-card-expanded .cv-iso-wrapper {
+    transform: rotateX(50deg) rotateZ(-16deg) scale(0.95);
+  }
+
+  .cv-card-expanded .cv-card-bottom {
+    position: relative;
+    left: auto;
+    bottom: auto;
+    width: 100%;
+    margin-top: 18px;
+  }
+
+  .cv-card-expanded .cv-card-title {
+    font-size: 26px;
+  }
+
+  .cv-card-expanded .cv-expanded-body {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 600px) {
+  .cv-card {
+    flex-basis: 82vw;
+    height: 480px;
+  }
+}
