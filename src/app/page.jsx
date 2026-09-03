@@ -4,7 +4,6 @@ import Navbar from "../components/Navbar";
 import Hero from "../components/Hero";
 import WhyChooseUs from "../components/WhyChooseUs";
 import Services from "../components/Services";
-import CoreValues from "../components/CoreValues";
 import Specialists from "../components/Specialists";
 import AdvancedTechnology from "../components/AdvancedTechnology";
 import BookAppointment from "../components/BookAppointment";
@@ -17,7 +16,6 @@ export default function Home() {
       <Hero />
       <WhyChooseUs />
       <Services />
-      <CoreValues />
       <Specialists />
       <AdvancedTechnology />
       <BookAppointment />
