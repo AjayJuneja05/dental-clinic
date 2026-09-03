@@ -2,86 +2,41 @@
   {
     "id": "aesthetic",
     "title": "Aesthetic Dentistry",
-    "category": "Cosmetic",
-    "badge": "Most Popular",
     "headline": "Natural smile enhancement & porcelain artistry",
-    "description": "We enhance the natural beauty of your smile with personalized treatments designed to improve the shape, colour, proportion, and overall appearance of your teeth with lifelong ceramic durability.",
+    "description": "We enhance the natural beauty of your smile with personalized treatments designed to improve the shape, colour, proportion, and overall appearance of your teeth while keeping your results natural-looking.",
     "image": "/assets/service-aesthetic.webp",
-    "duration": "60 Mins",
-    "rating": "4.9/5 (420+ smiles)",
-    "features": [
-      "Custom Porcelain & E-Max Veneers",
-      "Digital Smile Design (DSD) Preview",
-      "Minimally Invasive Enamel Artistry"
-    ],
     "isActive": true
   },
   {
     "id": "ortho",
     "title": "Orthodontics",
-    "category": "Alignment",
-    "badge": "Discreet & Fast",
-    "headline": "Teeth alignment & computerized bite correction",
-    "description": "Orthodontics focuses on straightening teeth and correcting bite alignment for a healthier, more balanced, and confident smile tailored using custom clear aligners or low-profile ceramic braces.",
+    "headline": "Teeth alignment & bite correction",
+    "description": "Orthodontics focuses on straightening teeth and correcting bite alignment for a healthier, more balanced, and confident smile. Treatment can be tailored using braces or clear aligners.",
     "image": "/assets/service-ortho.webp",
-    "duration": "30 Mins Visit",
-    "rating": "4.9/5 (280+ smiles)",
-    "features": [
-      "Invisible Custom Clear Aligners",
-      "3D Digital Movement Tracking",
-      "Accelerated Orthodontic Protocol"
-    ],
     "isActive": true
   },
   {
     "id": "implant",
     "title": "Implantology",
-    "category": "Restorative",
-    "badge": "Lifetime Durability",
-    "headline": "Permanent tooth replacement & 3D guided surgery",
-    "description": "Dental implants replace missing teeth with strong, natural-looking biocompatible titanium restorations engineered to restore full chewing strength, bone integrity, and aesthetic symmetry.",
+    "headline": "Permanent tooth replacement & restoration",
+    "description": "Dental implants replace missing teeth with strong, natural-looking restorations designed to restore your smile, chewing function, and confidence.",
     "image": "/assets/service-implant.webp",
-    "duration": "Same-Day Option",
-    "rating": "5.0/5 (310+ smiles)",
-    "features": [
-      "3D Computer-Guided Navigation",
-      "Premium Bio-Titanium Implants",
-      "Single Tooth to Full-Arch Fixed"
-    ],
     "isActive": true
   },
   {
     "id": "whitening",
     "title": "Teeth Whitening",
-    "category": "Cosmetic",
-    "badge": "Instant Glow",
-    "headline": "Enamel-safe brightness & deep stain removal",
-    "description": "Medical-grade laser teeth whitening safely breaks down deep intrinsic stains and discolouration, lifting your shade up to 8 levels in one comfortable, enamel-remineralizing session.",
+    "headline": "Enamel-safe brightness & stain removal",
+    "description": "Professional teeth whitening safely reduces stains and discolouration, helping create a brighter, fresher-looking smile while maintaining a natural appearance.",
     "image": "/assets/service-whitening.webp",
-    "duration": "45 Mins Session",
-    "rating": "4.9/5 (560+ smiles)",
-    "features": [
-      "Cold-Light Laser Activation",
-      "Zero Sensitivity Desensitizer",
-      "Take-Home Maintenance Kit Included"
-    ],
     "isActive": true
   },
   {
     "id": "surgical",
     "title": "Surgical Dentistry",
-    "category": "Specialized",
-    "badge": "Sedation Available",
-    "headline": "Specialized surgical care & gentle recovery protocols",
-    "description": "Precise microsurgical treatments for complex dental conditions, wisdom teeth removal, and bone regeneration, conducted in a serene surgical suite with sleep dentistry options.",
+    "headline": "Specialized surgical care & gentle recovery",
+    "description": "Surgical dentistry provides precise treatment for complex dental problems that require surgical care, with a focus on comfort, safety, and long-term oral health.",
     "image": "/assets/service-surgical.webp",
-    "duration": "Gentle Care",
-    "rating": "4.9/5 (190+ smiles)",
-    "features": [
-      "Comfort-First Sleep & Twilight Sedation",
-      "Platelet-Rich PRF Accelerated Healing",
-      "Minimally Invasive Ultrasonic Surgery"
-    ],
     "isActive": true
   }
 ]
