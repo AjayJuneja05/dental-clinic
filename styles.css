@@ -180,10 +180,10 @@ html, body {
   }
 }
 
-/* ========== INFINITE SPECIALISTS MARQUEE ========== */
+/* ========== INFINITE SPECIALISTS MARQUEE (left to right, continuous without stopping) ========== */
 @keyframes marqueeScroll {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
 }
 
 .marquee-track {
@@ -191,10 +191,6 @@ html, body {
   width: max-content;
   animation: marqueeScroll 35s linear infinite;
   will-change: transform;
-}
-
-.marquee-track:hover {
-  animation-play-state: paused;
 }
 
 /* ========== MODAL ANIMATIONS ========== */

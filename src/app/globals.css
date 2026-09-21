@@ -64,25 +64,21 @@ img {
   font-style: italic;
 }
 
-/* Smooth continuous marquee animation */
-@keyframes continuousScroll {
+/* Smooth continuous marquee animation (left to right, never stops on hover) */
+@keyframes continuousScrollLeftToRight {
   0% {
-    transform: translate3d(0, 0, 0);
+    transform: translate3d(-50%, 0, 0);
   }
   100% {
-    transform: translate3d(-50%, 0, 0);
+    transform: translate3d(0, 0, 0);
   }
 }
 
 .animate-infinite-scroll {
   display: flex;
   width: max-content;
-  animation: continuousScroll 32s linear infinite;
+  animation: continuousScrollLeftToRight 32s linear infinite;
   will-change: transform;
-}
-
-.animate-infinite-scroll:hover {
-  animation-play-state: paused;
 }
 
 /* Modal Animations */
