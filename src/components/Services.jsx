@@ -42,7 +42,7 @@ export default function Services() {
                 key={service.id}
                 onMouseEnter={() => setActiveId(service.id)}
                 onClick={() => handleCardClick(service.id)}
-                className={`h-[320px] rounded-[16px] overflow-hidden relative cursor-pointer shadow-md transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] bg-gradient-to-b from-[#2b6aa9] to-[#1e5491] ${
+                className={`h-[320px] rounded-[16px] overflow-hidden relative cursor-pointer shadow-md transition-[flex] duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] bg-gradient-to-b from-[#2b6aa9] to-[#1e5491] ${
                   isActive ? 'flex-[2.4]' : 'flex-1'
                 }`}
                 style={{
@@ -53,8 +53,8 @@ export default function Services() {
                 <div className="flex w-full h-full relative">
                   
                   {/* Left Side: 50% on active / 100% on normal */}
-                  <div className={`relative h-full flex-shrink-0 flex flex-col justify-end transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-                    isActive ? 'w-1/2 p-6' : 'w-full p-6'
+                  <div className={`relative h-full flex-shrink-0 flex flex-col justify-end p-5 sm:p-6 transition-[width] duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] ${
+                    isActive ? 'w-1/2' : 'w-full'
                   }`}>
                     <img 
                       src={service.image} 
@@ -65,32 +65,32 @@ export default function Services() {
                       className="absolute inset-0 w-full h-full object-cover pointer-events-none transition-transform duration-500 hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#123663]/90 via-transparent to-transparent pointer-events-none"></div>
-                    <p className={`relative z-10 text-white font-semibold leading-tight drop-shadow transition-all duration-300 ${
-                      isActive ? 'text-left text-[22px] font-bold' : 'text-center text-[17px]'
-                    }`}>
+                    <p className="relative z-10 text-white text-[19px] sm:text-[20px] font-bold leading-tight drop-shadow-md text-left transition-transform duration-300">
                       {service.title}
                     </p>
                   </div>
 
-                  {/* Right Side: Complete 50% Full Half Card */}
-                  <div className={`w-1/2 h-full flex-shrink-0 bg-white/12 backdrop-blur-md border-l border-white/20 p-6 flex flex-col justify-between transition-all duration-300 ${
-                    isActive ? 'opacity-100 translate-x-0 pointer-events-auto' : 'opacity-0 translate-x-3 pointer-events-none'
+                  {/* Right Side: Complete 50% Full Half Card with locked inner width to eliminate text shaking */}
+                  <div className={`w-1/2 h-full flex-shrink-0 bg-white/12 backdrop-blur-md border-l border-white/20 p-5 sm:p-6 overflow-hidden transition-all duration-300 ease-out ${
+                    isActive ? 'opacity-100 translate-x-0 pointer-events-auto delay-100' : 'opacity-0 translate-x-3 pointer-events-none'
                   }`}>
-                    <div className="flex items-start justify-between gap-2">
-                      <h4 className="text-white text-[17px] xl:text-[18px] font-bold leading-snug">
-                        {service.headline}
-                      </h4>
-                      <a 
-                        href="#contact" 
-                        className="w-8 h-8 rounded-full bg-white/20 hover:bg-white/35 flex items-center justify-center text-white text-[13px] transition-transform hover:scale-110 flex-shrink-0"
-                        onClick={(e) => e.stopPropagation()}
-                      >
-                        ↗
-                      </a>
+                    <div className="w-full min-w-[190px] sm:min-w-[210px] h-full flex flex-col justify-between">
+                      <div className="flex items-start justify-between gap-2">
+                        <h4 className="text-white text-[16px] xl:text-[17px] font-bold leading-snug">
+                          {service.headline}
+                        </h4>
+                        <a 
+                          href="#schedule" 
+                          className="w-8 h-8 rounded-full bg-white/20 hover:bg-white/35 flex items-center justify-center text-white text-[13px] transition-transform hover:scale-110 flex-shrink-0"
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          ↗
+                        </a>
+                      </div>
+                      <p className="text-white/85 text-[12px] xl:text-[12.5px] font-normal leading-[1.6]">
+                        {service.description}
+                      </p>
                     </div>
-                    <p className="text-white/85 text-[12.5px] xl:text-[13px] font-normal leading-[1.6]">
-                      {service.description}
-                    </p>
                   </div>
 
                 </div>
