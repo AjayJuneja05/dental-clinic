@@ -8,8 +8,17 @@ export default function Hero() {
       <div className="flex flex-col items-center text-center gap-6 pt-8 pb-4 lg:hidden">
         
         {/* Mobile Heading */}
-        <h1 className="hero-heading text-[36px] sm:text-[44px] font-bold italic text-[#0c2752] leading-[1.06] tracking-[-0.03em]">
-          Not all <span className="text-[#0284c7]">smiles</span><br />
+        <h1 className="hero-heading text-[36px] sm:text-[44px] font-bold italic text-[#0c2752] leading-[1.12] tracking-[-0.03em]">
+          Not all{' '}
+          <span className="relative inline-block text-[#0284c7]">
+            smiles
+            <img 
+              src="/assets/smile-curve.png" 
+              alt="smile" 
+              className="absolute -bottom-1.5 sm:-bottom-2 left-0 w-full h-auto object-contain pointer-events-none select-none"
+            />
+          </span>
+          <br />
           need fixing, some<br />
           need vision
         </h1>
@@ -54,8 +63,17 @@ export default function Hero() {
 
         {/* LEFT COLUMN */}
         <div className="absolute left-8 sm:left-12 lg:left-20 top-[10%] z-20 max-w-[420px] xl:max-w-[480px]">
-          <h1 className="hero-heading text-[56px] xl:text-[64px] 2xl:text-[72px] font-bold italic text-[#0c2752] leading-[1.04] tracking-[-0.03em]">
-            Not all <span className="text-[#0284c7]">smiles</span><br />
+          <h1 className="hero-heading text-[56px] xl:text-[64px] 2xl:text-[72px] font-bold italic text-[#0c2752] leading-[1.1] tracking-[-0.03em]">
+            Not all{' '}
+            <span className="relative inline-block text-[#0284c7]">
+              smiles
+              <img 
+                src="/assets/smile-curve.png" 
+                alt="smile" 
+                className="absolute -bottom-2 xl:-bottom-3 left-0 w-full h-auto object-contain pointer-events-none select-none"
+              />
+            </span>
+            <br />
             need fixing, some<br />
             need vision
           </h1>
