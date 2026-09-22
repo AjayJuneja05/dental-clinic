@@ -1,15 +1,27 @@
 'use client';
 
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import servicesData from '@/data/services.json';
 
 const SERVICES_DATA = servicesData;
 
 export default function Services() {
   const [activeId, setActiveId] = useState(null);
+  const router = useRouter();
 
   const handleCardClick = (id) => {
-    setActiveId(prev => (prev === id ? null : id));
+    // If the card is already active (expanded on hover or tap), clicking navigates to that service on the service page
+    if (activeId === id) {
+      router.push(`/services#${id}`);
+    } else {
+      setActiveId(id);
+      // On desktop, clicking any service card navigates directly to the service page
+      if (typeof window !== 'undefined' && window.innerWidth >= 1024) {
+        router.push(`/services#${id}`);
+      }
+    }
   };
 
   return (
@@ -18,7 +30,9 @@ export default function Services() {
       {/* Section Header */}
       <div className="text-center max-w-[700px] mx-auto mb-12 sm:mb-14">
         <p className="text-[12px] sm:text-[13px] font-bold text-[#475569] tracking-[0.2em] uppercase mb-3">
-          Services
+          <Link href="/services" className="hover:text-sky-600 transition-colors">
+            Services
+          </Link>
         </p>
         <h2 className="text-[36px] sm:text-[46px] lg:text-[54px] font-bold text-[#0c2752] leading-[1.1] tracking-[-0.03em]">
           Expert care for every smile
@@ -79,17 +93,24 @@ export default function Services() {
                         <h4 className="text-white text-[16px] xl:text-[17px] font-bold leading-snug">
                           {service.headline}
                         </h4>
-                        <a 
-                          href="#schedule" 
+                        <Link 
+                          href={`/services#${service.id}`} 
                           className="w-8 h-8 rounded-full bg-white/20 hover:bg-white/35 flex items-center justify-center text-white text-[13px] transition-transform hover:scale-110 flex-shrink-0"
                           onClick={(e) => e.stopPropagation()}
+                          aria-label={`View ${service.title} details`}
                         >
                           ↗
-                        </a>
+                        </Link>
                       </div>
                       <p className="text-white/85 text-[12px] xl:text-[12.5px] font-normal leading-[1.6]">
                         {service.description}
                       </p>
+                      <div className="pt-2 border-t border-white/15 flex items-center justify-between">
+                        <span className="text-[11.5px] font-semibold text-sky-200 hover:text-white flex items-center gap-1.5 transition-colors">
+                          <span>View treatment details</span>
+                          <span>→</span>
+                        </span>
+                      </div>
                     </div>
                   </div>
 

@@ -1,5 +1,6 @@
 'use client';
 
+import { useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import Transformations from '@/components/Transformations';
 import Footer from '@/components/Footer';
@@ -84,6 +85,18 @@ const DETAILED_SERVICES = [
 ];
 
 export default function ServicesPage() {
+  useEffect(() => {
+    if (typeof window !== 'undefined' && window.location.hash) {
+      const targetId = window.location.hash.substring(1);
+      const el = document.getElementById(targetId);
+      if (el) {
+        setTimeout(() => {
+          el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 150);
+      }
+    }
+  }, []);
+
   return (
     <div className="min-h-screen bg-white text-[#0c2752] flex flex-col">
       <Navbar />
@@ -111,7 +124,8 @@ export default function ServicesPage() {
           {DETAILED_SERVICES.map((serv) => (
             <div 
               key={serv.id}
-              className="bg-white rounded-[24px] p-6 border border-slate-200/90 shadow-[0_10px_30px_-10px_rgba(12,39,82,0.06)] hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between"
+              id={serv.id}
+              className="scroll-mt-32 bg-white rounded-[24px] p-6 border border-slate-200/90 shadow-[0_10px_30px_-10px_rgba(12,39,82,0.06)] hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between target:ring-2 target:ring-sky-500 target:shadow-sky-100"
             >
               <div>
                 <div className="w-full h-[200px] rounded-[18px] overflow-hidden relative mb-5 bg-slate-100">

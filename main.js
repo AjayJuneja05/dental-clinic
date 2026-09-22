@@ -266,7 +266,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
   serviceCards.forEach(card => {
     card.addEventListener('mouseenter', () => setActiveCard(card));
-    card.addEventListener('click', () => setActiveCard(card));
+    card.addEventListener('click', (e) => {
+      if (e.target.closest('a')) return;
+      const serviceId = card.getAttribute('data-service');
+      if (card.classList.contains('is-active') && serviceId) {
+        window.location.href = `/services#${serviceId}`;
+      } else {
+        setActiveCard(card);
+        if (window.innerWidth >= 1024 && serviceId) {
+          window.location.href = `/services#${serviceId}`;
+        }
+      }
+    });
   });
 
   // 3. Specialists Infinite Marquee Renderer
