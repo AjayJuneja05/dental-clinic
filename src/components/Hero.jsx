@@ -8,28 +8,29 @@ export default function Hero() {
       <div className="flex flex-col items-center text-center gap-6 pt-8 pb-4 lg:hidden">
         
         {/* Mobile Heading */}
-        <h1 className="hero-heading text-[36px] sm:text-[44px] font-bold italic text-[#0c2752] leading-[1.14] sm:leading-[1.16] tracking-[-0.03em]">
-          Not all{' '}
-          <span className="relative inline-block text-[#0284c7]">
-            smiles
-            <svg 
-              viewBox="0 0 160 30" 
-              fill="none" 
-              xmlns="http://www.w3.org/2000/svg"
-              aria-hidden="true"
-              className="absolute left-[48%] -translate-x-1/2 top-[95%] w-[75%] max-w-[100px] h-auto pointer-events-none select-none text-[#0284c7]"
-            >
-              <path 
-                d="M 6 6 C 36 21 56 25 80 25 C 104 25 124 21 154 6" 
-                stroke="currentColor" 
-                strokeWidth="5" 
-                strokeLinecap="round" 
-              />
-            </svg>
+        <h1 className="hero-heading text-[32px] sm:text-[40px] font-bold italic text-[#0c2752] leading-[1.14] sm:leading-[1.16] tracking-[-0.03em]">
+          <span className="block whitespace-nowrap">
+            Not all{' '}
+            <span className="relative inline-block text-[#0284c7]">
+              smiles
+              <svg 
+                viewBox="0 0 160 30" 
+                fill="none" 
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+                className="absolute left-[48%] -translate-x-1/2 top-[95%] w-[75%] max-w-[100px] h-auto pointer-events-none select-none text-[#0284c7]"
+              >
+                <path 
+                  d="M 6 6 C 36 21 56 25 80 25 C 104 25 124 21 154 6" 
+                  stroke="currentColor" 
+                  strokeWidth="5" 
+                  strokeLinecap="round" 
+                />
+              </svg>
+            </span>
           </span>
-          <br />
-          need fixing, some<br />
-          need vision
+          <span className="block whitespace-nowrap">need fixing, some</span>
+          <span className="block whitespace-nowrap">need vision</span>
         </h1>
 
         <p className="text-[13px] sm:text-[14px] text-[#475569] font-normal leading-[1.7] max-w-[320px] mt-1">
@@ -46,7 +47,7 @@ export default function Hero() {
         </div>
 
         {/* Mobile Right Heading + CTA */}
-        <h2 className="text-[32px] sm:text-[40px] font-bold text-[#0c2752] leading-[1.06] tracking-[-0.03em]">
+        <h2 className="text-[30px] sm:text-[36px] font-bold text-[#0c2752] leading-[1.06] tracking-[-0.03em]">
           Luxury care<br />
           made personal
         </h2>
@@ -68,47 +69,48 @@ export default function Hero() {
       </div>
 
       {/* ========== DESKTOP LAYOUT (absolute positioned, visible at lg+) ========== */}
-      <div className="hidden lg:block absolute inset-0 px-8 sm:px-12 lg:px-20">
+      <div className="hidden lg:block absolute inset-0 px-8 sm:px-12 lg:px-16 xl:px-20">
 
         {/* LEFT COLUMN */}
-        <div className="absolute left-8 sm:left-12 lg:left-20 top-[10%] z-20 max-w-[460px] xl:max-w-[540px]">
-          <h1 className="hero-heading text-[56px] xl:text-[64px] 2xl:text-[72px] font-bold italic text-[#0c2752] leading-[1.14] xl:leading-[1.16] tracking-[-0.03em]">
-            Not all{' '}
-            <span className="relative inline-block text-[#0284c7]">
-              smiles
-              <svg 
-                viewBox="0 0 160 30" 
-                fill="none" 
-                xmlns="http://www.w3.org/2000/svg"
-                aria-hidden="true"
-                className="absolute left-[48%] -translate-x-1/2 top-[95%] w-[75%] max-w-[130px] h-auto pointer-events-none select-none text-[#0284c7]"
-              >
-                <path 
-                  d="M 6 6 C 36 21 56 25 80 25 C 104 25 124 21 154 6" 
-                  stroke="currentColor" 
-                  strokeWidth="5" 
-                  strokeLinecap="round" 
-                />
-              </svg>
+        <div className="absolute left-8 sm:left-12 lg:left-16 xl:left-20 top-[8%] lg:top-[10%] xl:top-[12%] z-20 max-w-[420px] xl:max-w-[500px] 2xl:max-w-[580px]">
+          <h1 className="hero-heading text-[40px] lg:text-[46px] xl:text-[56px] 2xl:text-[68px] font-bold italic text-[#0c2752] leading-[1.14] xl:leading-[1.16] tracking-[-0.03em]">
+            <span className="block whitespace-nowrap">
+              Not all{' '}
+              <span className="relative inline-block text-[#0284c7]">
+                smiles
+                <svg 
+                  viewBox="0 0 160 30" 
+                  fill="none" 
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                  className="absolute left-[48%] -translate-x-1/2 top-[95%] w-[75%] max-w-[130px] h-auto pointer-events-none select-none text-[#0284c7]"
+                >
+                  <path 
+                    d="M 6 6 C 36 21 56 25 80 25 C 104 25 124 21 154 6" 
+                    stroke="currentColor" 
+                    strokeWidth="5" 
+                    strokeLinecap="round" 
+                  />
+                </svg>
+              </span>
             </span>
-            <br />
-            need fixing, some<br />
-            need vision
+            <span className="block whitespace-nowrap">need fixing, some</span>
+            <span className="block whitespace-nowrap">need vision</span>
           </h1>
 
-          <p className="mt-8 text-[14px] xl:text-[15px] text-[#475569] font-normal leading-[1.7] max-w-[300px] xl:max-w-[320px]">
+          <p className="mt-6 xl:mt-8 text-[13px] lg:text-[14px] xl:text-[15px] text-[#475569] font-normal leading-[1.7] max-w-[280px] lg:max-w-[300px] xl:max-w-[320px]">
             We're a premium orthodontic and aesthetic studio crafting confident smiles for those who settle for nothing ordinary.
           </p>
         </div>
 
         {/* RIGHT COLUMN */}
-        <div className="absolute right-8 sm:right-12 lg:right-20 top-[28%] z-20 max-w-[440px] xl:max-w-[520px] text-left">
-          <h2 className="text-[56px] xl:text-[64px] 2xl:text-[72px] font-bold text-[#0c2752] leading-[1.04] tracking-[-0.03em]">
+        <div className="absolute right-8 sm:right-12 lg:right-16 xl:right-20 top-[24%] lg:top-[26%] xl:top-[28%] z-20 max-w-[380px] lg:max-w-[420px] xl:max-w-[500px] text-left">
+          <h2 className="text-[40px] lg:text-[46px] xl:text-[56px] 2xl:text-[68px] font-bold text-[#0c2752] leading-[1.04] tracking-[-0.03em]">
             Luxury care<br />
             made personal
           </h2>
 
-          <a href="#schedule" className="mt-8 inline-flex items-center gap-3 px-7 py-3.5 rounded-full text-white text-[14px] font-medium bg-gradient-to-r from-[#0c8fd1] via-[#0670a8] to-[#0a2754] shadow-lg shadow-sky-700/25 hover:shadow-xl hover:shadow-sky-700/35 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-300 group">
+          <a href="#schedule" className="mt-6 xl:mt-8 inline-flex items-center gap-3 px-6 xl:px-7 py-3 xl:py-3.5 rounded-full text-white text-[13px] xl:text-[14px] font-medium bg-gradient-to-r from-[#0c8fd1] via-[#0670a8] to-[#0a2754] shadow-lg shadow-sky-700/25 hover:shadow-xl hover:shadow-sky-700/35 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-300 group">
             <svg className="w-[18px] h-[18px] text-sky-200 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24">
               <rect x="3" y="4" width="18" height="18" rx="2" ry="3"></rect>
               <line x1="16" y1="2" x2="16" y2="6"></line>
@@ -129,7 +131,7 @@ export default function Hero() {
           <img 
             src="/assets/transparent-tooth.webp" 
             alt="3D Luminous Crystal Tooth" 
-            className="w-[620px] xl:w-[700px] 2xl:w-[760px] h-auto object-contain tooth-float drop-shadow-[0_25px_50px_rgba(2,132,199,0.22)]" 
+            className="w-[460px] lg:w-[500px] xl:w-[600px] 2xl:w-[720px] h-auto object-contain tooth-float drop-shadow-[0_25px_50px_rgba(2,132,199,0.22)]" 
           />
         </div>
 
