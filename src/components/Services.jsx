@@ -66,9 +66,9 @@ export default function Services() {
               >
                 <div className="flex w-full h-full relative">
                   
-                  {/* Left Side: 50% on active / 100% on normal */}
-                  <div className={`relative h-full flex-shrink-0 flex flex-col justify-end p-5 sm:p-6 transition-[width] duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] ${
-                    isActive ? 'w-1/2' : 'w-full'
+                  {/* Left Side: 45% on active / 100% on normal */}
+                  <div className={`relative h-full flex-shrink-0 flex flex-col justify-end p-5 transition-[width] duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] ${
+                    isActive ? 'w-[45%]' : 'w-full'
                   }`}>
                     <img 
                       src={service.image} 
@@ -79,16 +79,16 @@ export default function Services() {
                       className="absolute inset-0 w-full h-full object-cover pointer-events-none transition-transform duration-500 hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#123663]/90 via-transparent to-transparent pointer-events-none"></div>
-                    <p className="relative z-10 text-white text-[19px] sm:text-[20px] font-bold leading-tight drop-shadow-md text-left transition-transform duration-300">
+                    <p className="relative z-10 text-white text-[18px] sm:text-[19px] font-bold leading-tight drop-shadow-md text-left transition-transform duration-300">
                       {service.title}
                     </p>
                   </div>
 
-                  {/* Right Side: Complete 50% Full Half Card with locked inner width to eliminate text shaking */}
-                  <div className={`w-1/2 h-full flex-shrink-0 bg-white/12 backdrop-blur-md border-l border-white/20 p-5 sm:p-6 overflow-hidden transition-all duration-300 ease-out ${
+                  {/* Right Side: 55% Full Half Card with removed min-w to eliminate text cutoff */}
+                  <div className={`w-[55%] h-full flex-shrink-0 bg-white/12 backdrop-blur-md border-l border-white/20 p-4 sm:p-5 overflow-hidden transition-all duration-300 ease-out ${
                     isActive ? 'opacity-100 translate-x-0 pointer-events-auto delay-100' : 'opacity-0 translate-x-3 pointer-events-none'
                   }`}>
-                    <div className="w-full min-w-[190px] sm:min-w-[210px] h-full flex flex-col justify-between">
+                    <div className="w-full h-full flex flex-col justify-between">
                       <div className="flex items-start justify-between gap-2">
                         <h4 className="text-white text-[16px] xl:text-[17px] font-bold leading-snug">
                           {service.headline}
