@@ -906,7 +906,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (bookSubmitBtn) {
         bookSubmitBtn.disabled = false;
         bookSubmitBtn.innerHTML = `
-          <span>Confirm Appointment Request</span>
+          <span>Request Appointment</span>
           <span>➔</span>
         `;
       }

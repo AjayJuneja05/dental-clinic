@@ -595,7 +595,7 @@ export default function BookAppointment() {
                       </>
                     ) : (
                       <>
-                        <span>Confirm Appointment Request</span>
+                        <span>Request Appointment</span>
                         <span>➔</span>
                       </>
                     )}
