@@ -191,7 +191,9 @@ export default function BookAppointment() {
                 </h3>
 
                 <p className="text-[14.5px] text-[#475569] mt-3 max-w-[460px] leading-relaxed">
-                  We have reserved your consultation on <strong className="text-[#07234b]">{formData.date}</strong> at <strong className="text-[#07234b]">{formData.timeSlot}</strong>. A confirmation SMS & email have been sent to your phone.
+                  Your request for an appointment for "{formData.date}" "{formData.timeSlot}" has been successfully submitted.
+                  <br />
+                  You will receive the appointment confirmation via SMS or email once it is confirmed.
                 </p>
 
                 <div className="mt-8 p-5 bg-sky-50/70 border border-sky-100 rounded-2xl w-full max-w-[440px] text-left text-[13px] text-slate-700 space-y-2">

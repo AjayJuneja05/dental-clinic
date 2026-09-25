@@ -885,6 +885,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
       setTimeout(() => {
         if (bookingSuccessName) bookingSuccessName.textContent = `Thank you, ${patientName}!`;
+        const successDesc = document.getElementById('bookingSuccessDesc');
+        if (successDesc) {
+          successDesc.innerHTML = `Your request for an appointment for "${selectedDate}" "${selectedTime}" has been successfully submitted.<br />You will receive the appointment confirmation via SMS or email once it is confirmed.`;
+        }
         appointmentForm.classList.add('hidden');
         if (bookingSuccessBox) bookingSuccessBox.classList.remove('hidden');
       }, 600);
