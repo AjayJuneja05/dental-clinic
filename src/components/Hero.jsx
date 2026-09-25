@@ -8,7 +8,7 @@ export default function Hero() {
       <div className="flex flex-col items-center text-center gap-6 pt-8 pb-4 lg:hidden">
         
         {/* Mobile Heading */}
-        <h1 className="hero-heading text-[32px] sm:text-[40px] font-bold italic text-[#0c2752] leading-[1.14] sm:leading-[1.16] tracking-[-0.03em]">
+        <h1 className="hero-heading text-[32px] sm:text-[40px] font-bold italic text-[#0c2752] leading-[1.15] sm:leading-[1.18] tracking-[-0.03em]">
           <span className="block whitespace-nowrap">
             Not all{' '}
             <span className="relative inline-block text-[#0284c7]">
@@ -29,7 +29,8 @@ export default function Hero() {
               </svg>
             </span>
           </span>
-          <span className="block whitespace-nowrap">need fixing, some</span>
+          <span className="block whitespace-nowrap">need fixing,</span>
+          <span className="block whitespace-nowrap text-[#0c2752]">some</span>
           <span className="block whitespace-nowrap">need vision</span>
         </h1>
 
@@ -72,8 +73,8 @@ export default function Hero() {
       <div className="hidden lg:block absolute inset-0 px-8 sm:px-12 lg:px-16 xl:px-20">
 
         {/* LEFT COLUMN */}
-        <div className="absolute left-8 sm:left-12 lg:left-16 xl:left-20 top-[8%] lg:top-[10%] xl:top-[12%] z-20 max-w-[420px] xl:max-w-[500px] 2xl:max-w-[580px]">
-          <h1 className="hero-heading text-[40px] lg:text-[46px] xl:text-[56px] 2xl:text-[68px] font-bold italic text-[#0c2752] leading-[1.14] xl:leading-[1.16] tracking-[-0.03em]">
+        <div className="absolute left-8 sm:left-12 lg:left-16 xl:left-20 top-[6%] lg:top-[8%] xl:top-[10%] z-20 max-w-[420px] xl:max-w-[500px] 2xl:max-w-[580px]">
+          <h1 className="hero-heading text-[40px] lg:text-[46px] xl:text-[56px] 2xl:text-[68px] font-bold italic text-[#0c2752] leading-[1.16] xl:leading-[1.18] tracking-[-0.03em]">
             <span className="block whitespace-nowrap">
               Not all{' '}
               <span className="relative inline-block text-[#0284c7]">
@@ -94,7 +95,8 @@ export default function Hero() {
                 </svg>
               </span>
             </span>
-            <span className="block whitespace-nowrap">need fixing, some</span>
+            <span className="block whitespace-nowrap">need fixing,</span>
+            <span className="block whitespace-nowrap text-[#0c2752]">some</span>
             <span className="block whitespace-nowrap">need vision</span>
           </h1>
 
