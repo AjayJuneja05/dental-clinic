@@ -602,7 +602,7 @@ export default function BookAppointment() {
                   </button>
 
                   <p className="text-[11px] text-slate-400 text-center mt-2.5">
-                    🔒 No upfront payment required • Free cancellation up to 24 hours prior
+                    🔒 No upfront payment required.
                   </p>
                 </div>
 
