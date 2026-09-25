@@ -662,21 +662,53 @@ export default function BookAppointment() {
                 ))}
               </div>
 
-              {/* CTA Button */}
-              <button
-                type="button"
-                onClick={() => {
-                  const nameInput = document.querySelector('input[placeholder*="Full Name"]');
-                  if (nameInput) {
-                    nameInput.focus();
-                    nameInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                  }
-                }}
-                className="w-full mt-3.5 py-2.5 sm:py-3 rounded-full bg-white hover:bg-slate-100 text-[#0c6570] font-bold text-[13.5px] sm:text-[14px] transition-all shadow-md text-center block cursor-pointer active:scale-[0.99]"
-              >
-                Make an Appointment
-              </button>
+            </div>
 
+            {/* Contact Information */}
+            <div className="bg-white rounded-[24px] sm:rounded-[28px] p-5 sm:p-6 shadow-[0_15px_40px_-15px_rgba(12,39,82,0.08)] border border-slate-200/90 flex flex-col gap-4">
+              <div className="flex items-start gap-4">
+                <div className="w-10 h-10 rounded-full bg-sky-50 flex items-center justify-center flex-shrink-0 text-[#0066cc]">
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                  </svg>
+                </div>
+                <div>
+                  <h4 className="text-[14px] font-bold text-[#07234b]">Our Location</h4>
+                  <p className="text-[13px] text-[#475569] leading-relaxed mt-0.5">
+                    435 N Bedford Dr, Suite 210<br />
+                    Beverly Hills, CA 90210
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-4">
+                <div className="w-10 h-10 rounded-full bg-sky-50 flex items-center justify-center flex-shrink-0 text-[#0066cc]">
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                  </svg>
+                </div>
+                <div>
+                  <h4 className="text-[14px] font-bold text-[#07234b]">Phone</h4>
+                  <p className="text-[13px] text-[#475569] leading-relaxed mt-0.5">
+                    +1 (310) 859-2432
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-4">
+                <div className="w-10 h-10 rounded-full bg-sky-50 flex items-center justify-center flex-shrink-0 text-[#0066cc]">
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                  </svg>
+                </div>
+                <div>
+                  <h4 className="text-[14px] font-bold text-[#07234b]">Email Us</h4>
+                  <p className="text-[13px] text-[#475569] leading-relaxed mt-0.5">
+                    concierge@celestiasmiles.com
+                  </p>
+                </div>
+              </div>
             </div>
 
           </div>
