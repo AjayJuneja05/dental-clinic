@@ -52,7 +52,7 @@ export default function BookAppointment() {
     fullName: '',
     phone: '',
     email: '',
-    serviceId: 'aesthetic',
+    serviceId: 'general',
     doctorId: 'any',
     date: todayStr,
     timeSlot: '10:30 AM',
@@ -198,7 +198,7 @@ export default function BookAppointment() {
                   <div className="flex justify-between">
                     <span className="text-slate-500">Service:</span>
                     <span className="font-semibold text-[#07234b]">
-                      {servicesData.find(s => s.id === formData.serviceId)?.title || 'Aesthetic Dentistry'}
+                      {formData.serviceId === 'general' ? 'General Checkup' : (servicesData.find(s => s.id === formData.serviceId)?.title || 'Aesthetic Dentistry')}
                     </span>
                   </div>
                   <div className="flex justify-between">
@@ -278,6 +278,7 @@ export default function BookAppointment() {
                         onChange={(e) => setFormData({ ...formData, serviceId: e.target.value })}
                         className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-[#07234b] text-[13.5px] focus:bg-white focus:border-[#0066cc] focus:ring-2 focus:ring-sky-100 outline-none transition-all appearance-none cursor-pointer"
                       >
+                        <option value="general">General Checkup</option>
                         {servicesData.map((s) => (
                           <option key={s.id} value={s.id}>
                             {s.title}
