@@ -171,7 +171,7 @@ export default function BookAppointment() {
         </div>
 
         {/* Main 2-Column Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
           
           {/* LEFT: Interactive Booking Form (Span 7) */}
           <div className="lg:col-span-7 bg-white rounded-[24px] sm:rounded-[28px] lg:rounded-[32px] p-6 sm:p-8 lg:p-9 border border-slate-200/90 shadow-[0_15px_40px_-15px_rgba(12,39,82,0.08)] flex flex-col justify-between">
@@ -640,12 +640,8 @@ export default function BookAppointment() {
               {/* Days List - Compact Sleek Rows */}
               <div className="space-y-1.5">
                 {[
-                  { day: 'Monday', time: '09:00 AM - 10:00 PM' },
-                  { day: 'Tuesday', time: '09:00 AM - 10:00 PM' },
-                  { day: 'Wednesday', time: '09:00 AM - 10:00 PM' },
-                  { day: 'Thursday', time: '09:00 AM - 10:00 PM' },
-                  { day: 'Friday', time: '10:00 AM - 10:00 PM' },
-                  { day: 'Saturday', time: '10:00 AM - 10:00 PM' },
+                  { day: 'Mon - Thu', time: '09:00 AM - 10:00 PM' },
+                  { day: 'Fri - Sat', time: '10:00 AM - 10:00 PM' },
                   { day: 'Sunday', time: 'Closed' },
                 ].map((item) => (
                   <div 
