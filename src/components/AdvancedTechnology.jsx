@@ -133,6 +133,11 @@ export default function AdvancedTechnology() {
   const gridContainerRef = useRef(null);
   const cardsContainerRef = useRef(null);
 
+  const handleToggle = (index) => {
+    setSelectedTech(index);
+    setExpandedIndex(expandedIndex === index ? null : index);
+  };
+
   useEffect(() => {
     const updateOffset = () => {
       if (cardsContainerRef.current && gridContainerRef.current) {
