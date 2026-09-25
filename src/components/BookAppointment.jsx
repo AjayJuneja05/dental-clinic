@@ -191,7 +191,7 @@ export default function BookAppointment() {
                 </h3>
 
                 <p className="text-[14.5px] text-[#475569] mt-3 max-w-[460px] leading-relaxed">
-                  Your request for an appointment for "{formData.date}" "{formData.timeSlot}" has been successfully submitted.
+                  Your request for an appointment on <strong className="text-[#07234b]">{formData.date}</strong> at <strong className="text-[#07234b]">{formData.timeSlot}</strong> has been successfully submitted.
                   <br />
                   You will receive the appointment confirmation via SMS or email once it is confirmed.
                 </p>
