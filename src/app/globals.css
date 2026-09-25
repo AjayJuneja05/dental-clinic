@@ -64,20 +64,20 @@ img {
   font-style: italic;
 }
 
-/* Smooth continuous marquee animation (left to right, never stops on hover) */
-@keyframes continuousScrollLeftToRight {
+/* Smooth continuous marquee animation (right to left, never stops on hover) */
+@keyframes continuousScrollRightToLeft {
   0% {
-    transform: translate3d(-50%, 0, 0);
+    transform: translate3d(0, 0, 0);
   }
   100% {
-    transform: translate3d(0, 0, 0);
+    transform: translate3d(-50%, 0, 0);
   }
 }
 
 .animate-infinite-scroll {
   display: flex;
   width: max-content;
-  animation: continuousScrollLeftToRight 32s linear infinite;
+  animation: continuousScrollRightToLeft 32s linear infinite;
   will-change: transform;
 }
 

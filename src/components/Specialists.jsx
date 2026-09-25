@@ -52,9 +52,7 @@ export default function Specialists() {
       {/* Infinite Smooth Continuous Carousel Track */}
       <div className="relative w-full overflow-hidden select-none py-2">
         
-        {/* Left & Right Elegant Edge Fade Gradients */}
-        <div className="absolute left-0 top-0 bottom-0 w-12 sm:w-24 bg-gradient-to-r from-white via-white/80 to-transparent z-20 pointer-events-none"></div>
-        <div className="absolute right-0 top-0 bottom-0 w-12 sm:w-24 bg-gradient-to-l from-white via-white/80 to-transparent z-20 pointer-events-none"></div>
+        {/* Left & Right Elegant Edge Fade Gradients removed per user request */}
 
         {/* Moving Flex Container */}
         <div className="animate-infinite-scroll flex gap-6">
