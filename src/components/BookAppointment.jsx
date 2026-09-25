@@ -211,7 +211,7 @@ export default function BookAppointment() {
                   </div>
                   <div className="flex justify-between">
                     <span className="text-slate-500">Location:</span>
-                    <span className="font-semibold text-[#07234b]">Celestia Smiles Beverly Hills</span>
+                    <span className="font-semibold text-[#07234b]">Vsb Smiles Beverly Hills</span>
                   </div>
                 </div>
 
@@ -711,7 +711,7 @@ export default function BookAppointment() {
                   <div>
                     <h4 className="text-[13.5px] font-bold text-[#07234b]">Email Us</h4>
                     <p className="text-[12px] text-[#475569] leading-relaxed mt-0.5 truncate">
-                      hello@celestiasmiles.com
+                      hello@vsbsmiles.com
                     </p>
                   </div>
                 </div>

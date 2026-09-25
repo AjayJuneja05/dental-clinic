@@ -1,4 +1,4 @@
-// Celestia Smiles - Complete Client Interactivity & Data Binding
+// Vsb Smiles - Complete Client Interactivity & Data Binding
 
 const DOCTORS_DATA = [
   {
@@ -18,7 +18,7 @@ const DOCTORS_DATA = [
     image: "public/assets/doctors/david-wilson.webp",
     fallbackImage: "https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=800&auto=format&fit=crop&q=85",
     phone: "+1 (800) 555-0199",
-    email: "david.wilson@celestiasmiles.com"
+    email: "david.wilson@vsbsmiles.com"
   },
   {
     id: "doc-2",
@@ -37,7 +37,7 @@ const DOCTORS_DATA = [
     image: "public/assets/doctors/emma-robinson.webp",
     fallbackImage: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=800&auto=format&fit=crop&q=85",
     phone: "+1 (800) 555-0199",
-    email: "emma.robinson@celestiasmiles.com"
+    email: "emma.robinson@vsbsmiles.com"
   },
   {
     id: "doc-3",
@@ -56,7 +56,7 @@ const DOCTORS_DATA = [
     image: "public/assets/doctors/arthur-sterling.webp",
     fallbackImage: "https://images.unsplash.com/photo-1537368910025-700350fe46c7?w=800&auto=format&fit=crop&q=85",
     phone: "+1 (800) 555-0199",
-    email: "arthur.sterling@celestiasmiles.com"
+    email: "arthur.sterling@vsbsmiles.com"
   },
   {
     id: "doc-4",
@@ -75,7 +75,7 @@ const DOCTORS_DATA = [
     image: "public/assets/doctors/sophia-turner.webp",
     fallbackImage: "https://images.unsplash.com/photo-1651008376811-b90baee60c1f?w=800&auto=format&fit=crop&q=85",
     phone: "+1 (800) 555-0199",
-    email: "sophia.turner@celestiasmiles.com"
+    email: "sophia.turner@vsbsmiles.com"
   },
   {
     id: "doc-5",
@@ -94,7 +94,7 @@ const DOCTORS_DATA = [
     image: "public/assets/doctors/michael-chen.webp",
     fallbackImage: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=800&auto=format&fit=crop&q=85",
     phone: "+1 (800) 555-0199",
-    email: "michael.chen@celestiasmiles.com"
+    email: "michael.chen@vsbsmiles.com"
   },
   {
     id: "doc-6",
@@ -113,7 +113,7 @@ const DOCTORS_DATA = [
     image: "public/assets/doctors/elena-petrova.webp",
     fallbackImage: "https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=800&auto=format&fit=crop&q=85",
     phone: "+1 (800) 555-0199",
-    email: "elena.petrova@celestiasmiles.com"
+    email: "elena.petrova@vsbsmiles.com"
   }
 ];
 

@@ -10,7 +10,7 @@ export default function Navbar() {
     <header className="w-full max-w-[1500px] mx-auto px-5 sm:px-12 lg:px-20 pt-5 sm:pt-7 pb-2 flex items-center justify-between md:justify-center relative z-50">
       {/* Mobile: Logo text */}
       <Link href="/" className="md:hidden text-[16px] font-bold text-[#0c2752] tracking-tight">
-        Celestia Smiles
+        Vsb Smiles
       </Link>
 
       <nav className="hidden md:flex items-center gap-9 lg:gap-12 text-[14px] font-semibold text-[#0c2752]">

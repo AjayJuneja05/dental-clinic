@@ -25,7 +25,7 @@ export default function WhyChooseUs() {
 
           <h2 className="text-[32px] sm:text-[40px] lg:text-[48px] xl:text-[56px] font-bold italic text-white leading-[1.08] tracking-[-0.02em]">
             Unveil excellence.<br />
-            Discover the Celestia<br />
+            Discover the Vsb<br />
             Smiles difference.
           </h2>
         </div>
@@ -33,7 +33,7 @@ export default function WhyChooseUs() {
         {/* Subtitle Paragraph */}
         <div className="mt-8 sm:mt-10 max-w-[540px]">
           <p className="text-[13.5px] sm:text-[14.5px] text-white/80 leading-[1.7] font-normal">
-            At Celestia Smiles, we combine world-class expertise with state-of-the-art dental technology to craft natural, radiant smiles with extraordinary precision and comfort.
+            At Vsb Smiles, we combine world-class expertise with state-of-the-art dental technology to craft natural, radiant smiles with extraordinary precision and comfort.
           </p>
         </div>
 

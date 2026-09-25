@@ -68,7 +68,7 @@ export default function DoctorProfileModal({ doctor, onClose }) {
                 {doctor.role}
               </p>
               <p className="text-[11.5px] text-slate-400 font-medium mt-0.5">
-                Celestia Smiles Dental Studio
+                Vsb Smiles Dental Studio
               </p>
             </div>
 
@@ -138,7 +138,7 @@ export default function DoctorProfileModal({ doctor, onClose }) {
                 <div className="w-5 h-5 rounded-md bg-[#0066cc] text-white font-bold flex items-center justify-center text-[11px]">
                   +
                 </div>
-                <span className="text-[15px] font-bold text-[#0c2752] tracking-tight">Celestia Smiles</span>
+                <span className="text-[15px] font-bold text-[#0c2752] tracking-tight">Vsb Smiles</span>
               </div>
 
               {/* Phone Banner Ribbon */}
@@ -160,7 +160,7 @@ export default function DoctorProfileModal({ doctor, onClose }) {
 
               {/* Address / Web info */}
               <div className="mt-2.5 pl-2 border-l-2 border-[#0066cc] text-[11px] text-slate-500 leading-tight">
-                <p>care@celestiasmiles.com • www.celestiasmiles.com</p>
+                <p>care@vsbsmiles.com • www.vsbsmiles.com</p>
                 <p className="text-slate-400 mt-0.5">35 Luxury Plaza, Medical Arts Blvd, NY</p>
               </div>
 

@@ -2,7 +2,7 @@ import "./globals.css";
 import SmoothScroll from "../components/SmoothScroll";
 
 export const metadata = {
-  title: "Celestia Smiles — Luxury Orthodontics & Dental Studio",
+  title: "Vsb Smiles — Luxury Orthodontics & Dental Studio",
   description: "Next-generation dental clinic blending architectural clarity with state-of-the-art dental artistry.",
 };
 

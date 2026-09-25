@@ -29,7 +29,7 @@ export default function Footer() {
             </div>
             <div>
               <h2 className="text-[22px] font-bold tracking-tight leading-tight">
-                Celestia <span className="bg-gradient-to-r from-sky-300 to-sky-400 bg-clip-text text-transparent">Smiles</span>
+                Vsb <span className="bg-gradient-to-r from-sky-300 to-sky-400 bg-clip-text text-transparent">Smiles</span>
               </h2>
               <span className="text-[10.5px] tracking-[0.2em] uppercase text-white/50 font-medium">
                 Premium Dental Studio
@@ -45,11 +45,11 @@ export default function Footer() {
               </span>
               <span className="group-hover:text-sky-300 transition-colors">+1 (800) 555-0199</span>
             </a>
-            <a href="mailto:concierge@celestiasmiles.com" className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/[0.06] border border-white/[0.08] hover:bg-white/[0.1] hover:border-white/[0.15] text-[13px] font-medium text-white/90 transition-all group">
+            <a href="mailto:concierge@vsbsmiles.com" className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/[0.06] border border-white/[0.08] hover:bg-white/[0.1] hover:border-white/[0.15] text-[13px] font-medium text-white/90 transition-all group">
               <span className="w-5 h-5 rounded-full bg-sky-500/20 flex items-center justify-center">
                 <svg className="w-3 h-3 text-sky-400" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
               </span>
-              <span className="group-hover:text-sky-300 transition-colors">concierge@celestiasmiles.com</span>
+              <span className="group-hover:text-sky-300 transition-colors">concierge@vsbsmiles.com</span>
             </a>
           </div>
         </div>
@@ -177,7 +177,7 @@ export default function Footer() {
         {/* ─── BOTTOM BAR ─── */}
         <div className="py-7 border-t border-white/[0.07] flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-[12px] text-white/40">
-            © {new Date().getFullYear()} Celestia Smiles Dental Clinic. All Rights Reserved.
+            © {new Date().getFullYear()} Vsb Smiles Dental Clinic. All Rights Reserved.
           </p>
           
           <div className="flex items-center gap-1">
