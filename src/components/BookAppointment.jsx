@@ -183,7 +183,7 @@ export default function BookAppointment() {
                 </div>
 
                 <span className="text-[12px] font-bold text-sky-600 uppercase tracking-widest block mb-1">
-                  APPOINTMENT CONFIRMED
+                  APPOINTMENT REQUEST SUBMITTED
                 </span>
                 
                 <h3 className="text-[26px] sm:text-[30px] font-bold text-[#07234b] tracking-tight">
