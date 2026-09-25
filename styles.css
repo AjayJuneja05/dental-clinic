@@ -115,6 +115,13 @@ html, body {
   text-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
   transform: translateZ(0);
   transition: font-size 300ms ease;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.services-container:has(.is-active) .service-card:not(.is-active) .card-title-text {
+  font-size: 15px;
 }
 
 .service-card.is-active .card-title-text {
