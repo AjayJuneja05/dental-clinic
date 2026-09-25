@@ -8,22 +8,31 @@ export default function Hero() {
       <div className="flex flex-col items-center text-center gap-6 pt-8 pb-4 lg:hidden">
         
         {/* Mobile Heading */}
-        <h1 className="hero-heading text-[36px] sm:text-[44px] font-bold italic text-[#0c2752] leading-[1.06] tracking-[-0.03em]">
-          Not all <span className="text-[#0284c7]">smiles</span><br />
+        <h1 className="hero-heading text-[36px] sm:text-[44px] font-bold italic text-[#0c2752] leading-[1.14] sm:leading-[1.16] tracking-[-0.03em]">
+          Not all{' '}
+          <span className="relative inline-block text-[#0284c7]">
+            smiles
+            <svg 
+              viewBox="0 0 160 30" 
+              fill="none" 
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+              className="absolute left-[48%] -translate-x-1/2 top-[95%] w-[75%] max-w-[100px] h-auto pointer-events-none select-none text-[#0284c7]"
+            >
+              <path 
+                d="M 6 6 C 36 21 56 25 80 25 C 104 25 124 21 154 6" 
+                stroke="currentColor" 
+                strokeWidth="5" 
+                strokeLinecap="round" 
+              />
+            </svg>
+          </span>
+          <br />
           need fixing, some<br />
           need vision
         </h1>
 
-        {/* Mobile Smile Accent Icon (Dedicated spacing, zero text overlap) */}
-        <div className="w-[95px] sm:w-[110px] select-none pointer-events-none -my-1">
-          <img 
-            src="/assets/smile-icon.png" 
-            alt="smile accent" 
-            className="w-full h-auto object-contain mx-auto" 
-          />
-        </div>
-
-        <p className="text-[13px] sm:text-[14px] text-[#475569] font-normal leading-[1.7] max-w-[320px]">
+        <p className="text-[13px] sm:text-[14px] text-[#475569] font-normal leading-[1.7] max-w-[320px] mt-1">
           We're a premium orthodontic and aesthetic studio crafting confident smiles for those who settle for nothing ordinary.
         </p>
 
@@ -63,22 +72,31 @@ export default function Hero() {
 
         {/* LEFT COLUMN */}
         <div className="absolute left-8 sm:left-12 lg:left-20 top-[10%] z-20 max-w-[460px] xl:max-w-[540px]">
-          <h1 className="hero-heading text-[56px] xl:text-[64px] 2xl:text-[72px] font-bold italic text-[#0c2752] leading-[1.04] tracking-[-0.03em]">
-            Not all <span className="text-[#0284c7]">smiles</span><br />
+          <h1 className="hero-heading text-[56px] xl:text-[64px] 2xl:text-[72px] font-bold italic text-[#0c2752] leading-[1.14] xl:leading-[1.16] tracking-[-0.03em]">
+            Not all{' '}
+            <span className="relative inline-block text-[#0284c7]">
+              smiles
+              <svg 
+                viewBox="0 0 160 30" 
+                fill="none" 
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+                className="absolute left-[48%] -translate-x-1/2 top-[95%] w-[75%] max-w-[130px] h-auto pointer-events-none select-none text-[#0284c7]"
+              >
+                <path 
+                  d="M 6 6 C 36 21 56 25 80 25 C 104 25 124 21 154 6" 
+                  stroke="currentColor" 
+                  strokeWidth="5" 
+                  strokeLinecap="round" 
+                />
+              </svg>
+            </span>
+            <br />
             need fixing, some<br />
             need vision
           </h1>
 
-          {/* Standalone Smile Graphic Accent (Dedicated spacing, zero text overlap) */}
-          <div className="mt-5 mb-6 w-[110px] xl:w-[130px] select-none pointer-events-none">
-            <img 
-              src="/assets/smile-icon.png" 
-              alt="smile accent" 
-              className="w-full h-auto object-contain" 
-            />
-          </div>
-
-          <p className="text-[14px] xl:text-[15px] text-[#475569] font-normal leading-[1.7] max-w-[300px] xl:max-w-[320px]">
+          <p className="mt-8 text-[14px] xl:text-[15px] text-[#475569] font-normal leading-[1.7] max-w-[300px] xl:max-w-[320px]">
             We're a premium orthodontic and aesthetic studio crafting confident smiles for those who settle for nothing ordinary.
           </p>
         </div>
