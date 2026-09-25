@@ -10,6 +10,10 @@ const TECH_FEATURES = [
     subtitle: 'Smart algorithms for faster, more accurate analysis and detection.',
     details: 'Neural network computer vision cross-analyzes digital radiographs in real-time, detecting micro-cavities, root infections, and bone loss at Stage 0 before symptoms appear.',
     badges: ['99.4% Detection Accuracy', 'Instant Margin Analysis', 'Automated Pathology Mapping'],
+    image: '/assets/tech-ai-diagnostics.webp',
+    imageAlt: 'AI neural network radiographic dental analysis detecting cavities and micro fractures',
+    badgeTitle: 'AI Neural Diagnostics',
+    badgeDesc: 'Sub-millimeter micro-cavity and root detection at Stage 0.',
     icon: (
       <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
         <rect x="3" y="11" width="18" height="10" rx="4"></rect>
@@ -27,6 +31,10 @@ const TECH_FEATURES = [
     subtitle: 'High-resolution 3D scans for detailed visualization and precise diagnosis.',
     details: 'Volumetric Cone-Beam CT technology generates a complete 360° digital model of your jawbone, nerve pathways, and tooth roots with up to 80% lower radiation than standard x-rays.',
     badges: ['360° Volumetric Model', '80% Lower Radiation', 'Sub-Millimeter Clarity'],
+    image: '/assets/tech-3d-imaging.webp',
+    imageAlt: '3D volumetric Cone-Beam CT dental scan showing teeth roots and jawbone',
+    badgeTitle: '3D Volumetric CBCT Scan',
+    badgeDesc: 'Complete 360° digital jawbone & nerve pathway model.',
     icon: (
       <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
         <path d="M4 8V4h4M20 8V4h-4M4 16v4h4M20 16v4h-4"></path>
@@ -42,6 +50,10 @@ const TECH_FEATURES = [
     subtitle: 'State-of-the-art tools for safer, faster and more comfortable treatments.',
     details: 'Next-generation optical wands replace gooey impression trays entirely. Gentle piezo-ultrasonic scalers and soft-tissue precision lasers ensure maximum comfort with zero pain.',
     badges: ['Zero Impression Trays', 'Soft-Tissue Laser Precision', 'Gentle Ultrasonic Care'],
+    image: '/assets/tech-modern-equipment.webp',
+    imageAlt: 'Modern luxury dental operatory equipment with surgical lamp and ergonomic chair',
+    badgeTitle: 'Next-Gen Operatory Tools',
+    badgeDesc: 'Gentle piezo-ultrasonic scalers and precision soft-tissue laser.',
     icon: (
       <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
         <path d="M14.5 4.5l5 5L7 22H2v-5L14.5 4.5z"></path>
@@ -56,6 +68,10 @@ const TECH_FEATURES = [
     subtitle: 'Digital planning for predictable outcomes and beautiful smiles.',
     details: 'Advanced Digital Smile Design software lets you preview your final veneers or aligner smile on screen before treatment begins, paired with 3D surgical guides for exact placement.',
     badges: ['3D Smile Simulation Preview', 'Computer-Guided Alignment', '50% Faster Healing'],
+    image: '/assets/tech-treatment-planning.webp',
+    imageAlt: 'Digital smile design software interface with 3D tooth alignment and golden ratio mapping',
+    badgeTitle: 'Digital Smile Simulation',
+    badgeDesc: 'Virtual smile design and computer-guided 3D treatment alignment.',
     icon: (
       <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
         <path d="M12 2C8.5 2 6 4.5 6 8c0 4 2 8 3 12 0.5 2 1.5 2 2 0l1-5 1 5c0.5 2 1.5 2 2 0 1-4 3-8 3-12 0-3.5-2.5-6-6-6z"></path>
@@ -111,10 +127,15 @@ const BENEFIT_PILLARS = [
 
 export default function AdvancedTechnology() {
   const [expandedIndex, setExpandedIndex] = useState(0); // First item expanded by default
+  const [selectedTech, setSelectedTech] = useState(0);
 
   const handleToggle = (index) => {
+    setSelectedTech(index);
     setExpandedIndex(expandedIndex === index ? null : index);
   };
+
+  const activeIndex = expandedIndex !== null ? expandedIndex : selectedTech;
+  const currentTech = TECH_FEATURES[activeIndex] || TECH_FEATURES[0];
 
   return (
     <section id="technology" className="w-full py-20 sm:py-24 lg:py-28 bg-gradient-to-b from-[#edf6ff] via-[#f6faff] to-[#e9f4ff] border-y border-sky-100/80 relative overflow-hidden select-none">
@@ -125,11 +146,64 @@ export default function AdvancedTechnology() {
 
       <div className="w-full max-w-[1500px] mx-auto px-5 sm:px-12 lg:px-20 relative z-10">
         
-        {/* Top Grid: Left Content & Interactive Expandable Cards vs Right Workstation Visual */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 xl:gap-16 items-center">
+        {/* Top Grid: Dynamic Workstation Visual IN FRONT (Left Col) vs Right Content & Interactive Cards */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 xl:gap-16 items-start">
           
-          {/* LEFT COLUMN (Span 5): Heading, Subtitle & 4 Expandable Cards */}
-          <div className="lg:col-span-5 flex flex-col justify-center">
+          {/* IN FRONT / LEFT COLUMN (Span 7, Order 1): Interactive Visual Display changing dynamically per section */}
+          <div className="lg:col-span-7 order-1 sticky top-24 self-start">
+            <div className="relative w-full aspect-[4/3] sm:aspect-[16/11] lg:aspect-[4/3] rounded-[28px] sm:rounded-[36px] overflow-hidden bg-slate-950 border border-sky-200/80 shadow-[0_20px_50px_-15px_rgba(7,35,75,0.22)] group">
+              
+              {/* Stacked Technology Images with Smooth Crossfade Transition */}
+              {TECH_FEATURES.map((item, idx) => {
+                const isActive = activeIndex === idx;
+                return (
+                  <img
+                    key={item.id}
+                    src={item.image}
+                    alt={item.imageAlt}
+                    className={`absolute inset-0 w-full h-full object-cover object-center transition-all duration-700 ease-out ${
+                      isActive
+                        ? 'opacity-100 scale-100 z-10 pointer-events-auto'
+                        : 'opacity-0 scale-105 z-0 pointer-events-none'
+                    }`}
+                  />
+                );
+              })}
+
+              {/* Bottom Subtle Contrast Vignette */}
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent pointer-events-none z-10"></div>
+
+              {/* Top-Left Live Indicator Pill */}
+              <div className="absolute top-4 left-4 sm:top-6 sm:left-6 z-20 flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-950/80 backdrop-blur-md border border-white/20 text-white text-[12px] font-semibold shadow-lg">
+                <span className="w-2 h-2 rounded-full bg-sky-400 animate-pulse"></span>
+                <span>Active: {currentTech.num} {currentTech.title}</span>
+              </div>
+
+              {/* Bottom Floating Glassmorphic Badge - Dynamically Updating */}
+              <div className="absolute bottom-4 left-4 right-4 sm:bottom-6 sm:left-6 sm:right-6 bg-white/95 backdrop-blur-md rounded-[22px] p-3.5 sm:p-4.5 border border-white/90 shadow-[0_12px_32px_-5px_rgba(7,35,75,0.2)] flex items-center gap-3.5 z-20 transition-all duration-300">
+                <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-[#0066cc] text-white flex items-center justify-center flex-shrink-0 shadow-md shadow-blue-500/30">
+                  {currentTech.icon}
+                </div>
+                <div className="min-w-0 flex-1">
+                  <div className="flex items-center gap-2">
+                    <h4 className="text-[13.5px] sm:text-[15px] font-bold text-[#07234b] leading-tight truncate">
+                      {currentTech.badgeTitle}
+                    </h4>
+                    <span className="px-2 py-0.5 rounded-full bg-sky-100 text-[#0066cc] text-[10px] font-bold uppercase tracking-wider hidden sm:inline-block">
+                      Selected
+                    </span>
+                  </div>
+                  <p className="text-[11.5px] sm:text-[12.5px] text-slate-600 mt-0.5 leading-snug line-clamp-2">
+                    {currentTech.badgeDesc}
+                  </p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          {/* RIGHT COLUMN (Span 5, Order 2): Heading, Subtitle & 4 Expandable Cards */}
+          <div className="lg:col-span-5 order-2 flex flex-col justify-center">
             
             {/* Pill Eyebrow Badge */}
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-sky-200 text-[#0066cc] text-[12px] font-bold tracking-wide uppercase mb-5 self-start shadow-xs">
@@ -155,6 +229,7 @@ export default function AdvancedTechnology() {
             <div className="space-y-4">
               {TECH_FEATURES.map((item, idx) => {
                 const isExpanded = expandedIndex === idx;
+                const isSelected = activeIndex === idx;
                 return (
                   <div
                     key={item.id}
@@ -162,6 +237,8 @@ export default function AdvancedTechnology() {
                     className={`rounded-[22px] border transition-all duration-300 overflow-hidden cursor-pointer ${
                       isExpanded
                         ? 'bg-white border-[#0066cc] shadow-[0_12px_32px_-8px_rgba(0,102,204,0.18)] ring-2 ring-sky-200 scale-[1.01]'
+                        : isSelected
+                        ? 'bg-white/95 border-sky-300 shadow-sm'
                         : 'bg-white/90 hover:bg-white border-sky-100 hover:border-sky-200 shadow-sm'
                     }`}
                   >
@@ -231,37 +308,6 @@ export default function AdvancedTechnology() {
               })}
             </div>
 
-          </div>
-
-          {/* RIGHT COLUMN (Span 7): High-Tech Workstation Card & Floating Badge */}
-          <div className="lg:col-span-7 relative">
-            <div className="relative w-full rounded-[28px] sm:rounded-[36px] overflow-hidden bg-slate-900 border border-sky-100 shadow-[0_20px_50px_-15px_rgba(7,35,75,0.12)] group">
-              
-              {/* Workstation Image */}
-              <img
-                src="/assets/tech-scanner-blue.webp"
-                alt="Modern dental technology workstation with glowing 3D tooth wireframe model and intraoral scanner"
-                className="w-full h-auto object-cover object-center transform transition-transform duration-700 group-hover:scale-[1.02]"
-              />
-
-              {/* Floating Bottom-Right Glassmorphic Badge */}
-              <div className="absolute bottom-4 right-4 sm:bottom-6 sm:right-6 bg-white/95 backdrop-blur-md rounded-[22px] p-3.5 sm:p-4.5 border border-white/80 shadow-[0_12px_30px_-5px_rgba(0,0,0,0.12)] flex items-center gap-3.5 max-w-[290px] sm:max-w-[340px] animate-fadeIn">
-                <div className="w-11 h-11 rounded-2xl bg-[#0066cc] text-white flex items-center justify-center flex-shrink-0 shadow-md shadow-blue-500/30">
-                  <svg className="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12 2C8.5 2 6 4.5 6 8c0 4 2 8 3 12 0.5 2 1.5 2 2 0l1-5 1 5c0.5 2 1.5 2 2 0 1-4 3-8 3-12 0-3.5-2.5-6-6-6z" />
-                  </svg>
-                </div>
-                <div>
-                  <h4 className="text-[13.5px] sm:text-[14.5px] font-bold text-[#07234b] leading-tight">
-                    Digital Smile Scanning
-                  </h4>
-                  <p className="text-[11px] sm:text-[11.5px] text-slate-500 mt-0.5 leading-snug">
-                    Advanced technology for better accuracy and naturally beautiful results.
-                  </p>
-                </div>
-              </div>
-
-            </div>
           </div>
 
         </div>

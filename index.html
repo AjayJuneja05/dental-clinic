@@ -562,11 +562,59 @@
 
     <div class="w-full max-w-[1500px] mx-auto px-5 sm:px-12 lg:px-20 relative z-10">
       
-      <!-- Top Grid: Left Content & 4 Action Cards vs Right Workstation Visual -->
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 xl:gap-16 items-center">
+      <!-- Top Grid: Left Workstation Visual IN FRONT vs Right Content & Interactive Cards -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 xl:gap-16 items-start">
         
-        <!-- Left Column: Eyebrow, Heading, Description & 4 Interactive Tech Cards -->
-        <div class="lg:col-span-5 flex flex-col justify-center">
+        <!-- IN FRONT / LEFT COLUMN (Span 7, Order 1): Interactive Visual Display changing dynamically per section -->
+        <div class="lg:col-span-7 order-1 sticky top-24 self-start">
+          <div class="relative w-full aspect-[4/3] sm:aspect-[16/11] lg:aspect-[4/3] rounded-[28px] sm:rounded-[36px] overflow-hidden bg-slate-950 border border-sky-200/80 shadow-[0_20px_50px_-15px_rgba(7,35,75,0.22)] group">
+            
+            <!-- Stacked Images for 4 Sections with Smooth Crossfade -->
+            <img id="techImg0" src="public/assets/tech-ai-diagnostics.webp" alt="AI-Assisted Diagnostics" class="tech-display-img absolute inset-0 w-full h-full object-cover object-center transition-all duration-700 ease-out opacity-100 scale-100 z-10 pointer-events-auto" />
+            <img id="techImg1" src="public/assets/tech-3d-imaging.webp" alt="3D Dental Imaging" class="tech-display-img absolute inset-0 w-full h-full object-cover object-center transition-all duration-700 ease-out opacity-0 scale-105 z-0 pointer-events-none" />
+            <img id="techImg2" src="public/assets/tech-modern-equipment.webp" alt="Modern Dental Equipment" class="tech-display-img absolute inset-0 w-full h-full object-cover object-center transition-all duration-700 ease-out opacity-0 scale-105 z-0 pointer-events-none" />
+            <img id="techImg3" src="public/assets/tech-treatment-planning.webp" alt="Precise Treatment Planning" class="tech-display-img absolute inset-0 w-full h-full object-cover object-center transition-all duration-700 ease-out opacity-0 scale-105 z-0 pointer-events-none" />
+
+            <!-- Bottom Contrast Vignette -->
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent pointer-events-none z-10"></div>
+
+            <!-- Top Left Live Indicator Pill -->
+            <div class="absolute top-4 left-4 sm:top-6 sm:left-6 z-20 flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-950/80 backdrop-blur-md border border-white/20 text-white text-[12px] font-semibold shadow-lg">
+              <span class="w-2 h-2 rounded-full bg-sky-400 animate-pulse"></span>
+              <span id="techActiveBadge">Active: 1. AI-Assisted Diagnostics</span>
+            </div>
+
+            <!-- Bottom Floating Glassmorphic Badge -->
+            <div class="absolute bottom-4 left-4 right-4 sm:bottom-6 sm:left-6 sm:right-6 bg-white/95 backdrop-blur-md rounded-[22px] p-3.5 sm:p-4.5 border border-white/90 shadow-[0_12px_32px_-5px_rgba(7,35,75,0.2)] flex items-center gap-3.5 z-20 transition-all duration-300">
+              <div id="techBadgeIcon" class="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-[#0066cc] text-white flex items-center justify-center flex-shrink-0 shadow-md shadow-blue-500/30">
+                <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="3" y="11" width="18" height="10" rx="4"></rect>
+                  <circle cx="8.5" cy="16" r="1.5" fill="currentColor"></circle>
+                  <circle cx="15.5" cy="16" r="1.5" fill="currentColor"></circle>
+                  <path d="M9 7l1-3h4l1 3"></path>
+                  <line x1="12" y1="4" x2="12" y2="11"></line>
+                </svg>
+              </div>
+              <div class="min-w-0 flex-1">
+                <div class="flex items-center gap-2">
+                  <h4 id="techBadgeTitle" class="text-[13.5px] sm:text-[15px] font-bold text-[#07234b] leading-tight truncate">
+                    AI Neural Diagnostics
+                  </h4>
+                  <span class="px-2 py-0.5 rounded-full bg-sky-100 text-[#0066cc] text-[10px] font-bold uppercase tracking-wider hidden sm:inline-block">
+                    Selected
+                  </span>
+                </div>
+                <p id="techBadgeDesc" class="text-[11.5px] sm:text-[12.5px] text-slate-600 mt-0.5 leading-snug line-clamp-2">
+                  Sub-millimeter micro-cavity and root detection at Stage 0.
+                </p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- RIGHT COLUMN (Span 5, Order 2): Eyebrow, Heading, Description & 4 Interactive Tech Cards -->
+        <div class="lg:col-span-5 order-2 flex flex-col justify-center">
           <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50/90 border border-blue-100 text-[#0066cc] text-[12px] font-bold tracking-wide uppercase mb-5 self-start shadow-xs">
             <span class="w-2 h-2 rounded-full bg-[#0066cc] animate-pulse"></span>
             <span>Advanced Technology</span>
@@ -585,7 +633,7 @@
 
           <div id="techCardsContainer" class="space-y-4">
             <!-- 1. AI-Assisted Diagnostics -->
-            <div class="tech-card active rounded-[22px] border border-[#0066cc] bg-[#f8faff] shadow-[0_12px_32px_-8px_rgba(0,102,204,0.18)] ring-2 ring-blue-100/80 transition-all duration-300 overflow-hidden cursor-pointer">
+            <div data-tech-idx="0" class="tech-card active rounded-[22px] border border-[#0066cc] bg-[#f8faff] shadow-[0_12px_32px_-8px_rgba(0,102,204,0.18)] ring-2 ring-blue-100/80 transition-all duration-300 overflow-hidden cursor-pointer">
               <div class="p-4 sm:p-4.5 flex items-center justify-between gap-4">
                 <div class="flex items-center gap-3.5 sm:gap-4 flex-1 min-w-0">
                   <div class="tech-icon-box w-12 h-12 rounded-2xl bg-[#0066cc] text-white shadow-md shadow-blue-500/25 flex items-center justify-center flex-shrink-0 transition-all duration-300">
@@ -621,7 +669,7 @@
             </div>
 
             <!-- 2. 3D Dental Imaging -->
-            <div class="tech-card rounded-[22px] border border-slate-200/90 bg-white hover:bg-slate-50/70 hover:border-slate-300 shadow-xs transition-all duration-300 overflow-hidden cursor-pointer">
+            <div data-tech-idx="1" class="tech-card rounded-[22px] border border-slate-200/90 bg-white hover:bg-slate-50/70 hover:border-slate-300 shadow-xs transition-all duration-300 overflow-hidden cursor-pointer">
               <div class="p-4 sm:p-4.5 flex items-center justify-between gap-4">
                 <div class="flex items-center gap-3.5 sm:gap-4 flex-1 min-w-0">
                   <div class="tech-icon-box w-12 h-12 rounded-2xl bg-blue-50 text-[#0066cc] flex items-center justify-center flex-shrink-0 transition-all duration-300">
@@ -655,7 +703,7 @@
             </div>
 
             <!-- 3. Modern Dental Equipment -->
-            <div class="tech-card rounded-[22px] border border-slate-200/90 bg-white hover:bg-slate-50/70 hover:border-slate-300 shadow-xs transition-all duration-300 overflow-hidden cursor-pointer">
+            <div data-tech-idx="2" class="tech-card rounded-[22px] border border-slate-200/90 bg-white hover:bg-slate-50/70 hover:border-slate-300 shadow-xs transition-all duration-300 overflow-hidden cursor-pointer">
               <div class="p-4 sm:p-4.5 flex items-center justify-between gap-4">
                 <div class="flex items-center gap-3.5 sm:gap-4 flex-1 min-w-0">
                   <div class="tech-icon-box w-12 h-12 rounded-2xl bg-blue-50 text-[#0066cc] flex items-center justify-center flex-shrink-0 transition-all duration-300">
@@ -688,7 +736,7 @@
             </div>
 
             <!-- 4. Precise Treatment Planning -->
-            <div class="tech-card rounded-[22px] border border-slate-200/90 bg-white hover:bg-slate-50/70 hover:border-slate-300 shadow-xs transition-all duration-300 overflow-hidden cursor-pointer">
+            <div data-tech-idx="3" class="tech-card rounded-[22px] border border-slate-200/90 bg-white hover:bg-slate-50/70 hover:border-slate-300 shadow-xs transition-all duration-300 overflow-hidden cursor-pointer">
               <div class="p-4 sm:p-4.5 flex items-center justify-between gap-4">
                 <div class="flex items-center gap-3.5 sm:gap-4 flex-1 min-w-0">
                   <div class="tech-icon-box w-12 h-12 rounded-2xl bg-blue-50 text-[#0066cc] flex items-center justify-center flex-shrink-0 transition-all duration-300">
@@ -717,25 +765,6 @@
                     <span class="px-2.5 py-1 rounded-lg bg-blue-50 text-[#0066cc] text-[11px] font-bold border border-blue-100">✓ 50% Faster Healing</span>
                   </div>
                 </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Right Column: Visual Workstation Card & Floating Badge -->
-        <div class="lg:col-span-7 relative">
-          <div class="relative w-full rounded-[28px] sm:rounded-[36px] overflow-hidden bg-slate-900 border border-slate-200/80 shadow-[0_20px_50px_-15px_rgba(12,39,82,0.15)] group">
-            <img src="public/assets/tech-scanner-blue.webp" alt="Modern dental technology workstation with glowing 3D tooth wireframe model and intraoral scanner" class="w-full h-auto object-cover object-center transform transition-transform duration-700 group-hover:scale-[1.02]" />
-
-            <div class="absolute bottom-4 right-4 sm:bottom-6 sm:right-6 bg-white/95 backdrop-blur-md rounded-[22px] p-3.5 sm:p-4.5 border border-white/80 shadow-[0_12px_30px_-5px_rgba(0,0,0,0.12)] flex items-center gap-3.5 max-w-[290px] sm:max-w-[340px]">
-              <div class="w-11 h-11 rounded-2xl bg-[#0066cc] text-white flex items-center justify-center flex-shrink-0 shadow-md shadow-blue-500/30">
-                <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M12 2C8.5 2 6 4.5 6 8c0 4 2 8 3 12 0.5 2 1.5 2 2 0l1-5 1 5c0.5 2 1.5 2 2 0 1-4 3-8 3-12 0-3.5-2.5-6-6-6z" />
-                </svg>
-              </div>
-              <div>
-                <h4 class="text-[13.5px] sm:text-[14.5px] font-bold text-[#0c2752] leading-tight">Digital Smile Scanning</h4>
-                <p class="text-[11px] sm:text-[11.5px] text-slate-500 mt-0.5 leading-snug">Advanced technology for better accuracy and naturally beautiful results.</p>
               </div>
             </div>
           </div>

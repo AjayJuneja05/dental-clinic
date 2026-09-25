@@ -914,11 +914,87 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 6. Advanced Technology Cards Expand/Collapse Handling
+  // 6. Advanced Technology Cards Expand/Collapse Handling & Dynamic Visual Switching
+  const TECH_VISUALS = [
+    {
+      activeBadge: 'Active: 1. AI-Assisted Diagnostics',
+      badgeTitle: 'AI Neural Diagnostics',
+      badgeDesc: 'Sub-millimeter micro-cavity and root detection at Stage 0.',
+      badgeIcon: `<svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="11" width="18" height="10" rx="4"></rect>
+        <circle cx="8.5" cy="16" r="1.5" fill="currentColor"></circle>
+        <circle cx="15.5" cy="16" r="1.5" fill="currentColor"></circle>
+        <path d="M9 7l1-3h4l1 3"></path>
+        <line x1="12" y1="4" x2="12" y2="11"></line>
+      </svg>`
+    },
+    {
+      activeBadge: 'Active: 2. 3D Dental Imaging',
+      badgeTitle: '3D Volumetric CBCT Scan',
+      badgeDesc: 'Complete 360° digital jawbone & nerve pathway model.',
+      badgeIcon: `<svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 8V4h4M20 8V4h-4M4 16v4h4M20 16v4h-4"></path>
+        <path d="M12 7l5 3-5 3-5-3 5-3z"></path>
+        <path d="M7 10v4l5 3 5-3v-4"></path>
+      </svg>`
+    },
+    {
+      activeBadge: 'Active: 3. Modern Dental Equipment',
+      badgeTitle: 'Next-Gen Operatory Tools',
+      badgeDesc: 'Gentle piezo-ultrasonic scalers and precision soft-tissue laser.',
+      badgeIcon: `<svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M14.5 4.5l5 5L7 22H2v-5L14.5 4.5z"></path>
+        <path d="M11.5 7.5l5 5"></path>
+      </svg>`
+    },
+    {
+      activeBadge: 'Active: 4. Precise Treatment Planning',
+      badgeTitle: 'Digital Smile Simulation',
+      badgeDesc: 'Virtual smile design and computer-guided 3D treatment alignment.',
+      badgeIcon: `<svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 2C8.5 2 6 4.5 6 8c0 4 2 8 3 12 0.5 2 1.5 2 2 0l1-5 1 5c0.5 2 1.5 2 2 0 1-4 3-8 3-12 0-3.5-2.5-6-6-6z"></path>
+        <path d="M9 9l2 2 4-4"></path>
+      </svg>`
+    }
+  ];
+
   const techCards = document.querySelectorAll('.tech-card');
-  techCards.forEach((card) => {
+  const techImgs = [
+    document.getElementById('techImg0'),
+    document.getElementById('techImg1'),
+    document.getElementById('techImg2'),
+    document.getElementById('techImg3')
+  ];
+  const techActiveBadge = document.getElementById('techActiveBadge');
+  const techBadgeTitle = document.getElementById('techBadgeTitle');
+  const techBadgeDesc = document.getElementById('techBadgeDesc');
+  const techBadgeIcon = document.getElementById('techBadgeIcon');
+
+  function updateTechVisual(idx) {
+    techImgs.forEach((img, i) => {
+      if (!img) return;
+      if (i === idx) {
+        img.classList.remove('opacity-0', 'scale-105', 'z-0', 'pointer-events-none');
+        img.classList.add('opacity-100', 'scale-100', 'z-10', 'pointer-events-auto');
+      } else {
+        img.classList.remove('opacity-100', 'scale-100', 'z-10', 'pointer-events-auto');
+        img.classList.add('opacity-0', 'scale-105', 'z-0', 'pointer-events-none');
+      }
+    });
+
+    const info = TECH_VISUALS[idx];
+    if (info) {
+      if (techActiveBadge) techActiveBadge.textContent = info.activeBadge;
+      if (techBadgeTitle) techBadgeTitle.textContent = info.badgeTitle;
+      if (techBadgeDesc) techBadgeDesc.textContent = info.badgeDesc;
+      if (techBadgeIcon) techBadgeIcon.innerHTML = info.badgeIcon;
+    }
+  }
+
+  techCards.forEach((card, index) => {
     card.addEventListener('click', () => {
       const isAlreadyActive = card.classList.contains('active');
+      const idx = parseInt(card.getAttribute('data-tech-idx') || index, 10);
 
       // Collapse all
       techCards.forEach((c) => {
@@ -979,6 +1055,9 @@ document.addEventListener('DOMContentLoaded', () => {
           body.classList.remove('max-h-0', 'pb-0', 'opacity-0');
         }
       }
+
+      // Update image and badge for clicked item
+      updateTechVisual(idx);
     });
   });
 });
