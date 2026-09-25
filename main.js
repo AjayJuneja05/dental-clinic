@@ -1060,6 +1060,27 @@ document.addEventListener('DOMContentLoaded', () => {
       updateTechVisual(idx);
     });
   });
+
+  // Align right-side image with the top of the first feature section
+  function alignTechImageWithCards() {
+    const cardsContainer = document.getElementById('techCardsContainer');
+    const techGrid = document.getElementById('techGridContainer');
+    const techVisualCol = document.getElementById('techVisualCol');
+    if (cardsContainer && techGrid && techVisualCol) {
+      if (window.innerWidth >= 1024) {
+        const cardsRect = cardsContainer.getBoundingClientRect();
+        const gridRect = techGrid.getBoundingClientRect();
+        const offset = Math.round(cardsRect.top - gridRect.top);
+        if (offset > 0) {
+          techVisualCol.style.paddingTop = `${offset}px`;
+        }
+      } else {
+        techVisualCol.style.paddingTop = '0px';
+      }
+    }
+  }
+  alignTechImageWithCards();
+  window.addEventListener('resize', alignTechImageWithCards);
 });
 
 const docModalBackdrop = document.getElementById('doctorModal');

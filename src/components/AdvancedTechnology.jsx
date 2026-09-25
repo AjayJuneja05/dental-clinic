@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 
 const TECH_FEATURES = [
   {
@@ -128,11 +128,30 @@ const BENEFIT_PILLARS = [
 export default function AdvancedTechnology() {
   const [expandedIndex, setExpandedIndex] = useState(0); // First item expanded by default
   const [selectedTech, setSelectedTech] = useState(0);
+  const [cardsOffset, setCardsOffset] = useState(306);
 
-  const handleToggle = (index) => {
-    setSelectedTech(index);
-    setExpandedIndex(expandedIndex === index ? null : index);
-  };
+  const gridContainerRef = useRef(null);
+  const cardsContainerRef = useRef(null);
+
+  useEffect(() => {
+    const updateOffset = () => {
+      if (cardsContainerRef.current && gridContainerRef.current) {
+        if (window.innerWidth >= 1024) {
+          const cardsRect = cardsContainerRef.current.getBoundingClientRect();
+          const gridRect = gridContainerRef.current.getBoundingClientRect();
+          const offset = Math.round(cardsRect.top - gridRect.top);
+          if (offset > 0) {
+            setCardsOffset(offset);
+          }
+        } else {
+          setCardsOffset(0);
+        }
+      }
+    };
+    updateOffset();
+    window.addEventListener('resize', updateOffset);
+    return () => window.removeEventListener('resize', updateOffset);
+  }, []);
 
   const activeIndex = expandedIndex !== null ? expandedIndex : selectedTech;
   const currentTech = TECH_FEATURES[activeIndex] || TECH_FEATURES[0];
@@ -146,8 +165,8 @@ export default function AdvancedTechnology() {
 
       <div className="w-full max-w-[1500px] mx-auto px-5 sm:px-12 lg:px-20 relative z-10">
         
-        {/* Top Grid: Section on LEFT side & Image on RIGHT side starting directly from the section top */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 xl:gap-16 items-start">
+        {/* Top Grid: Section on LEFT side & Image on RIGHT side starting directly at the top of the first feature section */}
+        <div ref={gridContainerRef} className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 xl:gap-16 items-start">
           
           {/* LEFT SIDE (Span 5, Order 1): Section Header, Subtitle & 4 Expandable Cards */}
           <div className="lg:col-span-5 order-1 flex flex-col justify-start">
@@ -173,7 +192,7 @@ export default function AdvancedTechnology() {
             </p>
 
             {/* 4 Expandable Cards with Signature Blue Touch */}
-            <div className="space-y-4">
+            <div ref={cardsContainerRef} className="space-y-4">
               {TECH_FEATURES.map((item, idx) => {
                 const isExpanded = expandedIndex === idx;
                 const isSelected = activeIndex === idx;
@@ -257,56 +276,63 @@ export default function AdvancedTechnology() {
 
           </div>
 
-          {/* RIGHT SIDE (Span 7, Order 2): Dynamic Visual Display starting flush from the section top */}
-          <div className="lg:col-span-7 order-2 sticky top-24 self-start">
-            <div className="relative w-full aspect-[4/3] sm:aspect-[16/11] lg:aspect-[4/3] rounded-[28px] sm:rounded-[36px] overflow-hidden bg-slate-950 border border-sky-200/80 shadow-[0_20px_50px_-15px_rgba(7,35,75,0.22)] group">
-              
-              {/* Stacked Technology Images with Smooth Crossfade Transition */}
-              {TECH_FEATURES.map((item, idx) => {
-                const isActive = activeIndex === idx;
-                return (
-                  <img
-                    key={item.id}
-                    src={item.image}
-                    alt={item.imageAlt}
-                    className={`absolute inset-0 w-full h-full object-cover object-center transition-all duration-700 ease-out ${
-                      isActive
-                        ? 'opacity-100 scale-100 z-10 pointer-events-auto'
-                        : 'opacity-0 scale-105 z-0 pointer-events-none'
-                    }`}
-                  />
-                );
-              })}
+          {/* RIGHT SIDE (Span 7, Order 2): Visual Display starting at the top of the first feature section */}
+          <div 
+            className="lg:col-span-7 order-2 pt-0 lg:pt-[306px]"
+            style={{
+              paddingTop: cardsOffset ? `${cardsOffset}px` : undefined
+            }}
+          >
+            <div className="sticky top-24 self-start relative z-20">
+              <div className="relative w-full aspect-[4/3] sm:aspect-[16/11] lg:aspect-[4/3] rounded-[28px] sm:rounded-[36px] overflow-hidden bg-slate-950 border border-sky-200/80 shadow-[0_20px_50px_-15px_rgba(7,35,75,0.22)] group">
+                
+                {/* Stacked Technology Images with Smooth Crossfade Transition */}
+                {TECH_FEATURES.map((item, idx) => {
+                  const isActive = activeIndex === idx;
+                  return (
+                    <img
+                      key={item.id}
+                      src={item.image}
+                      alt={item.imageAlt}
+                      className={`absolute inset-0 w-full h-full object-cover object-center transition-all duration-700 ease-out ${
+                        isActive
+                          ? 'opacity-100 scale-100 z-10 pointer-events-auto'
+                          : 'opacity-0 scale-105 z-0 pointer-events-none'
+                      }`}
+                    />
+                  );
+                })}
 
-              {/* Bottom Subtle Contrast Vignette */}
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent pointer-events-none z-10"></div>
+                {/* Bottom Subtle Contrast Vignette */}
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent pointer-events-none z-10"></div>
 
-              {/* Top-Left Live Indicator Pill */}
-              <div className="absolute top-4 left-4 sm:top-6 sm:left-6 z-20 flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-950/80 backdrop-blur-md border border-white/20 text-white text-[12px] font-semibold shadow-lg">
-                <span className="w-2 h-2 rounded-full bg-sky-400 animate-pulse"></span>
-                <span>Active: {currentTech.num} {currentTech.title}</span>
-              </div>
-
-              {/* Bottom Floating Glassmorphic Badge - Dynamically Updating */}
-              <div className="absolute bottom-4 left-4 right-4 sm:bottom-6 sm:left-6 sm:right-6 bg-white/95 backdrop-blur-md rounded-[22px] p-3.5 sm:p-4.5 border border-white/90 shadow-[0_12px_32px_-5px_rgba(7,35,75,0.2)] flex items-center gap-3.5 z-20 transition-all duration-300">
-                <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-[#0066cc] text-white flex items-center justify-center flex-shrink-0 shadow-md shadow-blue-500/30">
-                  {currentTech.icon}
+                {/* Top-Left Live Indicator Pill */}
+                <div className="absolute top-4 left-4 sm:top-6 sm:left-6 z-20 flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-950/80 backdrop-blur-md border border-white/20 text-white text-[12px] font-semibold shadow-lg">
+                  <span className="w-2 h-2 rounded-full bg-sky-400 animate-pulse"></span>
+                  <span>Active: {currentTech.num} {currentTech.title}</span>
                 </div>
-                <div className="min-w-0 flex-1">
-                  <div className="flex items-center gap-2">
-                    <h4 className="text-[13.5px] sm:text-[15px] font-bold text-[#07234b] leading-tight truncate">
-                      {currentTech.badgeTitle}
-                    </h4>
-                    <span className="px-2 py-0.5 rounded-full bg-sky-100 text-[#0066cc] text-[10px] font-bold uppercase tracking-wider hidden sm:inline-block">
-                      Selected
-                    </span>
+
+                {/* Bottom Floating Glassmorphic Badge - Dynamically Updating */}
+                <div className="absolute bottom-4 left-4 right-4 sm:bottom-6 sm:left-6 sm:right-6 bg-white/95 backdrop-blur-md rounded-[22px] p-3.5 sm:p-4.5 border border-white/90 shadow-[0_12px_32px_-5px_rgba(7,35,75,0.2)] flex items-center gap-3.5 z-20 transition-all duration-300">
+                  <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-[#0066cc] text-white flex items-center justify-center flex-shrink-0 shadow-md shadow-blue-500/30">
+                    {currentTech.icon}
                   </div>
-                  <p className="text-[11.5px] sm:text-[12.5px] text-slate-600 mt-0.5 leading-snug line-clamp-2">
-                    {currentTech.badgeDesc}
-                  </p>
+                  <div className="min-w-0 flex-1">
+                    <div className="flex items-center gap-2">
+                      <h4 className="text-[13.5px] sm:text-[15px] font-bold text-[#07234b] leading-tight truncate">
+                        {currentTech.badgeTitle}
+                      </h4>
+                      <span className="px-2 py-0.5 rounded-full bg-sky-100 text-[#0066cc] text-[10px] font-bold uppercase tracking-wider hidden sm:inline-block">
+                        Selected
+                      </span>
+                    </div>
+                    <p className="text-[11.5px] sm:text-[12.5px] text-slate-600 mt-0.5 leading-snug line-clamp-2">
+                      {currentTech.badgeDesc}
+                    </p>
+                  </div>
                 </div>
-              </div>
 
+              </div>
             </div>
           </div>
 
