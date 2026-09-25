@@ -640,8 +640,12 @@ export default function BookAppointment() {
               {/* Days List - Compact Sleek Rows */}
               <div className="space-y-1.5">
                 {[
-                  { day: 'Mon - Thu', time: '09:00 AM - 10:00 PM' },
-                  { day: 'Fri - Sat', time: '10:00 AM - 10:00 PM' },
+                  { day: 'Monday', time: '09:00 AM - 10:00 PM' },
+                  { day: 'Tuesday', time: '09:00 AM - 10:00 PM' },
+                  { day: 'Wednesday', time: '09:00 AM - 10:00 PM' },
+                  { day: 'Thursday', time: '09:00 AM - 10:00 PM' },
+                  { day: 'Friday', time: '10:00 AM - 10:00 PM' },
+                  { day: 'Saturday', time: '10:00 AM - 10:00 PM' },
                   { day: 'Sunday', time: 'Closed' },
                 ].map((item) => (
                   <div 
