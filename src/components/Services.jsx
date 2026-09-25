@@ -79,7 +79,7 @@ export default function Services() {
                       className="absolute inset-0 w-full h-full object-cover pointer-events-none transition-transform duration-500 hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#123663]/90 via-transparent to-transparent pointer-events-none"></div>
-                    <p className="relative z-10 text-white text-[15px] sm:text-[16px] font-bold leading-tight drop-shadow-md text-center transition-transform duration-300">
+                    <p className="relative z-10 text-white text-[15px] sm:text-[16px] font-bold leading-tight drop-shadow-md text-left transition-transform duration-300">
                       {service.title}
                     </p>
                   </div>
