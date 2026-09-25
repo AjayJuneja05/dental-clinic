@@ -611,66 +611,8 @@ export default function BookAppointment() {
           </div>
 
           {/* RIGHT: Benefits, Reassurance & Working Hours (Span 5) */}
-          <div className="lg:col-span-5 flex flex-col justify-between gap-4 sm:gap-5 h-full">
+          <div className="lg:col-span-5 flex flex-col gap-4 sm:gap-5">
             
-            {/* Card 1: What to Expect (Sleek & Compact) */}
-            <div className="bg-[#0c2752] text-white rounded-[24px] sm:rounded-[28px] p-5 sm:p-6 shadow-xl border border-sky-900/40">
-              <div className="flex items-center justify-between mb-1.5">
-                <span className="text-[10.5px] font-bold text-sky-400 uppercase tracking-widest">
-                  THE CELESTIA PROMISE
-                </span>
-                <span className="text-[11px] text-sky-300/80 font-medium">Initial Visit</span>
-              </div>
-
-              <h3 className="text-[18px] sm:text-[20px] font-bold tracking-tight text-white leading-tight mb-3.5">
-                What’s Included in Your Initial Visit
-              </h3>
-
-              <div className="space-y-2.5">
-                <div className="flex items-start gap-3">
-                  <div className="w-7 h-7 rounded-lg bg-white/10 text-sky-300 flex items-center justify-center flex-shrink-0 text-xs font-bold mt-0.5">
-                    01
-                  </div>
-                  <div>
-                    <h4 className="text-[13.5px] font-bold text-white leading-snug">
-                      High-Definition 3D Digital Scan
-                    </h4>
-                    <p className="text-[12px] text-white/70 mt-0.5 leading-relaxed">
-                      Instant computerized mapping of your teeth with zero gooey impression trays.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-3">
-                  <div className="w-7 h-7 rounded-lg bg-white/10 text-sky-300 flex items-center justify-center flex-shrink-0 text-xs font-bold mt-0.5">
-                    02
-                  </div>
-                  <div>
-                    <h4 className="text-[13.5px] font-bold text-white leading-snug">
-                      1-on-1 Specialist Consultation
-                    </h4>
-                    <p className="text-[12px] text-white/70 mt-0.5 leading-relaxed">
-                      Private conversation to discuss your aesthetic goals, lifestyle, and comfort.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-3">
-                  <div className="w-7 h-7 rounded-lg bg-white/10 text-sky-300 flex items-center justify-center flex-shrink-0 text-xs font-bold mt-0.5">
-                    03
-                  </div>
-                  <div>
-                    <h4 className="text-[13.5px] font-bold text-white leading-snug">
-                      Itemized Treatment Roadmap
-                    </h4>
-                    <p className="text-[12px] text-white/70 mt-0.5 leading-relaxed">
-                      Transparent timeline, step-by-step preview, and zero unexpected costs.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
             {/* Card 2: Working Hours Card (Decreased size & aligned with modal) */}
             <div className="bg-gradient-to-br from-[#0c6570] to-[#094e57] text-white rounded-[24px] sm:rounded-[28px] p-5 sm:p-6 shadow-xl border border-white/10">
               
