@@ -60,14 +60,6 @@ function VideoCard({ number, label }) {
       {/* Placeholder background gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-[#0c2752] via-[#0d3265] to-[#0a1e40]" />
 
-      {/* Subtle grid texture */}
-      <div
-        className="absolute inset-0 opacity-[0.04]"
-        style={{
-          backgroundImage: 'linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)',
-          backgroundSize: '40px 40px',
-        }}
-      />
 
       {/* Ambient glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-sky-500/15 rounded-full blur-[80px] pointer-events-none" />
@@ -125,14 +117,6 @@ export default function AboutPage() {
         <div className="absolute top-0 right-[10%] w-[600px] h-[600px] bg-sky-600/10 rounded-full blur-[130px] pointer-events-none" />
         <div className="absolute bottom-0 left-[5%] w-[400px] h-[400px] bg-blue-400/8 rounded-full blur-[100px] pointer-events-none" />
 
-        {/* Grid texture */}
-        <div
-          className="absolute inset-0 opacity-[0.025] pointer-events-none"
-          style={{
-            backgroundImage: 'linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)',
-            backgroundSize: '60px 60px',
-          }}
-        />
 
         <div className="relative z-10 w-full max-w-[1500px] mx-auto px-5 sm:px-12 lg:px-20 pt-16 pb-24 sm:pt-20 sm:pb-32">
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-10">
@@ -262,14 +246,6 @@ export default function AboutPage() {
         <div className="absolute top-0 left-[20%] w-[500px] h-[500px] bg-sky-600/10 rounded-full blur-[120px] pointer-events-none" />
         <div className="absolute bottom-0 right-[10%] w-[400px] h-[400px] bg-blue-400/8 rounded-full blur-[100px] pointer-events-none" />
 
-        {/* Grid texture */}
-        <div
-          className="absolute inset-0 opacity-[0.025] pointer-events-none"
-          style={{
-            backgroundImage: 'linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)',
-            backgroundSize: '60px 60px',
-          }}
-        />
 
         <div className="relative z-10 w-full max-w-[1500px] mx-auto px-5 sm:px-12 lg:px-20 py-20 sm:py-28">
           {/* Header */}
@@ -364,9 +340,7 @@ export default function AboutPage() {
 
       {/* ─── CTA BANNER ─── */}
       <section className="relative w-full overflow-hidden bg-[#0c2752] border-t border-white/5">
-        <div className="absolute inset-0 opacity-[0.025] pointer-events-none"
-          style={{ backgroundImage: 'linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)', backgroundSize: '60px 60px' }}
-        />
+
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-sky-600/10 rounded-full blur-[100px] pointer-events-none" />
 
         <div className="relative z-10 w-full max-w-[1500px] mx-auto px-5 sm:px-12 lg:px-20 py-16 sm:py-20 text-center">
