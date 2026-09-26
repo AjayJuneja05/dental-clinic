@@ -2,13 +2,13 @@
 
 export default function Hero() {
   return (
-    <section className="relative w-full max-w-[1500px] mx-auto px-5 sm:px-12 lg:px-20 min-h-[calc(100vh-72px)] lg:h-[calc(100vh-72px)] lg:max-h-[820px] flex flex-col lg:block overflow-visible">
+    <section className="relative w-full max-w-[1500px] mx-auto px-5 sm:px-12 lg:px-20 min-h-[calc(100vh-60px)] lg:h-[calc(100vh-60px)] flex flex-col lg:block overflow-visible">
       
       {/* ========== MOBILE LAYOUT (stacked, visible below lg) ========== */}
       <div className="flex flex-col items-center text-center gap-6 pt-8 pb-4 lg:hidden">
         
         {/* Mobile Heading */}
-        <h1 className="hero-heading text-[32px] sm:text-[38px] font-bold italic text-[#0c2752] leading-[1.15] sm:leading-[1.18] tracking-[-0.03em]">
+        <h1 className="hero-heading text-[32px] sm:text-[40px] font-bold italic text-[#0c2752] leading-[1.15] sm:leading-[1.18] tracking-[-0.03em]">
           <span className="block whitespace-nowrap">
             True{' '}
             <span className="relative inline-block text-[#0284c7]">
@@ -43,7 +43,7 @@ export default function Hero() {
           <img 
             src="/assets/transparent-tooth.webp" 
             alt="3D Luminous Crystal Tooth" 
-            className="w-[280px] sm:w-[330px] h-auto object-contain tooth-float drop-shadow-[0_15px_35px_rgba(2,132,199,0.22)]" 
+            className="w-[280px] sm:w-[340px] h-auto object-contain tooth-float drop-shadow-[0_15px_35px_rgba(2,132,199,0.22)]" 
           />
         </div>
 
@@ -73,8 +73,8 @@ export default function Hero() {
       <div className="hidden lg:block absolute inset-0 px-6 sm:px-10 lg:px-12 xl:px-16 2xl:px-20">
 
         {/* LEFT COLUMN */}
-        <div className="absolute left-6 sm:left-10 lg:left-12 xl:left-16 2xl:left-20 top-[8%] lg:top-[10%] xl:top-[12%] z-20 max-w-[380px] lg:max-w-[420px] xl:max-w-[460px] 2xl:max-w-[500px]">
-          <h1 className="hero-heading text-[36px] sm:text-[40px] lg:text-[44px] xl:text-[48px] 2xl:text-[54px] font-bold italic text-[#0c2752] leading-[1.12] xl:leading-[1.14] tracking-[-0.03em]">
+        <div className="absolute left-6 sm:left-10 lg:left-12 xl:left-16 2xl:left-20 top-[7%] lg:top-[8%] xl:top-[9%] z-20 max-w-[420px] lg:max-w-[460px] xl:max-w-[500px] 2xl:max-w-[540px]">
+          <h1 className="hero-heading text-[40px] lg:text-[46px] xl:text-[54px] 2xl:text-[58px] font-bold italic text-[#0c2752] leading-[1.12] xl:leading-[1.14] tracking-[-0.03em]">
             <span className="block whitespace-nowrap pb-1">
               True{' '}
               <span className="relative inline-block text-[#0284c7]">
@@ -100,14 +100,14 @@ export default function Hero() {
             <span className="block whitespace-nowrap">merely corrected</span>
           </h1>
 
-          <p className="mt-5 xl:mt-6 text-[13px] lg:text-[13.5px] xl:text-[14.5px] text-[#475569] font-normal leading-[1.7] max-w-[280px] lg:max-w-[300px] xl:max-w-[340px]">
+          <p className="mt-5 xl:mt-6 text-[13px] lg:text-[14px] xl:text-[15px] text-[#475569] font-normal leading-[1.7] max-w-[280px] lg:max-w-[300px] xl:max-w-[340px]">
             We're a premium orthodontic and aesthetic studio crafting confident smiles for those who settle for nothing ordinary.
           </p>
         </div>
 
         {/* RIGHT COLUMN */}
-        <div className="absolute right-6 sm:right-10 lg:right-12 xl:right-16 2xl:right-20 top-[18%] lg:top-[20%] xl:top-[22%] z-20 max-w-[340px] lg:max-w-[380px] xl:max-w-[440px] text-left">
-          <h2 className="text-[36px] sm:text-[40px] lg:text-[44px] xl:text-[48px] 2xl:text-[54px] font-bold text-[#0c2752] leading-[1.05] tracking-[-0.03em]">
+        <div className="absolute right-6 sm:right-10 lg:right-12 xl:right-16 2xl:right-20 top-[19%] lg:top-[21%] xl:top-[23%] z-20 max-w-[360px] lg:max-w-[400px] xl:max-w-[460px] 2xl:max-w-[500px] text-left">
+          <h2 className="text-[40px] lg:text-[46px] xl:text-[54px] 2xl:text-[58px] font-bold text-[#0c2752] leading-[1.05] tracking-[-0.03em]">
             Luxury care<br />
             made personal
           </h2>
@@ -129,11 +129,11 @@ export default function Hero() {
         </div>
 
         {/* CENTER: Crystal Tooth */}
-        <div className="absolute left-1/2 -translate-x-1/2 top-[2%] lg:top-[3%] bottom-[2%] lg:bottom-[3%] z-10 flex items-center justify-center pointer-events-none select-none">
+        <div className="absolute left-1/2 -translate-x-1/2 top-[0%] lg:top-[1%] bottom-0 z-10 flex items-center justify-center pointer-events-none select-none">
           <img 
             src="/assets/transparent-tooth.webp" 
             alt="3D Luminous Crystal Tooth" 
-            className="w-[340px] lg:w-[400px] xl:w-[460px] 2xl:w-[520px] max-w-[40vw] max-h-[82%] h-auto object-contain tooth-float drop-shadow-[0_20px_45px_rgba(2,132,199,0.2)]" 
+            className="w-[460px] lg:w-[520px] xl:w-[600px] 2xl:w-[640px] h-auto object-contain tooth-float drop-shadow-[0_25px_50px_rgba(2,132,199,0.22)]" 
           />
         </div>
 
