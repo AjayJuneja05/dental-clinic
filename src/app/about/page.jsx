@@ -52,28 +52,39 @@ const MILESTONES = [
   { year: '2025', title: 'Expansion & New Wing', desc: 'Unveiled our expanded clinic with 12 treatment suites and a dedicated smile studio.' },
 ];
 
-function VideoCard({ number, label }) {
+function VideoCard({ number, label, bgImage }) {
   const [playing, setPlaying] = useState(false);
 
   return (
     <div className="relative group rounded-[24px] overflow-hidden bg-[#07234b] border border-white/10 shadow-2xl shadow-sky-900/30 aspect-video">
-      {/* Placeholder background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#0c2752] via-[#0d3265] to-[#0a1e40]" />
-
+      {/* Dental Video Poster / Background Image */}
+      {bgImage ? (
+        <>
+          <img 
+            src={bgImage} 
+            alt={label} 
+            className="absolute inset-0 w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 opacity-55"
+          />
+          <div className="absolute inset-0 bg-[#07234b]/65 mix-blend-multiply" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#07234b] via-transparent to-[#07234b]/40" />
+        </>
+      ) : (
+        <div className="absolute inset-0 bg-gradient-to-br from-[#0c2752] via-[#0d3265] to-[#0a1e40]" />
+      )}
 
       {/* Ambient glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-sky-500/15 rounded-full blur-[80px] pointer-events-none" />
 
       {/* Label pill */}
       <div className="absolute top-5 left-5 z-10">
-        <span className="px-3 py-1 rounded-full bg-white/10 border border-white/15 backdrop-blur-sm text-[11px] font-bold text-white/80 uppercase tracking-widest">
+        <span className="px-3 py-1 rounded-full bg-white/15 border border-white/20 backdrop-blur-md text-[11px] font-bold text-white uppercase tracking-widest shadow-sm">
           {label}
         </span>
       </div>
 
       {/* Video number */}
       <div className="absolute top-5 right-5 z-10">
-        <span className="w-8 h-8 rounded-full bg-white/8 border border-white/12 flex items-center justify-center text-[13px] font-bold text-white/50">
+        <span className="w-8 h-8 rounded-full bg-white/10 border border-white/15 backdrop-blur-md flex items-center justify-center text-[13px] font-bold text-white/80">
           {number}
         </span>
       </div>
@@ -82,8 +93,8 @@ function VideoCard({ number, label }) {
       <div className="absolute inset-0 flex flex-col items-center justify-center z-10">
         <button
           onClick={() => setPlaying(true)}
-          className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-white/15 border border-white/25 backdrop-blur-md flex items-center justify-center
-            hover:bg-white/25 hover:scale-110 hover:border-white/40 transition-all duration-300 group/btn shadow-lg shadow-black/30"
+          className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-white/20 border border-white/30 backdrop-blur-md flex items-center justify-center
+            hover:bg-white/30 hover:scale-110 hover:border-white/50 transition-all duration-300 group/btn shadow-xl shadow-black/40"
           aria-label="Play video"
         >
           <svg
@@ -94,13 +105,13 @@ function VideoCard({ number, label }) {
             <path d="M8 5v14l11-7z" />
           </svg>
         </button>
-        <p className="mt-4 text-[13px] text-white/50 font-medium">Click to play video</p>
+        <p className="mt-4 text-[13px] text-white/70 font-medium">Click to play video</p>
       </div>
 
       {/* Bottom info bar */}
-      <div className="absolute bottom-0 left-0 right-0 px-5 py-4 bg-gradient-to-t from-black/60 to-transparent z-10">
-        <p className="text-[13px] font-semibold text-white/90">Add your video here</p>
-        <p className="text-[11.5px] text-white/50 mt-0.5">Replace this placeholder with your own video file</p>
+      <div className="absolute bottom-0 left-0 right-0 px-5 py-4 bg-gradient-to-t from-black/80 via-black/40 to-transparent z-10">
+        <p className="text-[13px] font-semibold text-white">Add your video here</p>
+        <p className="text-[11.5px] text-white/60 mt-0.5">Replace this placeholder with your own video file</p>
       </div>
     </div>
   );
@@ -113,9 +124,21 @@ export default function AboutPage() {
 
       {/* ─── HERO ─── */}
       <section className="relative w-full overflow-hidden bg-[#0c2752] pt-14 sm:pt-20">
+        {/* Dental Clinic / Chair Background Photo with Navy Color Gradient Overlay (like homepage) */}
+        <div className="absolute inset-0 z-0">
+          <img 
+            src="/assets/clinic-bg.webp" 
+            alt="Modern dental clinic interior and treatment suite" 
+            className="w-full h-full object-cover object-center scale-105 opacity-35"
+          />
+          <div className="absolute inset-0 bg-[#0c2752]/85 mix-blend-multiply"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0c2752] via-[#0c2752]/65 to-[#0c2752]/85"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0c2752] via-[#0c2752]/40 to-[#0c2752]"></div>
+        </div>
+
         {/* Ambient blobs */}
-        <div className="absolute top-0 right-[10%] w-[600px] h-[600px] bg-sky-600/10 rounded-full blur-[130px] pointer-events-none" />
-        <div className="absolute bottom-0 left-[5%] w-[400px] h-[400px] bg-blue-400/8 rounded-full blur-[100px] pointer-events-none" />
+        <div className="absolute top-0 right-[10%] w-[600px] h-[600px] bg-sky-600/15 rounded-full blur-[130px] pointer-events-none" />
+        <div className="absolute bottom-0 left-[5%] w-[400px] h-[400px] bg-blue-400/10 rounded-full blur-[100px] pointer-events-none" />
 
 
         <div className="relative z-10 w-full max-w-[1500px] mx-auto px-5 sm:px-12 lg:px-20 pt-16 pb-24 sm:pt-20 sm:pb-32">
@@ -242,6 +265,17 @@ export default function AboutPage() {
 
       {/* ─── VIDEO SECTION ─── */}
       <section className="relative w-full bg-[#0c2752] overflow-hidden">
+        {/* Dental Lab & Precision Equipment Background with Navy Overlay */}
+        <div className="absolute inset-0 z-0">
+          <img 
+            src="/assets/tech-modern-equipment.webp" 
+            alt="Dental laboratory equipment and precision instruments" 
+            className="w-full h-full object-cover object-center scale-105 opacity-20"
+          />
+          <div className="absolute inset-0 bg-[#0c2752]/90 mix-blend-multiply"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0c2752] via-[#0c2752]/85 to-[#0c2752]"></div>
+        </div>
+
         {/* Ambient blobs */}
         <div className="absolute top-0 left-[20%] w-[500px] h-[500px] bg-sky-600/10 rounded-full blur-[120px] pointer-events-none" />
         <div className="absolute bottom-0 right-[10%] w-[400px] h-[400px] bg-blue-400/8 rounded-full blur-[100px] pointer-events-none" />
@@ -265,7 +299,11 @@ export default function AboutPage() {
           {/* 2-Video Grid */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
             <div>
-              <VideoCard number="01" label="Clinic Tour" />
+              <VideoCard 
+                number="01" 
+                label="Clinic Tour" 
+                bgImage="/assets/clinic-bg.webp" 
+              />
               <div className="mt-4 flex items-center gap-3">
                 <div className="w-8 h-8 rounded-full bg-white/10 border border-white/15 flex items-center justify-center flex-shrink-0">
                   <svg className="w-4 h-4 text-sky-400" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24">
@@ -280,7 +318,11 @@ export default function AboutPage() {
             </div>
 
             <div>
-              <VideoCard number="02" label="Patient Stories" />
+              <VideoCard 
+                number="02" 
+                label="Patient Stories" 
+                bgImage="/assets/tech-modern-equipment.webp" 
+              />
               <div className="mt-4 flex items-center gap-3">
                 <div className="w-8 h-8 rounded-full bg-white/10 border border-white/15 flex items-center justify-center flex-shrink-0">
                   <svg className="w-4 h-4 text-sky-400" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24">
@@ -340,6 +382,16 @@ export default function AboutPage() {
 
       {/* ─── CTA BANNER ─── */}
       <section className="relative w-full overflow-hidden bg-[#0c2752] border-t border-white/5">
+        {/* Dental Clinic Suite Background with Navy Overlay */}
+        <div className="absolute inset-0 z-0">
+          <img 
+            src="/assets/clinic-bg.webp" 
+            alt="Dental clinic suite" 
+            className="w-full h-full object-cover object-center scale-105 opacity-20"
+          />
+          <div className="absolute inset-0 bg-[#0c2752]/90 mix-blend-multiply"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0c2752] via-[#0c2752]/80 to-[#0c2752]"></div>
+        </div>
 
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-sky-600/10 rounded-full blur-[100px] pointer-events-none" />
 
