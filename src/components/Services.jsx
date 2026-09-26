@@ -84,8 +84,8 @@ export default function Services() {
                     </p>
                   </div>
 
-                  {/* Right Side: 55% Full Half Card with removed min-w to eliminate text cutoff */}
-                  <div className={`w-[55%] h-full flex-shrink-0 bg-white/12 backdrop-blur-md border-l border-white/20 p-4 sm:p-5 overflow-hidden transition-all duration-300 ease-out ${
+                  {/* Right Side: 55% Full Half Card with min-w to prevent text shuffling */}
+                  <div className={`w-[55%] min-w-[240px] h-full flex-shrink-0 bg-white/12 backdrop-blur-md border-l border-white/20 p-4 sm:p-5 overflow-hidden transition-all duration-300 ease-out ${
                     isActive ? 'opacity-100 translate-x-0 pointer-events-auto delay-100' : 'opacity-0 translate-x-3 pointer-events-none'
                   }`}>
                     <div className="w-full h-full flex flex-col justify-between">

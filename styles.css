@@ -125,6 +125,7 @@ html, body {
 /* Right part: Complete Full 55% Half Card */
 .card-right-panel {
   width: 55%;
+  min-width: 240px;
   height: 100%;
   flex-shrink: 0;
   background: rgba(255, 255, 255, 0.12);
