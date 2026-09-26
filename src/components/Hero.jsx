@@ -10,7 +10,7 @@ export default function Hero() {
         {/* Mobile Heading */}
         <h1 className="hero-heading text-[32px] sm:text-[40px] font-bold italic text-[#0c2752] leading-[1.15] sm:leading-[1.18] tracking-[-0.03em]">
           <span className="block whitespace-nowrap">
-            Not all{' '}
+            True{' '}
             <span className="relative inline-block text-[#0284c7]">
               smiles
               <svg 
@@ -29,9 +29,9 @@ export default function Hero() {
               </svg>
             </span>
           </span>
-          <span className="block whitespace-nowrap">need fixing,</span>
-          <span className="block whitespace-nowrap text-[#0c2752]">some</span>
-          <span className="block whitespace-nowrap">need vision</span>
+          <span className="block whitespace-nowrap">are curated</span>
+          <span className="block whitespace-nowrap text-[#0c2752]">not</span>
+          <span className="block whitespace-nowrap">merely corrected</span>
         </h1>
 
         <p className="text-[13px] sm:text-[14px] text-[#475569] font-normal leading-[1.7] max-w-[320px] mt-1">
@@ -76,7 +76,7 @@ export default function Hero() {
         <div className="absolute left-8 sm:left-12 lg:left-16 xl:left-20 top-[6%] lg:top-[7%] xl:top-[8%] z-20 max-w-[440px] lg:max-w-[480px] xl:max-w-[540px] 2xl:max-w-[620px]">
           <h1 className="hero-heading text-[44px] lg:text-[52px] xl:text-[62px] 2xl:text-[72px] font-bold italic text-[#0c2752] leading-[1.12] xl:leading-[1.14] tracking-[-0.03em]">
             <span className="block whitespace-nowrap pb-1">
-              Not all{' '}
+              True{' '}
               <span className="relative inline-block text-[#0284c7]">
                 smiles
                 <svg 
@@ -95,9 +95,9 @@ export default function Hero() {
                 </svg>
               </span>
             </span>
-            <span className="block whitespace-nowrap">need fixing,</span>
-            <span className="block whitespace-nowrap text-[#0c2752]">some</span>
-            <span className="block whitespace-nowrap">need vision</span>
+            <span className="block whitespace-nowrap">are curated</span>
+            <span className="block whitespace-nowrap text-[#0c2752]">not</span>
+            <span className="block whitespace-nowrap">merely corrected</span>
           </h1>
 
           <p className="mt-6 xl:mt-8 text-[13px] lg:text-[14px] xl:text-[15px] text-[#475569] font-normal leading-[1.7] max-w-[280px] lg:max-w-[300px] xl:max-w-[320px]">
