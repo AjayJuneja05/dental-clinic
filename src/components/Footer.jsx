@@ -89,11 +89,12 @@ export default function Footer() {
             <ul className="space-y-3 text-[13.5px]">
               {[
                 { label: 'Home', href: '/' },
+                { label: 'About Us', href: '/about' },
                 { label: 'Treatments', href: '/services' },
                 { label: 'Transformations', href: '/services#transformations' },
                 { label: 'Our Doctors', href: '/#specialists' },
                 { label: '3D Technology', href: '/#technology' },
-                { label: 'Book Visit', href: '/#schedule' },
+                { label: 'Contact Us', href: '/contact' },
               ].map((link, i) => (
                 <li key={i}>
                   <Link href={link.href} className="text-white/60 hover:text-white transition-colors flex items-center gap-2 group">

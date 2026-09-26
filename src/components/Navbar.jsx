@@ -23,7 +23,7 @@ export default function Navbar() {
       </nav>
       
       <Link 
-        href="/#schedule" 
+        href="/contact" 
         className="absolute right-8 sm:right-12 lg:right-20 text-[14px] font-semibold text-[#0c2752] hover:text-sky-600 transition-colors hidden md:block"
       >
         Contact
@@ -48,7 +48,7 @@ export default function Navbar() {
           <Link href="/#specialists" onClick={() => setMobileMenuOpen(false)} className="py-2 hover:text-sky-600 border-b border-slate-50">Specialists</Link>
           <Link href="/#calculator" onClick={() => setMobileMenuOpen(false)} className="py-2 hover:text-sky-600 border-b border-slate-50">Calculator</Link>
           <Link href="/services#stories" onClick={() => setMobileMenuOpen(false)} className="py-2 hover:text-sky-600 border-b border-slate-50">Real Stories</Link>
-          <Link href="/#schedule" onClick={() => setMobileMenuOpen(false)} className="py-2 hover:text-sky-600">Contact</Link>
+          <Link href="/contact" onClick={() => setMobileMenuOpen(false)} className="py-2 hover:text-sky-600">Contact</Link>
         </div>
       )}
     </header>
