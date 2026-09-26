@@ -48,9 +48,9 @@ export default function Hero() {
         </div>
 
         {/* Mobile Right Heading + CTA */}
-        <h2 className="text-[30px] sm:text-[36px] font-bold text-[#0c2752] leading-[1.06] tracking-[-0.03em]">
-          Luxury care<br />
-          made personal
+        <h2 className="text-[30px] sm:text-[36px] font-bold text-[#0c2752] leading-[1.08] tracking-[-0.03em]">
+          Modern dentistry<br />
+          with a personal touch
         </h2>
 
         <a href="#schedule" className="inline-flex items-center gap-3 px-7 py-3.5 rounded-full text-white text-[14px] font-medium bg-gradient-to-r from-[#0c8fd1] via-[#0670a8] to-[#0a2754] shadow-lg shadow-sky-700/25 active:scale-95 transition-all duration-300 group">
@@ -106,10 +106,10 @@ export default function Hero() {
         </div>
 
         {/* RIGHT COLUMN */}
-        <div className="absolute right-6 sm:right-10 lg:right-12 xl:right-16 2xl:right-20 top-[18%] lg:top-[20%] xl:top-[22%] z-20 max-w-[380px] lg:max-w-[420px] xl:max-w-[480px] 2xl:max-w-[540px] text-left">
-          <h2 className="text-[44px] lg:text-[52px] xl:text-[60px] 2xl:text-[68px] font-bold text-[#0c2752] leading-[1.05] tracking-[-0.03em]">
-            Luxury care<br />
-            made personal
+        <div className="absolute right-6 sm:right-10 lg:right-12 xl:right-16 2xl:right-20 top-[18%] lg:top-[20%] xl:top-[22%] z-20 max-w-[380px] lg:max-w-[440px] xl:max-w-[520px] 2xl:max-w-[580px] text-left">
+          <h2 className="text-[40px] lg:text-[46px] xl:text-[54px] 2xl:text-[60px] font-bold text-[#0c2752] leading-[1.08] tracking-[-0.03em]">
+            Modern dentistry<br />
+            with a personal touch
           </h2>
 
           <a href="#schedule" className="mt-6 xl:mt-8 inline-flex items-center gap-3 px-6 xl:px-7 py-3 xl:py-3.5 rounded-full text-white text-[13.5px] xl:text-[14.5px] font-medium bg-gradient-to-r from-[#0c8fd1] via-[#0670a8] to-[#0a2754] shadow-lg shadow-sky-700/25 hover:shadow-xl hover:shadow-sky-700/35 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-300 group">
