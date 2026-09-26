@@ -3,7 +3,7 @@
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const WORKING_HOURS = [
   { day: 'Monday',    time: '09:00 AM – 10:00 PM' },
@@ -15,24 +15,62 @@ const WORKING_HOURS = [
   { day: 'Sunday',    time: 'Closed', closed: true },
 ];
 
+const CLINIC_PHOTOS = [
+  {
+    id: 1,
+    title: 'Main Treatment Suite',
+    tag: 'Treatment Room 01',
+    description: 'Ergonomic luxury patient chair, surgical LED lighting, and real-time intraoral 4K monitors.',
+    image: '/assets/clinic-bg.webp',
+  },
+  {
+    id: 2,
+    title: 'Digital Intraoral Scanning Studio',
+    tag: 'Scanning Lab',
+    description: 'Instant 3D digital impressions with zero discomfort or traditional goopy impression trays.',
+    image: '/assets/tech-scanner-blue.webp',
+  },
+  {
+    id: 3,
+    title: 'Advanced Dental Lab & Sterilization',
+    tag: 'Ceramics & Tech Lab',
+    description: 'In-house CAD/CAM precision technology and hospital-grade sterilization protocols.',
+    image: '/assets/tech-modern-equipment.webp',
+  },
+  {
+    id: 4,
+    title: '3D CBCT Diagnostic Imaging Room',
+    tag: 'Radiology Suite',
+    description: 'Ultra-low radiation 3D volumetric mapping for flawless implant and orthodontic planning.',
+    image: '/assets/tech-3d-imaging.webp',
+  },
+  {
+    id: 5,
+    title: 'Smile Design Consultation Suite',
+    tag: 'Consultation Studio',
+    description: 'High-definition digital smile simulations showing your exact results before treatment begins.',
+    image: '/assets/tech-treatment-planning.webp',
+  },
+];
+
 export default function ContactPage() {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    subject: '',
-    message: '',
-  });
-  const [submitted, setSubmitted] = useState(false);
+  const [selectedPhotoIndex, setSelectedPhotoIndex] = useState(0);
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+  // Pick a random clinic photo on initial load
+  useEffect(() => {
+    const randomIndex = Math.floor(Math.random() * CLINIC_PHOTOS.length);
+    setSelectedPhotoIndex(randomIndex);
+  }, []);
+
+  const handleRandomize = () => {
+    let nextIndex;
+    do {
+      nextIndex = Math.floor(Math.random() * CLINIC_PHOTOS.length);
+    } while (nextIndex === selectedPhotoIndex && CLINIC_PHOTOS.length > 1);
+    setSelectedPhotoIndex(nextIndex);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setSubmitted(true);
-  };
+  const currentPhoto = CLINIC_PHOTOS[selectedPhotoIndex];
 
   return (
     <div className="bg-white min-h-screen">
@@ -61,7 +99,7 @@ export default function ContactPage() {
               hear from <span className="italic text-sky-300">you.</span>
             </h1>
             <p className="mt-6 text-[14.5px] sm:text-[15.5px] text-white/70 leading-[1.75] max-w-[520px]">
-              Whether you have a question about our treatments, need to schedule a visit, or simply want to learn more — our team is here to help.
+              Whether you have a question about our treatments, need to schedule a visit, or simply want to explore our clinic — our team is here for you.
             </p>
           </div>
         </div>
@@ -70,9 +108,9 @@ export default function ContactPage() {
         <div className="absolute bottom-0 left-0 right-0 h-16 bg-white" style={{ clipPath: 'ellipse(60% 100% at 50% 100%)' }} />
       </section>
 
-      {/* ─── CONTACT DETAILS + FORM ─── */}
+      {/* ─── CONTACT DETAILS + CLINIC PHOTO SHOWCASE (RANDOM) ─── */}
       <section className="w-full max-w-[1500px] mx-auto px-5 sm:px-12 lg:px-20 py-20 sm:py-28">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
 
           {/* LEFT: Contact Info Cards */}
           <div className="space-y-6">
@@ -82,7 +120,7 @@ export default function ContactPage() {
                 Visit our clinic or reach out directly.
               </h2>
               <p className="mt-4 text-[14.5px] text-[#475569] leading-[1.75] max-w-[480px]">
-                Our friendly front desk team is available to assist you with scheduling, insurance questions, and any concerns you may have.
+                Our concierge front desk is available to assist you with scheduling, insurance queries, and private consultations.
               </p>
             </div>
 
@@ -177,171 +215,131 @@ export default function ContactPage() {
             </div>
           </div>
 
-          {/* RIGHT: Contact Form */}
-          <div>
-            <div className="bg-white rounded-[28px] p-6 sm:p-8 border border-slate-200/90 shadow-[0_15px_40px_-15px_rgba(12,39,82,0.08)]">
-              <h3 className="text-[20px] font-bold text-[#07234b] mb-1">Send Us a Message</h3>
-              <p className="text-[13.5px] text-[#475569] mb-6">Fill in the form and we'll get back to you within 24 hours.</p>
+          {/* RIGHT: In place of "Send Us Message" -> Clinic Photo Showcase with Randomizer */}
+          <div className="flex flex-col">
+            <div className="bg-white rounded-[28px] p-6 sm:p-7 border border-slate-200/90 shadow-[0_15px_40px_-15px_rgba(12,39,82,0.08)] flex flex-col justify-between">
+              
+              {/* Header with Title & Randomize Button */}
+              <div className="flex items-center justify-between gap-3 mb-5">
+                <div>
+                  <span className="text-[11px] font-bold text-[#0066cc] tracking-[0.2em] uppercase">
+                    Clinic Gallery
+                  </span>
+                  <h3 className="text-[20px] font-bold text-[#07234b] leading-tight">
+                    Inside Vsb Smiles
+                  </h3>
+                </div>
 
-              {!submitted ? (
-                <form onSubmit={handleSubmit} className="space-y-4">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div>
-                      <label className="block text-[12.5px] font-semibold text-[#0c2752] mb-1.5">Full Name</label>
-                      <input 
-                        type="text" 
-                        name="name"
-                        value={formData.name}
-                        onChange={handleChange}
-                        required
-                        placeholder="Ajay Juneja"
-                        className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-[14px] text-[#07234b] placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-sky-500/30 focus:border-sky-400 transition-all"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-[12.5px] font-semibold text-[#0c2752] mb-1.5">Email Address</label>
-                      <input 
-                        type="email" 
-                        name="email"
-                        value={formData.email}
-                        onChange={handleChange}
-                        required
-                        placeholder="you@example.com"
-                        className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-[14px] text-[#07234b] placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-sky-500/30 focus:border-sky-400 transition-all"
-                      />
-                    </div>
+                <button
+                  type="button"
+                  onClick={handleRandomize}
+                  className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-sky-50 hover:bg-sky-100 text-[#0066cc] border border-sky-200/60 text-[12.5px] font-semibold transition-all hover:scale-105 active:scale-95 shadow-xs group"
+                  title="View another random clinic photo"
+                >
+                  <span className="transition-transform group-hover:rotate-180 duration-500">🎲</span>
+                  <span>Random Photo</span>
+                </button>
+              </div>
+
+              {/* Featured Photo Box */}
+              <div className="relative rounded-[22px] overflow-hidden aspect-[4/3] bg-slate-900 border border-slate-200/80 shadow-md group">
+                <img
+                  key={currentPhoto.id}
+                  src={currentPhoto.image}
+                  alt={currentPhoto.title}
+                  className="w-full h-full object-cover object-center transition-all duration-700 group-hover:scale-105"
+                />
+                
+                {/* Gradient vignette */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0c2752]/90 via-[#0c2752]/25 to-transparent pointer-events-none" />
+
+                {/* Floating Tag */}
+                <div className="absolute top-4 left-4 z-10">
+                  <div className="inline-flex items-center gap-2 bg-white/95 backdrop-blur-md rounded-full px-3.5 py-1.5 shadow-md">
+                    <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                    <span className="text-[11.5px] font-bold text-[#07234b] tracking-wide">
+                      {currentPhoto.tag}
+                    </span>
                   </div>
+                </div>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div>
-                      <label className="block text-[12.5px] font-semibold text-[#0c2752] mb-1.5">Phone Number</label>
-                      <input 
-                        type="tel" 
-                        name="phone"
-                        value={formData.phone}
-                        onChange={handleChange}
-                        placeholder="+1 (310) 000-0000"
-                        className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-[14px] text-[#07234b] placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-sky-500/30 focus:border-sky-400 transition-all"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-[12.5px] font-semibold text-[#0c2752] mb-1.5">Subject</label>
-                      <select 
-                        name="subject"
-                        value={formData.subject}
-                        onChange={handleChange}
-                        required
-                        className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-[14px] text-[#07234b] focus:outline-none focus:ring-2 focus:ring-sky-500/30 focus:border-sky-400 transition-all appearance-none"
-                      >
-                        <option value="">Select a topic</option>
-                        <option value="general">General Inquiry</option>
-                        <option value="appointment">Appointment Question</option>
-                        <option value="insurance">Insurance & Billing</option>
-                        <option value="treatment">Treatment Information</option>
-                        <option value="feedback">Feedback</option>
-                        <option value="other">Other</option>
-                      </select>
-                    </div>
+                {/* Photo counter */}
+                <div className="absolute top-4 right-4 z-10">
+                  <div className="px-2.5 py-1 rounded-full bg-[#0c2752]/75 backdrop-blur-md border border-white/20 text-[11px] font-bold text-white/90">
+                    {selectedPhotoIndex + 1} / {CLINIC_PHOTOS.length}
                   </div>
+                </div>
 
-                  <div>
-                    <label className="block text-[12.5px] font-semibold text-[#0c2752] mb-1.5">Your Message</label>
-                    <textarea 
-                      name="message"
-                      value={formData.message}
-                      onChange={handleChange}
-                      required
-                      rows={5}
-                      placeholder="Tell us how we can help you..."
-                      className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-[14px] text-[#07234b] placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-sky-500/30 focus:border-sky-400 transition-all resize-none"
-                    />
-                  </div>
-
-                  <button 
-                    type="submit"
-                    className="w-full py-3.5 rounded-xl bg-[#0066cc] hover:bg-[#0052a3] text-white text-[14.5px] font-bold transition-all shadow-lg shadow-sky-600/20 hover:shadow-sky-600/40 hover:scale-[1.01] active:scale-[0.99]"
-                  >
-                    Send Message →
-                  </button>
-
-                  <p className="text-[12px] text-[#475569]/60 text-center mt-2">
-                    We respect your privacy. Your information will never be shared.
+                {/* Bottom Details Overlay */}
+                <div className="absolute bottom-0 left-0 right-0 p-5 z-10 text-white">
+                  <h4 className="text-[17px] sm:text-[18px] font-bold leading-snug drop-shadow-sm">
+                    {currentPhoto.title}
+                  </h4>
+                  <p className="text-[12.5px] text-white/80 leading-relaxed mt-1 line-clamp-2">
+                    {currentPhoto.description}
                   </p>
-                </form>
-              ) : (
-                <div className="text-center py-12">
-                  <div className="w-16 h-16 rounded-full bg-emerald-50 border-2 border-emerald-200 flex items-center justify-center mx-auto mb-5">
-                    <svg className="w-8 h-8 text-emerald-500" fill="none" stroke="currentColor" strokeWidth="2.2" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7"/>
+                </div>
+              </div>
+
+              {/* Thumbnail Selector Strip */}
+              <div className="mt-4 pt-3 border-t border-slate-100">
+                <div className="flex items-center justify-between mb-2">
+                  <span className="text-[11.5px] font-semibold text-slate-500">
+                    Explore Suites & Labs
+                  </span>
+                  <span className="text-[11px] text-slate-400">
+                    Click thumbnail or roll random
+                  </span>
+                </div>
+
+                <div className="grid grid-cols-5 gap-2">
+                  {CLINIC_PHOTOS.map((photo, idx) => (
+                    <button
+                      key={photo.id}
+                      type="button"
+                      onClick={() => setSelectedPhotoIndex(idx)}
+                      className={`relative rounded-xl overflow-hidden aspect-[4/3] border transition-all ${
+                        selectedPhotoIndex === idx
+                          ? 'border-[#0066cc] ring-2 ring-[#0066cc]/40 scale-105 shadow-sm'
+                          : 'border-slate-200 opacity-60 hover:opacity-100 hover:border-slate-300'
+                      }`}
+                      title={photo.title}
+                    >
+                      <img
+                        src={photo.image}
+                        alt={photo.tag}
+                        className="w-full h-full object-cover"
+                      />
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Quick Consultation Callout */}
+              <div className="mt-4 p-3.5 rounded-2xl bg-slate-50 border border-slate-200/80 flex items-center justify-between gap-3">
+                <div className="flex items-center gap-2.5">
+                  <div className="w-8 h-8 rounded-full bg-sky-100 text-[#0066cc] flex items-center justify-center flex-shrink-0">
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
                     </svg>
                   </div>
-                  <h3 className="text-[20px] font-bold text-[#07234b] mb-2">MESSAGE SENT</h3>
-                  <p className="text-[14px] text-[#475569] leading-[1.7] max-w-[360px] mx-auto">
-                    Thank you, {formData.name || 'there'}! We've received your message and will get back to you within 24 hours.
-                  </p>
-                  <button 
-                    onClick={() => { setSubmitted(false); setFormData({ name: '', email: '', phone: '', subject: '', message: '' }); }}
-                    className="mt-6 px-6 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-[13px] font-semibold text-[#07234b] transition-all"
-                  >
-                    Send Another Message
-                  </button>
-                </div>
-              )}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ─── CLINIC IMAGE + MAP ─── */}
-      <section className="relative w-full bg-[#f8fafc] border-y border-slate-100 overflow-hidden">
-        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-sky-100/60 rounded-full blur-[120px] pointer-events-none" />
-        <div className="w-full max-w-[1500px] mx-auto px-5 sm:px-12 lg:px-20 py-20 sm:py-28 relative z-10">
-          <div className="text-center max-w-[600px] mx-auto mb-14">
-            <p className="text-[12px] font-bold text-[#0066cc] tracking-[0.25em] uppercase mb-4">Our Clinic</p>
-            <h2 className="text-[34px] sm:text-[44px] font-bold text-[#0c2752] leading-[1.1] tracking-[-0.025em]">
-              A modern sanctuary designed for your comfort.
-            </h2>
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
-            {/* Clinic Interior Image */}
-            <div className="relative rounded-[28px] overflow-hidden aspect-[4/3] shadow-2xl shadow-sky-900/15 bg-slate-100 border border-slate-200/80 group">
-              <img
-                src="/assets/clinic-bg.webp"
-                alt="Vsb Smiles — Modern Treatment Suite"
-                className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0c2752]/60 to-transparent" />
-              <div className="absolute bottom-6 left-6 right-6">
-                <div className="inline-flex items-center gap-3 bg-white/95 backdrop-blur rounded-2xl px-5 py-3 shadow-lg">
-                  <div className="w-3 h-3 rounded-full bg-emerald-400 animate-pulse flex-shrink-0" />
                   <div>
-                    <p className="text-[13px] font-semibold text-[#07234b]">Vsb Smiles Beverly Hills</p>
-                    <p className="text-[11px] text-[#475569]">State-of-the-art treatment suites</p>
+                    <p className="text-[12.5px] font-bold text-[#07234b]">Visit our clinic in person</p>
+                    <p className="text-[11px] text-slate-500">Complimentary consultations available</p>
                   </div>
                 </div>
-              </div>
-            </div>
 
-            {/* Dental Equipment / Tech Image */}
-            <div className="relative rounded-[28px] overflow-hidden aspect-[4/3] shadow-2xl shadow-sky-900/15 bg-slate-100 border border-slate-200/80 group">
-              <img
-                src="/assets/tech-modern-equipment.webp"
-                alt="Advanced dental technology and precision instruments"
-                className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0c2752]/60 to-transparent" />
-              <div className="absolute bottom-6 left-6 right-6">
-                <div className="inline-flex items-center gap-3 bg-white/95 backdrop-blur rounded-2xl px-5 py-3 shadow-lg">
-                  <div className="w-3 h-3 rounded-full bg-sky-400 animate-pulse flex-shrink-0" />
-                  <div>
-                    <p className="text-[13px] font-semibold text-[#07234b]">Advanced Technology</p>
-                    <p className="text-[11px] text-[#475569]">AI diagnostics & 3D imaging suites</p>
-                  </div>
-                </div>
+                <Link
+                  href="/#schedule"
+                  className="px-3.5 py-1.5 rounded-full bg-[#0066cc] hover:bg-[#0052a3] text-white text-[12px] font-bold transition-all shadow-xs flex-shrink-0"
+                >
+                  Book Visit →
+                </Link>
               </div>
+
             </div>
           </div>
+
         </div>
       </section>
 
