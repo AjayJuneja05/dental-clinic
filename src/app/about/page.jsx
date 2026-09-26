@@ -124,16 +124,15 @@ export default function AboutPage() {
 
       {/* ─── HERO ─── */}
       <section className="relative w-full overflow-hidden bg-[#0c2752] pt-14 sm:pt-20">
-        {/* Dental Clinic / Chair Background Photo with Navy Color Gradient Overlay (like homepage) */}
+        {/* Background Clinic Photo with Navy Color Gradient Overlay */}
         <div className="absolute inset-0 z-0">
           <img 
             src="/assets/clinic-bg.webp" 
-            alt="Modern dental clinic interior and treatment suite" 
-            className="w-full h-full object-cover object-center scale-105 opacity-35"
+            alt="Modern dental clinic interior" 
+            className="w-full h-full object-cover object-center scale-105"
           />
           <div className="absolute inset-0 bg-[#0c2752]/85 mix-blend-multiply"></div>
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0c2752] via-[#0c2752]/65 to-[#0c2752]/85"></div>
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0c2752] via-[#0c2752]/40 to-[#0c2752]"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0c2752] via-[#0c2752]/60 to-[#0c2752]/80"></div>
         </div>
 
         {/* Ambient blobs */}
@@ -265,15 +264,15 @@ export default function AboutPage() {
 
       {/* ─── VIDEO SECTION ─── */}
       <section className="relative w-full bg-[#0c2752] overflow-hidden">
-        {/* Dental Lab & Precision Equipment Background with Navy Overlay */}
+        {/* Background Clinic Photo with Navy Color Gradient Overlay */}
         <div className="absolute inset-0 z-0">
           <img 
-            src="/assets/tech-modern-equipment.webp" 
-            alt="Dental laboratory equipment and precision instruments" 
-            className="w-full h-full object-cover object-center scale-105 opacity-20"
+            src="/assets/clinic-bg.webp" 
+            alt="Modern dental clinic interior" 
+            className="w-full h-full object-cover object-center scale-105"
           />
-          <div className="absolute inset-0 bg-[#0c2752]/90 mix-blend-multiply"></div>
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0c2752] via-[#0c2752]/85 to-[#0c2752]"></div>
+          <div className="absolute inset-0 bg-[#0c2752]/85 mix-blend-multiply"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0c2752] via-[#0c2752]/60 to-[#0c2752]/80"></div>
         </div>
 
         {/* Ambient blobs */}
@@ -382,15 +381,15 @@ export default function AboutPage() {
 
       {/* ─── CTA BANNER ─── */}
       <section className="relative w-full overflow-hidden bg-[#0c2752] border-t border-white/5">
-        {/* Dental Clinic Suite Background with Navy Overlay */}
+        {/* Background Clinic Photo with Navy Color Gradient Overlay */}
         <div className="absolute inset-0 z-0">
           <img 
             src="/assets/clinic-bg.webp" 
-            alt="Dental clinic suite" 
-            className="w-full h-full object-cover object-center scale-105 opacity-20"
+            alt="Modern dental clinic interior" 
+            className="w-full h-full object-cover object-center scale-105"
           />
-          <div className="absolute inset-0 bg-[#0c2752]/90 mix-blend-multiply"></div>
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0c2752] via-[#0c2752]/80 to-[#0c2752]"></div>
+          <div className="absolute inset-0 bg-[#0c2752]/85 mix-blend-multiply"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0c2752] via-[#0c2752]/60 to-[#0c2752]/80"></div>
         </div>
 
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-sky-600/10 rounded-full blur-[100px] pointer-events-none" />
