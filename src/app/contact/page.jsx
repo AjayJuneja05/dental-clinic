@@ -3,7 +3,7 @@
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import Link from 'next/link';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 const WORKING_HOURS = [
   { day: 'Monday',    time: '09:00 AM – 10:00 PM' },
@@ -18,56 +18,47 @@ const WORKING_HOURS = [
 const CLINIC_PHOTOS = [
   {
     id: 1,
+    title: 'Vsb Smiles Beverly Hills Studio',
+    tag: 'Clinic Exterior',
+    description: 'Modern architectural flagship clinic with private patient parking and state-of-the-art dental suites.',
+    image: '/assets/clinic-exterior.jpg',
+  },
+  {
+    id: 2,
     title: 'Main Treatment Suite',
     tag: 'Treatment Room 01',
     description: 'Ergonomic luxury patient chair, surgical LED lighting, and real-time intraoral 4K monitors.',
     image: '/assets/clinic-bg.webp',
   },
   {
-    id: 2,
+    id: 3,
     title: 'Digital Intraoral Scanning Studio',
     tag: 'Scanning Lab',
     description: 'Instant 3D digital impressions with zero discomfort or traditional goopy impression trays.',
     image: '/assets/tech-scanner-blue.webp',
   },
   {
-    id: 3,
+    id: 4,
     title: 'Advanced Dental Lab & Sterilization',
     tag: 'Ceramics & Tech Lab',
     description: 'In-house CAD/CAM precision technology and hospital-grade sterilization protocols.',
     image: '/assets/tech-modern-equipment.webp',
   },
   {
-    id: 4,
+    id: 5,
     title: '3D CBCT Diagnostic Imaging Room',
     tag: 'Radiology Suite',
     description: 'Ultra-low radiation 3D volumetric mapping for flawless implant and orthodontic planning.',
     image: '/assets/tech-3d-imaging.webp',
   },
-  {
-    id: 5,
-    title: 'Smile Design Consultation Suite',
-    tag: 'Consultation Studio',
-    description: 'High-definition digital smile simulations showing your exact results before treatment begins.',
-    image: '/assets/tech-treatment-planning.webp',
-  },
 ];
 
 export default function ContactPage() {
+  // Defaults to 0 (the dummy clinic exterior photo)
   const [selectedPhotoIndex, setSelectedPhotoIndex] = useState(0);
 
-  // Pick a random clinic photo on initial load
-  useEffect(() => {
-    const randomIndex = Math.floor(Math.random() * CLINIC_PHOTOS.length);
-    setSelectedPhotoIndex(randomIndex);
-  }, []);
-
-  const handleRandomize = () => {
-    let nextIndex;
-    do {
-      nextIndex = Math.floor(Math.random() * CLINIC_PHOTOS.length);
-    } while (nextIndex === selectedPhotoIndex && CLINIC_PHOTOS.length > 1);
-    setSelectedPhotoIndex(nextIndex);
+  const handleNextPhoto = () => {
+    setSelectedPhotoIndex((prev) => (prev + 1) % CLINIC_PHOTOS.length);
   };
 
   const currentPhoto = CLINIC_PHOTOS[selectedPhotoIndex];
@@ -232,12 +223,12 @@ export default function ContactPage() {
 
                 <button
                   type="button"
-                  onClick={handleRandomize}
-                  className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-sky-50 hover:bg-sky-100 text-[#0066cc] border border-sky-200/60 text-[12.5px] font-semibold transition-all hover:scale-105 active:scale-95 shadow-xs group"
-                  title="View another random clinic photo"
+                  onClick={handleNextPhoto}
+                  className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-sky-50 hover:bg-sky-100 text-[#0066cc] border border-sky-200/60 text-[12.5px] font-semibold transition-all hover:scale-105 active:scale-95 shadow-xs group"
+                  title="View next clinic photo"
                 >
-                  <span className="transition-transform group-hover:rotate-180 duration-500">🎲</span>
-                  <span>Random Photo</span>
+                  <span>Next View</span>
+                  <span className="transition-transform group-hover:translate-x-0.5">→</span>
                 </button>
               </div>
 
@@ -288,7 +279,7 @@ export default function ContactPage() {
                     Explore Suites & Labs
                   </span>
                   <span className="text-[11px] text-slate-400">
-                    Click thumbnail or roll random
+                    Click any view below
                   </span>
                 </div>
 
