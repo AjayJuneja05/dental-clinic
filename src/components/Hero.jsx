@@ -73,8 +73,8 @@ export default function Hero() {
       <div className="hidden lg:block absolute inset-0 px-6 sm:px-10 lg:px-12 xl:px-16 2xl:px-20">
 
         {/* LEFT COLUMN */}
-        <div className="absolute left-6 sm:left-10 lg:left-12 xl:left-16 2xl:left-20 top-[7%] lg:top-[8%] xl:top-[9%] z-20 max-w-[420px] lg:max-w-[460px] xl:max-w-[500px] 2xl:max-w-[540px]">
-          <h1 className="hero-heading text-[40px] lg:text-[46px] xl:text-[54px] 2xl:text-[58px] font-bold italic text-[#0c2752] leading-[1.12] xl:leading-[1.14] tracking-[-0.03em]">
+        <div className="absolute left-6 sm:left-10 lg:left-12 xl:left-16 2xl:left-20 top-[6%] lg:top-[7%] xl:top-[8%] z-20 max-w-[440px] lg:max-w-[480px] xl:max-w-[540px] 2xl:max-w-[620px]">
+          <h1 className="hero-heading text-[44px] lg:text-[52px] xl:text-[60px] 2xl:text-[68px] font-bold italic text-[#0c2752] leading-[1.12] xl:leading-[1.14] tracking-[-0.03em]">
             <span className="block whitespace-nowrap pb-1">
               True{' '}
               <span className="relative inline-block text-[#0284c7]">
@@ -100,19 +100,19 @@ export default function Hero() {
             <span className="block whitespace-nowrap">merely corrected</span>
           </h1>
 
-          <p className="mt-5 xl:mt-6 text-[13px] lg:text-[14px] xl:text-[15px] text-[#475569] font-normal leading-[1.7] max-w-[280px] lg:max-w-[300px] xl:max-w-[340px]">
+          <p className="mt-5 xl:mt-6 text-[13.5px] lg:text-[14.5px] xl:text-[15.5px] text-[#475569] font-normal leading-[1.7] max-w-[280px] lg:max-w-[300px] xl:max-w-[340px]">
             We're a premium orthodontic and aesthetic studio crafting confident smiles for those who settle for nothing ordinary.
           </p>
         </div>
 
         {/* RIGHT COLUMN */}
-        <div className="absolute right-6 sm:right-10 lg:right-12 xl:right-16 2xl:right-20 top-[19%] lg:top-[21%] xl:top-[23%] z-20 max-w-[360px] lg:max-w-[400px] xl:max-w-[460px] 2xl:max-w-[500px] text-left">
-          <h2 className="text-[40px] lg:text-[46px] xl:text-[54px] 2xl:text-[58px] font-bold text-[#0c2752] leading-[1.05] tracking-[-0.03em]">
+        <div className="absolute right-6 sm:right-10 lg:right-12 xl:right-16 2xl:right-20 top-[18%] lg:top-[20%] xl:top-[22%] z-20 max-w-[380px] lg:max-w-[420px] xl:max-w-[480px] 2xl:max-w-[540px] text-left">
+          <h2 className="text-[44px] lg:text-[52px] xl:text-[60px] 2xl:text-[68px] font-bold text-[#0c2752] leading-[1.05] tracking-[-0.03em]">
             Luxury care<br />
             made personal
           </h2>
 
-          <a href="#schedule" className="mt-6 xl:mt-8 inline-flex items-center gap-3 px-6 xl:px-7 py-3 xl:py-3.5 rounded-full text-white text-[13px] xl:text-[14px] font-medium bg-gradient-to-r from-[#0c8fd1] via-[#0670a8] to-[#0a2754] shadow-lg shadow-sky-700/25 hover:shadow-xl hover:shadow-sky-700/35 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-300 group">
+          <a href="#schedule" className="mt-6 xl:mt-8 inline-flex items-center gap-3 px-6 xl:px-7 py-3 xl:py-3.5 rounded-full text-white text-[13.5px] xl:text-[14.5px] font-medium bg-gradient-to-r from-[#0c8fd1] via-[#0670a8] to-[#0a2754] shadow-lg shadow-sky-700/25 hover:shadow-xl hover:shadow-sky-700/35 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-300 group">
             <svg className="w-[18px] h-[18px] text-sky-200 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24">
               <rect x="3" y="4" width="18" height="18" rx="2" ry="3"></rect>
               <line x1="16" y1="2" x2="16" y2="6"></line>
@@ -133,7 +133,7 @@ export default function Hero() {
           <img 
             src="/assets/transparent-tooth.webp" 
             alt="3D Luminous Crystal Tooth" 
-            className="w-[460px] lg:w-[520px] xl:w-[600px] 2xl:w-[640px] h-auto object-contain tooth-float drop-shadow-[0_25px_50px_rgba(2,132,199,0.22)]" 
+            className="w-[440px] lg:w-[500px] xl:w-[580px] 2xl:w-[620px] h-auto object-contain tooth-float drop-shadow-[0_25px_50px_rgba(2,132,199,0.22)]" 
           />
         </div>
 
