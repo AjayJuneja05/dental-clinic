@@ -16,7 +16,7 @@ export default function Footer() {
       <div className="w-full max-w-[1500px] mx-auto px-5 sm:px-12 lg:px-20 relative z-10">
         
         {/* ─── TOP BRAND BAR ─── */}
-        <div className="py-10 sm:py-12 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8 border-b border-white/[0.07]">
+        <div className="py-10 sm:py-12 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8 border-b border-white/[0.08]">
           {/* Logo & Tagline */}
           <Link href="/" className="group flex items-center gap-3.5">
             <div className="relative">
@@ -32,73 +32,113 @@ export default function Footer() {
                 Vsb <span className="bg-gradient-to-r from-sky-300 to-sky-400 bg-clip-text text-transparent">Smiles</span>
               </h2>
               <span className="text-[10.5px] tracking-[0.2em] uppercase text-white/50 font-medium">
-                Premium Dental Studio
+                Premium Dental Studio · Beverly Hills
               </span>
             </div>
           </Link>
 
           {/* Quick Contact Chips */}
           <div className="flex flex-wrap items-center gap-3">
-            <a href="tel:18005550199" className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/[0.06] border border-white/[0.08] hover:bg-white/[0.1] hover:border-white/[0.15] text-[13px] font-medium text-white/90 transition-all group">
+            <a 
+              href="tel:13108592432" 
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/[0.06] border border-white/[0.08] hover:bg-white/[0.1] hover:border-white/[0.15] text-[13px] font-medium text-white/90 transition-all group"
+            >
               <span className="w-5 h-5 rounded-full bg-sky-500/20 flex items-center justify-center">
-                <svg className="w-3 h-3 text-sky-400" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                <svg className="w-3 h-3 text-sky-400" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+                </svg>
               </span>
-              <span className="group-hover:text-sky-300 transition-colors">+1 (800) 555-0199</span>
+              <span className="group-hover:text-sky-300 transition-colors">+1 (310) 859-2432</span>
             </a>
-            <a href="mailto:concierge@vsbsmiles.com" className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/[0.06] border border-white/[0.08] hover:bg-white/[0.1] hover:border-white/[0.15] text-[13px] font-medium text-white/90 transition-all group">
+            <a 
+              href="mailto:concierge@vsbsmiles.com" 
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/[0.06] border border-white/[0.08] hover:bg-white/[0.1] hover:border-white/[0.15] text-[13px] font-medium text-white/90 transition-all group"
+            >
               <span className="w-5 h-5 rounded-full bg-sky-500/20 flex items-center justify-center">
-                <svg className="w-3 h-3 text-sky-400" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                <svg className="w-3 h-3 text-sky-400" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                </svg>
               </span>
               <span className="group-hover:text-sky-300 transition-colors">concierge@vsbsmiles.com</span>
             </a>
+            <Link 
+              href="/#schedule" 
+              className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-[#0066cc] hover:bg-[#0052a3] text-[13px] font-bold text-white transition-all shadow-md shadow-sky-600/30 hover:scale-[1.02] active:scale-[0.98]"
+            >
+              <span>Book Appointment</span>
+              <span>→</span>
+            </Link>
           </div>
         </div>
 
-        {/* ─── MAIN 4-COLUMN GRID ─── */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8 xl:gap-10 py-14 sm:py-16">
+        {/* ─── MAIN BALANCED 4-COLUMN GRID (WITHOUT WORKING HOURS) ─── */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 xl:gap-10 py-14 sm:py-16">
           
-          {/* Column 1: About */}
-          <div className="lg:col-span-3 space-y-5">
+          {/* Column 1: Studio Story & Accreditations (Span 4) */}
+          <div className="lg:col-span-4 space-y-5">
             <h3 className="text-[13px] font-bold text-white/40 tracking-[0.15em] uppercase">
-              About Us
+              About Vsb Smiles
             </h3>
-            <p className="text-[13.5px] text-white/65 leading-[1.75] max-w-[320px]">
+            <p className="text-[13.5px] text-white/70 leading-[1.75] max-w-[340px]">
               Pioneering precision dentistry and bespoke smile design through computerized 3D diagnostics, minimally invasive artistry, and compassionate patient care since 2009.
             </p>
 
+            {/* Accreditation Badges */}
+            <div className="flex flex-wrap gap-2 pt-1">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-white/[0.05] border border-white/[0.08] text-[11px] font-semibold text-white/80">
+                <span className="w-1.5 h-1.5 rounded-full bg-sky-400"></span>
+                ADA Member
+              </span>
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-white/[0.05] border border-white/[0.08] text-[11px] font-semibold text-white/80">
+                <span className="w-1.5 h-1.5 rounded-full bg-sky-400"></span>
+                AACD Accredited
+              </span>
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-white/[0.05] border border-white/[0.08] text-[11px] font-semibold text-white/80">
+                <span className="w-1.5 h-1.5 rounded-full bg-sky-400"></span>
+                Board Certified
+              </span>
+            </div>
+
             {/* Social Icons */}
-            <div className="flex items-center gap-2.5 pt-2">
+            <div className="flex items-center gap-2.5 pt-3">
               {[
-                <svg key="ig" className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>,
-                <svg key="fb" className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>,
-                <svg key="li" className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>,
-              ].map((icon, i) => (
-                <a key={i} href="#" className="w-9 h-9 rounded-xl bg-white/[0.06] border border-white/[0.08] hover:bg-sky-500/20 hover:border-sky-500/30 flex items-center justify-center text-white/50 hover:text-sky-400 transition-all">
-                  {icon}
+                { name: 'Instagram', svg: <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/> },
+                { name: 'Facebook', svg: <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/> },
+                { name: 'LinkedIn', svg: <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/> },
+              ].map((social, i) => (
+                <a 
+                  key={i} 
+                  href="#" 
+                  aria-label={social.name}
+                  className="w-9 h-9 rounded-xl bg-white/[0.06] border border-white/[0.08] hover:bg-sky-500/20 hover:border-sky-500/30 flex items-center justify-center text-white/60 hover:text-sky-300 transition-all hover:scale-105"
+                >
+                  <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                    {social.svg}
+                  </svg>
                 </a>
               ))}
             </div>
           </div>
 
-          {/* Column 2: Navigation */}
+          {/* Column 2: Quick Links (Span 2) */}
           <div className="lg:col-span-2 space-y-5">
             <h3 className="text-[13px] font-bold text-white/40 tracking-[0.15em] uppercase">
               Navigation
             </h3>
 
-            <ul className="space-y-3 text-[13.5px]">
+            <ul className="space-y-2.5 text-[13.5px]">
               {[
                 { label: 'Home', href: '/' },
                 { label: 'About Us', href: '/about' },
-                { label: 'Treatments', href: '/services' },
-                { label: 'Transformations', href: '/services#transformations' },
-                { label: 'Our Doctors', href: '/#specialists' },
-                { label: '3D Technology', href: '/#technology' },
+                { label: 'Services', href: '/services' },
+                { label: 'Specialists', href: '/#specialists' },
+                { label: 'Cost Calculator', href: '/#calculator' },
+                { label: 'Real Stories', href: '/services#stories' },
                 { label: 'Contact Us', href: '/contact' },
               ].map((link, i) => (
                 <li key={i}>
-                  <Link href={link.href} className="text-white/60 hover:text-white transition-colors flex items-center gap-2 group">
-                    <span className="w-1 h-1 rounded-full bg-sky-500/60 group-hover:bg-sky-400 transition-colors"></span>
+                  <Link href={link.href} className="text-white/65 hover:text-white transition-colors flex items-center gap-2 group">
+                    <span className="w-1.5 h-1.5 rounded-full bg-sky-500/50 group-hover:bg-sky-400 group-hover:scale-125 transition-all"></span>
                     <span>{link.label}</span>
                   </Link>
                 </li>
@@ -106,88 +146,103 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Column 3: Working Hours */}
-          <div className="lg:col-span-4 space-y-4">
-            <h3 className="text-[13px] font-bold text-white/40 tracking-[0.15em] uppercase flex items-center gap-2.5">
-              <svg className="w-4 h-4 text-white/40" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-              <span>Working Hours</span>
-            </h3>
-            <p className="text-[12px] text-white/45 -mt-1">Take a look at our office hours to schedule your appointment.</p>
-
-            <div className="space-y-0 rounded-2xl overflow-hidden border border-white/[0.06]">
-              {[
-                { day: 'Monday',    time: '09:00 AM – 10:00 PM' },
-                { day: 'Tuesday',   time: '09:00 AM – 10:00 PM' },
-                { day: 'Wednesday', time: '09:00 AM – 10:00 PM' },
-                { day: 'Thursday',  time: '09:00 AM – 10:00 PM' },
-                { day: 'Friday',    time: '10:00 AM – 10:00 PM' },
-                { day: 'Saturday',  time: '10:00 AM – 10:00 PM' },
-                { day: 'Sunday',    time: 'Closed', closed: true },
-              ].map((row, i) => (
-                <div key={i} className={`flex items-center justify-between py-3 px-4 ${i !== 6 ? 'border-b border-white/[0.06]' : ''} ${row.closed ? 'bg-white/[0.02]' : 'bg-white/[0.04]'}`}>
-                  <span className="text-[13px] font-semibold text-white/80">{row.day}</span>
-                  <span className={`text-[13px] font-medium ${row.closed ? 'text-red-400/80' : 'text-white/60'}`}>{row.time}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Column 4: Address */}
+          {/* Column 3: Treatments & Services (Span 3) */}
           <div className="lg:col-span-3 space-y-5">
             <h3 className="text-[13px] font-bold text-white/40 tracking-[0.15em] uppercase">
-              Visit Us
+              Treatments
             </h3>
 
-            <div className="p-5 rounded-2xl bg-gradient-to-br from-white/[0.06] to-white/[0.02] border border-white/[0.08] space-y-4">
-              <div className="flex items-start gap-3.5">
-                <div className="w-10 h-10 rounded-xl bg-sky-500/15 border border-sky-500/20 flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <svg className="w-5 h-5 text-sky-400" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+            <ul className="space-y-2.5 text-[13.5px]">
+              {[
+                { label: 'Aesthetic Dentistry & Veneers', href: '/services#aesthetic' },
+                { label: 'Orthodontics & Clear Aligners', href: '/services#ortho' },
+                { label: 'Implantology & Full-Arch', href: '/services#implant' },
+                { label: 'Professional Whitening', href: '/services#whitening' },
+                { label: 'Oral & Maxillofacial Surgery', href: '/services#surgical' },
+                { label: 'Same-Day Emergency Dental', href: '/#schedule' },
+              ].map((service, i) => (
+                <li key={i}>
+                  <Link href={service.href} className="text-white/65 hover:text-white transition-colors flex items-center gap-2 group">
+                    <span className="w-1.5 h-1.5 rounded-full bg-sky-500/50 group-hover:bg-sky-400 group-hover:scale-125 transition-all"></span>
+                    <span>{service.label}</span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Column 4: Visit Us / Location Card (Span 3) */}
+          <div className="lg:col-span-3 space-y-5">
+            <h3 className="text-[13px] font-bold text-white/40 tracking-[0.15em] uppercase">
+              Visit Our Studio
+            </h3>
+
+            <div className="p-5 rounded-2xl bg-white/[0.04] border border-white/[0.08] hover:border-white/[0.14] transition-all space-y-4">
+              <div className="flex items-start gap-3">
+                <div className="w-9 h-9 rounded-xl bg-sky-500/15 border border-sky-500/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <svg className="w-4 h-4 text-sky-400" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                  </svg>
                 </div>
                 <div>
                   <h4 className="text-[14px] font-bold text-white leading-snug">
                     Beverly Hills Flagship
                   </h4>
-                  <p className="text-[12.5px] text-white/60 leading-relaxed mt-1.5">
+                  <p className="text-[12.5px] text-white/60 leading-relaxed mt-1">
                     9454 Wilshire Blvd, Suite 800<br />
                     Beverly Hills, CA 90212
                   </p>
                 </div>
               </div>
 
-              <div className="h-px bg-gradient-to-r from-transparent via-white/[0.08] to-transparent"></div>
+              <div className="h-px bg-white/[0.08]"></div>
 
-              <div className="flex items-center gap-2.5 text-[11.5px] text-white/50">
-                <svg className="w-3.5 h-3.5 text-sky-400/70" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-                <span>Complimentary valet parking available</span>
+              <div className="flex items-center gap-2.5 text-[12px] text-white/60">
+                <svg className="w-3.5 h-3.5 text-sky-400 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                </svg>
+                <span>Complimentary valet parking</span>
+              </div>
+
+              <div className="flex items-center justify-between pt-1">
+                <a
+                  href="https://maps.google.com/?q=9454+Wilshire+Blvd+Beverly+Hills+CA"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 text-[12.5px] font-semibold text-sky-400 hover:text-sky-300 transition-colors group"
+                >
+                  <span>Get Directions</span>
+                  <svg className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" strokeWidth="2.2" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                  </svg>
+                </a>
+
+                <Link
+                  href="/contact"
+                  className="text-[12px] font-semibold text-white/50 hover:text-white transition-colors"
+                >
+                  Contact Page →
+                </Link>
               </div>
             </div>
-
-            <a
-              href="https://maps.google.com/?q=9454+Wilshire+Blvd+Beverly+Hills+CA"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-[12.5px] font-semibold text-sky-400 hover:text-sky-300 transition-colors group"
-            >
-              <span>Get Directions</span>
-              <svg className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" strokeWidth="2.2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-            </a>
           </div>
 
         </div>
 
         {/* ─── BOTTOM BAR ─── */}
-        <div className="py-7 border-t border-white/[0.07] flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-[12px] text-white/40">
-            © {new Date().getFullYear()} Vsb Smiles Dental Clinic. All Rights Reserved.
+        <div className="py-7 border-t border-white/[0.08] flex flex-col sm:flex-row items-center justify-between gap-4">
+          <p className="text-[12px] text-white/45">
+            © {new Date().getFullYear()} Vsb Smiles Dental Clinic. All Rights Reserved. Beverly Hills, California.
           </p>
           
-          <div className="flex items-center gap-1">
-            {['Privacy Policy', 'Terms of Service', 'HIPAA'].map((item, i) => (
+          <div className="flex items-center gap-1 text-[12px] text-white/40">
+            {['Privacy Policy', 'Terms of Service', 'HIPAA Compliance', 'Accessibility'].map((item, i) => (
               <span key={i} className="flex items-center">
-                <a href="#" className="text-[11.5px] text-white/40 hover:text-white/70 transition-colors px-2 py-1">
+                <a href="#" className="hover:text-white/70 transition-colors px-2 py-1">
                   {item}
                 </a>
-                {i < 2 && <span className="text-white/20">·</span>}
+                {i < 3 && <span className="text-white/20">·</span>}
               </span>
             ))}
           </div>
