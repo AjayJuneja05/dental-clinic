@@ -146,7 +146,7 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Column 3: Treatments & Services (Span 3) */}
+          {/* Column 3: Treatments (Span 3) */}
           <div className="lg:col-span-3 space-y-5">
             <h3 className="text-[13px] font-bold text-white/40 tracking-[0.15em] uppercase">
               Treatments
@@ -154,12 +154,11 @@ export default function Footer() {
 
             <ul className="space-y-2.5 text-[13.5px]">
               {[
-                { label: 'Aesthetic Dentistry & Veneers', href: '/services#aesthetic' },
-                { label: 'Orthodontics & Clear Aligners', href: '/services#ortho' },
-                { label: 'Implantology & Full-Arch', href: '/services#implant' },
-                { label: 'Professional Whitening', href: '/services#whitening' },
-                { label: 'Oral & Maxillofacial Surgery', href: '/services#surgical' },
-                { label: 'Same-Day Emergency Dental', href: '/#schedule' },
+                { label: 'Aesthetic Dentistry', href: '/services#aesthetic' },
+                { label: 'Orthodontics', href: '/services#ortho' },
+                { label: 'Implantology', href: '/services#implant' },
+                { label: 'Teeth Whitening', href: '/services#whitening' },
+                { label: 'Surgical Dentistry', href: '/services#surgical' },
               ].map((service, i) => (
                 <li key={i}>
                   <Link href={service.href} className="text-white/65 hover:text-white transition-colors flex items-center gap-2 group">
