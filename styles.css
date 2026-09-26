@@ -25,6 +25,12 @@ html, body {
   font-style: italic;
 }
 
+.hero-heading .hero-not {
+  font-weight: 300 !important;
+  text-align: center;
+  display: block;
+}
+
 /* ========== SERVICES SECTION EXPANDING ACCORDION ========== */
 
 .services-accordion-wrapper {
