@@ -61,13 +61,6 @@ export default function Footer() {
               </span>
               <span className="group-hover:text-sky-300 transition-colors">concierge@vsbsmiles.com</span>
             </a>
-            <Link 
-              href="/#schedule" 
-              className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-[#0066cc] hover:bg-[#0052a3] text-[13px] font-bold text-white transition-all shadow-md shadow-sky-600/30 hover:scale-[1.02] active:scale-[0.98]"
-            >
-              <span>Book Appointment</span>
-              <span>→</span>
-            </Link>
           </div>
         </div>
 
@@ -129,11 +122,9 @@ export default function Footer() {
             <ul className="space-y-2.5 text-[13.5px]">
               {[
                 { label: 'Home', href: '/' },
-                { label: 'About Us', href: '/about' },
                 { label: 'Services', href: '/services' },
+                { label: 'About Us', href: '/about' },
                 { label: 'Specialists', href: '/#specialists' },
-                { label: 'Cost Calculator', href: '/#calculator' },
-                { label: 'Real Stories', href: '/services#stories' },
                 { label: 'Contact Us', href: '/contact' },
               ].map((link, i) => (
                 <li key={i}>
@@ -231,7 +222,7 @@ export default function Footer() {
 
         {/* ─── BOTTOM BAR ─── */}
         <div className="py-7 border-t border-white/[0.08] flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-[12px] text-white/45">
+          <p suppressHydrationWarning className="text-[12px] text-white/45">
             © {new Date().getFullYear()} Vsb Smiles Dental Clinic. All Rights Reserved. Beverly Hills, California.
           </p>
           

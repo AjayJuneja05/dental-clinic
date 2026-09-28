@@ -183,9 +183,9 @@ export default function AdvancedTechnology() {
             </div>
 
             {/* Headline */}
-            <h2 className="text-[34px] sm:text-[44px] lg:text-[48px] font-bold text-[#07234b] leading-[1.1] tracking-[-0.035em]">
-              Modern Technology for <br />
-              Precise Dental Care
+            <h2 className="text-[30px] sm:text-[38px] lg:text-[42px] font-bold text-[#07234b] leading-[1.12] tracking-[-0.035em]">
+              Modern Technology <br />
+              <span className="inline-block sm:whitespace-nowrap">for Precise Dental Care</span>
             </h2>
 
             {/* Blue Decorative Accent Line */}

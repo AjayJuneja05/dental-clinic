@@ -26,7 +26,8 @@ export default function DoctorProfileModal({ doctor, onClose }) {
     >
       {/* Pure Clean White Modal Container */}
       <div 
-        className="relative w-full max-w-[880px] bg-white rounded-[28px] sm:rounded-[36px] shadow-2xl overflow-hidden border border-slate-100 animate-scaleUp"
+        data-lenis-prevent
+        className="relative w-full max-w-[880px] max-h-[92vh] overflow-y-auto no-scrollbar bg-white rounded-[28px] sm:rounded-[36px] shadow-2xl border border-slate-100 animate-scaleUp"
         onClick={(e) => e.stopPropagation()}
       >
         

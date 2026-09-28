@@ -35,13 +35,8 @@ export default function Specialists() {
           </p>
         </div>
 
-        {/* Right: Actions & Live Availability */}
-        <div className="flex flex-col items-start md:items-end gap-3">
-          <div className="flex items-center gap-2 text-[13px] text-[#0c2752] font-medium bg-slate-50 px-4 py-2 rounded-xl border border-slate-200/70">
-            <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-ping"></span>
-            <span>Accepting Consultations Today</span>
-          </div>
-
+        {/* Right: Instructions */}
+        <div className="flex flex-col items-start md:items-end justify-end">
           <p className="text-[12.5px] text-slate-500">
             Click any specialist to view full credentials & bio
           </p>
@@ -52,15 +47,13 @@ export default function Specialists() {
       {/* Infinite Smooth Continuous Carousel Track */}
       <div className="relative w-full overflow-hidden select-none py-2">
         
-        {/* Left & Right Elegant Edge Fade Gradients removed per user request */}
-
         {/* Moving Flex Container */}
         <div className="animate-infinite-scroll flex gap-6">
           {marqueeList.map((specialist, index) => (
             <div
               key={`${specialist.id}-${index}`}
               onClick={() => setSelectedDoctor(specialist)}
-              className="w-[300px] sm:w-[320px] h-[470px] flex-shrink-0 bg-white rounded-[24px] p-3 border border-slate-200/80 shadow-[0_10px_30px_-10px_rgba(12,39,82,0.08)] hover:shadow-[0_20px_45px_-12px_rgba(2,132,199,0.22)] transition-all duration-300 flex flex-col justify-between group cursor-pointer"
+              className="w-[300px] sm:w-[320px] h-[450px] flex-shrink-0 bg-white rounded-[24px] p-3 border border-slate-200/80 shadow-[0_10px_30px_-10px_rgba(12,39,82,0.08)] hover:shadow-[0_20px_45px_-12px_rgba(2,132,199,0.22)] transition-all duration-300 flex flex-col justify-between group cursor-pointer"
             >
               
               {/* Top Photo Frame */}
@@ -70,12 +63,6 @@ export default function Specialists() {
                 <span className="absolute top-3 left-3 bg-white/95 backdrop-blur-md text-[11px] font-bold text-[#0c2752] px-3 py-1 rounded-full shadow-xs border border-white/60 z-10">
                   {specialist.tag}
                 </span>
-
-                {/* Rating Badge */}
-                <div className="absolute top-3 right-3 bg-[#0c2752]/85 backdrop-blur-md text-white text-[11px] font-semibold px-2.5 py-0.5 rounded-full flex items-center gap-1 shadow-xs z-10">
-                  <span className="text-amber-400 text-[11px]">★</span>
-                  <span>{specialist.rating}</span>
-                </div>
 
                 {/* Doctor Portrait Image */}
                 <img
@@ -111,12 +98,8 @@ export default function Specialists() {
                   </p>
                 </div>
 
-                {/* Bottom Card Footer with Next Slot & Action */}
-                <div className="flex items-center justify-between pt-3 mt-2 border-t border-slate-100">
-                  <span className="text-[11px] font-medium text-slate-500 bg-slate-50 px-2.5 py-1 rounded-lg border border-slate-200/60">
-                    {specialist.nextSlot}
-                  </span>
-
+                {/* Bottom Card Footer with Action */}
+                <div className="flex items-center justify-end pt-3 mt-2 border-t border-slate-100">
                   <span className="inline-flex items-center gap-1 text-[12px] font-bold text-[#0c2752] group-hover:text-sky-600 transition-colors">
                     <span>View Profile</span>
                     <span className="text-[13px] group-hover:translate-x-0.5 transition-transform">↗</span>

@@ -181,8 +181,6 @@ export default function AboutPage() {
           </div>
         </div>
 
-        {/* Bottom wave divider */}
-        <div className="absolute bottom-0 left-0 right-0 h-16 bg-white" style={{ clipPath: 'ellipse(60% 100% at 50% 100%)' }} />
       </section>
 
       {/* ─── OUR STORY ─── */}

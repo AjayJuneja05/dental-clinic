@@ -1,181 +1,58 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import Transformations from '@/components/Transformations';
+import ServiceDeepDive from '@/components/ServiceDeepDive';
 import Footer from '@/components/Footer';
 import Link from 'next/link';
 
-const DETAILED_SERVICES = [
-  {
-    id: 'aesthetic',
-    title: 'Aesthetic Dentistry',
-    tagline: 'Natural smile enhancement & porcelain artistry',
-    desc: 'We enhance the natural beauty of your smile with personalized treatments designed to improve the shape, colour, proportion, and overall appearance of your teeth while keeping your results natural-looking.',
-    features: [
-      'Digital smile design and treatment planning',
-      'Minimal tooth preparation to preserve natural enamel',
-      'Custom-designed porcelain veneers',
-      'Smile proportions and tooth shape refined',
-      'Final shade and appearance carefully matched',
-    ],
-    duration: '2-3 visits',
-    image: '/assets/service-aesthetic.webp',
-  },
-  {
-    id: 'ortho',
-    title: 'Orthodontics',
-    tagline: 'Straightening teeth & bite alignment',
-    desc: 'Orthodontics focuses on straightening teeth and correcting bite alignment for a healthier, more balanced, and confident smile. Treatment can be tailored using braces or clear aligners.',
-    features: [
-      'Comprehensive orthodontic assessment',
-      'Digital scans and treatment planning',
-      'Teeth alignment and bite correction',
-      'Custom braces or clear aligner treatment',
-      'Regular progress checks and adjustments',
-    ],
-    duration: '6-12 months',
-    image: '/assets/service-ortho.webp',
-  },
-  {
-    id: 'implant',
-    title: 'Implantology',
-    tagline: 'Permanent tooth replacement & restoration',
-    desc: 'Dental implants replace missing teeth with strong, natural-looking restorations designed to restore your smile, chewing function, and confidence.',
-    features: [
-      'Detailed implant assessment and planning',
-      'Digital imaging and implant positioning',
-      'Dental implant placement',
-      'Custom implant abutment and crown',
-      'Bite, function, and final smile refinement',
-    ],
-    duration: '1-3 procedures',
-    image: '/assets/service-implant.webp',
-  },
-  {
-    id: 'whitening',
-    title: 'Teeth Whitening',
-    tagline: 'Enamel-safe brightness & stain removal',
-    desc: 'Professional teeth whitening safely reduces stains and discolouration, helping create a brighter, fresher-looking smile while maintaining a natural appearance.',
-    features: [
-      'Professional assessment of tooth shade',
-      'In-clinic whitening treatment',
-      'Targeted stain and discolouration removal',
-      'Enamel-safe whitening protocol',
-      'Aftercare and maintenance guidance',
-    ],
-    duration: '45 mins',
-    image: '/assets/service-whitening.webp',
-  },
-  {
-    id: 'surgical',
-    title: 'Surgical Dentistry',
-    tagline: 'Specialized surgical care & gentle recovery',
-    desc: 'Surgical dentistry provides precise treatment for complex dental problems that require surgical care, with a focus on comfort, safety, and long-term oral health.',
-    features: [
-      'Comprehensive surgical assessment',
-      'Digital imaging and treatment planning',
-      'Tooth and wisdom-tooth removal when required',
-      'Precise surgical procedures',
-      'Post-treatment healing and follow-up care',
-    ],
-    duration: 'Outpatient visit',
-    image: '/assets/service-surgical.webp',
-  },
-];
+const SERVICE_IDS = ['aesthetic', 'ortho', 'implant', 'whitening', 'surgical'];
 
 export default function ServicesPage() {
+  const [activeServiceId, setActiveServiceId] = useState('aesthetic');
+
+  // Handle URL hash / search params on mount and change
   useEffect(() => {
-    if (typeof window !== 'undefined' && window.location.hash) {
-      const targetId = window.location.hash.substring(1);
-      const el = document.getElementById(targetId);
-      if (el) {
-        setTimeout(() => {
-          el.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }, 150);
+    const handleUrlTarget = () => {
+      if (typeof window === 'undefined') return;
+      const searchParam = new URLSearchParams(window.location.search).get('service');
+      const hashParam = window.location.hash ? window.location.hash.replace('#', '') : null;
+      const target = (searchParam || hashParam || '').toLowerCase();
+      if (target) {
+        const found = SERVICE_IDS.find((id) => id === target || `dept-${id}` === target);
+        if (found) {
+          setActiveServiceId(found);
+        }
       }
-    }
+    };
+
+    handleUrlTarget();
+    window.addEventListener('hashchange', handleUrlTarget);
+    window.addEventListener('popstate', handleUrlTarget);
+    return () => {
+      window.removeEventListener('hashchange', handleUrlTarget);
+      window.removeEventListener('popstate', handleUrlTarget);
+    };
   }, []);
 
   return (
     <div className="min-h-screen bg-white text-[#0c2752] flex flex-col">
       <Navbar />
 
-      {/* Real Stories & Transformations Component */}
+      {/* Real Stories & Transformations Component (Top) */}
       <div id="stories" className="pt-8 pb-4">
-        <Transformations />
+        <Transformations 
+          activeServiceId={activeServiceId}
+          onServiceChange={setActiveServiceId}
+        />
       </div>
 
-      {/* Detailed Services Grid Breakdown */}
-      <section className="w-full max-w-[1500px] mx-auto px-5 sm:px-12 lg:px-20 py-20 sm:py-24">
-        <div className="text-center max-w-[650px] mx-auto mb-14">
-          <span className="text-[11.5px] font-bold text-sky-600 tracking-[0.2em] uppercase block mb-2">
-            OUR DEPARTMENTS
-          </span>
-          <h2 className="text-[34px] sm:text-[44px] font-bold text-[#07234b] tracking-tight">
-            Specialized Treatment Areas
-          </h2>
-          <p className="text-[14.5px] text-[#475569] mt-3">
-            Every procedure is planned with 3D precision imaging and personalized for lasting comfort.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
-          {DETAILED_SERVICES.map((serv) => (
-            <div 
-              key={serv.id}
-              id={serv.id}
-              className="scroll-mt-32 bg-white rounded-[24px] p-6 border border-slate-200/90 shadow-[0_10px_30px_-10px_rgba(12,39,82,0.06)] hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between"
-            >
-              <div>
-                <div className="w-full h-[200px] rounded-[18px] overflow-hidden relative mb-5 bg-slate-100">
-                  <img 
-                    src={serv.image} 
-                    alt={serv.title}
-                    className="w-full h-full object-cover object-center" 
-                  />
-                  <span className="absolute bottom-3 right-3 bg-white/90 backdrop-blur-md text-[#0c2752] text-[11px] font-bold px-2.5 py-1 rounded-md shadow-xs">
-                    {serv.duration}
-                  </span>
-                </div>
-
-                <h3 className="text-[20px] font-bold text-[#07234b]">
-                  {serv.title}
-                </h3>
-                <p className="text-[12.5px] font-semibold text-sky-600 mt-0.5">
-                  {serv.tagline}
-                </p>
-                <p className="text-[13px] text-[#64748b] mt-2.5 leading-[1.6]">
-                  {serv.desc}
-                </p>
-
-                <div className="mt-4 pt-4 border-t border-slate-100">
-                  <span className="text-[12px] font-bold text-[#07234b] uppercase tracking-wider block mb-2.5">
-                    What We Did
-                  </span>
-                  <ul className="space-y-2 text-[12.5px] text-slate-700">
-                    {serv.features.map((feat, i) => (
-                      <li key={i} className="flex items-start gap-2">
-                        <span className="text-emerald-500 font-bold mt-0.5">✓</span>
-                        <span className="leading-snug">{feat}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-
-              <div className="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between">
-                <Link
-                  href="/#schedule"
-                  className="w-full py-2.5 rounded-xl bg-sky-50 hover:bg-[#0066cc] text-[#0066cc] hover:text-white text-[13px] font-bold text-center transition-colors"
-                >
-                  Book {serv.title}
-                </Link>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
+      {/* Comprehensive Clinical Suite: Autoselected from top & styled same like above */}
+      <ServiceDeepDive 
+        activeServiceId={activeServiceId}
+        onServiceChange={setActiveServiceId}
+      />
 
       {/* Bottom CTA Banner */}
       <section className="w-full bg-[#07234b] text-white py-16 px-5 sm:px-12 text-center">
@@ -194,10 +71,10 @@ export default function ServicesPage() {
               Schedule an Appointment
             </Link>
             <a 
-              href="tel:18005550199" 
+              href="tel:13108592432" 
               className="px-8 py-3.5 rounded-full border border-white/30 hover:bg-white/10 text-white text-[14px] font-medium transition-colors"
             >
-              Call: +1 (800) 555-0199
+              Call: +1 (310) 859-2432
             </a>
           </div>
         </div>
@@ -205,7 +82,6 @@ export default function ServicesPage() {
 
       {/* Footer */}
       <Footer />
-
     </div>
   );
 }

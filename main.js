@@ -267,16 +267,43 @@ document.addEventListener('DOMContentLoaded', () => {
   serviceCards.forEach(card => {
     card.addEventListener('mouseenter', () => setActiveCard(card));
     card.addEventListener('click', (e) => {
-      if (e.target.closest('a')) return;
       const serviceId = card.getAttribute('data-service');
-      if (card.classList.contains('is-active') && serviceId) {
-        window.location.href = `/services#${serviceId}`;
-      } else {
-        setActiveCard(card);
-        if (window.innerWidth >= 1024 && serviceId) {
-          window.location.href = `/services#${serviceId}`;
+      if (!serviceId) return;
+
+      const anchorEl = document.getElementById('service-view-anchor') || document.getElementById('transformations-subtitle');
+      if (anchorEl) {
+        const caseIdx = CASES_DATA.findIndex(c => c.id === serviceId);
+        if (caseIdx !== -1 && window.setTransformationCase) {
+          window.setTransformationCase(caseIdx);
         }
+        anchorEl.scrollIntoView({ behavior: 'instant', block: 'start' });
+        try {
+          window.history.replaceState(null, '', `#${serviceId}`);
+        } catch (_) {}
+      } else {
+        window.location.href = `/services#${serviceId}`;
       }
+    });
+
+    const innerLinks = card.querySelectorAll('a');
+    innerLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        const serviceId = card.getAttribute('data-service');
+        if (!serviceId) return;
+        const anchorEl = document.getElementById(serviceId) || document.getElementById('service-view-anchor') || document.getElementById('transformations-subtitle');
+        if (anchorEl) {
+          e.preventDefault();
+          e.stopPropagation();
+          const caseIdx = CASES_DATA.findIndex(c => c.id === serviceId);
+          if (caseIdx !== -1 && window.setTransformationCase) {
+            window.setTransformationCase(caseIdx);
+          }
+          anchorEl.scrollIntoView({ behavior: 'instant', block: 'start' });
+          try {
+            window.history.replaceState(null, '', `#${serviceId}`);
+          } catch (_) {}
+        }
+      });
     });
   });
 
@@ -493,6 +520,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Initial render
   updateTransformationView();
+
+  function handleHashForBeforeAfter() {
+    const rawHash = (window.location.hash || '').replace('#', '').toLowerCase();
+    const searchParam = new URLSearchParams(window.location.search).get('service');
+    const targetId = (searchParam || rawHash || '').toLowerCase();
+    if (!targetId) return;
+    const caseIdx = CASES_DATA.findIndex(c => c.id.toLowerCase() === targetId);
+    if (caseIdx !== -1 && window.setTransformationCase) {
+      window.setTransformationCase(caseIdx);
+      const anchorEl = document.getElementById(targetId) || document.getElementById('service-view-anchor') || document.getElementById('transformations-subtitle');
+      if (anchorEl) {
+        anchorEl.scrollIntoView({ behavior: 'instant', block: 'start' });
+        setTimeout(() => {
+          anchorEl.scrollIntoView({ behavior: 'instant', block: 'start' });
+        }, 80);
+      }
+    }
+  }
+  handleHashForBeforeAfter();
+  window.addEventListener('hashchange', handleHashForBeforeAfter);
 });
 
 // 5. Global Modal Handlers
@@ -1099,12 +1146,12 @@ if (docModalBackdrop) {
 // ---------------------------------------------------------------------------
 // Global Smooth Scrolling via Lenis (Uniform Speed & Inertia Across All Sections)
 // ---------------------------------------------------------------------------
-if (typeof Lenis !== 'undefined') {
+if (typeof Lenis !== 'undefined' && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
   const lenis = new Lenis({
-    lerp: 0.1,
+    lerp: 0.09,
     smoothWheel: true,
     wheelMultiplier: 1.0,
-    touchMultiplier: 1.0,
+    touchMultiplier: 1.2,
   });
 
   function lenisRaf(time) {
@@ -1126,11 +1173,140 @@ if (typeof Lenis !== 'undefined') {
       const targetEl = document.querySelector(hash);
       if (targetEl) {
         e.preventDefault();
+        const headerEl = document.querySelector('header');
+        const headerOffset = headerEl ? -headerEl.offsetHeight - 12 : -80;
         lenis.scrollTo(targetEl, {
-          offset: -40,
-          duration: 1.2,
+          offset: headerOffset,
+          duration: 1.1,
         });
+        if (history.pushState) {
+          history.pushState(null, '', hash);
+        }
       }
     });
   });
 }
+
+// 7. Patient Experience & Warranty Tab & Video Handlers
+const EXPERIENCE_VIDEOS = [
+  {
+    title: 'Cinematic Studio & 3D Consult',
+    badge: 'Beverly Hills Studio',
+    src: 'public/assets/clinic-experience.mp4',
+    poster: 'public/assets/video-shot-1.jpg',
+    duration: '0:05',
+  },
+  {
+    title: 'Precision Microscopic Crafting',
+    badge: 'Digital Lab & In-House Ceramist',
+    src: 'public/assets/clinic-experience.mp4',
+    poster: 'public/assets/video-shot-2.jpg',
+    duration: '0:05',
+  },
+  {
+    title: '3D Anatomic Modeling',
+    badge: 'Diagnostic Simulation',
+    src: 'public/assets/tooth.mp4',
+    poster: 'public/assets/tech-3d-imaging.webp',
+    duration: '0:03',
+  },
+];
+
+window.switchExperienceTab = function(tabName) {
+  const tabVideo = document.getElementById('experienceTabVideo');
+  const tabWarranty = document.getElementById('experienceTabWarranty');
+  const tabComfort = document.getElementById('experienceTabComfort');
+
+  const btnVideo = document.getElementById('tabBtnVideo');
+  const btnWarranty = document.getElementById('tabBtnWarranty');
+  const btnComfort = document.getElementById('tabBtnComfort');
+
+  if (!tabVideo || !tabWarranty || !tabComfort) return;
+
+  const activeClasses = ['bg-white', 'text-[#0066cc]', 'shadow-md', 'shadow-sky-900/5'];
+  const inactiveClasses = ['text-slate-600', 'hover:text-[#07234b]'];
+
+  [btnVideo, btnWarranty, btnComfort].forEach(b => {
+    if (b) {
+      b.classList.remove(...activeClasses);
+      b.classList.add(...inactiveClasses);
+    }
+  });
+
+  tabVideo.classList.add('hidden');
+  tabWarranty.classList.add('hidden');
+  tabComfort.classList.add('hidden');
+
+  if (tabName === 'video') {
+    tabVideo.classList.remove('hidden');
+    btnVideo.classList.add(...activeClasses);
+    btnVideo.classList.remove(...inactiveClasses);
+  } else if (tabName === 'warranty') {
+    tabWarranty.classList.remove('hidden');
+    btnWarranty.classList.add(...activeClasses);
+    btnWarranty.classList.remove(...inactiveClasses);
+  } else if (tabName === 'comfort') {
+    tabComfort.classList.remove('hidden');
+    btnComfort.classList.add(...activeClasses);
+    btnComfort.classList.remove(...inactiveClasses);
+  }
+};
+
+window.selectExperienceChapter = function(idx) {
+  const vid = document.getElementById('experienceVideoPlayer');
+  const title = document.getElementById('videoTitleText');
+  const badge = document.getElementById('videoBadgeText');
+  const duration = document.getElementById('videoDurationText');
+  const cards = document.querySelectorAll('#videoChaptersList .chapter-card');
+
+  const item = EXPERIENCE_VIDEOS[idx];
+  if (!item || !vid) return;
+
+  vid.src = item.src;
+  vid.poster = item.poster;
+  vid.play().catch(() => {});
+
+  if (title) title.textContent = item.title;
+  if (badge) badge.textContent = item.badge;
+  if (duration) duration.textContent = item.duration;
+
+  cards.forEach((card, i) => {
+    const numBadge = card.querySelector('div > div:first-child');
+    const titleText = card.querySelector('h4');
+    const durSpan = card.querySelector('span');
+
+    if (i === idx) {
+      card.className = 'p-3 sm:p-3.5 rounded-xl border transition-all cursor-pointer flex items-center justify-between gap-3 bg-sky-50/80 border-[#0066cc] ring-1 ring-sky-200 shadow-xs chapter-card';
+      if (numBadge) numBadge.className = 'w-8 h-8 rounded-lg flex items-center justify-center text-xs font-bold flex-shrink-0 bg-[#0066cc] text-white';
+      if (titleText) titleText.className = 'text-[13px] font-bold truncate text-[#0066cc]';
+      if (durSpan) durSpan.className = 'text-[11px] font-mono px-2 py-0.5 rounded-md flex-shrink-0 bg-sky-100 text-[#0066cc] font-bold';
+    } else {
+      card.className = 'p-3 sm:p-3.5 rounded-xl border transition-all cursor-pointer flex items-center justify-between gap-3 bg-slate-50/60 hover:bg-slate-100/70 border-slate-200/70 chapter-card';
+      if (numBadge) numBadge.className = 'w-8 h-8 rounded-lg flex items-center justify-center text-xs font-bold flex-shrink-0 bg-slate-200 text-slate-700';
+      if (titleText) titleText.className = 'text-[13px] font-bold truncate text-[#07234b]';
+      if (durSpan) durSpan.className = 'text-[11px] font-mono px-2 py-0.5 rounded-md flex-shrink-0 text-slate-400';
+    }
+  });
+};
+
+window.toggleExperiencePlay = function() {
+  const vid = document.getElementById('experienceVideoPlayer');
+  const btn = document.getElementById('videoPlayBtn');
+  if (!vid || !btn) return;
+  if (vid.paused) {
+    vid.play();
+    btn.textContent = '⏸';
+  } else {
+    vid.pause();
+    btn.textContent = '▶';
+  }
+};
+
+window.toggleExperienceMute = function() {
+  const vid = document.getElementById('experienceVideoPlayer');
+  const btn = document.getElementById('videoMuteBtn');
+  if (!vid || !btn) return;
+  vid.muted = !vid.muted;
+  btn.textContent = vid.muted ? '🔇' : '🔊';
+};
+

@@ -38,3 +38,5 @@ next-env.d.ts
 generate-*.js
 process-*.js
 run-*.js
+rec.mp4
+reference video.mp4

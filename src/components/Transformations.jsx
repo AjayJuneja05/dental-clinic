@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef, useCallback } from 'react';
+import { useState, useRef, useCallback, useEffect } from 'react';
 
 const CASES_DATA = [
   {
@@ -125,13 +125,68 @@ const CASES_DATA = [
   },
 ];
 
-export default function Transformations() {
+export default function Transformations({ activeServiceId, onServiceChange }) {
   const [activeTab, setActiveTab] = useState(0);
   const [sliderPos, setSliderPos] = useState(50); // 0 to 100 percentage
   const [isDragging, setIsDragging] = useState(false);
   const sliderRef = useRef(null);
 
   const currentCase = CASES_DATA[activeTab];
+
+  // Sync with external activeServiceId when changed
+  useEffect(() => {
+    if (activeServiceId) {
+      const idx = CASES_DATA.findIndex((c) => c.id.toLowerCase() === activeServiceId.toLowerCase());
+      if (idx !== -1 && idx !== activeTab) {
+        setActiveTab(idx);
+        setSliderPos(50);
+      }
+    }
+  }, [activeServiceId, activeTab]);
+
+  // Auto-switch tab and align viewport directly with zero scroll animation
+  useEffect(() => {
+    let timeouts = [];
+
+    const handleUrlTarget = () => {
+      if (typeof window === 'undefined') return;
+      const searchParam = new URLSearchParams(window.location.search).get('service');
+      const hashParam = window.location.hash ? window.location.hash.replace('#', '') : null;
+      const targetId = (searchParam || hashParam || '').toLowerCase();
+
+      if (!targetId) return;
+
+      const idx = CASES_DATA.findIndex((c) => c.id.toLowerCase() === targetId);
+      if (idx !== -1) {
+        setActiveTab(idx);
+        setSliderPos(50);
+      }
+
+      const executeScroll = () => {
+        const anchorEl = document.getElementById(targetId) || document.getElementById('service-view-anchor') || document.getElementById('transformations-subtitle');
+        if (anchorEl) {
+          // 'instant' ensures the view is positioned directly with zero animation from below
+          anchorEl.scrollIntoView({ behavior: 'instant', block: 'start' });
+        }
+      };
+
+      // Directly apply without smooth scrolling delay
+      executeScroll();
+      timeouts.push(setTimeout(executeScroll, 30));
+      timeouts.push(setTimeout(executeScroll, 100));
+      timeouts.push(setTimeout(executeScroll, 250));
+    };
+
+    handleUrlTarget();
+    window.addEventListener('hashchange', handleUrlTarget);
+    window.addEventListener('popstate', handleUrlTarget);
+
+    return () => {
+      window.removeEventListener('hashchange', handleUrlTarget);
+      window.removeEventListener('popstate', handleUrlTarget);
+      timeouts.forEach(clearTimeout);
+    };
+  }, []);
 
   const handleMove = useCallback((clientX) => {
     if (!sliderRef.current) return;
@@ -160,11 +215,21 @@ export default function Transformations() {
   };
 
   const handlePrev = () => {
-    setActiveTab((prev) => (prev === 0 ? CASES_DATA.length - 1 : prev - 1));
+    const nextIdx = activeTab === 0 ? CASES_DATA.length - 1 : activeTab - 1;
+    setActiveTab(nextIdx);
+    setSliderPos(50);
+    if (onServiceChange) {
+      onServiceChange(CASES_DATA[nextIdx].id);
+    }
   };
 
   const handleNext = () => {
-    setActiveTab((prev) => (prev === CASES_DATA.length - 1 ? 0 : prev + 1));
+    const nextIdx = activeTab === CASES_DATA.length - 1 ? 0 : activeTab + 1;
+    setActiveTab(nextIdx);
+    setSliderPos(50);
+    if (onServiceChange) {
+      onServiceChange(CASES_DATA[nextIdx].id);
+    }
   };
 
   return (
@@ -175,7 +240,14 @@ export default function Transformations() {
         <h2 className="text-[36px] sm:text-[46px] lg:text-[52px] font-bold text-[#07234b] leading-[1.1] tracking-[-0.035em]">
           Medical Support for every Dental Problems.
         </h2>
-        <p className="text-[14.5px] sm:text-[16px] text-[#475569] leading-[1.65] font-normal mt-3.5 max-w-[620px] mx-auto">
+        {/* Target anchors for each procedure so URL hash lands directly here */}
+        <div id="aesthetic" className="scroll-mt-4" />
+        <div id="ortho" className="scroll-mt-4" />
+        <div id="implant" className="scroll-mt-4" />
+        <div id="whitening" className="scroll-mt-4" />
+        <div id="surgical" className="scroll-mt-4" />
+        <div id="service-view-anchor" className="scroll-mt-4" />
+        <p id="transformations-subtitle" className="text-[14.5px] sm:text-[16px] text-[#475569] leading-[1.65] font-normal mt-3.5 max-w-[620px] mx-auto">
           Comprehensive diagnostic expertise and board-certified dental care tailored to your unique oral health needs — from precision aesthetic enhancements and clear alignment to advanced implant surgery.
         </p>
       </div>
@@ -191,6 +263,12 @@ export default function Transformations() {
                 onClick={() => {
                   setActiveTab(index);
                   setSliderPos(50);
+                  if (onServiceChange) {
+                    onServiceChange(item.id);
+                  }
+                  if (typeof window !== 'undefined' && window.history?.pushState) {
+                    window.history.pushState(null, '', `#${item.id}`);
+                  }
                 }}
                 className={`relative pb-3 text-[14px] sm:text-[15px] font-semibold transition-colors duration-200 whitespace-nowrap cursor-pointer ${
                   isActive ? 'text-[#0066cc]' : 'text-slate-500 hover:text-slate-800'
@@ -207,7 +285,7 @@ export default function Transformations() {
       </div>
 
       {/* 3-Column Layout: Left Text, Middle Before/After Slider, Right Vertical Info Card */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-6 xl:gap-8 items-start">
+      <div id="before-after-slider" className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-6 xl:gap-8 items-start scroll-mt-24">
         
         {/* LEFT COLUMN (Span 4): Headline, Story (What is This), What We Did & Controls */}
         <div className="lg:col-span-4 flex flex-col justify-between min-h-[390px] pr-0 lg:pr-2">

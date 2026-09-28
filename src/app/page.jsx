@@ -6,6 +6,7 @@ import WhyChooseUs from "../components/WhyChooseUs";
 import Services from "../components/Services";
 import Specialists from "../components/Specialists";
 import AdvancedTechnology from "../components/AdvancedTechnology";
+import PatientExperienceAndWarranty from "../components/PatientExperienceAndWarranty";
 import BookAppointment from "../components/BookAppointment";
 import Footer from "../components/Footer";
 
@@ -18,6 +19,7 @@ export default function Home() {
       <Services />
       <Specialists />
       <AdvancedTechnology />
+      <PatientExperienceAndWarranty />
       <BookAppointment />
       <Footer />
     </main>

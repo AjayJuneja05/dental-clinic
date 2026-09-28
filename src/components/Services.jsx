@@ -12,15 +12,9 @@ export default function Services() {
   const router = useRouter();
 
   const handleCardClick = (id) => {
-    // If the card is already active (expanded on hover or tap), clicking navigates to that service on the service page
-    if (activeId === id) {
-      router.push(`/services#${id}`);
-    } else {
-      setActiveId(id);
-      // On desktop, clicking any service card navigates directly to the service page
-      if (typeof window !== 'undefined' && window.innerWidth >= 1024) {
-        router.push(`/services#${id}`);
-      }
+    router.push(`/services#${id}`);
+    if (typeof window !== 'undefined' && window.location.pathname === '/services') {
+      window.location.hash = `#${id}`;
     }
   };
 
@@ -42,10 +36,10 @@ export default function Services() {
         </p>
       </div>
 
-      {/* Cards Container (Expanding 5-Card Accordion) */}
-      <div className="w-full max-w-[1400px] mx-auto px-4">
+      {/* Cards Container (Expanding 5-Card Accordion on Desktop, Smooth Touch-Scroll on Mobile/Tablet) */}
+      <div className="w-full max-w-[1400px] mx-auto px-4 overflow-x-auto no-scrollbar pb-3">
         <div 
-          className="flex gap-[18px] w-full h-[320px] items-stretch overflow-hidden select-none"
+          className="flex gap-[14px] lg:gap-[18px] w-max lg:w-full h-[300px] lg:h-[320px] items-stretch select-none"
           onMouseLeave={() => setActiveId(null)}
         >
           {SERVICES_DATA.map((service) => {
@@ -56,8 +50,10 @@ export default function Services() {
                 key={service.id}
                 onMouseEnter={() => setActiveId(service.id)}
                 onClick={() => handleCardClick(service.id)}
-                className={`h-[320px] rounded-[16px] overflow-hidden relative cursor-pointer shadow-md transition-[flex] duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] bg-gradient-to-b from-[#2b6aa9] to-[#1e5491] ${
-                  isActive ? 'flex-[2.4]' : 'flex-1'
+                className={`h-[300px] lg:h-[320px] rounded-[16px] overflow-hidden relative cursor-pointer shadow-md transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] bg-gradient-to-b from-[#2b6aa9] to-[#1e5491] ${
+                  isActive 
+                    ? 'w-[360px] sm:w-[400px] lg:w-auto lg:flex-[2.4]' 
+                    : 'w-[220px] sm:w-[240px] lg:w-auto lg:flex-1'
                 }`}
                 style={{
                   isolation: 'isolate',
@@ -94,9 +90,12 @@ export default function Services() {
                           {service.headline}
                         </h4>
                         <Link 
-                          href={`/services#${service.id}`} 
+                          href={`/services#${service.id}`}
                           className="w-8 h-8 rounded-full bg-white/20 hover:bg-white/35 flex items-center justify-center text-white text-[13px] transition-transform hover:scale-110 flex-shrink-0"
-                          onClick={(e) => e.stopPropagation()}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handleCardClick(service.id);
+                          }}
                           aria-label={`View ${service.title} details`}
                         >
                           ↗
@@ -105,8 +104,14 @@ export default function Services() {
                       <p className="text-white/85 text-[12px] xl:text-[12.5px] font-normal leading-[1.6]">
                         {service.description}
                       </p>
-                      <div className="pt-2 border-t border-white/15 flex items-center justify-between">
-                        <span className="text-[11.5px] font-semibold text-sky-200 hover:text-white flex items-center gap-1.5 transition-colors">
+                      <div 
+                        className="pt-2 border-t border-white/15 flex items-center justify-between cursor-pointer group/link"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleCardClick(service.id);
+                        }}
+                      >
+                        <span className="text-[11.5px] font-semibold text-sky-200 group-hover/link:text-white flex items-center gap-1.5 transition-colors">
                           <span>View treatment details</span>
                           <span>→</span>
                         </span>

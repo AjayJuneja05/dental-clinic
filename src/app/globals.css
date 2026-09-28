@@ -12,18 +12,51 @@
 html {
   background-color: #ffffff;
   color: #0c2752;
-  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  scroll-behavior: auto !important;
+  scroll-padding-top: 5rem; /* 80px offset for fixed/sticky navbar */
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 html.lenis, html.lenis body {
   height: auto;
+  scroll-behavior: auto !important;
 }
 
 body {
   background-color: #ffffff;
   color: #0c2752;
-  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
   overflow-x: hidden;
+  min-height: 100vh;
+  touch-action: pan-y;
+}
+
+/* iOS Safari auto-zoom prevention: ensure all inputs on mobile have at least 16px font-size */
+@media (max-width: 639px) {
+  input:not([type="checkbox"]):not([type="radio"]),
+  select,
+  textarea {
+    font-size: 16px !important;
+  }
+}
+
+/* Reduced motion accessibility preferences */
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+    scroll-behavior: auto !important;
+  }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 /* Ensure modal & dropdown scroll containers are isolated from main page scroll */
@@ -108,3 +141,16 @@ img {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+/* Right Column Booking Proportions: 65% Working Hours / 35% Address & Map */
+@media (min-width: 1024px) {
+  .hours-card-65 {
+    flex: 65 1 0% !important;
+    min-height: 0 !important;
+  }
+  .address-card-35 {
+    flex: 35 1 0% !important;
+    min-height: 0 !important;
+  }
+}
+

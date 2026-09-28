@@ -8,7 +8,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         <link rel="preload" as="image" href="/assets/transparent-tooth.webp" type="image/webp" fetchPriority="high" />
         <link rel="preload" as="image" href="/assets/clinic-bg.webp" type="image/webp" />
@@ -18,7 +18,7 @@ export default function RootLayout({ children }) {
         <link rel="preload" as="image" href="/assets/service-whitening.webp" type="image/webp" />
         <link rel="preload" as="image" href="/assets/service-surgical.webp" type="image/webp" />
       </head>
-      <body className="antialiased">
+      <body className="antialiased" suppressHydrationWarning>
         <SmoothScroll>
           {children}
         </SmoothScroll>

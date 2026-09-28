@@ -95,46 +95,46 @@ export default function ContactPage() {
           </div>
         </div>
 
-        {/* Bottom wave divider */}
-        <div className="absolute bottom-0 left-0 right-0 h-16 bg-white" style={{ clipPath: 'ellipse(60% 100% at 50% 100%)' }} />
       </section>
 
       {/* ─── CONTACT DETAILS + CLINIC PHOTO SHOWCASE (RANDOM) ─── */}
       <section className="w-full max-w-[1500px] mx-auto px-5 sm:px-12 lg:px-20 py-20 sm:py-28">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-stretch">
 
           {/* LEFT: Contact Info Cards */}
-          <div className="space-y-6">
-            <div>
-              <p className="text-[12px] font-bold text-[#0066cc] tracking-[0.25em] uppercase mb-4">Get in Touch</p>
-              <h2 className="text-[34px] sm:text-[42px] font-bold text-[#0c2752] leading-[1.1] tracking-[-0.025em]">
+          <div className="flex flex-col justify-between h-full">
+            <div className="mb-6 lg:mb-0">
+              <p className="text-[12px] font-bold text-[#0066cc] tracking-[0.25em] uppercase mb-2.5">Get in Touch</p>
+              <h2 className="text-[32px] sm:text-[38px] xl:text-[42px] font-bold text-[#0c2752] leading-[1.12] tracking-[-0.025em]">
                 Visit our clinic or reach out directly.
               </h2>
-              <p className="mt-4 text-[14.5px] text-[#475569] leading-[1.75] max-w-[480px]">
+              <p className="mt-3 text-[13.5px] sm:text-[14px] text-[#475569] leading-[1.65] max-w-[480px]">
                 Our concierge front desk is available to assist you with scheduling, insurance queries, and private consultations.
               </p>
             </div>
 
             {/* Contact Cards */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 sm:gap-4 mt-6 lg:mt-auto">
               {/* Location */}
-              <div className="bg-white rounded-[22px] p-6 border border-slate-200/90 shadow-[0_4px_24px_-8px_rgba(12,39,82,0.08)] hover:shadow-[0_8px_32px_-8px_rgba(0,102,204,0.15)] hover:border-sky-200 transition-all duration-300 group">
-                <div className="w-12 h-12 rounded-2xl bg-sky-50 text-[#0066cc] flex items-center justify-center mb-4 group-hover:bg-[#0066cc] group-hover:text-white transition-all duration-300">
-                  <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
-                  </svg>
+              <div className="bg-white rounded-[20px] p-4 sm:p-5 border border-slate-200/90 shadow-[0_4px_24px_-8px_rgba(12,39,82,0.08)] hover:shadow-[0_8px_32px_-8px_rgba(0,102,204,0.15)] hover:border-sky-200 transition-all duration-300 group flex flex-col justify-between">
+                <div>
+                  <div className="w-10 h-10 rounded-xl bg-sky-50 text-[#0066cc] flex items-center justify-center mb-3 group-hover:bg-[#0066cc] group-hover:text-white transition-all duration-300">
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                    </svg>
+                  </div>
+                  <h3 className="text-[14px] sm:text-[14.5px] font-bold text-[#07234b] mb-1">Our Location</h3>
+                  <p className="text-[12px] sm:text-[12.5px] text-[#475569] leading-[1.55]">
+                    9454 Wilshire Blvd, Suite 800<br />
+                    Beverly Hills, CA 90212
+                  </p>
                 </div>
-                <h3 className="text-[15px] font-bold text-[#07234b] mb-1">Our Location</h3>
-                <p className="text-[13px] text-[#475569] leading-[1.65]">
-                  9454 Wilshire Blvd, Suite 800<br />
-                  Beverly Hills, CA 90212
-                </p>
                 <a 
                   href="https://maps.google.com/?q=9454+Wilshire+Blvd+Beverly+Hills+CA" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 mt-3 text-[12.5px] font-semibold text-[#0066cc] hover:text-[#0052a3] transition-colors"
+                  className="inline-flex items-center gap-1.5 mt-2.5 text-[12px] font-semibold text-[#0066cc] hover:text-[#0052a3] transition-colors"
                 >
                   <span>Get Directions</span>
                   <span>→</span>
@@ -142,20 +142,22 @@ export default function ContactPage() {
               </div>
 
               {/* Phone */}
-              <div className="bg-white rounded-[22px] p-6 border border-slate-200/90 shadow-[0_4px_24px_-8px_rgba(12,39,82,0.08)] hover:shadow-[0_8px_32px_-8px_rgba(0,102,204,0.15)] hover:border-sky-200 transition-all duration-300 group">
-                <div className="w-12 h-12 rounded-2xl bg-sky-50 text-[#0066cc] flex items-center justify-center mb-4 group-hover:bg-[#0066cc] group-hover:text-white transition-all duration-300">
-                  <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
-                  </svg>
+              <div className="bg-white rounded-[20px] p-4 sm:p-5 border border-slate-200/90 shadow-[0_4px_24px_-8px_rgba(12,39,82,0.08)] hover:shadow-[0_8px_32px_-8px_rgba(0,102,204,0.15)] hover:border-sky-200 transition-all duration-300 group flex flex-col justify-between">
+                <div>
+                  <div className="w-10 h-10 rounded-xl bg-sky-50 text-[#0066cc] flex items-center justify-center mb-3 group-hover:bg-[#0066cc] group-hover:text-white transition-all duration-300">
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+                    </svg>
+                  </div>
+                  <h3 className="text-[14px] sm:text-[14.5px] font-bold text-[#07234b] mb-1">Call Us</h3>
+                  <p className="text-[12px] sm:text-[12.5px] text-[#475569] leading-[1.55]">
+                    +1 (310) 859-2432<br />
+                    +1 (800) 555-0199
+                  </p>
                 </div>
-                <h3 className="text-[15px] font-bold text-[#07234b] mb-1">Call Us</h3>
-                <p className="text-[13px] text-[#475569] leading-[1.65]">
-                  +1 (310) 859-2432<br />
-                  +1 (800) 555-0199
-                </p>
                 <a 
                   href="tel:13108592432"
-                  className="inline-flex items-center gap-1.5 mt-3 text-[12.5px] font-semibold text-[#0066cc] hover:text-[#0052a3] transition-colors"
+                  className="inline-flex items-center gap-1.5 mt-2.5 text-[12px] font-semibold text-[#0066cc] hover:text-[#0052a3] transition-colors"
                 >
                   <span>Call Now</span>
                   <span>→</span>
@@ -163,20 +165,22 @@ export default function ContactPage() {
               </div>
 
               {/* Email */}
-              <div className="bg-white rounded-[22px] p-6 border border-slate-200/90 shadow-[0_4px_24px_-8px_rgba(12,39,82,0.08)] hover:shadow-[0_8px_32px_-8px_rgba(0,102,204,0.15)] hover:border-sky-200 transition-all duration-300 group">
-                <div className="w-12 h-12 rounded-2xl bg-sky-50 text-[#0066cc] flex items-center justify-center mb-4 group-hover:bg-[#0066cc] group-hover:text-white transition-all duration-300">
-                  <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
-                  </svg>
+              <div className="bg-white rounded-[20px] p-4 sm:p-5 border border-slate-200/90 shadow-[0_4px_24px_-8px_rgba(12,39,82,0.08)] hover:shadow-[0_8px_32px_-8px_rgba(0,102,204,0.15)] hover:border-sky-200 transition-all duration-300 group flex flex-col justify-between">
+                <div>
+                  <div className="w-10 h-10 rounded-xl bg-sky-50 text-[#0066cc] flex items-center justify-center mb-3 group-hover:bg-[#0066cc] group-hover:text-white transition-all duration-300">
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                    </svg>
+                  </div>
+                  <h3 className="text-[14px] sm:text-[14.5px] font-bold text-[#07234b] mb-1">Email Us</h3>
+                  <p className="text-[12px] sm:text-[12.5px] text-[#475569] leading-[1.55]">
+                    hello@vsbsmiles.com<br />
+                    concierge@vsbsmiles.com
+                  </p>
                 </div>
-                <h3 className="text-[15px] font-bold text-[#07234b] mb-1">Email Us</h3>
-                <p className="text-[13px] text-[#475569] leading-[1.65]">
-                  hello@vsbsmiles.com<br />
-                  concierge@vsbsmiles.com
-                </p>
                 <a 
                   href="mailto:hello@vsbsmiles.com"
-                  className="inline-flex items-center gap-1.5 mt-3 text-[12.5px] font-semibold text-[#0066cc] hover:text-[#0052a3] transition-colors"
+                  className="inline-flex items-center gap-1.5 mt-2.5 text-[12px] font-semibold text-[#0066cc] hover:text-[#0052a3] transition-colors"
                 >
                   <span>Send Email</span>
                   <span>→</span>
@@ -184,20 +188,22 @@ export default function ContactPage() {
               </div>
 
               {/* Emergency */}
-              <div className="bg-white rounded-[22px] p-6 border border-slate-200/90 shadow-[0_4px_24px_-8px_rgba(12,39,82,0.08)] hover:shadow-[0_8px_32px_-8px_rgba(0,102,204,0.15)] hover:border-sky-200 transition-all duration-300 group">
-                <div className="w-12 h-12 rounded-2xl bg-sky-50 text-[#0066cc] flex items-center justify-center mb-4 group-hover:bg-[#0066cc] group-hover:text-white transition-all duration-300">
-                  <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                  </svg>
+              <div className="bg-white rounded-[20px] p-4 sm:p-5 border border-slate-200/90 shadow-[0_4px_24px_-8px_rgba(12,39,82,0.08)] hover:shadow-[0_8px_32px_-8px_rgba(0,102,204,0.15)] hover:border-sky-200 transition-all duration-300 group flex flex-col justify-between">
+                <div>
+                  <div className="w-10 h-10 rounded-xl bg-sky-50 text-[#0066cc] flex items-center justify-center mb-3 group-hover:bg-[#0066cc] group-hover:text-white transition-all duration-300">
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                  </div>
+                  <h3 className="text-[14px] sm:text-[14.5px] font-bold text-[#07234b] mb-1">Emergency</h3>
+                  <p className="text-[12px] sm:text-[12.5px] text-[#475569] leading-[1.55]">
+                    Dental emergencies?<br />
+                    We offer same-day care.
+                  </p>
                 </div>
-                <h3 className="text-[15px] font-bold text-[#07234b] mb-1">Emergency</h3>
-                <p className="text-[13px] text-[#475569] leading-[1.65]">
-                  Dental emergencies?<br />
-                  We offer same-day care.
-                </p>
                 <Link 
                   href="/#schedule"
-                  className="inline-flex items-center gap-1.5 mt-3 text-[12.5px] font-semibold text-[#0066cc] hover:text-[#0052a3] transition-colors"
+                  className="inline-flex items-center gap-1.5 mt-2.5 text-[12px] font-semibold text-[#0066cc] hover:text-[#0052a3] transition-colors"
                 >
                   <span>Book Urgent Visit</span>
                   <span>→</span>
@@ -207,8 +213,8 @@ export default function ContactPage() {
           </div>
 
           {/* RIGHT: In place of "Send Us Message" -> Clinic Photo Showcase with Randomizer */}
-          <div className="flex flex-col">
-            <div className="bg-white rounded-[28px] p-6 sm:p-7 border border-slate-200/90 shadow-[0_15px_40px_-15px_rgba(12,39,82,0.08)] flex flex-col justify-between">
+          <div className="flex flex-col h-full">
+            <div className="bg-white rounded-[28px] p-6 sm:p-7 border border-slate-200/90 shadow-[0_15px_40px_-15px_rgba(12,39,82,0.08)] flex flex-col justify-between h-full">
               
               {/* Header with Title & Randomize Button */}
               <div className="flex items-center justify-between gap-3 mb-5">
@@ -306,27 +312,6 @@ export default function ContactPage() {
                 </div>
               </div>
 
-              {/* Quick Consultation Callout */}
-              <div className="mt-4 p-3.5 rounded-2xl bg-slate-50 border border-slate-200/80 flex items-center justify-between gap-3">
-                <div className="flex items-center gap-2.5">
-                  <div className="w-8 h-8 rounded-full bg-sky-100 text-[#0066cc] flex items-center justify-center flex-shrink-0">
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
-                    </svg>
-                  </div>
-                  <div>
-                    <p className="text-[12.5px] font-bold text-[#07234b]">Visit our clinic in person</p>
-                    <p className="text-[11px] text-slate-500">Complimentary consultations available</p>
-                  </div>
-                </div>
-
-                <Link
-                  href="/#schedule"
-                  className="px-3.5 py-1.5 rounded-full bg-[#0066cc] hover:bg-[#0052a3] text-white text-[12px] font-bold transition-all shadow-xs flex-shrink-0"
-                >
-                  Book Visit →
-                </Link>
-              </div>
 
             </div>
           </div>
