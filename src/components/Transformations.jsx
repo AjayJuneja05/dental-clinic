@@ -254,7 +254,7 @@ export default function Transformations({ activeServiceId, onServiceChange }) {
 
       {/* Horizontal Underlined Category Tabs matching reference */}
       <div className="w-full max-w-[960px] mx-auto border-b border-slate-200/90 mb-10 sm:mb-14">
-        <div className="flex items-center justify-between sm:justify-center gap-6 sm:gap-10 overflow-x-auto no-scrollbar pb-0.5">
+        <div className="flex items-center justify-between sm:justify-center gap-6 sm:gap-10 overflow-x-auto sm:overflow-x-visible no-scrollbar pb-0.5">
           {CASES_DATA.map((item, index) => {
             const isActive = activeTab === index;
             return (

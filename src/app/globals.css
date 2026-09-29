@@ -61,8 +61,7 @@ body {
 
 /* Ensure modal & dropdown scroll containers are isolated from main page scroll */
 [data-lenis-prevent],
-.lenis-prevent,
-.no-scrollbar {
+.lenis-prevent {
   overscroll-behavior: contain;
 }
 

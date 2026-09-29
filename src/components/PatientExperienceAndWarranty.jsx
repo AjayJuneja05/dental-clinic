@@ -200,7 +200,7 @@ export default function PatientExperienceAndWarranty() {
           </div>
 
           {/* Interactive Modern 3-Way Tab Switcher */}
-          <div className="w-full sm:w-auto flex-shrink-0 self-start lg:self-end overflow-x-auto no-scrollbar">
+          <div className="w-full sm:w-auto flex-shrink-0 self-start lg:self-end overflow-x-auto sm:overflow-x-visible no-scrollbar">
             <div className="inline-flex p-1.5 bg-slate-100/90 backdrop-blur-md rounded-2xl border border-slate-200/80 shadow-xs whitespace-nowrap">
               <button
                 onClick={() => setActiveTab('video')}

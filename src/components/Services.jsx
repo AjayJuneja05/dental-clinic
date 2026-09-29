@@ -46,7 +46,7 @@ export default function Services() {
         </div>
 
         {/* Cards Container (Expanding 5-Card Accordion on Desktop, Smooth Touch-Scroll on Mobile/Tablet) */}
-        <div className="w-full overflow-x-auto no-scrollbar pb-3">
+        <div className="w-full overflow-x-auto lg:overflow-x-visible no-scrollbar pb-3">
         <div 
           className="flex gap-[14px] lg:gap-[18px] w-max lg:w-full h-[300px] lg:h-[320px] items-stretch select-none"
         >
