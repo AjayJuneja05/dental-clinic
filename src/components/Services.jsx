@@ -12,6 +12,10 @@ export default function Services() {
   const router = useRouter();
 
   const handleCardClick = (id) => {
+    setActiveId((prev) => (prev === id ? null : id));
+  };
+
+  const handleNavigate = (id) => {
     router.push(`/services#${id}`);
     if (typeof window !== 'undefined' && window.location.pathname === '/services') {
       window.location.hash = `#${id}`;
@@ -19,28 +23,32 @@ export default function Services() {
   };
 
   return (
-    <section id="services" className="w-full max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-24 bg-white overflow-visible">
-      
-      {/* Section Header */}
-      <div className="text-center max-w-[700px] mx-auto mb-12 sm:mb-14">
-        <p className="text-[12px] sm:text-[13px] font-bold text-[#475569] tracking-[0.2em] uppercase mb-3">
-          <Link href="/services" className="hover:text-sky-600 transition-colors">
-            Services
-          </Link>
-        </p>
-        <h2 className="text-[36px] sm:text-[46px] lg:text-[54px] font-bold text-[#0c2752] leading-[1.1] tracking-[-0.03em]">
-          Expert care for every smile
-        </h2>
-        <p className="text-[14px] sm:text-[15px] text-[#475569] leading-[1.65] mt-4 max-w-[540px] mx-auto">
-          We offer a full spectrum of treatments – each tailored to elevate your health, confidence, and natural beauty.
-        </p>
-      </div>
+    <section id="services" className="w-full py-16 sm:py-20 lg:py-24 bg-white overflow-visible">
+      <div className="w-full max-w-[1500px] mx-auto px-5 sm:px-12 lg:px-20">
+        
+        {/* Section Header (Left-aligned) */}
+        <div className="w-full mb-10 sm:mb-12 text-left">
+          <div className="max-w-[680px]">
+            <Link 
+              href="/services" 
+              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-sky-50 border border-sky-200/80 text-[#0066cc] text-[12px] font-bold tracking-[0.16em] uppercase mb-3.5 shadow-xs hover:bg-sky-100 transition-colors"
+            >
+              <span className="w-2 h-2 rounded-full bg-[#0066cc] animate-pulse"></span>
+              <span>Services</span>
+            </Link>
+            <h2 className="text-[36px] sm:text-[46px] lg:text-[52px] font-bold text-[#0c2752] leading-[1.1] tracking-[-0.035em]">
+              Expert care for every smile
+            </h2>
+            <p className="text-[14px] sm:text-[15.5px] text-[#475569] leading-[1.65] font-normal mt-3.5 max-w-[620px]">
+              We offer a full spectrum of treatments – each tailored to elevate your health, confidence, and natural beauty.
+            </p>
+          </div>
+        </div>
 
-      {/* Cards Container (Expanding 5-Card Accordion on Desktop, Smooth Touch-Scroll on Mobile/Tablet) */}
-      <div className="w-full max-w-[1400px] mx-auto px-4 overflow-x-auto no-scrollbar pb-3">
+        {/* Cards Container (Expanding 5-Card Accordion on Desktop, Smooth Touch-Scroll on Mobile/Tablet) */}
+        <div className="w-full overflow-x-auto no-scrollbar pb-3">
         <div 
           className="flex gap-[14px] lg:gap-[18px] w-max lg:w-full h-[300px] lg:h-[320px] items-stretch select-none"
-          onMouseLeave={() => setActiveId(null)}
         >
           {SERVICES_DATA.map((service) => {
             const isActive = activeId === service.id;
@@ -48,7 +56,6 @@ export default function Services() {
             return (
               <div
                 key={service.id}
-                onMouseEnter={() => setActiveId(service.id)}
                 onClick={() => handleCardClick(service.id)}
                 className={`h-[300px] lg:h-[320px] rounded-[16px] overflow-hidden relative cursor-pointer shadow-md transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] bg-gradient-to-b from-[#2b6aa9] to-[#1e5491] ${
                   isActive 
@@ -94,7 +101,7 @@ export default function Services() {
                           className="w-8 h-8 rounded-full bg-white/20 hover:bg-white/35 flex items-center justify-center text-white text-[13px] transition-transform hover:scale-110 flex-shrink-0"
                           onClick={(e) => {
                             e.stopPropagation();
-                            handleCardClick(service.id);
+                            handleNavigate(service.id);
                           }}
                           aria-label={`View ${service.title} details`}
                         >
@@ -108,7 +115,7 @@ export default function Services() {
                         className="pt-2 border-t border-white/15 flex items-center justify-between cursor-pointer group/link"
                         onClick={(e) => {
                           e.stopPropagation();
-                          handleCardClick(service.id);
+                          handleNavigate(service.id);
                         }}
                       >
                         <span className="text-[11.5px] font-semibold text-sky-200 group-hover/link:text-white flex items-center gap-1.5 transition-colors">
@@ -142,6 +149,7 @@ export default function Services() {
         </a>
       </div>
 
+      </div>
     </section>
   );
 }

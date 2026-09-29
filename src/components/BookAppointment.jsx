@@ -153,25 +153,26 @@ export default function BookAppointment() {
 
       <div className="w-full max-w-[1500px] mx-auto px-5 sm:px-12 lg:px-20 relative z-10">
         
-        {/* Section Header */}
-        <div className="text-center max-w-[760px] mx-auto mb-6 sm:mb-7">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-100/80 border border-sky-200/60 text-[#0066cc] text-[11px] font-bold tracking-wide uppercase mb-2">
-            <span className="w-2 h-2 rounded-full bg-[#0066cc] animate-pulse"></span>
-            <span>Online Booking & Priority Scheduling</span>
+        {/* Section Header (Left-aligned with page) */}
+        <div className="w-full mb-10 sm:mb-12 text-left">
+          <div className="max-w-[680px]">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-sky-50 border border-sky-200/80 text-[#0066cc] text-[12px] font-bold tracking-[0.16em] uppercase mb-3.5 shadow-xs">
+              <span className="w-2 h-2 rounded-full bg-[#0066cc] animate-pulse"></span>
+              <span>Online Booking & Priority Scheduling</span>
+            </div>
+
+            <h2 className="text-[36px] sm:text-[46px] lg:text-[52px] font-bold text-[#07234b] leading-[1.1] tracking-[-0.035em]">
+              Book Your Private Smile Consultation
+            </h2>
+
+            <p className="text-[14px] sm:text-[15.5px] text-[#475569] leading-[1.65] font-normal mt-3.5 max-w-[620px]">
+              Experience compassionate, board-certified care. Select your preferred specialist, treatment, and time for a personalized 3D diagnostic evaluation.
+            </p>
           </div>
-
-          <h2 className="text-[26px] sm:text-[32px] lg:text-[36px] font-bold text-[#07234b] leading-[1.12] tracking-[-0.035em]">
-            Book Your Private <br />
-            Smile Consultation
-          </h2>
-
-          <p className="text-[13px] sm:text-[13.5px] text-[#475569] leading-relaxed font-normal mt-2 max-w-[540px] mx-auto">
-            Experience compassionate, board-certified care. Select your preferred specialist, treatment, and time for a personalized 3D diagnostic evaluation.
-          </p>
         </div>
 
         {/* Main 2-Column Grid */}
-        <div className="w-full max-w-[1060px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-5 items-stretch">
+        <div className="w-full grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-6 items-stretch">
           
           {/* LEFT: Interactive Booking Form (Span 7) */}
           <div className="lg:col-span-7 bg-white rounded-[24px] sm:rounded-[28px] p-6 sm:p-8 lg:p-9 border border-slate-200/90 shadow-[0_15px_40px_-15px_rgba(12,39,82,0.08)] flex flex-col justify-between h-full">

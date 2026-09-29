@@ -16,21 +16,21 @@ export default function Specialists() {
     <section id="specialists" className="w-full py-16 sm:py-20 lg:py-24 bg-white overflow-hidden relative">
       
       {/* Header Container */}
-      <div className="w-full max-w-[1500px] mx-auto px-5 sm:px-12 lg:px-20 mb-12 sm:mb-16 flex flex-col md:flex-row md:items-end justify-between gap-6">
+      <div className="w-full max-w-[1500px] mx-auto px-5 sm:px-12 lg:px-20 mb-10 sm:mb-12 flex flex-col md:flex-row md:items-end justify-between gap-6">
         
         {/* Left: Title & Subtitle */}
-        <div className="max-w-[650px]">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-50 border border-sky-100 text-sky-700 text-[12px] font-semibold tracking-wide uppercase mb-3.5">
-            <span className="w-2 h-2 rounded-full bg-sky-500 animate-pulse"></span>
+        <div className="max-w-[680px]">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-sky-50 border border-sky-200/80 text-[#0066cc] text-[12px] font-bold tracking-[0.16em] uppercase mb-3.5 shadow-xs">
+            <span className="w-2 h-2 rounded-full bg-[#0066cc] animate-pulse"></span>
             <span>World-Class Clinical Team</span>
           </div>
 
-          <h2 className="text-[36px] sm:text-[46px] lg:text-[54px] font-bold text-[#0c2752] leading-[1.08] tracking-[-0.035em]">
+          <h2 className="text-[36px] sm:text-[46px] lg:text-[52px] font-bold text-[#0c2752] leading-[1.1] tracking-[-0.035em]">
             Meet the minds <br />
             behind your smile
           </h2>
 
-          <p className="text-[14px] sm:text-[15px] text-[#475569] leading-[1.65] font-normal mt-4 max-w-[560px]">
+          <p className="text-[14px] sm:text-[15.5px] text-[#475569] leading-[1.65] font-normal mt-3.5 max-w-[620px]">
             Our board-certified specialists bring precision, empathy, and artistry to every treatment — uniting years of academic excellence with a shared passion for personalized smile design.
           </p>
         </div>

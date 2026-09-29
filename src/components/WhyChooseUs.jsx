@@ -19,11 +19,12 @@ export default function WhyChooseUs() {
         
         {/* Left: Eyebrow + Large Heading */}
         <div className="max-w-[680px]">
-          <p className="text-[12px] sm:text-[13px] font-bold text-white/90 tracking-[0.2em] uppercase mb-4 sm:mb-6">
-            Why Choose Us
-          </p>
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-white text-[12px] font-bold tracking-[0.16em] uppercase mb-4 sm:mb-5 shadow-xs">
+            <span className="w-2 h-2 rounded-full bg-sky-400 animate-pulse"></span>
+            <span>Why Choose Us</span>
+          </div>
 
-          <h2 className="text-[32px] sm:text-[40px] lg:text-[48px] xl:text-[56px] font-bold italic text-white leading-[1.08] tracking-[-0.02em]">
+          <h2 className="text-[36px] sm:text-[46px] lg:text-[52px] font-bold italic text-white leading-[1.1] tracking-[-0.035em]">
             Unveil excellence.<br />
             Discover the Vsb<br />
             Smiles difference.
@@ -31,8 +32,8 @@ export default function WhyChooseUs() {
         </div>
 
         {/* Subtitle Paragraph */}
-        <div className="mt-8 sm:mt-10 max-w-[540px]">
-          <p className="text-[13.5px] sm:text-[14.5px] text-white/80 leading-[1.7] font-normal">
+        <div className="mt-6 sm:mt-8 max-w-[620px]">
+          <p className="text-[14px] sm:text-[15.5px] text-white/85 leading-[1.65] font-normal">
             At Vsb Smiles, we combine world-class expertise with state-of-the-art dental technology to craft natural, radiant smiles with extraordinary precision and comfort.
           </p>
         </div>

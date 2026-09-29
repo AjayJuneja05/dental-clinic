@@ -126,9 +126,10 @@ const BENEFIT_PILLARS = [
 ];
 
 export default function AdvancedTechnology() {
-  const [expandedIndex, setExpandedIndex] = useState(0); // First item expanded by default
+  const [expandedIndex, setExpandedIndex] = useState(null); // Closed by default
   const [selectedTech, setSelectedTech] = useState(0);
   const [cardsOffset, setCardsOffset] = useState(306);
+  const [cardsHeight, setCardsHeight] = useState(null);
 
   const gridContainerRef = useRef(null);
   const cardsContainerRef = useRef(null);
@@ -139,7 +140,7 @@ export default function AdvancedTechnology() {
   };
 
   useEffect(() => {
-    const updateOffset = () => {
+    const updateMeasurements = () => {
       if (cardsContainerRef.current && gridContainerRef.current) {
         if (window.innerWidth >= 1024) {
           const cardsRect = cardsContainerRef.current.getBoundingClientRect();
@@ -148,14 +149,35 @@ export default function AdvancedTechnology() {
           if (offset > 0) {
             setCardsOffset(offset);
           }
+          const height = Math.round(cardsContainerRef.current.offsetHeight);
+          if (height > 0) {
+            setCardsHeight(height);
+          }
         } else {
           setCardsOffset(0);
+          setCardsHeight(null);
         }
       }
     };
-    updateOffset();
-    window.addEventListener('resize', updateOffset);
-    return () => window.removeEventListener('resize', updateOffset);
+
+    updateMeasurements();
+
+    let ro;
+    if (typeof ResizeObserver !== 'undefined' && cardsContainerRef.current) {
+      ro = new ResizeObserver(() => {
+        updateMeasurements();
+      });
+      ro.observe(cardsContainerRef.current);
+      if (gridContainerRef.current) {
+        ro.observe(gridContainerRef.current);
+      }
+    }
+
+    window.addEventListener('resize', updateMeasurements);
+    return () => {
+      if (ro) ro.disconnect();
+      window.removeEventListener('resize', updateMeasurements);
+    };
   }, []);
 
   const activeIndex = expandedIndex !== null ? expandedIndex : selectedTech;
@@ -177,22 +199,22 @@ export default function AdvancedTechnology() {
           <div className="lg:col-span-5 order-1 flex flex-col justify-start">
             
             {/* Pill Eyebrow Badge */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-sky-200 text-[#0066cc] text-[12px] font-bold tracking-wide uppercase mb-5 self-start shadow-xs">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-sky-50 border border-sky-200/80 text-[#0066cc] text-[12px] font-bold tracking-[0.16em] uppercase mb-3.5 self-start shadow-xs">
               <span className="w-2 h-2 rounded-full bg-[#0066cc] animate-pulse"></span>
               <span>Advanced Technology</span>
             </div>
 
             {/* Headline */}
-            <h2 className="text-[30px] sm:text-[38px] lg:text-[42px] font-bold text-[#07234b] leading-[1.12] tracking-[-0.035em]">
+            <h2 className="text-[32px] sm:text-[40px] lg:text-[46px] font-bold text-[#07234b] leading-[1.1] tracking-[-0.035em]">
               Modern Technology <br />
               <span className="inline-block sm:whitespace-nowrap">for Precise Dental Care</span>
             </h2>
 
             {/* Blue Decorative Accent Line */}
-            <div className="w-12 h-1 bg-[#0066cc] rounded-full my-5 shadow-xs"></div>
+            <div className="w-12 h-1 bg-[#0066cc] rounded-full my-4 shadow-xs"></div>
 
             {/* Subtitle Body */}
-            <p className="text-[14px] sm:text-[15px] text-[#475569] leading-[1.65] font-normal mb-8 max-w-[520px]">
+            <p className="text-[14px] sm:text-[15.5px] text-[#475569] leading-[1.65] font-normal mb-8 max-w-[520px]">
               We combine advanced digital technology with experienced dental professionals to deliver accurate diagnoses, comfortable treatments and exceptional results for every patient.
             </p>
 
@@ -200,7 +222,7 @@ export default function AdvancedTechnology() {
             <div ref={cardsContainerRef} className="space-y-4">
               {TECH_FEATURES.map((item, idx) => {
                 const isExpanded = expandedIndex === idx;
-                const isSelected = activeIndex === idx;
+                const isSelected = expandedIndex !== null && activeIndex === idx;
                 return (
                   <div
                     key={item.id}
@@ -281,15 +303,21 @@ export default function AdvancedTechnology() {
 
           </div>
 
-          {/* RIGHT SIDE (Span 7, Order 2): Visual Display starting at the top of the first feature section */}
+          {/* RIGHT SIDE (Span 7, Order 2): Visual Display dynamically aligned with the cards section */}
           <div 
-            className="lg:col-span-7 order-2 pt-0 lg:pt-[306px]"
+            className="lg:col-span-7 order-2 pt-0"
             style={{
               paddingTop: cardsOffset ? `${cardsOffset}px` : undefined
             }}
           >
-            <div className="sticky top-24 self-start relative z-20">
-              <div className="relative w-full aspect-[4/3] sm:aspect-[16/11] lg:aspect-[4/3] rounded-[28px] sm:rounded-[36px] overflow-hidden bg-slate-950 border border-sky-200/80 shadow-[0_20px_50px_-15px_rgba(7,35,75,0.22)] group">
+            <div className="relative z-20">
+              <div 
+                className="relative w-full rounded-[28px] sm:rounded-[36px] overflow-hidden bg-slate-950 border border-sky-200/80 shadow-[0_20px_50px_-15px_rgba(7,35,75,0.22)] group transition-all duration-300 ease-in-out aspect-[16/11] lg:aspect-auto"
+                style={{
+                  height: cardsHeight ? `${cardsHeight}px` : undefined,
+                  minHeight: cardsHeight ? undefined : '360px'
+                }}
+              >
                 
                 {/* Stacked Technology Images with Smooth Crossfade Transition */}
                 {TECH_FEATURES.map((item, idx) => {
@@ -312,26 +340,26 @@ export default function AdvancedTechnology() {
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent pointer-events-none z-10"></div>
 
                 {/* Top-Left Live Indicator Pill */}
-                <div className="absolute top-4 left-4 sm:top-6 sm:left-6 z-20 flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-950/80 backdrop-blur-md border border-white/20 text-white text-[12px] font-semibold shadow-lg">
+                <div className="absolute top-4 left-4 sm:top-5 sm:left-5 z-20 flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-950/80 backdrop-blur-md border border-white/20 text-white text-[12px] font-semibold shadow-lg">
                   <span className="w-2 h-2 rounded-full bg-sky-400 animate-pulse"></span>
                   <span>Active: {currentTech.num} {currentTech.title}</span>
                 </div>
 
                 {/* Bottom Floating Glassmorphic Badge - Dynamically Updating */}
-                <div className="absolute bottom-4 left-4 right-4 sm:bottom-6 sm:left-6 sm:right-6 bg-white/95 backdrop-blur-md rounded-[22px] p-3.5 sm:p-4.5 border border-white/90 shadow-[0_12px_32px_-5px_rgba(7,35,75,0.2)] flex items-center gap-3.5 z-20 transition-all duration-300">
-                  <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-[#0066cc] text-white flex items-center justify-center flex-shrink-0 shadow-md shadow-blue-500/30">
+                <div className="absolute bottom-3.5 left-3.5 right-3.5 sm:bottom-5 sm:left-5 sm:right-5 bg-white/95 backdrop-blur-md rounded-[20px] sm:rounded-[22px] p-3 sm:p-4 border border-white/90 shadow-[0_12px_32px_-5px_rgba(7,35,75,0.2)] flex items-center gap-3.5 z-20 transition-all duration-300">
+                  <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-[#0066cc] text-white flex items-center justify-center flex-shrink-0 shadow-md shadow-blue-500/30">
                     {currentTech.icon}
                   </div>
                   <div className="min-w-0 flex-1">
                     <div className="flex items-center gap-2">
-                      <h4 className="text-[13.5px] sm:text-[15px] font-bold text-[#07234b] leading-tight truncate">
+                      <h4 className="text-[13px] sm:text-[14.5px] font-bold text-[#07234b] leading-tight truncate">
                         {currentTech.badgeTitle}
                       </h4>
                       <span className="px-2 py-0.5 rounded-full bg-sky-100 text-[#0066cc] text-[10px] font-bold uppercase tracking-wider hidden sm:inline-block">
                         Selected
                       </span>
                     </div>
-                    <p className="text-[11.5px] sm:text-[12.5px] text-slate-600 mt-0.5 leading-snug line-clamp-2">
+                    <p className="text-[11px] sm:text-[12px] text-slate-600 mt-0.5 leading-snug line-clamp-1 sm:line-clamp-2">
                       {currentTech.badgeDesc}
                     </p>
                   </div>
