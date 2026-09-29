@@ -345,8 +345,8 @@ export default function AdvancedTechnology() {
                   <span>Active: {currentTech.num} {currentTech.title}</span>
                 </div>
 
-                {/* Bottom Floating Glassmorphic Badge - Dynamically Updating */}
-                <div className="absolute bottom-3.5 left-3.5 right-3.5 sm:bottom-5 sm:left-5 sm:right-5 bg-white/95 backdrop-blur-md rounded-[20px] sm:rounded-[22px] p-3 sm:p-4 border border-white/90 shadow-[0_12px_32px_-5px_rgba(7,35,75,0.2)] flex items-center gap-3.5 z-20 transition-all duration-300">
+                {/* Bottom Floating Card - Dynamically Updating */}
+                <div className="absolute bottom-3.5 left-3.5 right-3.5 sm:bottom-5 sm:left-5 sm:right-5 bg-white/95 rounded-[20px] sm:rounded-[22px] p-3 sm:p-4 border border-white/90 shadow-[0_12px_32px_-5px_rgba(7,35,75,0.18)] flex items-center gap-3.5 z-20 transition-all duration-300">
                   <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-[#0066cc] text-white flex items-center justify-center flex-shrink-0 shadow-md shadow-blue-500/30">
                     {currentTech.icon}
                   </div>

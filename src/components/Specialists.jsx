@@ -60,7 +60,7 @@ export default function Specialists() {
               <div className="relative w-full h-[270px] rounded-[18px] overflow-hidden bg-slate-100">
                 
                 {/* Specialty Tag Badge */}
-                <span className="absolute top-3 left-3 bg-white/95 backdrop-blur-md text-[11px] font-bold text-[#0c2752] px-3 py-1 rounded-full shadow-xs border border-white/60 z-10">
+                <span className="absolute top-3 left-3 bg-white/95 text-[11px] font-bold text-[#0c2752] px-3 py-1 rounded-full shadow-xs border border-slate-200/80 z-10">
                   {specialist.tag}
                 </span>
 
