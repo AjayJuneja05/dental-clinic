@@ -99,11 +99,11 @@ export default function ContactPage() {
 
       {/* ─── CONTACT DETAILS + CLINIC PHOTO SHOWCASE (RANDOM) ─── */}
       <section className="w-full max-w-[1500px] mx-auto px-5 sm:px-12 lg:px-20 py-20 sm:py-28">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-stretch">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-start">
 
           {/* LEFT: Contact Info Cards */}
-          <div className="flex flex-col justify-between h-full">
-            <div className="mb-6 lg:mb-0">
+          <div className="flex flex-col justify-start">
+            <div>
               <p className="text-[12px] font-bold text-[#0066cc] tracking-[0.25em] uppercase mb-2.5">Get in Touch</p>
               <h2 className="text-[32px] sm:text-[38px] xl:text-[42px] font-bold text-[#0c2752] leading-[1.12] tracking-[-0.025em]">
                 Visit our clinic or reach out directly.
@@ -114,7 +114,7 @@ export default function ContactPage() {
             </div>
 
             {/* Contact Cards */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 sm:gap-4 mt-6 lg:mt-auto">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 sm:gap-4 mt-6 sm:mt-7">
               {/* Location */}
               <div className="bg-white rounded-[20px] p-4 sm:p-5 border border-slate-200/90 shadow-[0_4px_24px_-8px_rgba(12,39,82,0.08)] hover:shadow-[0_8px_32px_-8px_rgba(0,102,204,0.15)] hover:border-sky-200 transition-all duration-300 group flex flex-col justify-between">
                 <div>
@@ -213,8 +213,8 @@ export default function ContactPage() {
           </div>
 
           {/* RIGHT: In place of "Send Us Message" -> Clinic Photo Showcase with Randomizer */}
-          <div className="flex flex-col h-full">
-            <div className="bg-white rounded-[28px] p-6 sm:p-7 border border-slate-200/90 shadow-[0_15px_40px_-15px_rgba(12,39,82,0.08)] flex flex-col justify-between h-full">
+          <div className="flex flex-col">
+            <div className="bg-white rounded-[28px] p-6 sm:p-7 border border-slate-200/90 shadow-[0_15px_40px_-15px_rgba(12,39,82,0.08)] flex flex-col justify-between">
               
               {/* Header with Title & Randomize Button */}
               <div className="flex items-center justify-between gap-3 mb-5">
