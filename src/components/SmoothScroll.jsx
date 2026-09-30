@@ -44,27 +44,36 @@ export default function SmoothScroll({ children }) {
       const hashIndex = href.indexOf('#');
       if (hashIndex === -1) return;
 
-      const hash = href.slice(hashIndex);
-      if (hash === '#' || hash === '') return;
+      const rawHash = href.slice(hashIndex);
+      if (rawHash === '#' || rawHash === '') return;
 
-      const isSamePage = href.startsWith('#') || (href.startsWith('/#') && pathname === '/');
+      // Extract the clean CSS selector ID (strip query params if any, e.g. #schedule?service=aesthetic)
+      let cleanHash = rawHash;
+      const qIdx = cleanHash.indexOf('?');
+      if (qIdx !== -1) cleanHash = cleanHash.slice(0, qIdx);
+      const ampIdx = cleanHash.indexOf('&');
+      if (ampIdx !== -1) cleanHash = cleanHash.slice(0, ampIdx);
+
+      const isSamePage = href.startsWith('#') || ((href.startsWith('/#') || href.startsWith('/?')) && pathname === '/');
       if (!isSamePage && !href.startsWith('#')) return;
 
-      const targetEl = document.querySelector(hash);
-      if (targetEl) {
-        e.preventDefault();
-        const headerEl = document.querySelector('header');
-        const headerOffset = headerEl ? headerEl.offsetHeight + 16 : 84;
+      try {
+        const targetEl = document.querySelector(cleanHash);
+        if (targetEl) {
+          e.preventDefault();
+          const headerEl = document.querySelector('header');
+          const headerOffset = headerEl ? headerEl.offsetHeight + 16 : 84;
 
-        lenis.scrollTo(targetEl, {
-          offset: -headerOffset,
-          duration: 0.8,
-        });
+          lenis.scrollTo(targetEl, {
+            offset: -headerOffset,
+            duration: 0.8,
+          });
 
-        if (typeof window !== 'undefined' && window.history?.pushState) {
-          window.history.pushState(null, '', hash);
+          if (typeof window !== 'undefined' && window.history?.pushState) {
+            window.history.pushState(null, '', rawHash);
+          }
         }
-      }
+      } catch (err) {}
     };
 
     document.addEventListener('click', handleAnchorClick);
@@ -81,18 +90,36 @@ export default function SmoothScroll({ children }) {
     if (!lenisRef.current) return;
 
     if (typeof window !== 'undefined' && window.location.hash) {
-      const targetEl = document.querySelector(window.location.hash);
-      if (targetEl) {
-        setTimeout(() => {
+      let cleanHash = window.location.hash;
+      const qIdx = cleanHash.indexOf('?');
+      if (qIdx !== -1) cleanHash = cleanHash.slice(0, qIdx);
+      const ampIdx = cleanHash.indexOf('&');
+      if (ampIdx !== -1) cleanHash = cleanHash.slice(0, ampIdx);
+
+      try {
+        const targetEl = document.querySelector(cleanHash);
+        if (targetEl) {
+          lenisRef.current.resize();
           const headerEl = document.querySelector('header');
           const headerOffset = headerEl ? headerEl.offsetHeight + 16 : 84;
-          lenisRef.current?.scrollTo(targetEl, {
-            offset: -headerOffset,
-            duration: 0.8,
-          });
-        }, 80);
-        return;
-      }
+          const targetY = targetEl.offsetTop - headerOffset;
+
+          // If browser already jumped near the target, sync Lenis without bouncing
+          if (Math.abs(window.scrollY - targetY) < 100) {
+            lenisRef.current.scrollTo(targetY, { immediate: true });
+            return;
+          }
+
+          setTimeout(() => {
+            lenisRef.current?.resize();
+            const currentTargetY = targetEl.offsetTop - headerOffset;
+            lenisRef.current?.scrollTo(currentTargetY, {
+              duration: 0.8,
+            });
+          }, 80);
+          return;
+        }
+      } catch (err) {}
     }
 
     // Default route change scroll to top

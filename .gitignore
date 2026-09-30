@@ -41,5 +41,8 @@ run-*.js
 rec.mp4
 reference video.mp4
 Demo.mp4
-Vsb_Smiles_Official_Demo.mp4
 *.mp4
+*.mp3
+ai_voiceover_clips/
+scripts/
+

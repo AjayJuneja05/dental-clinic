@@ -129,6 +129,9 @@ export default function ContactPage() {
                     9454 Wilshire Blvd, Suite 800<br />
                     Beverly Hills, CA 90212
                   </p>
+                  <p className="text-[11px] text-amber-700/80 font-medium italic mt-1">
+                    * Demo address for preview & portfolio purposes only
+                  </p>
                 </div>
                 <a 
                   href="https://maps.google.com/?q=9454+Wilshire+Blvd+Beverly+Hills+CA" 

@@ -183,6 +183,9 @@ export default function Footer() {
                     9454 Wilshire Blvd, Suite 800<br />
                     Beverly Hills, CA 90212
                   </p>
+                  <p className="text-[11px] text-amber-300/80 font-medium italic mt-1">
+                    * Demo address for preview & portfolio purposes only
+                  </p>
                 </div>
               </div>
 
@@ -221,10 +224,16 @@ export default function Footer() {
         </div>
 
         {/* ─── BOTTOM BAR ─── */}
-        <div className="py-7 border-t border-white/[0.08] flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p suppressHydrationWarning className="text-[12px] text-white/45">
-            © {new Date().getFullYear()} Vsb Smiles Dental Clinic. All Rights Reserved. Beverly Hills, California.
-          </p>
+        <div className="py-7 border-t border-white/[0.08] flex flex-col md:flex-row items-center justify-between gap-4">
+          <div className="flex flex-col sm:flex-row items-center gap-1.5 sm:gap-2.5 text-center sm:text-left">
+            <p suppressHydrationWarning className="text-[12px] text-white/45">
+              © {new Date().getFullYear()} Vsb Smiles Dental Clinic. All Rights Reserved. Beverly Hills, California.
+            </p>
+            <span className="hidden sm:inline text-white/20">|</span>
+            <p className="text-[12px] text-sky-400 font-medium tracking-wide">
+              Prototype by VSB SOFTECH for our Beloved Doctors
+            </p>
+          </div>
           
           <div className="flex items-center gap-1 text-[12px] text-white/40">
             {['Privacy Policy', 'Terms of Service', 'HIPAA Compliance', 'Accessibility'].map((item, i) => (

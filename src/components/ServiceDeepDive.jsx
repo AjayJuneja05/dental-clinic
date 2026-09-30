@@ -592,8 +592,18 @@ export default function ServiceDeepDive({ activeServiceId, onServiceChange }) {
               {/* CTA Row */}
               <div className="flex flex-wrap items-center gap-3.5 pt-2">
                 <Link
-                  href={`/#schedule?service=${activeService.id}`}
-                  className="px-6 sm:px-8 py-3.5 rounded-full bg-white hover:bg-sky-50 text-[#07234b] text-[13.5px] sm:text-[14px] font-bold transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5"
+                  href={`/?service=${activeService.id}#schedule`}
+                  onClick={() => {
+                    try {
+                      sessionStorage.setItem('selected_booking_service', activeService.id);
+                    } catch (e) {}
+                    if (typeof window !== 'undefined') {
+                      window.dispatchEvent(new CustomEvent('autofill-booking-service', {
+                        detail: { serviceId: activeService.id }
+                      }));
+                    }
+                  }}
+                  className="px-6 sm:px-8 py-3.5 rounded-full bg-white hover:bg-sky-50 text-[#07234b] text-[13.5px] sm:text-[14px] font-bold transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5 cursor-pointer"
                 >
                   Schedule {activeService.title}
                 </Link>

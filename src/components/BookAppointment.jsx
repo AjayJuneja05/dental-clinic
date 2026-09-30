@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import doctorsData from '@/data/doctors.json';
 import servicesData from '@/data/services.json';
 
@@ -59,9 +59,167 @@ export default function BookAppointment() {
     notes: '',
   });
 
+  // State to highlight service select when autofilled
+  const [highlightService, setHighlightService] = useState(false);
+
   // Modal open states
   const [showDateModal, setShowDateModal] = useState(false);
   const [showTimeModal, setShowTimeModal] = useState(false);
+
+  // Autofill service from URL query params, hash params, sessionStorage, or custom event
+  useEffect(() => {
+    const matchService = (rawVal) => {
+      if (!rawVal) return null;
+      const clean = rawVal.toLowerCase().replace(/[-_]/g, ' ').trim();
+      return servicesData.find(
+        (s) =>
+          s.id.toLowerCase() === rawVal.toLowerCase().trim() ||
+          s.title.toLowerCase() === clean ||
+          s.title.toLowerCase().includes(clean) ||
+          clean.includes(s.title.toLowerCase()) ||
+          clean.includes(s.id.toLowerCase())
+      );
+    };
+
+    const matchDoctor = (rawVal) => {
+      if (!rawVal) return null;
+      const clean = rawVal.toLowerCase().trim();
+      return doctorsData.find(
+        (d) =>
+          d.id.toLowerCase() === clean ||
+          d.name.toLowerCase().includes(clean) ||
+          d.tag.toLowerCase().includes(clean)
+      );
+    };
+
+    const checkPrefill = () => {
+      if (typeof window === 'undefined') return;
+
+      let targetService = null;
+      let targetDoctor = null;
+
+      // 1. Check URL query params (?service=... or ?dept=...)
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.get('service')) targetService = urlParams.get('service');
+      else if (urlParams.get('dept')) targetService = urlParams.get('dept');
+      if (urlParams.get('doctor')) targetDoctor = urlParams.get('doctor');
+
+      // 2. Check URL hash (e.g. /#schedule?service=... or /#schedule&service=...)
+      if (!targetService && window.location.hash) {
+        const hash = window.location.hash;
+        const qIdx = hash.indexOf('?');
+        const ampIdx = hash.indexOf('&');
+        const splitIdx = qIdx !== -1 ? qIdx : ampIdx;
+        if (splitIdx !== -1) {
+          const hashParams = new URLSearchParams(hash.slice(splitIdx + 1));
+          if (hashParams.get('service')) targetService = hashParams.get('service');
+          else if (hashParams.get('dept')) targetService = hashParams.get('dept');
+          if (hashParams.get('doctor')) targetDoctor = hashParams.get('doctor');
+        }
+      }
+
+      // 3. Check sessionStorage
+      try {
+        const storedService = sessionStorage.getItem('selected_booking_service');
+        if (storedService) {
+          targetService = storedService;
+          sessionStorage.removeItem('selected_booking_service');
+        }
+        const storedDoctor = sessionStorage.getItem('selected_booking_doctor');
+        if (storedDoctor) {
+          targetDoctor = storedDoctor;
+          sessionStorage.removeItem('selected_booking_doctor');
+        }
+      } catch (e) {}
+
+      const scrollToForm = () => {
+        setTimeout(() => {
+          const section = document.getElementById('schedule');
+          if (section) {
+            const headerEl = document.querySelector('header');
+            const offset = headerEl ? headerEl.offsetHeight + 16 : 84;
+            const targetY = section.offsetTop - offset;
+            if (typeof window !== 'undefined') {
+              if (Math.abs(window.scrollY - targetY) < 100) return;
+              if (window.__lenis) {
+                window.__lenis.resize();
+                window.__lenis.scrollTo(targetY, { duration: 0.8 });
+              } else {
+                window.scrollTo({ top: targetY, behavior: 'smooth' });
+              }
+            }
+          }
+        }, 150);
+      };
+
+      // Apply matched service
+      if (targetService) {
+        const matched = matchService(targetService);
+        if (matched) {
+          setFormData((prev) => ({ ...prev, serviceId: matched.id }));
+          setHighlightService(true);
+          setTimeout(() => setHighlightService(false), 3000);
+          scrollToForm();
+        }
+      }
+
+      // Apply matched doctor
+      if (targetDoctor) {
+        const matchedDoc = matchDoctor(targetDoctor);
+        if (matchedDoc) {
+          setFormData((prev) => ({ ...prev, doctorId: matchedDoc.id }));
+          scrollToForm();
+        }
+      }
+    };
+
+    checkPrefill();
+
+    // Listen for custom events triggered by in-page buttons
+    const handleCustomPrefill = (e) => {
+      let shouldScroll = false;
+      if (e.detail?.serviceId) {
+        const matched = matchService(e.detail.serviceId);
+        if (matched) {
+          setFormData((prev) => ({ ...prev, serviceId: matched.id }));
+          setHighlightService(true);
+          setTimeout(() => setHighlightService(false), 3000);
+          shouldScroll = true;
+        }
+      }
+      if (e.detail?.doctorId) {
+        const matchedDoc = matchDoctor(e.detail.doctorId);
+        if (matchedDoc) {
+          setFormData((prev) => ({ ...prev, doctorId: matchedDoc.id }));
+          shouldScroll = true;
+        }
+      }
+      if (shouldScroll) {
+        setTimeout(() => {
+          const section = document.getElementById('schedule');
+          if (section) {
+            const headerEl = document.querySelector('header');
+            const offset = headerEl ? headerEl.offsetHeight + 16 : 84;
+            if (typeof window !== 'undefined' && window.__lenis) {
+              window.__lenis.scrollTo(section, { offset: -offset, duration: 0.8 });
+            } else {
+              section.scrollIntoView({ behavior: 'smooth' });
+            }
+          }
+        }, 100);
+      }
+    };
+
+    window.addEventListener('autofill-booking-service', handleCustomPrefill);
+    window.addEventListener('hashchange', checkPrefill);
+    window.addEventListener('popstate', checkPrefill);
+
+    return () => {
+      window.removeEventListener('autofill-booking-service', handleCustomPrefill);
+      window.removeEventListener('hashchange', checkPrefill);
+      window.removeEventListener('popstate', checkPrefill);
+    };
+  }, []);
 
   // Calendar navigation view
   const [viewYear, setViewYear] = useState(today.getFullYear());
@@ -284,7 +442,11 @@ export default function BookAppointment() {
                           suppressHydrationWarning
                           value={formData.serviceId}
                           onChange={(e) => setFormData({ ...formData, serviceId: e.target.value })}
-                          className="w-full px-4 py-3 sm:py-3.5 rounded-xl bg-slate-50 border border-slate-200 text-[#07234b] text-[16px] sm:text-[13.5px] focus:bg-white focus:border-[#0066cc] focus:ring-2 focus:ring-sky-100 outline-none transition-all appearance-none cursor-pointer shadow-xs"
+                          className={`w-full px-4 py-3 sm:py-3.5 rounded-xl text-[#07234b] text-[16px] sm:text-[13.5px] outline-none transition-all duration-300 appearance-none cursor-pointer shadow-xs ${
+                            highlightService
+                              ? 'bg-sky-50 border-2 border-[#0066cc] ring-4 ring-sky-200/80 shadow-md font-semibold'
+                              : 'bg-slate-50 border border-slate-200 focus:bg-white focus:border-[#0066cc] focus:ring-2 focus:ring-sky-100'
+                          }`}
                         >
                           <option value="general">General Checkup</option>
                           {servicesData.map((s) => (
@@ -695,7 +857,7 @@ export default function BookAppointment() {
                   <div className="min-w-0">
                     <h4 className="text-[14px] sm:text-[15px] font-bold text-[#07234b] leading-tight">Our Location</h4>
                     <p className="text-[13px] sm:text-[14px] text-[#475569] font-medium leading-tight truncate mt-0.5">
-                      435 N Bedford Dr, Beverly Hills
+                      435 N Bedford Dr, Beverly Hills <span className="text-[11px] text-slate-400 font-normal">(Demo Address)</span>
                     </p>
                   </div>
                 </div>

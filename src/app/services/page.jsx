@@ -65,7 +65,12 @@ export default function ServicesPage() {
           </p>
           <div className="flex flex-wrap items-center justify-center gap-4 mt-8">
             <Link 
-              href="/#schedule" 
+              href={`/?service=${activeServiceId}#schedule`} 
+              onClick={() => {
+                try {
+                  sessionStorage.setItem('selected_booking_service', activeServiceId);
+                } catch (e) {}
+              }}
               className="px-8 py-3.5 rounded-full bg-white text-[#07234b] hover:bg-sky-50 text-[14px] font-bold transition-all shadow-lg"
             >
               Schedule an Appointment

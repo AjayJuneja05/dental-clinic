@@ -152,8 +152,25 @@ export default function DoctorProfileModal({ doctor, onClose }) {
                 </div>
                 <a
                   href="#schedule"
-                  onClick={onClose}
-                  className="bg-white text-[#0066cc] hover:bg-sky-50 text-[11px] font-bold px-3 py-1 rounded-lg transition-colors"
+                  onClick={() => {
+                    try {
+                      sessionStorage.setItem('selected_booking_doctor', doctor.id);
+                      if (doctor.tag === 'Esthetician') sessionStorage.setItem('selected_booking_service', 'aesthetic');
+                      else if (doctor.tag === 'Orthodontist') sessionStorage.setItem('selected_booking_service', 'ortho');
+                      else if (doctor.tag === 'Oral Surgeon') sessionStorage.setItem('selected_booking_service', 'surgical');
+                      else if (doctor.tag === 'Implantologist') sessionStorage.setItem('selected_booking_service', 'implant');
+                    } catch (e) {}
+                    if (typeof window !== 'undefined') {
+                      window.dispatchEvent(new CustomEvent('autofill-booking-service', {
+                        detail: {
+                          doctorId: doctor.id,
+                          serviceId: doctor.tag === 'Esthetician' ? 'aesthetic' : doctor.tag === 'Orthodontist' ? 'ortho' : doctor.tag === 'Oral Surgeon' ? 'surgical' : doctor.tag === 'Implantologist' ? 'implant' : undefined
+                        }
+                      }));
+                    }
+                    onClose();
+                  }}
+                  className="bg-white text-[#0066cc] hover:bg-sky-50 text-[11px] font-bold px-3 py-1 rounded-lg transition-colors cursor-pointer"
                 >
                   Book Visit
                 </a>
